@@ -70,13 +70,13 @@ public class Player : MonoBehaviour
     public GameObject PlayerHitSound;
     public GameObject QM;
 
-    //--------?Šœ?† ë¦¬ì–¼
+    //--------//Æ©Åä¸®¾ó¿¡¼­ »ç¿ë
     public bool skillcheck = false;
     public bool TutorialLev4 = false;
 
     public int Timer33 = 0;
     public double Timer22 = 0;
-    public float MoveTime = 3f;
+    public float MoveTime = 2f; 
     public bool TuLev1 = false;
     public void GameStartInit()// ê²Œì„?‹œ?‘?‹œ ?•œë²ˆì‹¤?–‰
     {
@@ -501,7 +501,7 @@ public class Player : MonoBehaviour
             transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
 
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
             float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
 
         }

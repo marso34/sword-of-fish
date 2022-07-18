@@ -43,6 +43,18 @@ TagManager:
   - NotBody
   - FRZ
   - Shiled
+  - Slider
+  - BusterBtn
+  - SkillBtn
+  - Stop
+  - ItemBtn
+  - TimeBoard
+  - JoyStick
+  - KillBoard
+  - plan
+  - Stage
+  - plan1
+  - Stagy Level
   layers:
   - Default
   - TransparentFX

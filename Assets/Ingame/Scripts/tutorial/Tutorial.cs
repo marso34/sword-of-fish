@@ -6,33 +6,30 @@ using UnityEngine.EventSystems;
 
 public class Tutorial : MonoBehaviour
 {
-    public int Touch = 0; //í„°ì¹˜ íšŸìˆ˜ ì´ˆê¸°í™”
+    public int Touch = 0; //?„°ì¹? ?šŸ?ˆ˜ ì´ˆê¸°?™”
 
     public GameObject tutorial;
     public GameObject GM;
-    public GameObject TutorialPlan; //ì„¤ëª… ë‚˜ì˜¤ëŠ” í…ìŠ¤íŠ¸
-    public GameObject TutorialName; //ë§¨ ì²˜ìŒì— ì‹œì‘í•˜ê¸° ëˆ„ë¥´ê³  íŠœí† ë¦¬ì–¼ ëœ¨ëŠ” ì´ë¯¸ì§€
+    public GameObject TutorialPlan; //?„¤ëª? ?‚˜?˜¤?Š” ?…?Š¤?Š¸
+    public GameObject TutorialName; //ë§? ì²˜ìŒ?— ?‹œ?‘?•˜ê¸? ?ˆ„ë¥´ê³  ?Šœ?† ë¦¬ì–¼ ?œ¨?Š” ?´ë¯¸ì??
     public GameObject QM;
-    public GameObject Tuto1; //ìŠ¤í¬ë¦½íŠ¸ ë¶™ì–´ìˆëŠ” ë³¸ì¸
+    public GameObject Tuto1; //?Š¤?¬ë¦½íŠ¸ ë¶™ì–´?ˆ?Š” ë³¸ì¸
     public GameObject player;
-    /*
-    public GameObject Slider; //ìŠ¬ë¼ì´ë” ì´ë¯¸ì§€1
-    public GameObject Slider1; //ìŠ¬ë¼ì´ë” ì´ë¯¸ì§€2
     public GameObject BusterBtn;
     public GameObject SkillBtn;
-    public GameObject Stop;
-    public GameObject JoyStick;
-    public GameObject KillBoard;
-    public GameObject TimeBoard; 
-    public GameObject SkillBtn2; //ìŠ¤í‚¬ ë²„íŠ¼ ì•ˆì— ì±„ì›Œì§€ëŠ” ì´ë¯¸ì§€*/
-    public GameObject TutoBack; //Canvas/Image ê²€ì€ ë°°ê²½
-    public GameObject GuidePet; //í• ì•„ë²„ì§€
+
+    public GameObject TutoBack; //Canvas/Image ê²???? ë°°ê²½
+    public GameObject GuidePet; //?• ?•„ë²„ì??
     public void Start() 
     {
         
         GuidePet.GetComponent<GuidePet>().BornGuide();
 
-        
+        BusterBtn = GameObject.FindWithTag("BusterBtn");
+        SkillBtn = GameObject.FindWithTag("SkillBtn");
+
+
+
         /*
         JoyStick = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(4).gameObject;
         KillBoard = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject;
@@ -51,10 +48,10 @@ public class Tutorial : MonoBehaviour
 
     
 
-    public void OffCanvas()//ì‹œê°„ ë©ˆì¶”ë©´ ì•ˆë˜ëŠ” ê²ƒë“¤ë§Œ ì—¬ê¸°ì„œ íˆ¬ëª…í•˜ê²Œ ë°”ê¿ˆ
+    public void OffCanvas()//?‹œê°? ë©ˆì¶”ë©? ?•ˆ?˜?Š” ê²ƒë“¤ë§? ?—¬ê¸°ì„œ ?ˆ¬ëª…í•˜ê²? ë°”ê¿ˆ
     {
 
-        TutoBack.SetActive(true); //íŠœí† ë¦¬ì–¼ ë‚˜ì˜¤ë©´ ë’¤ì— ê²€ì€ í™”ë©´
+        TutoBack.SetActive(true); //?Šœ?† ë¦¬ì–¼ ?‚˜?˜¤ë©? ?’¤?— ê²???? ?™”ë©?
         Color a;
         a.a = 0;
         a.b = 1;
@@ -70,7 +67,7 @@ public class Tutorial : MonoBehaviour
 
         Color color1 = QM.GetComponent<QuestManager>().BusterBtn.GetComponent<Image>().color = a; 
         Color color2 = QM.GetComponent<QuestManager>().SkillBtn.GetComponent<Image>().color = a; 
-        Color color3 = QM.GetComponent<QuestManager>().SkillBtn2.GetComponent<Image>().color = a; 
+        //Color color3 = QM.GetComponent<QuestManager>().SkillBtn2.GetComponent<Image>().color = a; 
 
         if(QM.GetComponent<QuestManager>().TutorialLev == 2)
         {
@@ -80,7 +77,7 @@ public class Tutorial : MonoBehaviour
         if(QM.GetComponent<QuestManager>().TutorialLev == 3)
         {
             Color color5 = QM.GetComponent<QuestManager>().SkillBtn.GetComponent<Image>().color = b; 
-            Color color6 = QM.GetComponent<QuestManager>().SkillBtn2.GetComponent<Image>().color = b; 
+            //Color color6 = QM.GetComponent<QuestManager>().SkillBtn2.GetComponent<Image>().color = b; 
         }
 
     }
@@ -89,20 +86,20 @@ public class Tutorial : MonoBehaviour
 
     public void Update()
     {
-        if(Touch == 0) //í• ì•„ë²„ì§€ ë‚´ë ¤ì˜¤ê³  ì„¤ëª…ë‚˜ì˜¤ëŠ” ê³³
+        if(Touch == 0) //?• ?•„ë²„ì?? ?‚´? ¤?˜¤ê³? ?„¤ëª…ë‚˜?˜¤?Š” ê³?
         {
 
             GuidePet.SetActive(true);
             OffCanvas();
             GuidePet.GetComponent<GuidePet>().ShowMove();
-            Invoke("ShowExplain", 1f); //1ì´ˆë’¤ì— ì„¤ëª… ë‚˜ì˜´
+            Invoke("ShowExplain", 1f); //1ì´ˆë’¤?— ?„¤ëª? ?‚˜?˜´
 
         }
 
         if(Touch == 1)
         {
 
-            GuidePet.GetComponent<GuidePet>().GoOut(); //í™”ë©´ í•œë²ˆ í„°ì¹˜í•˜ë©´ í• ì•„ë²„ì§€ ë”
+            GuidePet.GetComponent<GuidePet>().GoOut(); //?™”ë©? ?•œë²? ?„°ì¹˜í•˜ë©? ?• ?•„ë²„ì?? ?”
             Invoke("OffTu", 1f);
         }
 
@@ -129,7 +126,7 @@ public class Tutorial : MonoBehaviour
     }
 
 
-    public void OnPlayerCanvas() //íˆ¬ëª…í™”í–ˆë˜ê±° íŠœí† ë¦¬ì–¼ ë„ë©´ ë‹¤ì‹œ ë¶ˆíˆ¬ëª…í•˜ê²Œ ë°”ê¿ˆ
+    public void OnPlayerCanvas() 
     {
         tutorial.SetActive(false);
         //Tuto1.SetActive(false);
@@ -148,7 +145,7 @@ public class Tutorial : MonoBehaviour
 
         Color color1 = QM.GetComponent<QuestManager>().BusterBtn.GetComponent<Image>().color = b; 
         Color color2 = QM.GetComponent<QuestManager>().SkillBtn.GetComponent<Image>().color = b; 
-        Color color3 = QM.GetComponent<QuestManager>().SkillBtn2.GetComponent<Image>().color = b; 
+        //Color color3 = QM.GetComponent<QuestManager>().SkillBtn2.GetComponent<Image>().color = b; 
         GuidePet.SetActive(false);
         
 

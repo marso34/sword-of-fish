@@ -24,59 +24,66 @@ public class GuidePet : MonoBehaviour
     public void OnCanvas()
     {
 
-      
-            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
-            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(4).gameObject.SetActive(true);
-            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(5).gameObject.SetActive(true);
-            transform.parent.transform.GetChild(3).transform.GetChild(1).gameObject.SetActive(true);
-            transform.parent.transform.GetChild(3).transform.GetChild(2).gameObject.SetActive(true);
-            transform.parent.transform.GetChild(3).transform.GetChild(3).gameObject.SetActive(true);
-            transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(true);
+      /*
+            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);//½½¶óÀÌ´õ
+            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(4).gameObject.SetActive(true); //½ºÅ¾
+            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(5).gameObject.SetActive(true); //¾ÆÀÌÅÛ¹öÆ°
+            transform.parent.transform.GetChild(3).transform.GetChild(1).gameObject.SetActive(true); //Å¸ÀÓº¸µå
+            transform.parent.transform.GetChild(3).transform.GetChild(2).gameObject.SetActive(true); //Á¶ÀÌ½ºÆ½
+            transform.parent.transform.GetChild(3).transform.GetChild(3).gameObject.SetActive(true); //Äù½ºÆ®º¸µå
+            transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(true); //Å³º¸µå
+*/
+        GameObject.FindWithTag("Slider").SetActive(true);
+        GameObject.FindWithTag("Stop").SetActive(true);
+        GameObject.FindWithTag("ItemBtn").SetActive(true);
+        GameObject.FindWithTag("TimeBoard").SetActive(true);
+        GameObject.FindWithTag("JoyStick").SetActive(true);
+        GameObject.FindWithTag("QB").SetActive(true);
+        GameObject.FindWithTag("KillBoard").SetActive(true);
 
-        
 
         
     }
     public void OffCanvas()
     {
-
-            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);//ìŠ¬ë¼ì´ë“œ
-            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(4).gameObject.SetActive(false);//ìŠ¤íƒ‘
-            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(5).gameObject.SetActive(false);//ìŠ¤íƒ‘
-            transform.parent.transform.GetChild(3).transform.GetChild(1).gameObject.SetActive(false);//íƒ€ì„ë³´ë“œ
-            transform.parent.transform.GetChild(3).transform.GetChild(2).gameObject.SetActive(false);//í‚¬ë³´ë“œ
-            transform.parent.transform.GetChild(3).transform.GetChild(3).gameObject.SetActive(false);//í€˜ìŠ¤íŠ¸ë³´ë“œ
-            transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(false);   //ì¡°ì´ìŠ¤í‹±
+            /*
+            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false); //½½¶óÀÌ´õ
+            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(4).gameObject.SetActive(false); //½ºÅ¾
+            transform.parent.transform.GetChild(3).transform.GetChild(0).transform.GetChild(5).gameObject.SetActive(false); //¾ÆÀÌÅÛ¹öÆ°
+            transform.parent.transform.GetChild(3).transform.GetChild(1).gameObject.SetActive(false); //Å¸ÀÓº¸µå
+            transform.parent.transform.GetChild(3).transform.GetChild(2).gameObject.SetActive(false); //Á¶ÀÌ½ºÆ½
+            transform.parent.transform.GetChild(3).transform.GetChild(3).gameObject.SetActive(false); //Äù½ºÆ®º¸µå
+            transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(false); //Å³º¸µå*/
+        GameObject.FindWithTag("Slider").SetActive(false);
+        GameObject.FindWithTag("Stop").SetActive(false);
+        GameObject.FindWithTag("ItemBtn").SetActive(false);
+        GameObject.FindWithTag("TimeBoard").SetActive(false);
+        GameObject.FindWithTag("JoyStick").SetActive(false);
+        GameObject.FindWithTag("QB").SetActive(false);
+        GameObject.FindWithTag("KillBoard").SetActive(false);
 
     }
-    public void BornGuide() //ê¸€ ìœ„ì—ì„œ íƒ„ìƒ
+    public void BornGuide() 
     {
-        QM.GetComponent<QuestManager>().bornguide();
-        //Guide.transform.SetParent(QM.GetComponent<QuestManager>().Player.transform);
+        QM.GetComponent<QuestManager>().bornguide(); //ÇÃ·¹ÀÌ¾î ¸ØÃß°í °¡ÀÌµå ¹°°í±â¸¦ ÇÃ·¹ÀÌ¾î ÀÚ½ÄÀ¸·Î µÒ
+        Guide.transform.localPosition = new Vector3(-2, 4, 0); //³»·Á¿À±â Àü¿¡ È­¸é À§¿¡ ÀÖ´Â À§Ä¡
 
-        //Guide.transform.SetParent(GM.GetComponent<GameManager_>().Player_p.transform);
-        //        Guide.transform.SetParent(GM.GetComponent<GameManager_>().Player_p.transform); 
-        //Player = GameObject.Find("Player");
-        
-        //Guide.transform.SetParent(Player.transform);
-        //QM.GetComponent<QuestManager>().HideAiSkin();
-        Guide.transform.localPosition = new Vector3(-2, 4, 0);
-
-        OffCanvas();
+        OffCanvas(); 
+        /*
         if (QM.GetComponent<QuestManager>().TutorialLev == 1)
         {
-            transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(true);   //ì¡°ì´ìŠ¤í‹±
+            transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(true); 
         }
         else if (QM.GetComponent<QuestManager>().TutorialLev == 2)
         {
             transform.parent.transform.GetChild(3).transform.GetChild(4).gameObject.SetActive(false);
         }
-
+*/
     }
 
 
 
-    public void ShowMove() //ê¸€ ì˜†ìœ¼ë¡œ ìœ„ì¹˜ ì´ë™
+    public void ShowMove() //°¡ÀÌµå ¹°°í±â ÀÚ¸· ¿·À¸·Î ÀÌµ¿
     {
         Vector3 destination = new Vector3(-2, 2, 0);
 
@@ -84,7 +91,7 @@ public class GuidePet : MonoBehaviour
         //QM.GetComponent<QuestManager>().HideAiSkin();
 
     }
-    public void GoOut()
+    public void GoOut() //°¡ÀÌµå ¹°°í±â À§·Î ´Ù½Ã ÀÌµ¿
     {
 
 
@@ -97,20 +104,9 @@ public class GuidePet : MonoBehaviour
             
     }
 
-    private void Update() //í• ì•„ë²„ì§€ ìƒê¸¸ë•Œë§ˆë‹¤ íšŒì „ì´ˆê¸°í™”
+    private void Update() //Æ©Åä¸®¾ó ´Ü²¾º°·Î ¶ã ¶§¸¶´Ù ¹°°í±â ¹æÇâ °íÁ¤
     {
-
-/*
-        Player = GameObject.Find("Player");
-        
-        Guide.transform.SetParent(Player.transform);*/
         Vector3 direction = Guide.transform.localRotation * new Vector3(0,0,90);
-        /*
-        
-        if (lev4up)
-        {
-            QM.GetComponent<QuestManager>().ShowAiSkin();
-        }*/
 
     }
 }

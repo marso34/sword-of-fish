@@ -85,7 +85,7 @@ public class PlayerScript : Player
         for (int i = 0; i < MaxBodyShape; ++i) ShapeKillCount[i] = 0;
         StartFlag2 = false;
         killScore = 0;
-        MovementSpeed = 2.3f + transform.localScale.y / 2;//3.8
+        MovementSpeed = 2.3f + transform.localScale.y / 2f;//3.8
         BusterSpeed = 4.6f + transform.localScale.y / 2;// 부스터 속도 //10  
         RotationSpeed = 1500f;
 
