@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: dc07582113405f642a2b724dcd3a9061
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MFish: {instanceID: 0}
+  - MKnife: {instanceID: 0}
+  - MyKnife: {instanceID: 0}
+  - MyBody: {instanceID: 0}
+  - Skin: {instanceID: 0}
+  - skin_: {instanceID: 0}
+  - Flesh: {instanceID: 0}
+  - Bubble: {instanceID: 0}
+  - NicName: {instanceID: 0}
+  - GM: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

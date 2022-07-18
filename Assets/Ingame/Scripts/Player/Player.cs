@@ -1,0 +1,801 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+public class Player : MonoBehaviour
+{
+    public int AnimFlame = 10; // ?• ?‹ˆ ?Š¤?”„ë¦? ?‹œ?Š¸ ?”„? ˆ?„
+    public int DieAnimFlame = 10; // ì£½ìŒ ?• ?‹ˆ ?Š¤?”„ë¦¬ì‹œ?Š¸ ?”„? ˆ?„
+    public GameObject Barriar;
+    public ParticleSystem Skill; // J
+    public GameObject Skill2; // J
+    public bool isMove = false; //???ì§ì„?ƒ?ƒœ
+    public enum State { Idle, Move, Die, };//?ƒ?ƒœ?“¤ ì§‘í•©
+    public State state;// ?˜„?¬?ƒ?ƒœ
+    public int PlayerCount = 8;
+    public float Speed;//ë³??•˜?Š” ?Š¤?”¼?“œë¥? ?‹´?Š” ë³??ˆ˜
+    public float RotationSpeed;//?šŒ? „?†?„
+    public float MovementSpeed;//ê¸°ë³¸ ?Š¤?”¼?Š¸ ?ƒ?ˆ˜
+
+    public float TempMovementSp; // J
+    public float TempBusterSp; // J
+    public float TempRotateSp; // J
+
+    float MaxSize = 2f;
+    public int fleshCount = 0;
+    public SpriteRenderer MFish;// ?‚´ ë¬¼ê³ ê¸? ?Š¤?‚¨ ??‹ ê°ì²´?—?„œ ì´ˆê¸°?™”
+    public SpriteRenderer MKnife;//?‚´ ì¹? ?Š¤?‚¨// ??‹?—?„œ ì´ˆê¸°?™”.
+    public GameObject MyKnife;
+    public GameObject MyBody;
+    //LOBBYPLAYER?—?„œ ì´ˆê¸°?™”?•¨
+    public int FishNumber;//0~N GameManager ?—?„œ ?†Œ?™˜ ?•  ?•Œ ì´ˆê¸°?™” ?•´ì¤?
+    public int KnifeNumber;//0~N GameManager ?—?„œ ?†Œ?™˜ ?•  ?•Œ ì´ˆê¸°?™” ?•´ì¤?
+
+
+    public GameObject Skin;// ?Š¤?‚¨ ?‹´ê¸? ?˜¤ë¸Œì ?Š¸
+    public Skin skin_;//?Š¤?‚¨
+    public GameObject Flesh;//?‹œì²? ì°¸ì¡°
+    public float chsize = 0.05f;
+
+    public float BusterSpeed;
+    public bool BusterFlag;
+    public GameObject Bubble;// ë²„ë¸” ê°ì²´  
+
+    public bool StartFlag;// ê²Œì„ ?‹œ?‘?„ ?•Œë¦¬ëŠ” ?”Œ? ˆê·?.
+
+    public bool Life = true;//?´?™ ? œ?–´ë°? ?• ?‹ˆ?™¸?˜ ?‚¶&ì£½ìŒ ? œ?–´?•˜ê¸°ìœ„?•œë³??ˆ˜ ?• ?‹ˆ? œ?–´ life?Š” ?›?• ?•Œ ëª»ë°”ê¾¸ê¸°?•Œë¬?. ?• ?‹ˆ ?¬?ƒ?•œê³„ë•Œë§? ?ˆ„?”ê¸°ì½”?“œ?ƒ?„±? 
+
+    public int killScore;//?‚¬?Š¤ì½”ì–´
+
+    public bool endFlag;//ê²Œì„ ??‚´?Š”ë³??ˆ˜
+
+    public bool SkillFlag; // 
+
+    public GameObject GM;// ê²Œì„ë§¤ë‹ˆ? ¸
+    public Color C;//ìºë¦­?„° ?ˆ¬ëª…ë„ë³?ê²½í• ?•Œ?“¸ë³??ˆ˜ (ì£½ì„?•Œ)
+    public Sprite[] KnifeAnims;//ì¹¼ì• ?‹ˆ
+    public Sprite[] BodyAnims;//ëª¸ì• ?‹ˆ
+    public SpriteRenderer S;//ëª¸íˆ¬ëª…ë„ ë°”ê???•Œ ?“°?Š”ë³??ˆ˜
+
+    public GameObject BubbleSound;
+    public Vector3 dir;//???ì§ì¼ë°©í–¥
+                       // Start is called before the first frame update
+    public GameObject Flag_Image;
+    public bool Flag_get;
+    public int HP = 5;
+    public bool hitFlag;
+    public bool flagerror = true;
+    public GameObject KillSound;
+    public GameObject PlayerHitSound;
+    public GameObject QM;
+
+    //--------?Šœ?† ë¦¬ì–¼
+    public bool skillcheck = false;
+    public bool TutorialLev4 = false;
+
+    public int Timer33 = 0;
+    public double Timer22 = 0;
+    public float MoveTime = 3f;
+    public bool TuLev1 = false;
+    public void GameStartInit()// ê²Œì„?‹œ?‘?‹œ ?•œë²ˆì‹¤?–‰
+    {
+        Init_();
+        StartFlag = false;
+        TempMovementSp = 2.3f; //J
+        TempBusterSp = 4.6f;     // J
+        TempRotateSp = RotationSpeed;   // J
+    }
+    
+    public void GameWaitInit()//?˜?´?¬?Œ¨?„?—?„œ ê¸°ë‹¤ë¦´ë•Œ
+    {
+        MFish = Skin.GetComponent<SpriteRenderer>();//?Š¤?‚¨?˜ SpriteRenderer ì°¸ì¡°
+        MKnife = MyKnife.GetComponent<SpriteRenderer>();//ì¹¼ì˜ SpriteRenderer
+
+       
+    }//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ê±ï¿½È­    
+
+    public IEnumerator Start_()//?¼ë°˜ì ?¸ ?Š¤????Š¸ (ì½”ë£¨?‹´) ë°˜ë³µë¬¸ì„.)
+    {
+        while (true) yield return StartCoroutine(state.ToString());//ì½”ë£¨?‹´ ?‹¤?–‰ ë§¤í”„? ˆ?„ë§ˆë‹¤. ì½”ë£¨?‹´ ?¸?„°?„· ê²??ƒ‰?•´?„œ ?•Œ?•„ë³´ê¸°
+    }
+    public void Init_()//ì´ˆê¸°?™”
+    {
+        MyKnife.tag = "Knife";
+        MyBody.tag = "Body";
+    }
+    public void InitState() //J ì´ˆê¸°?™”
+    {
+        C = Color.white;
+
+        Speed = TempMovementSp+transform.localScale.y/2;
+        MovementSpeed = TempMovementSp+transform.localScale.y/2;
+        BusterSpeed = TempBusterSp+transform.localScale.y/2;
+        RotationSpeed = TempRotateSp;
+    }
+    public void OffTrashEffect()
+    {
+        MovementSpeed = TempMovementSp+transform.localScale.y/2;
+        BusterSpeed = TempBusterSp+transform.localScale.y/2;
+        RotationSpeed = TempRotateSp+transform.localScale.y/2;
+        C = Color.white;
+    }
+    public void Eraser_()
+    {
+        Destroy(gameObject, 0.1f);
+    }
+    public void Shiled()
+    {
+        MyBody.tag = "Shiled";
+    }
+    public void NotInit()
+    {
+        MyKnife.tag = "NotKnife";
+        MyBody.tag = "NotBody";
+
+    }//not?œ¼ë¡? ì´ˆê¸°?™”
+    public void InitBody__()
+    {
+        if (Life)
+        {
+            MyBody.tag = "Body";
+            MyKnife.tag = "Knife";
+            state = State.Move;
+            hitFlag = false;
+        }
+    }
+    public void LifeOff()
+    {
+        Life = false;
+    }
+    public virtual void DieLife()// ì£½ì—ˆ?„?•Œ,?†?„ê¸°ë³¸?†?„ë¡?,?ƒœê·? ì£½ìŒ?œ¼ë¡?, ?¼?´?”„ ì£½ìŒ?œ¼ë¡?, ì»¬ëŸ¬ë¦¬ì…‹,?‹œì²´ìƒ?„±,2ì´ˆë’¤ë¶??™œ
+    {
+        if (transform.tag == "Player")
+        {
+            //ê¹œë¹¡?„.ì½”ë“œ
+            ShowDieAnim(0);
+            state = State.Die;
+
+            if (HP > 0)
+            {
+                var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
+                HP--;
+                MyBody.tag = "NotBody";
+                hitFlag = true;
+                translucence();
+                OnOutLine(14);
+                Invoke("OffOutLine", 0.07f);
+                Invoke("ResetColor", 0.2f);
+                Invoke("translucence", 0.3f);
+                Invoke("ResetColor", 0.4f);
+                Invoke("translucence", 0.5f);
+                Invoke("InitBody__", 1.5f);
+
+            }
+            else if (HP <= 0 && flagerror)
+            {
+                CreateFlesh();
+                NotInit();
+                Invoke("LifeOff", 0.015f);
+                flagerror = false;
+            }
+
+        }
+
+        if (transform.tag == "AiPlayer")
+        {
+
+            OnOutLine(14);
+            Invoke("OffOutLine", 0.07f);
+            state = State.Die;
+            LifeOff();
+
+            QM = GameObject.FindGameObjectWithTag("QM");
+            QM.GetComponent<QuestManager>().KnifeEC--;
+            if (SkillFlag)
+                OffSkillFlag(); // J
+            InitState(); // J
+            NotInit();
+
+            //reSpeed();
+
+            CreateFlesh();
+            Destroy(gameObject, 2f);
+            /*if (transform.tag == "AiPlayer")
+                Invoke("Respone", 2f);//?¼?‹¨???ë¦¬ìŠ¤?°?œ¼ë¡? ?•˜?Š”?° ë°”ê???•„?š”?ˆ?Œ
+            else if(transform.tag =="Player") MyKnife.tag = "NotKnife";
+            */
+        }
+        if (transform.tag == "InkOct")
+        {
+            if (GameObject.FindWithTag("Kraken") != null)
+                GameObject.FindWithTag("Kraken").GetComponent<Kraken>().CreateInkSwarm(transform.position, 0.4f);
+            Destroy(gameObject);
+        }
+
+    }
+    public void Check_Flag()
+    {
+        Color a;
+        a.a = 0;
+        a.b = 1;
+        a.g = 1;
+        a.r = 1;
+        Color b;
+        b.a = 1;
+        b.b = 1;
+        b.g = 1;
+        b.r = 1;
+        if (!Flag_get) Flag_Image.GetComponent<Image>().color = a;
+        else if (Flag_get) Flag_Image.GetComponent<Image>().color = b;
+    }
+    public void CreateFlesh()//?‹œì²´ìƒ?„±
+    {
+
+        for (int i = 0; i < 3 + transform.localScale.y; ++i)
+        {
+            var flesh_ = Instantiate(Flesh, transform.position + RandomFleshPosition(), Quaternion.Euler(0, 0, 0));
+
+        }
+
+
+    }//?‹œì²? ë§Œë“¤ê¸?
+
+    public Vector3 RandomFleshPosition() //?œ?¤?•œ ?‹œì²´ìœ„ì¹˜ë°±?„° ë°˜í™˜
+    {
+        return new Vector3(Random.Range(-1.2f, 1.2f), Random.Range(-1.2f, 1.2f), 0);
+    }
+
+    public Vector3 RandomPosition(bool AiFlag) //?œ?¤?•œ ?œ„ì¹˜ë°±?„° ë°˜í™˜
+    {
+        Vector3 relate = Vector3.zero;
+        if (AiFlag)
+        {
+            relate = GameObject.FindWithTag("Player").transform.position;
+        }
+        return new Vector3(Random.Range(-20, 20), Random.Range(-10, 10), 0);
+    }
+    public bool jugeAi()
+    {
+        if (transform.tag == "AiPlayer")
+            return true;
+        else return false;
+    }
+    public void Respone()//ë¶??™œê³¼ì •
+    {
+        if (transform.tag == "AiPlayer")
+        {
+            ResetColor();
+            Vector3 postion_ = RandomPosition(jugeAi());
+
+            transform.Translate(postion_, Space.World);//?œ?¤?•œ?œ„ì¹˜ì— ?ƒ?„±    
+            Life = true;
+
+            SetRandomBody();
+            SetRandomKnife();
+            //sizeInit();
+            
+      
+        }
+
+
+    }
+
+    public void SetRandomBody()//?ƒˆë¡œìš´ ë°”ë”” ?Š¤?‚¨?–»?–´?˜¤ê¸?
+    {
+        if (transform.tag == "AiPlayer")
+        {
+            int R = Random.Range(5, 6);// ëª¸ìŠ¤?‚¨ê°??ˆ˜5
+            FishNumber = R;
+        }
+
+    }
+
+    public void SetRandomKnife()// ?ƒˆë¡œìš´ ì¹? ?Š¤?‚¨?–»?–´?˜¤ê¸?
+    {
+        int R = Random.Range(1, 6);//ì¹¼ìŠ¤?‚¨ê°??ˆ˜6
+        KnifeNumber = R;
+
+    }
+
+    public void InitKnife()// ë¬¼ê³ ê¸? ?”Œ? ˆê·¸ë?¼ê¸°ë°˜ìœ¼ë¡? ?Š¤?‚¨?„ ì´ˆê¸°?™”
+    {
+        KnifeAnims = new Sprite[10];
+        if (KnifeNumber == 0) KnifeAnims = skin_.BasicKnife;
+        else if (KnifeNumber == 1) KnifeAnims = skin_.SpearKnife;
+        else if (KnifeNumber == 2) KnifeAnims = skin_.PanKnife_R;
+        else if (KnifeNumber == 3) KnifeAnims = skin_.Rager_R;
+        else if (KnifeNumber == 4) KnifeAnims = skin_.XKnife;
+        else if(KnifeNumber == 5) KnifeAnims = skin_.CandyKnife;
+    }
+
+    public void InitBody()//ì¹? ?”Œ? ˆê·? ê¸°ë°˜?œ¼ë¡? ?Š¤?‚¨?„ ì´ˆê¸°?™”
+    {
+
+        BodyAnims = new Sprite[10];
+        if (FishNumber == 0) BodyAnims = skin_.FirstTailAnims;
+        else if (FishNumber == 1) BodyAnims = skin_.SharkTailAnims;
+        else if (FishNumber == 2) BodyAnims = skin_.BlowfishTailAnims;
+        else if (FishNumber == 3) BodyAnims = skin_.OctopusTailAnims;
+        else if (FishNumber == 4) BodyAnims = skin_.WaileTailAnims_R;
+        else if (FishNumber == 5) BodyAnims = skin_.BornAnims_E;
+        else if(FishNumber == 6) BodyAnims = skin_.Gabock_E;
+        else if(FishNumber == 7) BodyAnims = skin_.InkOctAnims_E;
+        
+        
+    }
+    public void InitDieBody()
+    {
+        if (FishNumber == 0) MFish.sprite = skin_.DieAnims[0];
+        else if (FishNumber == 1) MFish.sprite = skin_.DieAnims[1];
+        else if (FishNumber == 2) MFish.sprite = skin_.DieAnims[2];
+        else if (FishNumber == 3) MFish.sprite = skin_.DieAnims[3];
+        else if (FishNumber == 4) MFish.sprite = skin_.DieAnims[4];
+        else if (FishNumber == 5) MFish.sprite = skin_.DieAnims[5];
+        else if (FishNumber == 6) MFish.sprite = skin_.DieAnims[6];
+       
+        
+
+    }
+    public void ResetColor()//?ˆ¬ëª…ë„ 0?œ¼ë¡? ì¦? ?ˆ¬ëª…í•˜ì§??•Šê²?
+    {
+        C.a = 1f;
+        S.color = C;
+        MKnife.color = C;
+    }
+
+    public void translucence() // J ë°˜íˆ¬ëª…í•˜ê²?
+    {
+        C.a = 0.5f;
+        S.color = C;
+        MKnife.color = C;
+    }
+    void SpeedInit()
+    {
+        MovementSpeed = TempMovementSp+transform.localScale.y/2;
+        BusterSpeed = TempBusterSp+transform.localScale.y/2;
+        RotationSpeed = TempRotateSp+transform.localScale.y/2;
+        Speed = MovementSpeed;
+    }
+    public void sizeInit()//ê¸°ë³¸?‚¬?´ì¦ˆë¡œ ë°”ê¾¸ê¸?
+    {
+        Sizech(transform.localScale / transform.localScale.y);
+    }
+
+    public void KnifeInit()//ê¸°ë³¸?‚¬?´ì¦ˆë¡œ ë°”ê¾¸ê¸?
+    {
+        MyKnife.transform.parent = null;//ìµœë???¬ê¸? ê²??‚¬ ?‹¤?–‰?¨.,
+        if (MyKnife.transform.localScale.x < 0) MyKnife.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+        else MyKnife.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        MyKnife.transform.parent = transform;
+    }
+
+    public void AnimState(Vector3 dir)//ëª? ?• ?‹ˆë©”ì´?…˜ ? ?š©, ì¹¼ì• ?‹ˆë§¤ì´?…˜ ? ?š©, ?‚¬?„ ? ?š©?•´?•¼?˜?Š”?° ?•„ì§? ëª»êµ¬?˜„
+    {
+        if (Life)
+        {
+            if (isMove)
+            {
+                
+                if (!hitFlag)
+                    state = State.Move;
+                float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.
+                if (x_ < 0)
+                    x_ *= -1;
+                if (transform.rotation.normalized.w * transform.rotation.normalized.z < 0)
+                {
+
+
+                    transform.localScale = new Vector3(x_, transform.localScale.y, 1);
+                }
+                else if (transform.rotation.normalized.w * transform.rotation.normalized.z > 0)
+                {
+
+
+                    transform.localScale = new Vector3(x_ * -1, transform.localScale.y, 1);
+                }
+            }
+            else if (!isMove)
+            {
+                if (!hitFlag)
+                    state = State.Idle;
+            }
+        }
+        else if (!Life)
+        {
+            state = State.Die;
+
+        }
+    }// ì¡°ê±´?— ?”°?¼ ?• ?‹ˆë©”ì´?…˜ ?ƒ?ƒœ ? •?•˜ê¸?.
+    IEnumerator Idle()//ë©ˆì¶¤?• ?‹ˆ0.2ì´ˆë§ˆ?‹¤ shoAnim?•¨?ˆ˜ ?‹¤?–‰
+    {
+        ResetColor();
+        ShowBodyAnim(0);
+        ShowKnifeAnim(0);
+        yield return new WaitForSeconds(0.2f);
+    }
+    IEnumerator Move()//???ì§ì„?• ?‹ˆë§¤ì´?…˜?¬?ƒ
+    {
+        ResetColor();
+        for (int i = 0; i < AnimFlame; ++i)
+        {
+            if (!Life || state != State.Move || Speed == 0) break;
+            ShowBodyAnim(i);
+            ShowKnifeAnim(i);
+            for (int j = 0; j < 2; ++j)
+            {
+                if (Speed == 0) break;
+                CreateBubbles();//ë²„ë¸”?ƒ?„±
+
+                yield return new WaitForSeconds(0.2f / Speed);
+
+            }
+        }
+    }
+    IEnumerator Die() //ì£½ìŒ ?• ?‹ˆ
+    {
+        for (int i = 0; i < 50; ++i)
+        {
+            //if (Life) break;
+            ShowDieAnim(i);
+
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+    public void ShowDieAnim(int index)//ì£½ì—ˆ?„?•Œ ?• ?‹ˆë§¤ì´?…˜ ?¬?ƒ?•¨?ˆ˜
+    {
+        InitDieBody();
+
+        if (S.color.a > 0 && !Life)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                if (i == index)
+                {
+                    C.a -= 0.02f;
+                    S.color = C;
+                    MKnife.color = C;
+                }
+            }
+        }
+    }
+
+    public void ShowBodyAnim(int index)//?‚´?•„?ˆ?„?•Œ ?• ?‹ˆë§¤ì´?…˜ ?¬?ƒ?•¨?ˆ˜
+    {
+        InitBody();
+        for (int i = 0; i < AnimFlame; i++)
+        {
+            if (!Life || state == State.Die) break;
+            if (i == index)
+                MFish.sprite = BodyAnims[i];
+        }
+    }
+    public void ShowKnifeAnim(int index)//?‚´?•„?ˆ?„?•Œ ?• ?‹ˆë§¤ì´?…˜ ?¬?ƒ?•¨?ˆ˜
+    {
+        InitKnife();
+        for (int i = 0; i < AnimFlame; i++)
+        {
+            if (i == index)
+                MKnife.sprite = KnifeAnims[i];
+        }
+
+    }
+
+    public void PlayerMove()
+    {
+        isMove = true; //dir != Vector3.zero;
+        if (isMove && Life)
+        {
+                if(isMove) 
+                {
+                    Timer22 += Time.deltaTime;
+                    if (Timer22 > MoveTime)
+                    {
+                        Timer22 = 0;
+                        Timer33 ++;
+                        
+                    }
+
+
+                }
+            transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
+
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
+            float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
+
+        }
+    }//?”Œ? ˆ?´?–´ ???ì§ì´ê²Œí•˜ê¸?
+    public void chSpeed()// ë¬¼ê³ ê¸? ?´?™?†?„ ë©??‹°?—?„œ ?™ê¸°í™”.
+    {
+        Speed = BusterSpeed;
+    }
+    public void reSpeed()// ë¬¼ê³ ê¸? ?´?™?†?„ ë©??‹°?—?„œ ?™ê¸°í™”
+    {
+        Speed = MovementSpeed;
+    }
+    public void GetPlayer_tp()// ? ë©? êµ¬í˜„
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            transform.Translate(transform.up * 10f, Space.World);
+        }
+    }//?˜ë¯¸ì—†?Š”ì½”ë“œ
+    public void Sizech(Vector3 v_)
+    {
+        transform.localScale = v_;
+        CheckMaxSize();
+        CheckMaxKnife();
+    }// ?‚¬?´ì¦? ?‚¤?š°ê¸? ?”Œ? ˆ?´?–´???,ê·¸ì•„?˜ ëª¨ë“  ?˜¤ë¸Œì ?Š¸?¬ê¸? ?‚¤?š°ê¸?
+    public void SizeUpKnife()
+    {
+        SeparationKnife();
+        if (MyKnife.transform.localScale.x < 0) MyKnife.transform.localScale = new Vector3(MyKnife.transform.localScale.x - 0.0005f, MyKnife.transform.localScale.y + 0.005f, 1);
+        else MyKnife.transform.localScale = new Vector3(MyKnife.transform.localScale.x + 0.005f, MyKnife.transform.localScale.y + 0.005f, 1);
+        CombinationKnife();
+        CheckMaxKnife();
+    }//ì¹¼í¬ê¸? ?‚¤?š°ê¸?
+    public void SeparationKnife()
+    {
+        MyKnife.tag = "NotKnife";
+        MyKnife.transform.parent = null;//ìµœë???¬ê¸? ê²??‚¬ ?‹¤?–‰?¨.,
+    }//ì¹? ë¶„ë¦¬ ëª¸ì—????•œ ?ƒ???? ?¬ê¸°ê???•„?‹Œ ? ˆ???? ?¸ ì¹¼ì˜ ?¬ê¸°ë?¼ì•Œê¸°ìœ„?•¨. ? ˆ????¬ê¸°ê?? 3?´?ƒ ì»¤ì??ë©? ?•ˆ?¼?„œ.
+    public void CombinationKnife()
+    {
+        MyKnife.transform.parent = transform;
+        MyKnife.tag = "Knife";
+        MyKnife.transform.localPosition = new Vector3(0f, 0.35f, 0f);
+        MyKnife.transform.localRotation = Quaternion.Euler(0, 0, 90f);
+    }// ì¹¼ì„ ?”Œ? ˆ?´?–´ë¡? ?‹¤?‹œ ?•©ì²?
+    public void CheckMaxSize()
+    {
+        if (transform.localScale.y > MaxSize)
+        {
+            float a = MaxSize, b = MaxSize;
+
+            if (transform.localScale.x < 0) a *= -1;
+
+            Vector3 V__ = new Vector3(a, b, 1);
+
+            Sizech(V__);
+        }
+    }//ìµœë???¬ê¸°ë„˜?—ˆ?‚˜ ì²´í¬
+    public void CheckMaxKnife()//ì¹¼í¬ê¸? ?´?ƒ ì²´í¬
+    {
+        SeparationKnife();
+        if (MyKnife.transform.localScale.y > MaxSize)
+        {
+            if (MyKnife.transform.localScale.x < 0) MyKnife.transform.localScale = new Vector3(-1f * MaxSize, MaxSize, 1f);
+            else MyKnife.transform.localScale = new Vector3(MaxSize, MaxSize, 1f);
+        }
+        else if (MyKnife.transform.localScale.y < 1)
+        {
+            if (MyKnife.transform.localScale.x < 0) MyKnife.transform.localScale = new Vector3(-1f * 1, 1, 1f);
+            else MyKnife.transform.localScale = new Vector3(1, 1, 1f);
+        }
+        CombinationKnife();
+    }
+    public void CreateBubbles()//?œ?¤?•˜ê²? ë§Œë“¤ê¸? êµ¬í˜„
+    {
+
+        int count = 0;
+        if (Speed == MovementSpeed) count = 1;
+        else if (Speed == BusterSpeed) count = 4;
+        for (int i = 0; i < count; ++i)
+        {
+            float randemX = 0;
+            float randemY = 0;
+            if (Speed == MovementSpeed)
+                randemX = Random.Range(-0.3f, 0.3f); //0.3~-0.3
+            else if (Speed == BusterSpeed)
+                randemX = Random.Range(-0.4f, 0.4f);
+
+            if (Speed == MovementSpeed)
+                randemY = Random.Range(-0.2f, -0.4f); //-0.2 ~-0.4
+            else if (Speed == BusterSpeed)
+                randemY = Random.Range(-0.2f, -0.6f);
+
+            var V_ = new Vector3(transform.position.x, transform.position.y, 1);
+            var bubble_ = Instantiate(Bubble, V_, transform.rotation);
+            V_ = new Vector3(transform.position.x + randemX, transform.position.y + randemY, 1);
+            bubble_.transform.parent = transform;
+            bubble_.transform.localPosition = new Vector3(randemX, randemY, 1);
+            bubble_.transform.parent = transform.parent;
+            float randemsize = Random.Range(0.2f, 1f);
+
+            bubble_.transform.localScale = transform.localScale * randemsize;
+            float bubbleSpeed;
+            if (Speed == MovementSpeed) bubbleSpeed = 0.003f;
+            else
+            {
+                bubble_.transform.localScale = new Vector3(bubble_.transform.localScale.x, bubble_.transform.localScale.y, bubble_.transform.localScale.z);
+                bubbleSpeed = 0.03f;
+            }
+            bubble_.GetComponent<bubble>().Speed = bubbleSpeed;
+            bubble_.GetComponent<bubble>().dir = dir * -1;
+        }
+
+
+    } //ë²„ë¸”ë§Œë“¤ê¸?
+    public virtual void KillScoreUp()
+    {
+     
+        //SizeUpKnife();
+
+
+    }//?‚¬?•˜ë©? ?‹¤?–‰?˜?Š”?•¨?ˆ˜
+    public virtual void CheckWall()
+    {
+        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
+        if (ray2.collider != null)
+        {
+            transform.position = ray2.point;
+        }
+    }//ë§µë°–?œ¼ë¡? ëª»ë‚˜ê°?ê²Œí•˜?Š”?•¨?ˆ˜
+    public void CreatBarriar()//?ƒœ?–´?‚ ?‹œ ë°©ì–´ë§? ê°?ì§?ê³? ?ƒœ?–´?‚˜ê¸?. ë°©ì–´ë§‰ë§Œ?“œ?Š” ?•¨?ˆ˜.
+    {
+        var a = Instantiate(Barriar, transform.position, Quaternion.Euler(0, 0, 0));
+        a.transform.parent = transform;
+        a.transform.localPosition = Vector3.zero;
+        a.transform.localScale = new Vector3(1f, 1f, 1f);
+        MyBody.tag = "NotBody";
+    }
+
+    public void reset_()
+    {
+        if (GM.GetComponent<GameManager_>().resetFlag)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void CreateSkill() // J ?Š¤?‚¬ ë§Œë“œ?Š” ?•¨?ˆ˜
+    {
+        var a = Instantiate(Skill, transform.position, Quaternion.Euler(0, 0, 0));
+        a.transform.parent = transform;
+        a.transform.localPosition = Vector3.zero;
+        a.transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+    public void CreateSkill(string Name) // J ?Š¤?‚¬ ë§Œë“œ?Š” ?•¨?ˆ˜
+    {
+
+        var a = Instantiate(Skill, transform.position, Quaternion.Euler(0, 0, 0));
+        a.transform.parent = transform;
+        a.transform.localPosition = Vector3.zero;
+        a.transform.localScale = new Vector3(1f, 1f, 1f);
+        a.name = Name;
+    }
+    public void CreateSkill2() // J ?Š¤?‚¬ ë§Œë“œ?Š” ?•¨?ˆ˜
+    {
+        var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
+        a.transform.parent = transform;
+        a.transform.localPosition = Vector3.zero;
+        a.transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+
+    public void CreateSkill2(string Name) // J ?Š¤?‚¬ ë§Œë“œ?Š” ?•¨?ˆ˜
+    {
+        var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
+        a.transform.parent = transform;
+        a.transform.localPosition = Vector3.zero;
+        a.transform.localScale = new Vector3(1f, 1f, 1f);
+        a.name = Name;
+    }
+    public void PlaySkill() //J
+    {
+        skillcheck = true;
+        if (FishNumber == 0)
+        {
+        }
+        else if (FishNumber == 1)
+        {
+            SkillFlag = true;
+            CreateSkill();
+            OnOutLine(1);
+
+            MovementSpeed = 15f;
+            BusterSpeed = 15f;
+            MyBody.tag = "Shiled";
+            Invoke("InitState", 3f);
+            Invoke("Init_", 3f);
+            Invoke("OffSkillFlag", 3f);
+            Invoke("OffOutLine", 3f);
+        }
+        else if (FishNumber == 2)  // ë³´ê±°
+        {
+            CreateSkill();
+            for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
+                CreateSkill2();
+        }
+        else if (FishNumber == 3)  // ???ì½”ì•¼
+            CreateSkill2();
+        else  // ê³ ë˜?‹ ?‚¬
+        {
+            CreateSkill();
+            SkillFlag = true;
+            Invoke("OffSkillFlag", 3f);
+        }
+    }
+    public void PlaySkill(string Name) //J
+    {
+
+        if (FishNumber == 0)
+        {
+        }
+        else if (FishNumber == 1)
+        {
+            SkillFlag = true;
+
+            OnOutLine(1);
+
+            MovementSpeed = 15f;
+            BusterSpeed = 15f;
+            MyBody.tag = "Shiled";
+            Invoke("InitState", 3f);
+            Invoke("Init_", 3f);
+            Invoke("OffSkillFlag", 3f);
+            Invoke("OffOutLine", 3f);
+        }
+        else if (FishNumber == 2)  // ë³´ê±°
+        {
+            CreateSkill(Name);
+            for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
+                CreateSkill2(Name);
+        }
+        else if (FishNumber == 3)  // ???ì½”ì•¼
+            CreateSkill2(Name);
+        else  // ê³ ë˜?‹ ?‚¬
+        {
+            CreateSkill2(Name);
+            SkillFlag = true;
+            Invoke("OffSkillFlag", 3f);
+        }
+    }
+
+    public void OffSkillFlag() // J
+    {
+        SkillFlag = false;
+    }
+    public void EatStar()
+    {// ?Š¤??? ë¨¹ìŒ
+        reSpeed();
+        // InitState(); -> ?†?„ ì´ˆê¸°?™”?„ ?¬?•¨, ?ƒ?–´ ?Š¤?‚¬ ?“¸ ?•Œ?„ ?›?˜ ?†?„ë¡? ?Œ?•„ê°?..
+        C = Color.white;
+        OnStar();
+        Invoke("OffStar", 3f);
+    }
+    public void OnStar()
+    {
+        MyBody.tag = "Shiled";
+        Skin.GetComponent<Skin>().Flag = true;
+        OnOutLine(1);
+    }
+    public void OffStar()
+    {
+        MyBody.tag = "Body";
+        Skin.GetComponent<Skin>().Flag = false;
+        OffOutLine();
+    }
+    public void OnOutLine(int outlineSize) // J
+    {
+        Skin.GetComponent<Skin>().outlineSize = outlineSize;
+        Skin.GetComponent<Skin>().outline = true;
+    }
+
+    public void OffOutLine() // J
+    {
+        Skin.GetComponent<Skin>().outline = false;
+    }
+    public void ChangeSpeed(float move_, float bust_, float rotate_)
+    {
+        MovementSpeed = move_;
+        BusterSpeed = bust_;
+        RotationSpeed = rotate_;
+    }
+    public void DefultSpeed()
+    {
+        MovementSpeed = 2.8f;
+        BusterSpeed = 5.5f;
+        RotationSpeed = 650f;
+    }
+}

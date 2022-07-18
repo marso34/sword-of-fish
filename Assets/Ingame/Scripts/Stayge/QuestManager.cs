@@ -1,0 +1,924 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+public class QuestManager : MonoBehaviour
+{
+
+    public GameObject[] Stayges;//스테이지 객체 배열
+
+
+    public int Level_;// 레벌
+    public GameObject Levelboard;// 로비의 레벨 보드
+    public GameObject Player;
+    public GameObject Stayge; // 현재 실행되는 스테이지
+    public GameObject GM;// 게임매니져 
+    public GameObject IntroPanelName;
+    public GameObject[] IntroPanelPlan = new GameObject[3];// 어떤 퀘스트인지 알림 최대 3줄
+    public GameObject QuestBoard_;// 퀘스트 보드
+                                  //-----------------
+    public GameObject KnifeEnemy;
+    public GameObject BulletEnemy;
+    public GameObject BossEnemy1;//중간보스 복어
+    public GameObject BossEnemy2;// 1라운드 보스 타코야
+    public GameObject VictimObj;
+    public GameObject WaveObj;
+    public GameObject BigTrashObj;
+    public GameObject TrashObj;
+    public GameObject TrashObj2;
+
+    public GameObject BubblesShiledObj;
+    public int IngameLevel;
+    //--------------------
+    public bool LoseFlag;// 죽었거나 시간초 다됐을때
+    public int ShapeNum;  // 스테이지 종류 번호 0 = 시간초, 1 = ShapeA, 2 = ShapeB, 3 = ShapeC
+    public int limitTime;// 제한시간
+    public int MaxCount;// 현재 갯수는 Player?가 가지고있게 하자 시체갯수, 킬갯수, 점령갯수, 
+    //-----------------------------------------
+    public int KnifeEnemyMaxCount = 0;
+    public int BulletEnemyMaxCount = 0;
+    public int WaveMaxCount = 0;
+
+    public int BigTrashMaxCount = 0;
+
+    public int TrashMaxCount = 0;
+    public int Trash2MaxCount = 0;
+    public int VictimMaxCount = 0;
+
+    public int BossMaxCount = 0;
+
+    //--------------------
+    public int KnifeEC = 0;
+    public int BulletEC = 0;
+    public int BossEC = 0;
+    public int WaveOC = 0;
+    public int BigTrashOC = 0;
+    public int TrashOC = 0;
+    public int Trash2OC = 0;
+    public int VictimOC = 0;
+    public int BubblesShiledOC = 0;
+    //-----------------------------
+    public int CurrentCount;// ShapeA일때 사용 현재 내가 모은 갯수
+    public int[] Rank;// ShapeB일 떄 사용 현재 랭크 상위 4명만 표시
+    public int OccupationTime;//ShapeC일 때 사용 점령전 얼마나 찾는지.
+    public bool Flag = true;// update에서 한번만 실행할 구문 경계 구분 
+    public Image me;//안쓰는 변수
+    //아이콘들은 인트로 패널에서 쓰임. 각 이미지.
+    //----------------------------------------------------
+    public Sprite TimeIcon;
+    public GameObject SpearImg;
+    public Sprite FleshIcon;
+    public Sprite bubbleIcon;
+    public Sprite TrushIcon;
+    public Sprite killIcon;
+    public Sprite FishIcon;
+    public Sprite RankIcon;
+    public Sprite FlagIcon;
+    public GameObject CanTrash;
+    public GameObject PaperTrash;
+//------------------------------------------------------ y 튜토리얼 변수
+    public GameObject IntroPanel;
+    
+    public GameObject StageTag;
+    public GameObject StaygeLevel;
+    public Sprite UIM_Stage;
+    public GameObject TutorialName;
+    public GameObject TutorialPlan;
+
+
+    public int TutorialLev;
+    public int TempTuLev;
+    //public bool TuLev1 = false;
+    public bool EndTutorial; // 튜토리얼 끝났는지확인
+    public bool TutorialCheck;
+   
+    public bool CheckFlesh;
+    public bool CheckTrash;
+    public Transform Canvas;
+    public GameObject tutorial;
+    public int ResetTouch;
+
+
+    public float timer;
+    public int waitingTime;
+    public int TempFlesh;
+    public GameObject TutoBack;
+    public GameObject Guide;
+    public bool A = true ;
+    public GameObject BokBoss;
+    public GameObject JoyStick;
+    public GameObject Slider; //슬라이더 이미지1
+    public GameObject Slider1; //슬라이더 이미지2
+    public GameObject BusterBtn;
+    public GameObject SkillBtn;
+    public GameObject Stop;
+    bool B =false;
+    public GameObject Vectorv;
+    public GameObject KillBoard;
+    public GameObject TimeBoard; 
+    public GameObject SkillBtn2; //스킬 버튼 안에 채워지는 이미지
+    public int tempkill;
+    public bool temp =false;
+    public GameObject itembtn;
+    void Start()
+    {
+        Level_ = 1;
+
+        IngameLevel = 1;        //데베에서 가져오기.      
+        LoseFlag = false;
+        OccupationTime = 0;
+        TutorialLev = 0;
+        waitingTime = 2;
+        TempTuLev = 0;
+     
+    }
+
+    // Update is called once per frFLame
+    void Update()
+    {
+        if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
+        {
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                IngameLevel = 3;
+                Flag = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Y))
+            {
+                IngameLevel = 4;
+                Flag = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.U))
+            {
+                IngameLevel = 6;
+                Flag = true;
+            }
+            Player = GameObject.FindGameObjectWithTag("Player");
+            if (Input.GetKeyDown(KeyCode.G)) Player.transform.localScale = new Vector3(Player.transform.localScale.x + 1f, Player.transform.localScale.y + 1f, 1f);
+            if (Input.GetKeyDown(KeyCode.R)) Player.GetComponent<Player>().HP++;
+            Levelboard.GetComponent<Text>().text = Level_.ToString();
+            //if (Input.GetKeyDown(KeyCode.P)) Level_++;
+            if (Input.GetKeyDown(KeyCode.O)) Level_--;
+            if (Player != null)
+            {
+               // Debug.Log("칼 몹" + KnifeEC + "총몹" + BulletEC);
+                QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
+                if (Flag)
+                {
+                    if(Level_ > 0)
+                    {
+                        Level_Action();
+                    }
+                    
+                    Debug.Log(IngameLevel + "레발" + MaxCount + " " + KnifeEC);
+                    //if (Level_ == 8) Players[Random.Range(1, 7)].GetComponent<Player>().Flag_get = true;
+                    // Stayge = Instantiate(Stayges[Level_ - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
+
+                    if (QuestBoard_ != null)
+                        Debug.Log(QuestBoard_.tag);
+
+                    Flag = false;
+
+                }
+                ShapeInit();
+                SucssesFlagOnOff();
+                EndGameCheck();
+                Objectmanager();
+                if (IngameLevel > 8) IngameLevel = 5;
+                if (IngameLevel < 0) IngameLevel = 0;
+            }
+        }
+        
+    }
+
+    public void SucssesFlagOnOff()
+    {
+        if (ShapeNum == 5) TimeOut_EndCheck();
+        else if (ShapeNum == 1) ShapeA_EndCheck();
+        //else if (ShapeNum == 2) ShapeB_EndCheck();
+        else if (ShapeNum == 3) ShapeC_EndCheck();
+        else if (ShapeNum == 10) Tutorial_EndCheck();
+    }// 게임 끝나는거 체크
+    public void Level_Action()
+    {
+        ResetPlayerStat();
+
+
+        if(IngameLevel == 0) 
+        {
+            KnifeEnemyMaxCount= 0;
+            BulletEnemyMaxCount = 0;
+            MaxCount = 1;
+            
+        }
+
+        if (IngameLevel == 1)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("tt"));
+
+            //TutorialName.SetActive(false);
+            //GM.GetComponent<GameManager_>().ObjectCleaner();
+            ResetMaxCounter();
+            ResetCounter();
+            KnifeEnemyMaxCount = 4;
+            MaxCount = 2;
+            Player.transform.localPosition = Vector3.zero;
+
+        }
+        else if (IngameLevel == 2)
+        {
+            ResetMaxCounter();
+            KnifeEnemyMaxCount = 5;
+            BulletEnemyMaxCount = 1;
+            MaxCount = 4;
+        }
+        else if (IngameLevel == 3)
+        {
+            ResetMaxCounter();
+            KnifeEnemyMaxCount = 5;
+            BulletEnemyMaxCount = 2;
+            MaxCount = 6;
+        }
+        else if (IngameLevel == 4)
+        {
+            ObjectCleanerNextStage();
+            ResetMaxCounter();
+            //ResetCounter();
+            BossMaxCount = 1;
+            MaxCount = 1;
+           
+        }
+        else if (IngameLevel == 5)
+        {
+
+            ResetMaxCounter();
+            ResetCounter();
+            KnifeEnemyMaxCount = 5;
+            BulletEnemyMaxCount = 3;
+            MaxCount = 9;
+        }
+        else if (IngameLevel == 6)
+        {
+            Instantiate(Vectorv,Player.transform.position,Quaternion.Euler(0,0,0));
+            ResetCounter();
+            ObjectCleanerNextStage();
+            //플레이어에서 화살표 켜기 플레이어프리펩에 방향가르켜주는 화살표 넣어둘것. 다만 화살표는 목표가없으면 값 투명하게 설정
+            ResetMaxCounter();
+            KnifeEnemyMaxCount = 0;
+            BulletEnemyMaxCount = 0;
+            BigTrashMaxCount = 1;
+            MaxCount = 1;
+        }
+        else if (IngameLevel == 7)
+        {
+             Destroy(GameObject.FindGameObjectWithTag("V"));
+            ResetCounter();
+            ObjectCleanerNextStage();
+            ResetMaxCounter();
+            KnifeEnemyMaxCount = 2;
+            BulletEC = 2;
+            BossMaxCount = 1;
+            MaxCount = 1;
+        }
+
+
+        TrashMaxCount = 5;
+        Trash2MaxCount = 5;
+
+        CurrentCount = 0;
+    }
+    public void ResetPlayerStat()
+    {
+        //Player.GetComponent<PlayerScript>().killScore = 0;
+        Player.GetComponent<PlayerScript>().BosskillScore = 0;
+        Player.GetComponent<PlayerScript>().BigTrashC = 0;
+    }
+
+    public void ObjectCleanerNextStage()
+    {
+
+        GameObject[] Items = GameObject.FindGameObjectsWithTag("Item");
+        GameObject[] Attackers = GameObject.FindGameObjectsWithTag("Attacker");
+        GameObject[] AiPlayers = GameObject.FindGameObjectsWithTag("AiPlayer");
+        GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
+        GameObject[] BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
+
+
+        for (int i = 0; i < Attackers.Length; ++i)
+        {
+            Destroy(Attackers[i], 0f);
+        }
+        for (int i = 0; i < AiPlayers.Length; ++i)
+        {
+            Destroy(AiPlayers[i], 0f);
+        }
+    }
+    public void Init_Stayge()
+    {
+        limitTime = 0;
+       if(Level_ == 0) 
+       {
+            ShapeNum =10;
+            IntroPanel.SetActive(true);
+            
+            IntroPanel.transform.GetChild(0).gameObject.SetActive(false);
+            IntroPanel.transform.GetChild(1).gameObject.SetActive(false);
+            IntroPanel.transform.GetChild(2).gameObject.SetActive(false);
+            IntroPanel.transform.GetChild(3).gameObject.SetActive(false);
+
+
+            TutorialName.SetActive(true);
+            TutorialLev = 1;
+            TutorialName.GetComponent<Text>().text = "튜토리얼";
+     
+            tutorial.transform.SetParent(Canvas);
+            tutorial.transform.SetSiblingIndex(0);
+            tutorial.transform.GetChild(0).gameObject.SetActive(false);
+       }
+
+
+        
+        
+        else if (Level_ == 1)
+        {
+            
+            IntroPanel.transform.GetChild(0).gameObject.SetActive(true);
+            IntroPanel.transform.GetChild(1).gameObject.SetActive(true);
+            IntroPanel.transform.GetChild(2).gameObject.SetActive(true);
+            IntroPanel.transform.GetChild(3).gameObject.SetActive(true);
+
+
+            Color a;
+            a.a = 1;
+            a.b = 1;
+            a.g = 1;
+            a.r = 1;
+
+            GameObject uim_Stage = GameObject.Find("GameManager/Canvas/IntroPanel");
+            Color color = uim_Stage.GetComponent<Image>().color = a;
+            IntroPanel.GetComponent<Image>().sprite = UIM_Stage;
+
+
+            limitTime = 1;
+            ShapeNum = 1;
+            IntroPanelName.GetComponent<Text>().text = "1";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "크라켄의 둥지";
+
+
+
+        }
+        else if (Level_ == 2)
+        {
+            ShapeNum = 1;
+            //IntroPanelName.GetComponent<Text>().text = "2";
+            //IntroPanelPlan[1].SetActive(true);
+            //IntroPanelPlan[1].GetComponent<Image>().sprite = FleshIcon;
+            //IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "10개의 고기를 먹으세요";
+            limitTime = 1;
+            MaxCount = 25;
+            KnifeEnemyMaxCount = 3;
+            BulletEnemyMaxCount = 2;
+        }
+        else if (Level_ == 3)
+        {
+            ShapeNum = 1;
+            IntroPanelName.GetComponent<Text>().text = "3";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = killIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "10킬 하세요";
+            limitTime = 90;
+            MaxCount = 10;
+        }
+        else if (Level_ == 4)
+        {
+            ShapeNum = 1;
+            IntroPanelName.GetComponent<Text>().text = "4";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "돌고래4마리 를 잡으세요";
+            limitTime = 90;
+            MaxCount = 4;
+        }
+        else if (Level_ == 5)
+        {
+            ShapeNum = 2;
+            IntroPanelName.GetComponent<Text>().text = "5";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = RankIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "1등을 유지하세요";
+            limitTime = 40;
+            MaxCount = 1;
+        }
+        else if (Level_ == 6)
+        {
+            ShapeNum = 3;
+            IntroPanelName.GetComponent<Text>().text = "6";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = bubbleIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "물방울을 점령하세요";
+            limitTime = 40;
+            MaxCount = 10;
+        }
+        else if (Level_ == 7)
+        {
+            ShapeNum = 1;
+            IntroPanelName.GetComponent<Text>().text = "7";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = TrushIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "쓰레기를 정리하세요";
+            limitTime = 60;
+            MaxCount = 25;
+        }
+        else if (Level_ == 8)
+        {
+            ShapeNum = 3;
+            IntroPanelName.GetComponent<Text>().text = "8";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = FlagIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "깃발을 탈취하세요";
+            limitTime = 60;
+            MaxCount = 10;
+        }
+        CurrentCount = 0;
+        OccupationTime = 0;
+        GM.GetComponent<GameManager_>().GlobalTime = limitTime;
+    }//스테이지 정의
+    public void TimeOut_EndCheck()
+    {
+        if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
+        {
+            //GM.GetComponent<GameManager_>().SuccesFlag = true;
+            Level_++;
+            Flag = true;
+
+        }
+    }//timeout으로 끝나는판
+    public void Objectmanager()
+    {
+        // Debug.Log("이거 실행된다...");
+        if (KnifeEnemyMaxCount > KnifeEC)
+        {
+            Invoke("CreateKnifeE", 2.5f);
+            KnifeEC++;
+        }// 칼 적 생성
+        if (BulletEnemyMaxCount > BulletEC)
+        {
+            Invoke("CreateBulletE", 2.5f);// 총알 적 생성
+            BulletEC++;
+        }
+        if (WaveMaxCount > WaveOC) Invoke("CreateWaveO", 2.5f);// 물결오브제 생성
+        if (BigTrashMaxCount > BigTrashOC) CreateBigTrashO();//큰쓰레기 생성 캠액션 할것.
+        if (TrashMaxCount > TrashOC)
+        {
+            CreateTrashO();//캔 쓰레기 생성
+            TrashOC++;
+        }
+        if (Trash2MaxCount > Trash2OC)
+        {
+            CreateTrash2O();
+            Trash2OC++;
+        }
+        if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
+    }
+    Vector3 ObjRandomPosition()
+    {
+        return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
+    }
+    Vector3 EnemyRandomPosition() //랜덤한 백터 반환
+    {
+        float x = Player.transform.position.x;
+        float y = Player.transform.position.y;
+        float Xc;
+        float Yc;
+        if (x < 0) Xc = 1;
+        else Xc = -1;
+        if (y < 0) Yc = 1;
+        else Yc = 1;
+        float realX = (x + 8) * Xc;
+        float realY = (y + 5) * Xc;
+        return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
+    }
+
+    Vector3 SetPosition(float x, float y, float z)
+    {
+        return new Vector3(x, y, z);
+    }
+    public Vector3 RandomSize()
+    {
+        int SizeDice = Random.Range(0, 8);
+        float Size;
+        float bigSize = Player.transform.localScale.y + 1.2f;
+        float littleBigSize = Player.transform.localScale.y + 0.5f;
+        if (SizeDice == 0)
+            Size = Random.Range(Player.transform.localScale.y, bigSize);
+        else if (SizeDice == 1 || SizeDice == 2) Size = Random.Range(Player.transform.localScale.y, littleBigSize);
+        else Size = Player.transform.localScale.y;
+        if (Size > 3) Size = 3;
+        return new Vector3(Size, Size, 1f);
+    }
+    //같은 오브젝트들끼리 중첩되서 소환되면 둘다 삭제 하고 다시소환되기. 다른오브젝트면 우선순위낮은 놈이 삭제되기.
+    public void CreateKnifeE()
+    {// 몹 크기 랜덤으로
+        if(Player != null){
+        var Enemy = Instantiate(KnifeEnemy, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
+        Enemy.transform.localScale = RandomSize();
+        Enemy.GetComponent<Player>().StartFlag = true;
+        }
+
+    }
+    public void CreateBulletE()
+    {// 몹크기 랜덤으로
+        var Enemy = Instantiate(BulletEnemy, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
+        Enemy.transform.localScale = RandomSize();
+        Enemy.name = "Attacker";
+
+    }
+    public void CreateBossE()
+    {
+        if (IngameLevel == 4)
+        {
+            var Boss = Instantiate(BokBoss, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f)); //위치정해저있어야됨 좌우로 계쏙 움직임.
+            Boss.name = "Boss";
+
+
+        }
+        else if (IngameLevel == 7)
+        {
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -14.9f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            Boss.name = "Boss";
+        }
+        BossEC++;
+    }
+    public void CreateVictimO()
+    {// 위치 정해져있어야할듯.
+        var Obj = Instantiate(VictimObj, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));      //currentcount를 victim에서 올려준다 먹힐 때 이거 염두해두자         
+        VictimOC++;
+    }
+    public void CreateWaveO()
+    {
+        var Obj = Instantiate(WaveObj, ObjRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
+        WaveOC++;
+    }
+    public void CreateBigTrashO()
+    {//위치 정해져 있어야할듯? 바닥 쪽에
+        var Obj = Instantiate(BigTrashObj, SetPosition(0, 0, 0f), Quaternion.Euler(0f, 0f, 0f));
+        BigTrashOC++;
+    }
+    public void CreateTrashO()
+    {
+        var Obj = Instantiate(TrashObj, ObjRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
+        Obj.name = "Can";
+    }
+    public void CreateTrash2O()
+    {
+        var Obj = Instantiate(TrashObj2, ObjRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
+        Obj.name = "Paper";
+    }
+    public void CreateBubblesShiled()
+    {
+        var Obj = Instantiate(BubblesShiledObj, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
+        BubblesShiledOC++;
+    }
+
+    public void CamAnimation()
+    {
+        //검정화면만들기  UI지우기, 캠이동하기, 소리재생, 원래 캐릭비추기 특정 몹 비추기
+    }
+
+    public void ResetMaxCounter()
+    {
+        BossMaxCount = 0;
+        WaveMaxCount = 0;
+        TrashMaxCount = 0;
+        Trash2MaxCount = 0;
+        VictimMaxCount = 0;
+        BigTrashMaxCount = 0;
+        KnifeEnemyMaxCount = 0;
+        BulletEnemyMaxCount = 0;
+    }
+    public void ResetCounter()
+    {
+        KnifeEC = 0;
+        BulletEC = 0;
+        BossEC = 0;
+        VictimOC = 0;
+        WaveOC = 0;
+        BigTrashOC = 0;
+        TrashOC = 0;
+        Trash2OC = 0;
+
+    }
+    public void ShapeInit()
+    {
+        if (QuestBoard_ != null)
+        {
+            if (ShapeNum == 1) ShapeA_Init();
+            //else if (ShapeNum == 2) ShapeB_Init();
+            else if (ShapeNum == 3) ShapeC_Init();
+            else if (ShapeNum == 10) Tutorial_Init();
+        }
+
+
+    }// Shape초기화
+
+
+    public void ShapeA_Init()
+    {
+        CurrentCountInit();
+        QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
+        // QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<SpriteRenderer>().sprite;
+        QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).gameObject.SetActive(false);
+        //QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+        QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).gameObject.SetActive(false);
+
+    }//갯수보두 초기화
+    public void CurrentCountInit()
+    {
+
+
+        if (IngameLevel == 1)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
+        }
+        else if (IngameLevel == 2)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;// 레벨에 따라 CurrentCount를 채워주는것은 달라져야한다.
+        }
+        else if (IngameLevel == 3)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
+        }
+        else if (IngameLevel == 4)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;//Maxcount가 특정 물고기 번호
+        }
+        else if (IngameLevel == 5)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;//Maxcount가 특정 물고기 번호
+        }
+        else if (IngameLevel == 6)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().BigTrashC;
+        }
+
+        else if (IngameLevel == 7)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;
+        }
+    }//ShapeA에서 사용
+    /*
+    public void ShapeB_Init()
+    {
+        Rank = new int[Players.Length];
+        for (int i = 0; i < Players.Length; ++i)
+            Rank[i] = Players[i].GetComponent<Player>().killScore;
+
+
+        QuestBoard_.GetComponent<QB>().ShapeB.SetActive(true);
+        System.Array.Sort(Rank);
+        System.Array.Reverse(Rank);
+        bool flag__ = true;
+        for (int i = 0; i < 4; ++i)
+        {
+
+            QuestBoard_.GetComponent<QB>().ShapeB.GetComponent<ShapeB>().Ranks[i].GetComponent<Text>().text = Rank[i].ToString();
+            if (Rank[i] == .GetComponent<Player>().killScore && flag__)
+            {
+                QuestBoard_.GetComponent<QB>().ShapeB.GetComponent<ShapeB>().Ranks[i].GetComponent<Text>().text = "Me";
+                flag__ = false;
+            }
+        }
+      //QuestBoard_.GetComponent<QB>().ShapeB.GetComponent<ShapeB>().first;
+    }//랭킹보드초기화*/
+    public void ShapeC_Init()
+    {
+        QuestBoard_.GetComponent<QB>().ShapeC.SetActive(true);
+        QuestBoard_.GetComponent<QB>().ShapeC.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)OccupationTime / 10f;
+    }//점령전초기화
+    public void ShapeA_EndCheck()//shapeA에 대한 성공체크(갯수다모으는거)
+    {
+        if (CurrentCount >= MaxCount)
+        {
+            if (IngameLevel == 7)
+            {
+                GM.GetComponent<GameManager_>().SuccesFlag = true;
+                ResetPlayerStat();
+                ResetMaxCounter();
+                ResetCounter();
+                Flag = true;
+            }
+            else
+            {
+                Flag = true;
+                IngameLevel++;
+            }
+        }
+        /*
+        else if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
+        {
+            GM.GetComponent<GameManager_>().SuccesFlag = false;
+            LoseFlag = true;
+    }*/
+    }
+    /* public void ShapeB_EndCheck()
+     {
+         if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
+         {
+             if (Rank[0] == .GetComponent<Player>().killScore)
+             {
+                // GM.GetComponent<GameManager_>().SuccesFlag = true;
+                 Level_++;
+                 Flag = true;
+             }
+             else 
+             {
+                 GM.GetComponent<GameManager_>().SuccesFlag = false;
+                 LoseFlag = true;
+             }
+         }
+
+
+     }   //랭킹보드로 끝나는판
+     */
+    public void ShapeC_EndCheck()
+    {
+        if (OccupationTime >= MaxCount)
+        {
+            //GM.GetComponent<GameManager_>().SuccesFlag = true;
+            Level_++;
+            Flag = true;
+        }
+        /*
+        else if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
+        {
+            GM.GetComponent<GameManager_>().SuccesFlag = false;
+            LoseFlag = true;
+
+        }
+*/
+    }//점령전
+
+    public void EndGameCheck()
+    {
+        if (GM.GetComponent<GameManager_>().EndFlag == false)
+        {
+            if (LoseFlag || Player.GetComponent<PlayerScript>().StartFlag2 && Player.GetComponent<PlayerScript>().Life == false)
+            {
+
+                GM.GetComponent<GameManager_>().EndFlag = true;
+                GM.GetComponent<GameManager_>().LosePanel.SetActive(true);
+                IngameLevel = 1;
+                LoseFlag = false;
+                Flag = true;
+            }
+            else if (GM.GetComponent<GameManager_>().SuccesFlag)
+            {
+                // Level_++;
+                IngameLevel = 1;
+                GM.GetComponent<GameManager_>().EndFlag = true;
+                GM.GetComponent<GameManager_>().WinPanel.SetActive(true);
+                GM.GetComponent<GameManager_>().SuccesFlag = false;
+                Level_ = 1;
+                Flag = true;
+            }
+        }
+    }//게임끝났는지 체크
+
+    public void Tutorial_EndCheck() 
+    {
+        if(EndTutorial)
+        {
+            Level_++;
+            GM.GetComponent<GameManager_>().SuccesFlag = true;
+            
+
+        }
+
+    }
+
+
+    public void bornguide() {
+        GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
+        Guide.transform.SetParent(GM.GetComponent<GameManager_>().Player_p.transform);
+    } 
+    public void Tutorial_Init()
+    {
+
+        JoyStick = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(4).gameObject;
+        KillBoard = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject;
+        TimeBoard = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(1).gameObject;
+        BusterBtn = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+        SkillBtn = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+        SkillBtn2 = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject;
+        Stop = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+        itembtn = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
+
+
+//        Debug.Log("s튜토리얼");
+        if (TutorialLev == 1)
+        {
+                if(A)   
+                {
+                    //GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
+                    tutorial.transform.GetChild(0).gameObject.SetActive(true);
+                    TutoBack.SetActive(true);
+                    A = false;
+                }
+
+            TutorialName.SetActive(false); //튜토리얼 글자 비활
+            TutorialPlan.GetComponent<Text>().text = "조이스틱을 이용해서 전진하세요";
+            
+            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().Timer33 > 1) //3초이상 움직이면 playerscript에서 체크됨
+            {
+                TutorialCheck = true;
+                //GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove(); //플레이어 멈추고 위 바라봄
+                tutorial.SetActive(true);
+                tutorial.transform.GetChild(0).gameObject.SetActive(true); //실제 튜토리얼 판넬
+
+                bornguide(); //할아버지 활성화
+                //tutorial.GetComponent<Tutorial>().Touch = 0; //터치 수 초기화
+                tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch =0;
+                TutorialPlan.GetComponent<Text>().text = "부스터를 같이 사용해보세요"; //다음 과제
+                Guide.GetComponent<GuidePet>().OffCanvas();
+                TutorialLev++;
+
+            }
+
+            
+        }
+
+
+        else if (TutorialLev == 2) //부스터 튜토리얼
+        {
+
+            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().BusterFlag 
+                && GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().cutGauge < 70) //부스터 90이하로 닳게 하면 성공
+            {
+
+                timer += Time.deltaTime;
+                if (timer > waitingTime-2)
+                {
+                    GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
+                    tutorial.SetActive(true);
+                    tutorial.transform.GetChild(0).gameObject.SetActive(true);
+
+
+                    Guide.GetComponent<GuidePet>().BornGuide();
+                    tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch =0;
+                    timer = 0;
+                    TutorialPlan.GetComponent<Text>().text = "스킬버튼이 차면 스킬을 사용해보세요";
+                    Guide.GetComponent<GuidePet>().OffCanvas();
+                    TutorialLev++;
+
+                }
+            }
+        }
+
+        else if (TutorialLev == 3)
+        {
+
+            
+            GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().FishNumber = 2; //보거로 변경
+            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().skillcheck) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
+            {
+                timer += Time.deltaTime;
+
+                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
+                {
+                    
+                    GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
+                    timer = 0;
+                    tutorial.SetActive(true);
+                    tutorial.transform.GetChild(0).gameObject.SetActive(true);
+
+                
+                    Guide.GetComponent<GuidePet>().OffCanvas();
+                    EndTutorial =true;
+                    TutorialLev++;
+                    Destroy(tutorial);
+
+                }
+            }
+        }
+
+/*
+        else if (TutorialLev == 4) //튜토리얼 종료
+        {
+            
+            
+            
+            
+            
+        }*/
+
+    }
+
+
+}
+
+        
+

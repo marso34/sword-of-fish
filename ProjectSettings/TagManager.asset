@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - tt
+  - IntroM
+  - Wall
+  - WaitKnife
+  - Attacker
+  - Stayge
+  - BossSkillA
+  - Tentacle
+  - Kraken
+  - body
+  - knife
+  - Body
+  - QM
+  - QB
+  - Knife
+  - Item
+  - EXPL
+  - Trush
+  - V
+  - BS
+  - Bubble
+  - BTK
+  - BTP
+  - BigTrash
+  - AiPlayer
+  - InkOct
+  - Twall
+  - InGame
+  - GM
+  - C
+  - SP
+  - Lobby
+  - Flesh
+  - NotKnife
+  - SkillB
+  - SkillO
+  - NotBody
+  - FRZ
+  - Shiled
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - CameraWall
+  - Water
+  - UI
+  - Wall
+  - Trash
+  - Camera
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: backGround
+    uniqueID: 3611720015
+    locked: 0
+  - name: Object
+    uniqueID: 3815887011
+    locked: 0

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3d4d16f960d4a76429f18edf0e060439
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - KillEffect: {fileID: 5284928879014285582, guid: a3a7eb7dd9c22c64fb30f3b32246f243, type: 3}
+  - KillSound_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

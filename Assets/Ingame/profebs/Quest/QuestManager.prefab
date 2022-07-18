@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3738707761099104101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8656203393739965493}
+  - component: {fileID: 7293554181689406614}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8656203393739965493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3738707761099104101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7293554181689406614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3738707761099104101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9fd280d7ac19e43b885d97e4ff777c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stayges: []
+  Level_: 0
+  Levelboard: {fileID: 0}
+  start: 0
+  Stayge: {fileID: 0}
+  GM: {fileID: 0}
+  IntroPanelName: {fileID: 0}
+  IntroPanelPlan:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  QuestBoard_: {fileID: 0}
+  LoseFlag: 0
+  ShapeNum: 0
+  limitTime: 0
+  MaxCount: 0
+  CurrentCount: 0
+  Rank: 
+  OccupationTime: 0
+  Flag: 1
+  me: {fileID: 0}
+  TimeIcon: {fileID: 0}
+  FleshIcon: {fileID: 0}
+  bubbleIcon: {fileID: 0}
+  TrushIcon: {fileID: 0}
+  killIcon: {fileID: 0}
+  FishIcon: {fileID: 0}
+  RankIcon: {fileID: 0}
+  FlagIcon: {fileID: 0}
