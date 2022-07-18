@@ -70,13 +70,13 @@ public class Player : MonoBehaviour
     public GameObject PlayerHitSound;
     public GameObject QM;
 
-    //--------?Šœ?† ë¦¬ì–¼
+    //--------//Æ©Åä¸®¾ó¿¡¼­ »ç¿ë
     public bool skillcheck = false;
     public bool TutorialLev4 = false;
 
     public int Timer33 = 0;
     public double Timer22 = 0;
-    public float MoveTime = 3f;
+    public float MoveTime = 2f; 
     public bool TuLev1 = false;
     public void GameStartInit()// ê²Œìž„?‹œ?ž‘?‹œ ?•œë²ˆì‹¤?–‰
     {

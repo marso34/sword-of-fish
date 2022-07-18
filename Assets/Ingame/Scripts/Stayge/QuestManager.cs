@@ -323,15 +323,11 @@ public class QuestManager : MonoBehaviour
             ShapeNum =10;
             IntroPanel.SetActive(true);
             
-            IntroPanel.transform.GetChild(0).gameObject.SetActive(false);
-            IntroPanel.transform.GetChild(1).gameObject.SetActive(false);
-            IntroPanel.transform.GetChild(2).gameObject.SetActive(false);
-            IntroPanel.transform.GetChild(3).gameObject.SetActive(false);
-
+            //GameObject.FindWithTag("Slider").SetActive(true);
 
             TutorialName.SetActive(true);
             TutorialLev = 1;
-            TutorialName.GetComponent<Text>().text = "튜토리얼";
+            
      
             tutorial.transform.SetParent(Canvas);
             tutorial.transform.SetSiblingIndex(0);
@@ -801,13 +797,13 @@ public class QuestManager : MonoBehaviour
     }
 
 
-    public void bornguide() {
+    public void bornguide() { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
         GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
         Guide.transform.SetParent(GM.GetComponent<GameManager_>().Player_p.transform);
     } 
-    public void Tutorial_Init()
+    public void Tutorial_Init() //플레이어 캔버스에 있는거 넣어둠
     {
-
+/*
         JoyStick = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(4).gameObject;
         KillBoard = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject;
         TimeBoard = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(1).gameObject;
@@ -816,14 +812,13 @@ public class QuestManager : MonoBehaviour
         SkillBtn2 = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject;
         Stop = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
         itembtn = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
+*/
 
 
-//        Debug.Log("s튜토리얼");
-        if (TutorialLev == 1)
+        if (TutorialLev == 1) //이동
         {
-                if(A)   
+                if(A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
                 {
-                    //GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
                     tutorial.transform.GetChild(0).gameObject.SetActive(true);
                     TutoBack.SetActive(true);
                     A = false;
@@ -832,18 +827,16 @@ public class QuestManager : MonoBehaviour
             TutorialName.SetActive(false); //튜토리얼 글자 비활
             TutorialPlan.GetComponent<Text>().text = "조이스틱을 이용해서 전진하세요";
             
-            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().Timer33 > 1) //3초이상 움직이면 playerscript에서 체크됨
+            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().Timer33 > 1) //2초이상 움직이면 playerscript에서 체크됨
             {
-                TutorialCheck = true;
-                //GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove(); //플레이어 멈추고 위 바라봄
-                tutorial.SetActive(true);
-                tutorial.transform.GetChild(0).gameObject.SetActive(true); //실제 튜토리얼 판넬
+                TutorialCheck = true; //성공하면 체크됨
+                tutorial.SetActive(true);   //다음 튜토리얼 내려오게 함
+                tutorial.transform.GetChild(0).gameObject.SetActive(true); //실제 튜토리얼 이름 판넬
 
-                bornguide(); //할아버지 활성화
-                //tutorial.GetComponent<Tutorial>().Touch = 0; //터치 수 초기화
+                bornguide(); //가이드 물고기 활성화
                 tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch =0;
                 TutorialPlan.GetComponent<Text>().text = "부스터를 같이 사용해보세요"; //다음 과제
-                Guide.GetComponent<GuidePet>().OffCanvas();
+                Guide.GetComponent<GuidePet>().OffCanvas(); //플레이어 캔버스 스킬버튼 빼고 전부 안보이게
                 TutorialLev++;
 
             }
@@ -860,9 +853,9 @@ public class QuestManager : MonoBehaviour
             {
 
                 timer += Time.deltaTime;
-                if (timer > waitingTime-2)
+                if (timer > waitingTime-2) //성공하고 좀이따 성공했다고 띄움
                 {
-                    GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
+                    GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();   //플레이어 멈춤
                     tutorial.SetActive(true);
                     tutorial.transform.GetChild(0).gameObject.SetActive(true);
 
@@ -904,16 +897,6 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
-
-/*
-        else if (TutorialLev == 4) //튜토리얼 종료
-        {
-            
-            
-            
-            
-            
-        }*/
 
     }
 
