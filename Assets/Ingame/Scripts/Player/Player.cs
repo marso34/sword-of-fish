@@ -501,7 +501,7 @@ public class Player : MonoBehaviour
             transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
 
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
             float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
 
         }

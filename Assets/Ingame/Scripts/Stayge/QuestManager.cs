@@ -77,9 +77,9 @@ public class QuestManager : MonoBehaviour
     public Sprite FlagIcon;
     public GameObject CanTrash;
     public GameObject PaperTrash;
-//------------------------------------------------------ y 튜토리얼 변수
+    //------------------------------------------------------ y ????? ????
     public GameObject IntroPanel;
-    
+
     public GameObject StageTag;
     public GameObject StaygeLevel;
     public Sprite UIM_Stage;
@@ -92,7 +92,7 @@ public class QuestManager : MonoBehaviour
     //public bool TuLev1 = false;
     public bool EndTutorial; // 튜토리얼 끝났는지확인
     public bool TutorialCheck;
-   
+
     public bool CheckFlesh;
     public bool CheckTrash;
     public Transform Canvas;
@@ -105,7 +105,7 @@ public class QuestManager : MonoBehaviour
     public int TempFlesh;
     public GameObject TutoBack;
     public GameObject Guide;
-    public bool A = true ;
+    public bool A = true;
     public GameObject BokBoss;
     public GameObject JoyStick;
     public GameObject Slider; //슬라이더 이미지1
@@ -113,25 +113,25 @@ public class QuestManager : MonoBehaviour
     public GameObject BusterBtn;
     public GameObject SkillBtn;
     public GameObject Stop;
-    bool B =false;
+    bool B = false;
     public GameObject Vectorv;
     public GameObject KillBoard;
-    public GameObject TimeBoard; 
+    public GameObject TimeBoard;
     public GameObject SkillBtn2; //스킬 버튼 안에 채워지는 이미지
     public int tempkill;
-    public bool temp =false;
+    public bool temp = false;
     public GameObject itembtn;
     void Start()
     {
-        Level_ = 1;
+        Level_ = 1;//초기 렙설정
 
-        IngameLevel = 1;        //데베에서 가져오기.      
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
         waitingTime = 2;
         TempTuLev = 0;
-     
+
     }
 
     // Update is called once per frFLame
@@ -139,49 +139,14 @@ public class QuestManager : MonoBehaviour
     {
         if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
         {
-
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                IngameLevel = 3;
-                Flag = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.Y))
-            {
-                IngameLevel = 4;
-                Flag = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.U))
-            {
-                IngameLevel = 6;
-                Flag = true;
-            }
             Player = GameObject.FindGameObjectWithTag("Player");
-            if (Input.GetKeyDown(KeyCode.G)) Player.transform.localScale = new Vector3(Player.transform.localScale.x + 1f, Player.transform.localScale.y + 1f, 1f);
-            if (Input.GetKeyDown(KeyCode.R)) Player.GetComponent<Player>().HP++;
-            Levelboard.GetComponent<Text>().text = Level_.ToString();
-            //if (Input.GetKeyDown(KeyCode.P)) Level_++;
-            if (Input.GetKeyDown(KeyCode.O)) Level_--;
+            Test_Method();
+            FlagOnMethod();
             if (Player != null)
             {
-               // Debug.Log("칼 몹" + KnifeEC + "총몹" + BulletEC);
+                // Debug.Log("? ??" + KnifeEC + "???" + BulletEC);
                 QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
-                if (Flag)
-                {
-                    if(Level_ > 0)
-                    {
-                        Level_Action();
-                    }
-                    
-                    Debug.Log(IngameLevel + "레발" + MaxCount + " " + KnifeEC);
-                    //if (Level_ == 8) Players[Random.Range(1, 7)].GetComponent<Player>().Flag_get = true;
-                    // Stayge = Instantiate(Stayges[Level_ - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
 
-                    if (QuestBoard_ != null)
-                        Debug.Log(QuestBoard_.tag);
-
-                    Flag = false;
-
-                }
                 ShapeInit();
                 SucssesFlagOnOff();
                 EndGameCheck();
@@ -190,10 +155,53 @@ public class QuestManager : MonoBehaviour
                 if (IngameLevel < 0) IngameLevel = 0;
             }
         }
-        
-    }
 
-    public void SucssesFlagOnOff()
+    }
+    public void FlagOnMethod()
+    {//?? ???????? ??????? ????? ????
+        if (Flag)
+        {
+            if (Level_ == 1)
+            {
+                Level_1_Action();
+            }
+
+            Debug.Log(IngameLevel + "????" + MaxCount + " " + KnifeEC);
+            //if (Level_ == 8) Players[Random.Range(1, 7)].GetComponent<Player>().Flag_get = true;
+            // Stayge = Instantiate(Stayges[Level_ - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
+
+            if (QuestBoard_ != null)
+                Debug.Log(QuestBoard_.tag);
+
+            Flag = false;
+
+        }
+    }
+    public void Test_Method()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            IngameLevel = 3;
+            Flag = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            IngameLevel = 4;
+            Flag = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.U))
+        {
+            IngameLevel = 6;
+            Flag = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) Player.transform.localScale = new Vector3(Player.transform.localScale.x + 1f, Player.transform.localScale.y + 1f, 1f);
+        if (Input.GetKeyDown(KeyCode.R)) Player.GetComponent<Player>().HP++;
+        Levelboard.GetComponent<Text>().text = Level_.ToString();
+        //if (Input.GetKeyDown(KeyCode.P)) Level_++;
+        if (Input.GetKeyDown(KeyCode.O)) Level_--;
+    }
+    public void SucssesFlagOnOff()// 게임 실패 검사
     {
         if (ShapeNum == 5) TimeOut_EndCheck();
         else if (ShapeNum == 1) ShapeA_EndCheck();
@@ -201,102 +209,105 @@ public class QuestManager : MonoBehaviour
         else if (ShapeNum == 3) ShapeC_EndCheck();
         else if (ShapeNum == 10) Tutorial_EndCheck();
     }// 게임 끝나는거 체크
-    public void Level_Action()
+    public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
-        ResetPlayerStat();
-
-
-        if(IngameLevel == 0) 
+        if (Level_ == 1)
         {
-            KnifeEnemyMaxCount= 0;
-            BulletEnemyMaxCount = 0;
-            MaxCount = 1;
-            
-        }
-
-        if (IngameLevel == 1)
-        {
-            Destroy(GameObject.FindGameObjectWithTag("tt"));
-
-            //TutorialName.SetActive(false);
-            //GM.GetComponent<GameManager_>().ObjectCleaner();
-            ResetMaxCounter();
-            ResetCounter();
-            KnifeEnemyMaxCount = 4;
-            MaxCount = 2;
-            Player.transform.localPosition = Vector3.zero;
-
-        }
-        else if (IngameLevel == 2)
-        {
-            ResetMaxCounter();
-            KnifeEnemyMaxCount = 5;
-            BulletEnemyMaxCount = 1;
-            MaxCount = 4;
-        }
-        else if (IngameLevel == 3)
-        {
-            ResetMaxCounter();
-            KnifeEnemyMaxCount = 5;
-            BulletEnemyMaxCount = 2;
-            MaxCount = 6;
-        }
-        else if (IngameLevel == 4)
-        {
-            ObjectCleanerNextStage();
-            ResetMaxCounter();
-            //ResetCounter();
-            BossMaxCount = 1;
-            MaxCount = 1;
-           
-        }
-        else if (IngameLevel == 5)
-        {
-
-            ResetMaxCounter();
-            ResetCounter();
-            KnifeEnemyMaxCount = 5;
-            BulletEnemyMaxCount = 3;
-            MaxCount = 9;
-        }
-        else if (IngameLevel == 6)
-        {
-            Instantiate(Vectorv,Player.transform.position,Quaternion.Euler(0,0,0));
-            ResetCounter();
-            ObjectCleanerNextStage();
-            //플레이어에서 화살표 켜기 플레이어프리펩에 방향가르켜주는 화살표 넣어둘것. 다만 화살표는 목표가없으면 값 투명하게 설정
-            ResetMaxCounter();
-            KnifeEnemyMaxCount = 0;
-            BulletEnemyMaxCount = 0;
-            BigTrashMaxCount = 1;
-            MaxCount = 1;
-        }
-        else if (IngameLevel == 7)
-        {
-             Destroy(GameObject.FindGameObjectWithTag("V"));
-            ResetCounter();
-            ObjectCleanerNextStage();
-            ResetMaxCounter();
-            KnifeEnemyMaxCount = 2;
-            BulletEC = 2;
-            BossMaxCount = 1;
-            MaxCount = 1;
-        }
+            ResetPlayerStat();
 
 
-        TrashMaxCount = 5;
-        Trash2MaxCount = 5;
+            if (IngameLevel == 0)
+            {
+                KnifeEnemyMaxCount = 0;
+                BulletEnemyMaxCount = 0;
+                MaxCount = 1;
 
-        CurrentCount = 0;
+            }
+
+            if (IngameLevel == 1)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("tt"));
+
+                //TutorialName.SetActive(false);
+                //GM.GetComponent<GameManager_>().ObjectCleaner();
+                ResetMaxCounter();
+                ResetCounter();
+                KnifeEnemyMaxCount = 4;
+                MaxCount = 2;
+                Player.transform.localPosition = Vector3.zero;
+
+            }
+            else if (IngameLevel == 2)
+            {
+                ResetMaxCounter();
+                KnifeEnemyMaxCount = 5;
+                BulletEnemyMaxCount = 1;
+                MaxCount = 4;
+            }
+            else if (IngameLevel == 3)
+            {
+                ResetMaxCounter();
+                KnifeEnemyMaxCount = 5;
+                BulletEnemyMaxCount = 2;
+                MaxCount = 6;
+            }
+            else if (IngameLevel == 4)
+            {
+                ObjectCleanerNextStage();
+                ResetMaxCounter();
+                //ResetCounter();
+                BossMaxCount = 1;
+                MaxCount = 1;
+
+            }
+            else if (IngameLevel == 5)
+            {
+
+                ResetMaxCounter();
+                ResetCounter();
+                KnifeEnemyMaxCount = 5;
+                BulletEnemyMaxCount = 3;
+                MaxCount = 9;
+            }
+            else if (IngameLevel == 6)
+            {
+                Instantiate(Vectorv, Player.transform.position, Quaternion.Euler(0, 0, 0));
+                ResetCounter();
+                ObjectCleanerNextStage();
+                //?÷?????? ???? ??? ?÷?????????? ??????????? ???? ?????. ??? ?????? ??????????? ?? ??????? ????
+                ResetMaxCounter();
+                KnifeEnemyMaxCount = 0;
+                BulletEnemyMaxCount = 0;
+                BigTrashMaxCount = 1;
+                MaxCount = 1;
+            }
+            else if (IngameLevel == 7)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("V"));
+                ResetCounter();
+                ObjectCleanerNextStage();
+                ResetMaxCounter();
+                KnifeEnemyMaxCount = 2;
+                BulletEC = 2;
+                BossMaxCount = 1;
+                MaxCount = 1;
+            }
+
+
+            TrashMaxCount = 5;
+            Trash2MaxCount = 5;
+
+            CurrentCount = 0;
+        }
     }
-    public void ResetPlayerStat()
+    public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
     {
         //Player.GetComponent<PlayerScript>().killScore = 0;
         Player.GetComponent<PlayerScript>().BosskillScore = 0;
         Player.GetComponent<PlayerScript>().BigTrashC = 0;
     }
 
-    public void ObjectCleanerNextStage()
+    public void ObjectCleanerNextStage()//다음 소 스테이지로 갈 때 필수적으로 지워야할것들만 지움
     {
 
         GameObject[] Items = GameObject.FindGameObjectsWithTag("Item");
@@ -315,14 +326,14 @@ public class QuestManager : MonoBehaviour
             Destroy(AiPlayers[i], 0f);
         }
     }
-    public void Init_Stayge()
+    public void Init_Stayge()// 대 스테이지 초기화 게임시작 누를시 한번만 실행
     {
         limitTime = 0;
-       if(Level_ == 0) 
-       {
-            ShapeNum =10;
+        if (Level_ == 0)
+        {
+            ShapeNum = 10;
             IntroPanel.SetActive(true);
-            
+
             IntroPanel.transform.GetChild(0).gameObject.SetActive(false);
             IntroPanel.transform.GetChild(1).gameObject.SetActive(false);
             IntroPanel.transform.GetChild(2).gameObject.SetActive(false);
@@ -332,18 +343,18 @@ public class QuestManager : MonoBehaviour
             TutorialName.SetActive(true);
             TutorialLev = 1;
             TutorialName.GetComponent<Text>().text = "튜토리얼";
-     
+
             tutorial.transform.SetParent(Canvas);
             tutorial.transform.SetSiblingIndex(0);
             tutorial.transform.GetChild(0).gameObject.SetActive(false);
-       }
+        }
 
 
-        
-        
+
+
         else if (Level_ == 1)
         {
-            
+
             IntroPanel.transform.GetChild(0).gameObject.SetActive(true);
             IntroPanel.transform.GetChild(1).gameObject.SetActive(true);
             IntroPanel.transform.GetChild(2).gameObject.SetActive(true);
@@ -447,7 +458,7 @@ public class QuestManager : MonoBehaviour
         OccupationTime = 0;
         GM.GetComponent<GameManager_>().GlobalTime = limitTime;
     }//스테이지 정의
-    public void TimeOut_EndCheck()
+    public void TimeOut_EndCheck()// 시간다됐나 체크 지금은 사용안함
     {
         if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
         {
@@ -457,7 +468,7 @@ public class QuestManager : MonoBehaviour
 
         }
     }//timeout으로 끝나는판
-    public void Objectmanager()
+    public void Objectmanager()// 소 스테이지 초기화에서 정해준 오브젝트 최대 갯수만큼 각 오브젝트 계속 생성, 
     {
         // Debug.Log("이거 실행된다...");
         if (KnifeEnemyMaxCount > KnifeEC)
@@ -484,7 +495,7 @@ public class QuestManager : MonoBehaviour
         }
         if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
     }
-    Vector3 ObjRandomPosition()
+    Vector3 ObjRandomPosition()// 랜덤위치
     {
         return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
     }
@@ -523,10 +534,11 @@ public class QuestManager : MonoBehaviour
     //같은 오브젝트들끼리 중첩되서 소환되면 둘다 삭제 하고 다시소환되기. 다른오브젝트면 우선순위낮은 놈이 삭제되기.
     public void CreateKnifeE()
     {// 몹 크기 랜덤으로
-        if(Player != null){
-        var Enemy = Instantiate(KnifeEnemy, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
-        Enemy.transform.localScale = RandomSize();
-        Enemy.GetComponent<Player>().StartFlag = true;
+        if (Player != null)
+        {
+            var Enemy = Instantiate(KnifeEnemy, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
+            Enemy.transform.localScale = RandomSize();
+            Enemy.GetComponent<Player>().StartFlag = true;
         }
 
     }
@@ -558,7 +570,7 @@ public class QuestManager : MonoBehaviour
         var Obj = Instantiate(VictimObj, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));      //currentcount를 victim에서 올려준다 먹힐 때 이거 염두해두자         
         VictimOC++;
     }
-    public void CreateWaveO()
+    public void CreateWaveO()//미구현
     {
         var Obj = Instantiate(WaveObj, ObjRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
         WaveOC++;
@@ -584,12 +596,12 @@ public class QuestManager : MonoBehaviour
         BubblesShiledOC++;
     }
 
-    public void CamAnimation()
+    public void CamAnimation()//미구현
     {
         //검정화면만들기  UI지우기, 캠이동하기, 소리재생, 원래 캐릭비추기 특정 몹 비추기
     }
 
-    public void ResetMaxCounter()
+    public void ResetMaxCounter()//모든 오브젝트 최대 생성 갯수 0으로 초기화
     {
         BossMaxCount = 0;
         WaveMaxCount = 0;
@@ -600,7 +612,7 @@ public class QuestManager : MonoBehaviour
         KnifeEnemyMaxCount = 0;
         BulletEnemyMaxCount = 0;
     }
-    public void ResetCounter()
+    public void ResetCounter()//모든 오브젝트 현재 소환된 갯수 0으로 초기화
     {
         KnifeEC = 0;
         BulletEC = 0;
@@ -612,7 +624,7 @@ public class QuestManager : MonoBehaviour
         Trash2OC = 0;
 
     }
-    public void ShapeInit()
+    public void ShapeInit()// 각 퀘스트별 형태 정의
     {
         if (QuestBoard_ != null)
         {
@@ -636,7 +648,7 @@ public class QuestManager : MonoBehaviour
         QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).gameObject.SetActive(false);
 
     }//갯수보두 초기화
-    public void CurrentCountInit()
+    public void CurrentCountInit()//퀘스트 완료조건 정의
     {
 
 
@@ -762,7 +774,7 @@ public class QuestManager : MonoBehaviour
 */
     }//점령전
 
-    public void EndGameCheck()
+    public void EndGameCheck()// 게임 끝낫나 체크
     {
         if (GM.GetComponent<GameManager_>().EndFlag == false)
         {
@@ -788,23 +800,24 @@ public class QuestManager : MonoBehaviour
         }
     }//게임끝났는지 체크
 
-    public void Tutorial_EndCheck() 
+    public void Tutorial_EndCheck()
     {
-        if(EndTutorial)
+        if (EndTutorial)
         {
             Level_++;
             GM.GetComponent<GameManager_>().SuccesFlag = true;
-            
+
 
         }
 
     }
 
 
-    public void bornguide() {
+    public void bornguide()
+    {
         GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
         Guide.transform.SetParent(GM.GetComponent<GameManager_>().Player_p.transform);
-    } 
+    }
     public void Tutorial_Init()
     {
 
@@ -818,20 +831,20 @@ public class QuestManager : MonoBehaviour
         itembtn = GM.GetComponent<GameManager_>().Player_p.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
 
 
-//        Debug.Log("s튜토리얼");
+        //        Debug.Log("s?????");
         if (TutorialLev == 1)
         {
-                if(A)   
-                {
-                    //GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
-                    tutorial.transform.GetChild(0).gameObject.SetActive(true);
-                    TutoBack.SetActive(true);
-                    A = false;
-                }
+            if (A)
+            {
+                //GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
+                tutorial.transform.GetChild(0).gameObject.SetActive(true);
+                TutoBack.SetActive(true);
+                A = false;
+            }
 
-            TutorialName.SetActive(false); //튜토리얼 글자 비활
-            TutorialPlan.GetComponent<Text>().text = "조이스틱을 이용해서 전진하세요";
-            
+            TutorialName.SetActive(false); //????? ???? ???
+            TutorialPlan.GetComponent<Text>().text = "???????? ?????? ?????????";
+
             if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().Timer33 > 1) //3초이상 움직이면 playerscript에서 체크됨
             {
                 TutorialCheck = true;
@@ -841,26 +854,26 @@ public class QuestManager : MonoBehaviour
 
                 bornguide(); //할아버지 활성화
                 //tutorial.GetComponent<Tutorial>().Touch = 0; //터치 수 초기화
-                tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch =0;
+                tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch = 0;
                 TutorialPlan.GetComponent<Text>().text = "부스터를 같이 사용해보세요"; //다음 과제
                 Guide.GetComponent<GuidePet>().OffCanvas();
                 TutorialLev++;
 
             }
 
-            
+
         }
 
 
         else if (TutorialLev == 2) //부스터 튜토리얼
         {
 
-            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().BusterFlag 
+            if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().BusterFlag
                 && GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().cutGauge < 70) //부스터 90이하로 닳게 하면 성공
             {
 
                 timer += Time.deltaTime;
-                if (timer > waitingTime-2)
+                if (timer > waitingTime - 2)
                 {
                     GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
                     tutorial.SetActive(true);
@@ -868,7 +881,7 @@ public class QuestManager : MonoBehaviour
 
 
                     Guide.GetComponent<GuidePet>().BornGuide();
-                    tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch =0;
+                    tutorial.transform.GetChild(0).GetComponent<Tutorial>().Touch = 0;
                     timer = 0;
                     TutorialPlan.GetComponent<Text>().text = "스킬버튼이 차면 스킬을 사용해보세요";
                     Guide.GetComponent<GuidePet>().OffCanvas();
@@ -881,7 +894,7 @@ public class QuestManager : MonoBehaviour
         else if (TutorialLev == 3)
         {
 
-            
+
             GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().FishNumber = 2; //보거로 변경
             if (GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().skillcheck) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
             {
@@ -889,15 +902,15 @@ public class QuestManager : MonoBehaviour
 
                 if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
                 {
-                    
+
                     GM.GetComponent<GameManager_>().Player_p.GetComponent<PlayerScript>().StopMove();
                     timer = 0;
                     tutorial.SetActive(true);
                     tutorial.transform.GetChild(0).gameObject.SetActive(true);
 
-                
+
                     Guide.GetComponent<GuidePet>().OffCanvas();
-                    EndTutorial =true;
+                    EndTutorial = true;
                     TutorialLev++;
                     Destroy(tutorial);
 
@@ -905,20 +918,20 @@ public class QuestManager : MonoBehaviour
             }
         }
 
-/*
-        else if (TutorialLev == 4) //튜토리얼 종료
-        {
-            
-            
-            
-            
-            
-        }*/
+        /*
+                else if (TutorialLev == 4) //????? ????
+                {
+
+
+
+
+
+                }*/
 
     }
 
 
 }
 
-        
+
 
