@@ -22,16 +22,16 @@ public class Skill : MonoBehaviour
 
     void init()
     {
-        if (FishNumber == 1)
+        if (FishNumber == 1) // 아기상어
         {
             transform.Find("shark1").gameObject.SetActive(true);
         }
-        else if (FishNumber == 2)
+        else if (FishNumber == 2) // 보거
         {
             transform.Find("bock1").gameObject.SetActive(true);
             transform.Find("bock2").gameObject.SetActive(true);
         }
-        else if (FishNumber == 4 || FishNumber == 5)
+        else if (FishNumber == 4) // 고래신사
         {
             transform.Find("whale1").gameObject.SetActive(true);
             transform.Find("whale2").gameObject.SetActive(true);
@@ -44,7 +44,7 @@ public class Skill : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (FishNumber == 4 || FishNumber == 5)  // 고래
+        if (FishNumber == 4)  // 고래신사
             transform.rotation = Quaternion.Euler(0, 0, 30 * timer * (-1)); // 부모의 회전값과 상관없이 회전
 
         if (transform.parent.localScale.x < 0)

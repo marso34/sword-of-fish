@@ -10,7 +10,7 @@ public class SkillBtn : MonoBehaviour, IPointerDownHandler
     public GameObject Image;
     public Image SkillFill;
     
-    bool SkillFlag;
+    bool SkillFlag; // 스킬 사용 가능하면 true
     float timer;
     float WaitTime;
 
@@ -26,10 +26,10 @@ public class SkillBtn : MonoBehaviour, IPointerDownHandler
     {
         SkillFill.fillAmount = timer / WaitTime;
 
-        if (!SkillFlag && Player.GetComponent<PlayerScript>().FishNumber != 0)
+        if (!SkillFlag && Player.GetComponent<PlayerScript>().FishNumber != 0) 
         {
-            if (!Player.GetComponent<PlayerScript>().SkillFlag)
-                timer += Time.deltaTime;
+            if (!Player.GetComponent<PlayerScript>().SkillFlag) // 스킬 지속시간이 있는 경우에만 SkillFlag == true
+                timer += Time.deltaTime; 
             else
                 timer -= Time.deltaTime * 2;
 

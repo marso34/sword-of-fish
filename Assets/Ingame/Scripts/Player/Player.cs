@@ -687,7 +687,7 @@ public class Player : MonoBehaviour
         if (FishNumber == 0)
         {
         }
-        else if (FishNumber == 1)
+        else if (FishNumber == 1) // ¾Æ±â»ó¾î
         {
             SkillFlag = true;
             CreateSkill();
@@ -701,15 +701,15 @@ public class Player : MonoBehaviour
             Invoke("OffSkillFlag", 3f);
             Invoke("OffOutLine", 3f);
         }
-        else if (FishNumber == 2)  // ë³´ê±°
+        else if (FishNumber == 2)  // º¸°Å
         {
             CreateSkill();
             for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
                 CreateSkill2();
         }
-        else if (FishNumber == 3)  // ???ì½”ì•¼
+        else if (FishNumber == 3)  //Å¸ÄÚ¾ß
             CreateSkill2();
-        else  // ê³ ë˜?‹ ?‚¬
+        else if (FishNumber == 4)   // °í·¡ ½Å»ç
         {
             CreateSkill();
             SkillFlag = true;
@@ -722,7 +722,7 @@ public class Player : MonoBehaviour
         if (FishNumber == 0)
         {
         }
-        else if (FishNumber == 1)
+        else if (FishNumber == 1) // ¾Æ±â»ó¾î
         {
             SkillFlag = true;
 
@@ -736,15 +736,15 @@ public class Player : MonoBehaviour
             Invoke("OffSkillFlag", 3f);
             Invoke("OffOutLine", 3f);
         }
-        else if (FishNumber == 2)  // ë³´ê±°
+        else if (FishNumber == 2)  // º¸°Å
         {
             CreateSkill(Name);
             for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
                 CreateSkill2(Name);
         }
-        else if (FishNumber == 3)  // ???ì½”ì•¼
+        else if (FishNumber == 3)  // Å¸ÄÚ¾ß
             CreateSkill2(Name);
-        else  // ê³ ë˜?‹ ?‚¬
+        else if (FishNumber == 4)  // °í·¡ ½Å»ç
         {
             CreateSkill2(Name);
             SkillFlag = true;
@@ -757,7 +757,7 @@ public class Player : MonoBehaviour
         SkillFlag = false;
     }
     public void EatStar()
-    {// ?Š¤??? ë¨¹ìŒ
+    {
         reSpeed();
         // InitState(); -> ?†?„ ì´ˆê¸°?™”?„ ?¬?•¨, ?ƒ?–´ ?Š¤?‚¬ ?“¸ ?•Œ?„ ?›?˜ ?†?„ë¡? ?Œ?•„ê°?..
         C = Color.white;

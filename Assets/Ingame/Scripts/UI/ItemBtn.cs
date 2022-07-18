@@ -19,7 +19,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public Sprite ItemIce;
     public Sprite ItemShield;
 
-    int ItemNumber;
+    int ItemNumber; 
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (img.sprite != Defualt)
+        if (img.sprite != Defualt)  // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
 
@@ -58,7 +58,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
 
     public void UseItem()
     {
-        if (img.sprite != Defualt)
+        if (img.sprite != Defualt) // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
 
@@ -80,14 +80,14 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void ChangeImage(int i)
+    public void ChangeImage(int i) // 플레이어가 아이템 먹었을 때 호출
     {
         // if (img.sprite == Defualt) {
         ItemNumber = i;
 
-        if (i == 1) img.sprite = ItemBomb;
-        else if (i == 2) img.sprite = ItemIce;
-        else if (i == 3) img.sprite = ItemShield;
+        if (i == 1) img.sprite = ItemBomb;        // 폭탄
+        else if (i == 2) img.sprite = ItemIce;    // 얼음
+        else if (i == 3) img.sprite = ItemShield; // 쉴드
         // }
     }
 }

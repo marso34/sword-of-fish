@@ -5,13 +5,13 @@ using UnityEngine;
 public class Skill2 : MonoBehaviour
 {
     public GameObject Bubble;
-    public GameObject SkillSkin;// 스킨 담긴 오브젝트
-    public SkillSkin SkillSkin_;//스킨
-    public Vector3 dir;//움직일방향
+    public GameObject SkillSkin; // 스킨 담긴 오브젝트
+    public SkillSkin SkillSkin_; //스킨
+    public Vector3 dir; //움직일방향
 
     public bool DelFalg;
-    double Timer;
-    double Timer_;
+    double Timer; // 스킬 생존 시간
+    double Timer_; // 타코야 스킬 버블 생성 시간
     float Speed;
     int FishNumber;
     public GameObject GM;
@@ -23,15 +23,15 @@ public class Skill2 : MonoBehaviour
     SpriteRenderer S;
     void Start()
     {
-        FishNumber = transform.parent.gameObject.GetComponent<Player>().FishNumber;
-        SkillSkin_ = SkillSkin.GetComponent<SkillSkin>();
-        DelFalg = false;
-        Timer = 0;
-        Timer_ = 0;
         GM = GameObject.FindGameObjectWithTag("GM");
-        Init();
-        FRZFlag = false;
+        SkillSkin_ = SkillSkin.GetComponent<SkillSkin>();
         S = transform.GetComponent<SpriteRenderer>();
+        FishNumber = transform.parent.gameObject.GetComponent<Player>().FishNumber; 
+        DelFalg = false; 
+        FRZFlag = false;
+        Timer = 0; 
+        Timer_ = 0; 
+        Init();
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -136,7 +136,7 @@ public class Skill2 : MonoBehaviour
         }
         else if (FishNumber == 3)
         {
-            dir = transform.parent.gameObject.GetComponent<Player>().dir; // 부모 벡터 가져오기 -> 부모가 가만히 있을 때 스킬 사용하면 스킬도 안 움직임 수정 필요
+            dir = transform.parent.gameObject.GetComponent<Player>().dir; // 부모 벡터 가져오기 -> 부모가 가만히 있을 때 스킬 사용하면 스킬도 안 움직임 수정 필요 -> 이제 플레이어의 정지상태가 없기에 그대로 사용
 
             // float Radian = transform.parent.eulerAngles.z * Mathf.Deg2Rad - 11; // 부모의 각도 받아오기
             // float DirX = Mathf.Cos(Radian);
@@ -144,12 +144,11 @@ public class Skill2 : MonoBehaviour
             // dir = new Vector3(DirX, DirY, 0); // 부모의 각도를 토대로 벡터 생성
 
             transform.Translate(dir * (transform.parent.localScale.y), Space.World);
-            // transform.localScale *= 1.05f;
             Speed = 6f;
         }
 
         transform.parent = null;
-        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.
+        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized); //이동방향에 맞게 정면을 보도록 회전값 받아오기.
         transform.localRotation = toRotation; //회전값 적용
     }
     public void DelSkill()

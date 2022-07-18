@@ -304,12 +304,12 @@ public class PlayerScript : Player
     void TestSkill()//임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.A))
-            PlaySkill();
-            // SkillBtn.GetComponent<SkillBtn>().UseSkill(); 
+            // PlaySkill();
+            SkillBtn.GetComponent<SkillBtn>().UseSkill(); 
 
     }
 
-    void TestItem()
+    void TestItem() // 임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.Z))
             ItemBtn.GetComponent<ItemBtn>().ChangeImage(1);
@@ -451,7 +451,7 @@ public class PlayerScript : Player
 
     }//일단 이기능은 삭제
 
-    public void EatItem(int i)
+    public void EatItem(int i)  // 1이면 폭탄, 2이면 얼음, 3이면 쉴드 -> 아이템 먹을 때 아이템에서 i 넘겨줌
     {
         ItemBtn.GetComponent<ItemBtn>().ChangeImage(i);
     }

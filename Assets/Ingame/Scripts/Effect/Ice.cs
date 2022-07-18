@@ -15,7 +15,7 @@ public class Ice : MonoBehaviour
     {
         shakeObj();
     }
-    void shakeObj()
+    void shakeObj()   // 위아래 움직임
     {
         timer22 += Time.deltaTime;
         if (timer22 > watime2)
