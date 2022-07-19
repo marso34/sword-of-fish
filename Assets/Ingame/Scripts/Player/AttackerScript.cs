@@ -15,7 +15,7 @@ public class AttackerScript : Player
     public int SkillCount;
     public bool flag;
     Vector3 bulletRange;
-
+    public GameObject PlayerP;
     GameObject P;
     bool FRZFlag;
 
@@ -111,8 +111,11 @@ public class AttackerScript : Player
     }
     void SlowOff()
     {
-        InitState();
-        waitingTime = 2f;
+        if (Life)
+        {
+            InitState();
+            waitingTime = 2f;
+        }
     }
 
 
@@ -137,15 +140,19 @@ public class AttackerScript : Player
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void EmptyKnife()
     {
-        MyKnife.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
-        MyKnife.tag ="NotKnife";
+        MyKnife.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        MyKnife.tag = "NotKnife";
+        MyKnife.transform.localScale = Vector3.zero;
+
+    }
+    public void Init()
+    {
         if (transform.name == "Boss" && flag)
         {
             HP = 25;
+            transform.localScale = new Vector3(4f, 4f, 1f);
             flag = false;
         }
         else if (flag)
@@ -153,7 +160,9 @@ public class AttackerScript : Player
             HP = (int)(transform.localScale.y * 3);
             flag = false;
         }
-        if (transform.name == "Boss") transform.localScale = new Vector3(4f, 4f, 1f);
+    }
+    public void lookrota()
+    {
         float x_ = transform.localScale.x;//  占쏙옙.
         if (x_ < 0)
             x_ *= -1;
@@ -165,35 +174,37 @@ public class AttackerScript : Player
         {
             transform.localScale = new Vector3(x_ * -1, transform.localScale.y, 1);
         }
-        var Player = GameObject.FindGameObjectWithTag("Player");
-        statusColor();
-        if (Player != null && !FRZFlag && Life)
-        {
-
-            dir = Player.transform.position - transform.position;
+    }
+    public void MoveAtt(){
+         dir = PlayerP.transform.position - transform.position;
             if (Mathf.Abs(dir.magnitude) > Mathf.Abs(bulletRange.magnitude)) transform.Translate(dir * Speed / 2 * Time.deltaTime, Space.World);
-
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        EmptyKnife();
+        Init();
+        lookrota();
+        PlayerP = GameObject.FindGameObjectWithTag("Player");
+        statusColor();
+        if (PlayerP != null && !FRZFlag && Life)
+        {
+            MoveAtt();
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
                 var bullet_ = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 bullet_.GetComponent<bullet>().SetDir(dir);
                 timer = 0f;
-
-
                 if (SkillCount > 2)
                 {
                     if (transform.name == "Boss")
                     {
                         S.color = Color.red;
-
                         Invoke("UseSkill", 2f);
-
-                    }
-                    SkillCount = 0;
+                    }                    
                 }
                 SkillCount++;
-
             }
             transform.Translate(dir.normalized * 0.01f * Time.deltaTime, Space.World);
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.
@@ -223,6 +234,7 @@ public class AttackerScript : Player
         Skin.GetComponent<SpriteRenderer>().color = Color.white;
 
         PlaySkill(N);
+        SkillCount = 0;
     }
 
     public void HitAttacker(GameObject other)

@@ -73,6 +73,7 @@ public class PlayerScript : Player
     public bool killcheck = false; //y Àû Á×ÀÌ±â Æ©Åä¸®¾ó
     public void Start()
     {
+        
         TuLev1 = false; //y ÀÌµ¿ Æ©Åä¸®¾ó 
         transform.position = Vector3.zero;
         HP = 5;
@@ -219,6 +220,55 @@ public class PlayerScript : Player
             if (HP <= 0) DieLife();
 
         }
+        
+    }
+    public void EatStar() 
+    {// ?Š¤??? ë¨¹ìŒ
+        reSpeed();
+        // InitState(); -> ?†?„ ì´ˆê¸°?™”?„ ?¬?•¨, ?ƒ?–´ ?Š¤?‚¬ ?“¸ ?•Œ?„ ?›?˜ ?†?„ë¡? ?Œ?•„ê°?..
+        C = Color.white;
+        OnStar();
+        Invoke("OffStar", 3f);
+    }
+    public void OnStar()
+    {
+        MyBody.tag = "Shiled";
+        Skin.GetComponent<Skin>().Flag = true;
+        OnOutLine(1);
+    }
+    public void OffStar()
+    {
+        MyBody.tag = "Body";
+        Skin.GetComponent<Skin>().Flag = false;
+        OffOutLine();
+    }
+    public override void DieLife(){
+    
+        
+            //ê¹œë¹¡?„.ì½”ë“œ
+            ShowDieAnim(0);
+            state = State.Die;
+
+            if (HP > 0)
+            {
+                var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
+                HP--;
+                MyBody.tag = "Shiled";
+                hitFlag = true;
+
+                WhiteFlesh();
+                Glitter();
+                Invoke("InitBody__", 1.5f);
+
+            }
+            if (HP <= 0 && flagerror)
+            {
+                CreateFlesh();
+                NotInit();
+                Invoke("LifeOff", 0.015f);
+                flagerror = false;
+            }
+
         
     }
     public void HPManager()
