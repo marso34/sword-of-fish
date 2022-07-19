@@ -73,6 +73,7 @@ public class PlayerScript : Player
     public bool killcheck = false; //y 적 죽이기 튜토리얼
     public void Start()
     {
+        
         TuLev1 = false; //y 이동 튜토리얼 
         transform.position = Vector3.zero;
         HP = 5;
@@ -221,6 +222,55 @@ public class PlayerScript : Player
         }
         
     }
+    public void EatStar() 
+    {// ?뒪??? 癒뱀쓬
+        reSpeed();
+        // InitState(); -> ?냽?룄 珥덇린?솕?룄 ?룷?븿, ?긽?뼱 ?뒪?궗 ?벝 ?븣?룄 ?썝?옒 ?냽?룄濡? ?룎?븘媛?..
+        C = Color.white;
+        OnStar();
+        Invoke("OffStar", 3f);
+    }
+    public void OnStar()
+    {
+        MyBody.tag = "Shiled";
+        Skin.GetComponent<Skin>().Flag = true;
+        OnOutLine(1);
+    }
+    public void OffStar()
+    {
+        MyBody.tag = "Body";
+        Skin.GetComponent<Skin>().Flag = false;
+        OffOutLine();
+    }
+    public override void DieLife(){
+    
+        
+            //源쒕묀?엫.肄붾뱶
+            ShowDieAnim(0);
+            state = State.Die;
+
+            if (HP > 0)
+            {
+                var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
+                HP--;
+                MyBody.tag = "Shiled";
+                hitFlag = true;
+
+                WhiteFlesh();
+                Glitter();
+                Invoke("InitBody__", 1.5f);
+
+            }
+            if (HP <= 0 && flagerror)
+            {
+                CreateFlesh();
+                NotInit();
+                Invoke("LifeOff", 0.015f);
+                flagerror = false;
+            }
+
+        
+    }
     public void HPManager()
     {
         for (int i = 0; i < MaxHP; ++i)
@@ -304,12 +354,12 @@ public class PlayerScript : Player
     void TestSkill()//임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.A))
-            PlaySkill();
-            // SkillBtn.GetComponent<SkillBtn>().UseSkill(); 
+            // PlaySkill();
+            SkillBtn.GetComponent<SkillBtn>().UseSkill(); 
 
     }
 
-    void TestItem()
+    void TestItem() // 임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.Z))
             ItemBtn.GetComponent<ItemBtn>().ChangeImage(1);
@@ -451,7 +501,7 @@ public class PlayerScript : Player
 
     }//일단 이기능은 삭제
 
-    public void EatItem(int i)
+    public void EatItem(int i)  // 1이면 폭탄, 2이면 얼음, 3이면 쉴드 -> 아이템 먹을 때 아이템에서 i 넘겨줌
     {
         ItemBtn.GetComponent<ItemBtn>().ChangeImage(i);
     }

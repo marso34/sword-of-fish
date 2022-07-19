@@ -34,8 +34,8 @@ public class QuestManager : MonoBehaviour
     public bool LoseFlag;// 죽었거나 시간초 다됐을때
     public int ShapeNum;  // 스테이지 종류 번호 0 = 시간초, 1 = ShapeA, 2 = ShapeB, 3 = ShapeC
     public int limitTime;// 제한시간
-    public int MaxCount;// 현재 갯수는 Player?가 가지고있게 하자 시체갯수, 킬갯수, 점령갯수, 
-    //-----------------------------------------
+    public int MaxCount;//클리어조건을 담당하는 카운트 현재 갯수는 Player?가 가지고있게 하자 시체갯수, 킬갯수, 점령갯수, 
+    //-----------------------------------------맵에 생성될 각 오브젝트의 총갯수를 설정함.
     public int KnifeEnemyMaxCount = 0;
     public int BulletEnemyMaxCount = 0;
     public int WaveMaxCount = 0;
@@ -48,7 +48,7 @@ public class QuestManager : MonoBehaviour
 
     public int BossMaxCount = 0;
 
-    //--------------------
+    //-------------------- 현재 맵에 각 오브젝트가 몇개있나 카운트함
     public int KnifeEC = 0;
     public int BulletEC = 0;
     public int BossEC = 0;
@@ -209,31 +209,23 @@ public class QuestManager : MonoBehaviour
         else if (ShapeNum == 3) ShapeC_EndCheck();
         else if (ShapeNum == 10) Tutorial_EndCheck();
     }// 게임 끝나는거 체크
+
+
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
         if (Level_ == 1)
         {
             ResetPlayerStat();
-
-
-            if (IngameLevel == 0)
-            {
-                KnifeEnemyMaxCount = 0;
-                BulletEnemyMaxCount = 0;
-                MaxCount = 1;
-
-            }
-
             if (IngameLevel == 1)
             {
                 Destroy(GameObject.FindGameObjectWithTag("tt"));
 
                 //TutorialName.SetActive(false);
                 //GM.GetComponent<GameManager_>().ObjectCleaner();
-                ResetMaxCounter();
-                ResetCounter();
-                KnifeEnemyMaxCount = 4;
-                MaxCount = 2;
+                ResetMaxCounter();// 모든 맥스카운터 0으로 초기화
+                ResetCounter();// 모든 현재 존재하는 오브젝트 카운트한거 0으로 다 초기화
+                KnifeEnemyMaxCount = 4;// 칼든 적물고기 최대 4마리소환
+                MaxCount = 2;// 킬 보드에 표시된 킬스코어 2달성시 클리어
                 Player.transform.localPosition = Vector3.zero;
 
             }
@@ -241,15 +233,15 @@ public class QuestManager : MonoBehaviour
             {
                 ResetMaxCounter();
                 KnifeEnemyMaxCount = 5;
-                BulletEnemyMaxCount = 1;
-                MaxCount = 4;
+                BulletEnemyMaxCount = 1;// 총알쏘는 적 1마리 소환
+                MaxCount = 4;//킬 보드에 표시된 킬스코어 4달성시 클리어
             }
             else if (IngameLevel == 3)
             {
                 ResetMaxCounter();
                 KnifeEnemyMaxCount = 5;
                 BulletEnemyMaxCount = 2;
-                MaxCount = 6;
+                MaxCount = 6;// 킬 보드에 표시된 킬스코어 6달성시 클리어
             }
             else if (IngameLevel == 4)
             {
@@ -257,17 +249,15 @@ public class QuestManager : MonoBehaviour
                 ResetMaxCounter();
                 //ResetCounter();
                 BossMaxCount = 1;
-                MaxCount = 1;
-
+                MaxCount = 1; // 보스 한명 잡을시 클리어
             }
             else if (IngameLevel == 5)
             {
-
                 ResetMaxCounter();
                 ResetCounter();
                 KnifeEnemyMaxCount = 5;
                 BulletEnemyMaxCount = 3;
-                MaxCount = 9;
+                MaxCount = 9;// 킬 보드에 표시된 킬스코어 9달성시 클리어
             }
             else if (IngameLevel == 6)
             {
@@ -279,7 +269,7 @@ public class QuestManager : MonoBehaviour
                 KnifeEnemyMaxCount = 0;
                 BulletEnemyMaxCount = 0;
                 BigTrashMaxCount = 1;
-                MaxCount = 1;
+                MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
             }
             else if (IngameLevel == 7)
             {
@@ -291,6 +281,7 @@ public class QuestManager : MonoBehaviour
                 BulletEC = 2;
                 BossMaxCount = 1;
                 MaxCount = 1;
+                // 보스잡을시 클리어
             }
 
 
@@ -300,6 +291,38 @@ public class QuestManager : MonoBehaviour
             CurrentCount = 0;
         }
     }
+     public void CurrentCountInit()//퀘스트 완료조건 정의
+    {
+        if (IngameLevel == 1)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
+        }
+        else if (IngameLevel == 2)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;// 레벨에 따라 CurrentCount를 채워주는것은 달라져야한다.
+        }
+        else if (IngameLevel == 3)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
+        }
+        else if (IngameLevel == 4)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;//Maxcount가 특정 물고기 번호
+        }
+        else if (IngameLevel == 5)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().killScore;//Maxcount가 특정 물고기 번호
+        }
+        else if (IngameLevel == 6)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().BigTrashC;
+        }
+
+        else if (IngameLevel == 7)
+        {
+            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;
+        }
+    }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
     {
         //Player.GetComponent<PlayerScript>().killScore = 0;
@@ -644,40 +667,7 @@ public class QuestManager : MonoBehaviour
         QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).gameObject.SetActive(false);
 
     }//갯수보두 초기화
-    public void CurrentCountInit()//퀘스트 완료조건 정의
-    {
-
-
-        if (IngameLevel == 1)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
-        }
-        else if (IngameLevel == 2)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;// 레벨에 따라 CurrentCount를 채워주는것은 달라져야한다.
-        }
-        else if (IngameLevel == 3)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
-        }
-        else if (IngameLevel == 4)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;//Maxcount가 특정 물고기 번호
-        }
-        else if (IngameLevel == 5)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;//Maxcount가 특정 물고기 번호
-        }
-        else if (IngameLevel == 6)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().BigTrashC;
-        }
-
-        else if (IngameLevel == 7)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;
-        }
-    }//ShapeA에서 사용
+   
     /*
     public void ShapeB_Init()
     {

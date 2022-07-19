@@ -16,10 +16,10 @@ public class Tentacle : MonoBehaviour
     SpriteRenderer Skin;
 
     public bool Active = false;
-    float imgTimer;
-    float timer_ = 0f;
+    float imgTimer; // 이미지 바꾸는 타이머
+    float timer_ = 0f; // 스킬일 경우 생존 시간 타이머
 
-    float imgWaitTime = 1.25f; // 
+    float imgWaitTime = 1.25f; // 이미지 교체 
     float imgWaitTime2 = 8f;
 
 
@@ -66,9 +66,10 @@ public class Tentacle : MonoBehaviour
             {
 
             }
+
             if (imgTimer >= imgWaitTime)  // 여기부터
                 imgTimer = 0;
-            Skin.sprite = Image[(int)(imgTimer * 8)];
+            Skin.sprite = Image[(int)(imgTimer * imgWaitTime2)];
             ChangeCollider();    // 여기까지 이미지 그리기 및 이미지에 맞는 콜라이더
         }
     }
@@ -107,7 +108,7 @@ public class Tentacle : MonoBehaviour
 
         }
     }
-    void ChangeCollider()
+    void ChangeCollider() // 촉수 움직임에 따라서 콜라이더 수정
     {
         temp.enabled = false;
         if (Skin.sprite == Image[0] || Skin.sprite == Image[9])
@@ -156,7 +157,7 @@ public class Tentacle : MonoBehaviour
             if (other2.gameObject.tag == "EXPL")
             {
                 var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+                DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString(); // 데미지 텍스트
                 DT.transform.localScale *= 2f;
                 HP -= 5;
                 float QR = Random.Range(1, 7);

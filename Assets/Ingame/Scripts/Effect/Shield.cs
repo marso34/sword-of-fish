@@ -13,15 +13,7 @@ public class Shield : MonoBehaviour
 
     private void Update()
     {
-        timer22 += Time.deltaTime;
-        if (timer22 > watime2)
-        {
-            flag = !flag;
-            timer22 = 0;
-        }
-        if (flag)
-            transform.Translate(Vector3.up * 0.6f * Time.deltaTime);
-        else transform.Translate(Vector3.down * 0.6f * Time.deltaTime);
+        shakeObj();
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -32,8 +24,20 @@ public class Shield : MonoBehaviour
 
             var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
             // 먹히는 소리재생 <- 내가 구현할것,.
-             var KE1 = Instantiate(ShieldSound, transform.position, Quaternion.Euler(0f, 0f, 20f));
+            var KE1 = Instantiate(ShieldSound, transform.position, Quaternion.Euler(0f, 0f, 20f));
             Destroy(gameObject, 0.2f);
         }
+    }
+    void shakeObj()   // 위아래 움직임
+    {
+        timer22 += Time.deltaTime;
+        if (timer22 > watime2)
+        {
+            flag = !flag;
+            timer22 = 0;
+        }
+        if (flag)
+            transform.Translate(Vector3.up * 0.6f * Time.deltaTime);
+        else transform.Translate(Vector3.down * 0.6f * Time.deltaTime);
     }
 }
