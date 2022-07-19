@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AttackerScript : Player
 {
+    bool SkillFlag_;
     public GameObject KillEffect;
     public GameObject KillEffect2;
     public GameObject KillEffectO;
@@ -26,6 +27,7 @@ public class AttackerScript : Player
 
     private void Start()
     {
+        SkillFlag_ = true;
         Debug.Log("나는 자연인이다.");
         GM = GameObject.FindGameObjectWithTag("GM");
         QM = GameObject.FindGameObjectWithTag("QM");
@@ -92,22 +94,29 @@ public class AttackerScript : Player
     }
     void FRZOn()
     {
-        FRZFlag = true;
-        dir = Vector3.zero;
-        Speed = 0f;
+        if (Life)
+        {
+            FRZFlag = true;
+            dir = Vector3.zero;
+            Speed = 0f;
+        }
     }
     void FRZOff()
     {
-        FRZFlag = false;
+        if (Life)
+            FRZFlag = false;
     }
 
     void SlowON()
     {
-        Speed = 1.6f;
-        RotationSpeed = 50f;
-        C = Color.green;
-        S.color = C;
-        waitingTime = 4f;
+        if (Life)
+        {
+            Speed = 1.6f;
+            RotationSpeed = 50f;
+            C = Color.green;
+            S.color = C;
+            waitingTime = 4f;
+        }
     }
     void SlowOff()
     {
@@ -175,9 +184,10 @@ public class AttackerScript : Player
             transform.localScale = new Vector3(x_ * -1, transform.localScale.y, 1);
         }
     }
-    public void MoveAtt(){
-         dir = PlayerP.transform.position - transform.position;
-            if (Mathf.Abs(dir.magnitude) > Mathf.Abs(bulletRange.magnitude)) transform.Translate(dir * Speed / 2 * Time.deltaTime, Space.World);
+    public void MoveAtt()
+    {
+        dir = PlayerP.transform.position - transform.position;
+        if (Mathf.Abs(dir.magnitude) > Mathf.Abs(bulletRange.magnitude)) transform.Translate(dir * Speed / 2 * Time.deltaTime, Space.World);
     }
     // Update is called once per frame
     void Update()
@@ -193,18 +203,20 @@ public class AttackerScript : Player
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
+                 SkillCount++;
                 var bullet_ = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 bullet_.GetComponent<bullet>().SetDir(dir);
                 timer = 0f;
-                if (SkillCount > 2)
+                if (SkillCount > 2 && SkillFlag_)
                 {
+                    SkillFlag_ = false;
                     if (transform.name == "Boss")
                     {
                         S.color = Color.red;
                         Invoke("UseSkill", 2f);
-                    }                    
+                    }
                 }
-                SkillCount++;
+               
             }
             transform.Translate(dir.normalized * 0.01f * Time.deltaTime, Space.World);
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.
@@ -235,6 +247,7 @@ public class AttackerScript : Player
 
         PlaySkill(N);
         SkillCount = 0;
+        SkillFlag_ = true;
     }
 
     public void HitAttacker(GameObject other)

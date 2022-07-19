@@ -129,13 +129,13 @@ public class GameManager_ : MonoBehaviour
         GlobalTime = 0;
         
         StartButtonFlag = false;
-        ObjectCleaner();
         QM.GetComponent<QuestManager>().Flag = true;
         QM.GetComponent<QuestManager>().ResetCounter();
         QM.GetComponent<QuestManager>().IngameLevel = 1;
         QM.GetComponent<QuestManager>().ResetMaxCounter();
         QM.GetComponent<QuestManager>().ResetPlayerStat();
         Destroy(QM.GetComponent<QuestManager>().Player);
+        ObjectCleaner();
     }
     public void ObjectCleaner(){
         GameObject[] trush_ = GameObject.FindGameObjectsWithTag("Trush");

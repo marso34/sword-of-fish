@@ -684,30 +684,7 @@ public class Player : MonoBehaviour
     {
         SkillFlag = false;
     }
-<<<<<<< HEAD
     
-=======
-    public void EatStar()
-    {
-        reSpeed();
-        // InitState(); -> ?†?„ ì´ˆê¸°?™”?„ ?¬?•¨, ?ƒ?–´ ?Š¤?‚¬ ?“¸ ?•Œ?„ ?›?˜ ?†?„ë¡? ?Œ?•„ê°?..
-        C = Color.white;
-        OnStar();
-        Invoke("OffStar", 3f);
-    }
-    public void OnStar()
-    {
-        MyBody.tag = "Shiled";
-        Skin.GetComponent<Skin>().Flag = true;
-        OnOutLine(1);
-    }
-    public void OffStar()
-    {
-        MyBody.tag = "Body";
-        Skin.GetComponent<Skin>().Flag = false;
-        OffOutLine();
-    }
->>>>>>> c7f1ed5d31166e948c9e4bc055817c4e3cdaa0a0
     public void OnOutLine(int outlineSize) // J
     {
         Skin.GetComponent<Skin>().outlineSize = outlineSize;
