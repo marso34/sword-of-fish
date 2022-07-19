@@ -50,7 +50,6 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
             }
             else if (ItemNumber == 3)  // ½¯µå
                 Player.GetComponent<Player>().CreatBarriar();
-            
 
             ItemNumber = 0;
         }

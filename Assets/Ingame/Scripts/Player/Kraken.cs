@@ -57,6 +57,7 @@ public class Kraken : MonoBehaviour
         FRZFlag = false;
         S = transform.GetComponent<SpriteRenderer>();
         // c = transform.GetComponent<SpriteRenderer>().color;
+        StartCoroutine("Start_");
     }
 
     // Update is called once per frame
@@ -68,9 +69,6 @@ public class Kraken : MonoBehaviour
         statusColor();
         if (HP > 0 && !FRZFlag)
         {
-
-            if (timer >= 1.25f)
-                timer = 0f;
             if (LegCount > 0)
             {
                 if (timer_ >= 4f && test)
@@ -104,12 +102,24 @@ public class Kraken : MonoBehaviour
                 MoveKraken(dir);
                 CreateBubbles();
             }
-
-            Skin.sprite = Image[(int)(timer * 8)];
             //ChangeCollider();
         }
-
     }
+
+    IEnumerator Start_()
+    {
+        while (true) yield return StartCoroutine("ChangeImg");
+    }
+    
+    IEnumerator ChangeImg()//움직임애니매이션재생
+    {
+        for (int i = 0; i < 10; ++i)
+        {
+            Skin.sprite = Image[i];
+            yield return new WaitForSeconds(0.125f);
+        }
+    }
+
     public void CreateBubbles()//랜덤하게 만들기 구현
     {
 
@@ -220,7 +230,7 @@ public class Kraken : MonoBehaviour
 
         }
     }
-    void ChangeCollider() // 움직임에 따라 콜라이더 수정, 지금 사용x
+    void ChangeCollider() // 움직임에 따라 콜라이더 수정, 지금 사용x 나중에 사용하게 되면 코루틴으로 변경
     {
         float position = 0.1f;
 

@@ -11,58 +11,56 @@ public class SkillBtn : MonoBehaviour, IPointerDownHandler
     public Image SkillFill;
     
     bool SkillFlag; // 스킬 사용 가능하면 true
-    float timer;
-    float WaitTime;
+    float SkillGauge; // 현재 스킬 게이지
+    float FullGauge; // 스킬 게이지 가득 찼는지
 
     public void Start()
     {
         SkillFill = Image.GetComponent<Image>();
         SkillFlag = false;
-        timer = 0f;
-        WaitTime = 6f;
+        SkillGauge = 0f;
+        FullGauge = 6f;
     }
 
     public void Update()
     {
-        SkillFill.fillAmount = timer / WaitTime;
+        SkillFill.fillAmount = SkillGauge / FullGauge;
 
         if (!SkillFlag && Player.GetComponent<PlayerScript>().FishNumber != 0) 
         {
             if (!Player.GetComponent<PlayerScript>().SkillFlag) // 스킬 지속시간이 있는 경우에만 SkillFlag == true
-                timer += Time.deltaTime; 
+                SkillGauge += Time.deltaTime; 
             else
-                timer -= Time.deltaTime * 2;
+                SkillGauge -= Time.deltaTime * 2;
 
-            if (timer >= WaitTime)
-            {
+            if (SkillGauge >= FullGauge)
                 SkillFlag = true;
                 // SkillFill.color = new Color(112/255f, 219/255f, 1f);
-            }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (SkillFlag && Player.GetComponent<PlayerScript>().MyBody.tag != "NotBody")
+        if (SkillFlag && Player.GetComponent<PlayerScript>().MyBody.tag != "NotBody") // 플레이어가 not일 때는 스킬 사용 못 하게
         {
             Player.GetComponent<PlayerScript>().PlaySkill();
             SkillFlag = false;
 
-            if (!Player.GetComponent<PlayerScript>().SkillFlag)
-                timer = 0f;
+            if (!Player.GetComponent<PlayerScript>().SkillFlag) // 스킬 지속 시간이 없는 경우
+                SkillGauge = 0f;
 
             Debug.Log("스킬 발동");
         }
     }
     public void UseSkill()
     {
-        if (SkillFlag && Player.GetComponent<PlayerScript>().MyBody.tag != "NotBody")
+        if (SkillFlag && Player.GetComponent<PlayerScript>().MyBody.tag != "NotBody")  // 플레이어가 not일 때는 스킬 사용 못 하게
         {
             Player.GetComponent<PlayerScript>().PlaySkill();
             SkillFlag = false;
 
-            if (!Player.GetComponent<PlayerScript>().SkillFlag)
-                timer = 0f;
+            if (!Player.GetComponent<PlayerScript>().SkillFlag)  // 스킬 지속 시간이 없는 경우
+                SkillGauge = 0f;
 
             Debug.Log("스킬 발동");
         }
