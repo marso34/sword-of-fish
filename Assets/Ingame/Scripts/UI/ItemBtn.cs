@@ -19,19 +19,39 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public Sprite ItemIce;
     public Sprite ItemShield;
 
-    int ItemNumber; 
+    Color color;
+    int ItemNumber;
+    int c;
+    float timer;
+
 
     void Start()
     {
         img = Image.GetComponent<Image>();
         img.sprite = Defualt;
         ItemNumber = 0;
+        c = 0;
+        timer = 0f;
+        color = transform.GetComponent<Image>().color;
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
+    private void Update()
+    {
+        if (img.sprite != Defualt) // ¾ÆÀÌÅÛ ¸Ô¾úÀ» ¶§ Çª¸¥»öÀ¸·Î ±ôºý°Å¸®°Ô
+        {
+            timer += Time.deltaTime;
  
+            if (timer >= 0.5f)
+            {
+                c ^= 1;
+                timer = 0f;
+            }
+        }
+        else c = 0;
+
+        color.r = (c == 0) ? Mathf.Lerp(color.r, 1f, Time.deltaTime * 10f) : Mathf.Lerp(color.r, 0, Time.deltaTime * 10f);
+        transform.GetComponent<Image>().color = color;
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
