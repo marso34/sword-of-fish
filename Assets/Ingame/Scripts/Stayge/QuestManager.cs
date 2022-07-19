@@ -528,8 +528,8 @@ public class QuestManager : MonoBehaviour
         else Xc = -1;
         if (y < 0) Yc = 1;
         else Yc = 1;
-        float realX = (x + 8) * Xc;
-        float realY = (y + 5) * Xc;
+        float realX = x + 8* Xc;
+        float realY = y + 5 * Xc;
         return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
     }
 
