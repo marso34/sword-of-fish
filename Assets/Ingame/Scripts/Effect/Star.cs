@@ -14,20 +14,11 @@ public class Star : MonoBehaviour
     private void Update()
     {
         shakeObj();
-    }
-<<<<<<< HEAD
-    public void OnCollisionEnter2D(Collision2D other) {
+    }public void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Body" && other.transform.parent.tag =="Player") {
             other.transform.parent.gameObject.GetComponent<PlayerScript>().EatStar();
-            
-=======
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Body" && other.transform.parent.tag == "Player")
-        {
-            other.transform.parent.gameObject.GetComponent<Player>().EatStar();
+       
 
->>>>>>> c7f1ed5d31166e948c9e4bc055817c4e3cdaa0a0
             // 여기에 플레이어 반짝이게 만드는 값을 넘겨주던, 함수를실행시키던 등등 하기. 자율적으로.
             // 먹히는 소리재생 <- 내가 구현할것,.
             var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
