@@ -127,12 +127,12 @@ public class PlayerScript : Player
 
 
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
     private void Update()
     {
-
-
-
-        reset_();// 리겜하면 실행
+         reset_();// 리겜하면 실행
         if (Life == false) NotInit();
         // *************************** ?????? ******* ????????? ????????¹??? ???**********
         if (StartFlag == true && !StartFlag2) // 플레이어n명이면 게임시작 
@@ -142,6 +142,7 @@ public class PlayerScript : Player
             Init_();
 
         }
+     
         if (StartFlag2 == true)//찐스타트
         {
 
@@ -154,12 +155,12 @@ public class PlayerScript : Player
 
             }
 
-            dir = value.joyTouch;
+            
 
             if (Life)
             {
-
-        
+                dir = value.joyTouch;
+                
                 HPManager();
                 if (KCFlag)
                 {
@@ -178,7 +179,8 @@ public class PlayerScript : Player
                         CountKill = 0;
                     }
                 }
-                PlayerMove();//움직임 및 State초기화  
+            
+                PlayerMove(dir);//움직임 및 State초기화          
                 
                 if (cutGauge > 0 && isMove)
                     GetPlayer_BusterInput();
@@ -224,7 +226,6 @@ public class PlayerScript : Player
             if (HP <= 0) DieLife();
 
         }
-        
     }
 
     /// <summary>
