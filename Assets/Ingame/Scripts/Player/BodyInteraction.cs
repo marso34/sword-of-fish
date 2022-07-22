@@ -11,6 +11,7 @@ public class BodyInteraction : MonoBehaviour
     public Transform cam;
     public float chsize = 0.001f;
     public float chc;
+    public bool TutorialFlesh = false;
     private void Start()
     {
         cam = GameObject.FindWithTag("MainCamera").transform;
@@ -116,6 +117,7 @@ public class BodyInteraction : MonoBehaviour
     {
         if (other.gameObject.tag == "Flesh" && ((transform.name == "body" && transform.parent.tag == "Player") || transform.tag == "Body" || transform.tag == "Shiled"))
         {
+            
             GiveSize();
             GiveBusterGage();
             other.gameObject.GetComponent<flesh>().destroyme(transform.parent.gameObject);
@@ -123,6 +125,7 @@ public class BodyInteraction : MonoBehaviour
     }   // 시체 먹었을때
     void GiveSize()
     {
+        TutorialFlesh = true; //y
         if (transform.parent.tag == "Player") chc = 0.2f;
         else if ((transform.parent.tag == "AiPlayer")) chc = 3f;
         Vector3 Porce = new Vector3(chsize, chsize, 0f);

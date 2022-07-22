@@ -55,6 +55,10 @@ TagManager:
   - Stage
   - plan1
   - Stagy Level
+  - IntroPanel
+  - Guide
+  - TutorialPlan
+  - TutoBack
   layers:
   - Default
   - TransparentFX

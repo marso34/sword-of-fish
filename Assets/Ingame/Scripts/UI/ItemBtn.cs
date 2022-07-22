@@ -19,6 +19,8 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public Sprite ItemIce;
     public Sprite ItemShield;
 
+    public bool TutorialItem = false; //y
+
     int ItemNumber;
 
     void Start()
@@ -26,6 +28,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         img = Image.GetComponent<Image>();
         img.sprite = Defualt;
         ItemNumber = 0;
+        
     }
 
     /// <summary>
@@ -38,7 +41,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         if (img.sprite != Defualt)
         {
             img.sprite = Defualt;
-
+            TutorialItem = true;
             if (ItemNumber == 1)  // ÆøÅº
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
@@ -61,7 +64,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         if (img.sprite != Defualt)
         {
             img.sprite = Defualt;
-
+            
             if (ItemNumber == 1)  // ÆøÅº
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
