@@ -180,7 +180,7 @@ public class PlayerScript : Player
                     }
                 }
             
-                PlayerMove(dir);//움직임 및 State초기화          
+                PlayerMove();//움직임 및 State초기화          
                 
                 if (cutGauge > 0 && isMove)
                     GetPlayer_BusterInput();

@@ -22,8 +22,6 @@ public class AttackerScript : Player
 
     float Watingtime3 = 0.02f;
     float time;
-    // Start is called before the first frame update
-
 
     private void Start()
     {
@@ -189,7 +187,6 @@ public class AttackerScript : Player
         dir = PlayerP.transform.position - transform.position;
         if (Mathf.Abs(dir.magnitude) > Mathf.Abs(bulletRange.magnitude)) transform.Translate(dir * Speed / 2 * Time.deltaTime, Space.World);
     }
-    // Update is called once per frame
     void Update()
     {
         EmptyKnife();
@@ -212,8 +209,9 @@ public class AttackerScript : Player
                     SkillFlag_ = false;
                     if (transform.name == "Boss")
                     {
-                        S.color = Color.red;
-                        Invoke("UseSkill", 2f);
+                        C =  Color.red;
+                        S.color = C;
+                        Invoke("UseSkill", 4f);
                     }
                 }
                

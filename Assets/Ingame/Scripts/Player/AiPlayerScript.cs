@@ -109,7 +109,7 @@ public class AiPlayerScript : Player
                     dir = PlayerTracking().normalized;
                     BusterFlag = false;
                 }
-                PlayerMove(dir);//움직임 및 State초기화         
+                PlayerMove();//움직임 및 State초기화         
                 SetBuster();
             }
             else if (!Life)
