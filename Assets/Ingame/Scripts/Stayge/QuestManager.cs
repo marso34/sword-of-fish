@@ -166,7 +166,7 @@ public class QuestManager : MonoBehaviour
                 Level_1_Action();
             }
 
-            Debug.Log(IngameLevel + "????" + MaxCount + " " + KnifeEC);
+            //Debug.Log(IngameLevel + "????" + MaxCount + " " + KnifeEC);
             //if (Level_ == 8) Players[Random.Range(1, 7)].GetComponent<Player>().Flag_get = true;
             // Stayge = Instantiate(Stayges[Level_ - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
 

@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 //flesh부분은 오류가있음 크기키우는함수도 개편될수있으니 유의바람.//  
 public class PlayerScript : Player
 {
-    
     public JoystickValue value;
     public GameObject Knife;//MFish초기화할때쓰임
     public GameObject Body;//MBody초기화 할때 쓰임 
@@ -56,7 +55,7 @@ public class PlayerScript : Player
 
     public GameObject FiveKillSound;
 
-
+    public ParticleSystem Spectrum;
 
     public Camera maincam_;
     public int TrushCount = 0;
@@ -73,7 +72,7 @@ public class PlayerScript : Player
     public bool killcheck = false; //y 적 죽이기 튜토리얼
     public void Start()
     {
-        
+        RB = transform.GetComponent<Rigidbody2D>();
         TuLev1 = false; //y 이동 튜토리얼 
         transform.position = Vector3.zero;
         HP = 5;
@@ -116,8 +115,13 @@ public class PlayerScript : Player
         CountWaitTime = 4f;
         RaiseFlag = false;
         KCFlag = false;
-          GameWaitInit();
-       
+        GameWaitInit();
+
+        // var a = Instantiate(Spectrum, transform.position, Quaternion.Euler(0, 0, 0));
+        // a.transform.parent = transform;
+        // a.transform.localPosition = Vector3.zero;
+        // a.transform.localScale = new Vector3(1f, 1f, 1f);
+
         StartCoroutine("Start_");
     }
 
@@ -222,6 +226,16 @@ public class PlayerScript : Player
         }
         
     }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        // if (Life)
+        //     PlayerMove();
+            
+    }
     public void EatStar() 
     {// ?뒪??? 癒뱀쓬
         reSpeed();
@@ -263,6 +277,8 @@ public class PlayerScript : Player
             }
             if (HP <= 0 && flagerror)
             {
+                Speed = 0f;   // 나중에 수정
+                PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
                 CreateFlesh();
                 NotInit();
                 Invoke("LifeOff", 0.015f);

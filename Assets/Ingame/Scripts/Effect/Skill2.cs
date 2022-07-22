@@ -9,6 +9,8 @@ public class Skill2 : MonoBehaviour
     public SkillSkin SkillSkin_; //스킨
     public Vector3 dir; //움직일방향
 
+    Rigidbody2D RB;
+
     public bool DelFalg;
     double Timer; // 스킬 생존 시간
     double RotateTimer; // 타코야 스킬 버블 생성 시간
@@ -26,6 +28,7 @@ public class Skill2 : MonoBehaviour
         GM = GameObject.FindGameObjectWithTag("GM");
         SkillSkin_ = SkillSkin.GetComponent<SkillSkin>();
         S = transform.GetComponent<SpriteRenderer>();
+        RB = transform.GetComponent<Rigidbody2D>();
         FishNumber = transform.parent.gameObject.GetComponent<Player>().FishNumber;
         DelFalg = false;
         FRZFlag = false;
@@ -40,7 +43,8 @@ public class Skill2 : MonoBehaviour
         if (!FRZFlag)
         {
             Timer += Time.deltaTime;
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);// 오브젝트 이동함수 https://www.youtube.com/watch?v=2pf1FE-Xcc8 에나온 코드를 살짝 변형한것.
+            // transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);// 오브젝트 이동함수 https://www.youtube.com/watch?v=2pf1FE-Xcc8 에나온 코드를 살짝 변형한것.
+            RB.velocity = dir.normalized * Speed * Time.deltaTime * 60;
 
             if (FishNumber == 3) // 타코야 스킬
             {

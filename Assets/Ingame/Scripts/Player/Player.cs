@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    public Rigidbody2D RB;
     public int AnimFlame = 10; // ?• ?‹ˆ ?Š¤?”„ë¦? ?‹œ?Š¸ ?”„? ˆ?„
     public int DieAnimFlame = 10; // ì£½ìŒ ?• ?‹ˆ ?Š¤?”„ë¦¬ì‹œ?Š¸ ?”„? ˆ?„
     public GameObject Barriar;
@@ -412,6 +413,7 @@ public class Player : MonoBehaviour
     public void PlayerMove()
     {
         isMove = true; //dir != Vector3.zero;
+
         if (isMove && Life)
         {
             if (isMove)
@@ -426,14 +428,20 @@ public class Player : MonoBehaviour
 
 
             }
-            transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
 
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
+            RB.velocity = dir * Speed * Time.deltaTime * 70;
+            // transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
+            
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
             float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
 
         }
-    }//?”Œ? ˆ?´?–´ ???ì§ì´ê²Œí•˜ê¸?
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
     public void chSpeed()// ë¬¼ê³ ê¸? ?´?™?†?„ ë©??‹°?—?„œ ?™ê¸°í™”.
     {
         Speed = BusterSpeed;

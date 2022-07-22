@@ -292,6 +292,7 @@ MonoBehaviour:
   ThreeKillSound: {fileID: 6848817432897212792, guid: c26649563977b2b4ab32a283d98de51f, type: 3}
   FourKillSound: {fileID: 8562655775979725624, guid: 3b4a039951b89ec4eae55caebe5aea69, type: 3}
   FiveKillSound: {fileID: 7355376852520461808, guid: 4f078c3979d83ec47bffaa3c213cda0f, type: 3}
+  Spectrum: {fileID: 7180456789105306138, guid: 330845c108511c84bbf7163e6eac4c6b, type: 3}
   maincam_: {fileID: 0}
   TrushCount: 0
   HPCTR: {fileID: 0}

@@ -25,6 +25,7 @@ public class AiPlayerScript : Player
     bool ViewFlag;
     public void Start()//일반적인 스타트 (코루틴) 반복문임.)
     {
+        RB = transform.GetComponent<Rigidbody2D>();
         GM = GameObject.FindGameObjectWithTag("GM");
         Flag_get = false;
         AiPlayers_ = new GameObject[9];
@@ -127,6 +128,8 @@ public class AiPlayerScript : Player
     }
     public override void DieLife()
     {
+        Speed = 0f;   // 나중에 수정 필요. 
+        PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
         if (transform.tag == "InkOct")
         {
             if (GameObject.FindWithTag("Kraken") != null)
