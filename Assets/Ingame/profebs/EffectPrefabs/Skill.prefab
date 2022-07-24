@@ -9701,6 +9701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb9d261cc625b64cad54783b047636d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spectrum: {fileID: 7071385691976682410, guid: 38a1724fb6151754d9f1e063684aa48b, type: 3}
   skillTime: 3
 --- !u!1 &3310094847789552427
 GameObject:

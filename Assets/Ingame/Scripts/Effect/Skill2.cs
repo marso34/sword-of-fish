@@ -67,7 +67,7 @@ public class Skill2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.tag == "Knife" && other.transform.parent.tag == "Player" && transform.name == "Bullet")
+        if (other.transform.tag == "Knife" && other.transform.parent.tag == "Player" && transform.name == "Bullet" && transform.tag == "SkillB")
         {
             DestroyBossSkill(other.gameObject);
         }
@@ -109,7 +109,7 @@ public class Skill2 : MonoBehaviour
 
             // Vector3 temp = dir + transform.parent.gameObject.GetComponent<Player>().dir;
             transform.localScale *= 0.23f;
-            Speed = 4.5f;
+            Speed = 3.5f;
         }
         else if (FishNumber == 3)
         {

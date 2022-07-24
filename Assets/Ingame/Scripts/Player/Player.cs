@@ -354,7 +354,7 @@ public class Player : MonoBehaviour
             for (int j = 0; j < 2; ++j)
             {
                 if (Speed == 0) break;
-                CreateBubbles();//ë²„ë¸”?ƒ?„±
+                // CreateBubbles();//ë²„ë¸”?ƒ?„±
 
                 yield return new WaitForSeconds(0.2f / Speed);
 
