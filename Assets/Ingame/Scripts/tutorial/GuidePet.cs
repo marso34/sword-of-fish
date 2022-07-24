@@ -41,7 +41,7 @@ public class GuidePet : MonoBehaviour
         //QM.GetComponent<QuestManager>().A = true;
         //QM.GetComponent<QuestManager>().bornguide(); 
         //Guide.transform.SetParent(Player.transform);
-        Guide.transform.localPosition = new Vector3(-6, 6, 0); //내려오기 전에 화면 위에 있는 위치
+        Guide.transform.localPosition = new Vector3(-4, 6, 0); //내려오기 전에 화면 위에 있는 위치
         
 
     }
@@ -50,9 +50,9 @@ public class GuidePet : MonoBehaviour
 
     public void ShowMove() //가이드 물고기 자막 옆으로 이동
     {
-        Vector3 destination = new Vector3(-6, 3, 0);
+        Vector3 destination = new Vector3(-4, 3, 0);
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, destination, 0.01f);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, destination, 0.05f);
         //QM.GetComponent<QuestManager>().HideAiSkin();
 
     }
@@ -60,9 +60,9 @@ public class GuidePet : MonoBehaviour
     {
 
 
-        Vector3 EndDes = new Vector3(-6, 10, 0);
+        Vector3 EndDes = new Vector3(-4, 10, 0);
         Vector3 speed = Vector3.zero; 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, EndDes, 0.01f);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, EndDes, 0.05f);
 
         Debug.Log("aa");
    

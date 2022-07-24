@@ -872,7 +872,7 @@ public class QuestManager : MonoBehaviour
         tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
         TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
         TutoBack = GameObject.Find("GameManager").transform.Find("TutoBack(Clone)").gameObject;
-
+        //TutoBack.gameObject(SortingLayer(1));
         if (TutorialLev == 1) //이동
         {
                 
@@ -906,7 +906,7 @@ public class QuestManager : MonoBehaviour
 
 
                     Player.GetComponent<PlayerScript>().StopMove();
-                    Player.GetComponent<PlayerScript>().BusterFlag = false;
+                    
                     tutorial.SetActive(true);
                     TutorialPlan.SetActive(true);
 
@@ -916,6 +916,7 @@ public class QuestManager : MonoBehaviour
                     TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
                     
                     TutoBack.SetActive(true);
+                    Player.GetComponent<PlayerScript>().BusterFlag = false;
                     TutorialLev++;
 
                 }

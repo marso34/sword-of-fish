@@ -20,7 +20,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public Sprite ItemShield;
 
     public bool TutorialItem = false; //y
-
+    Color color;
     int ItemNumber;
     int c;
     float timer;
@@ -31,10 +31,10 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         img = Image.GetComponent<Image>();
         img.sprite = Defualt;
         ItemNumber = 0;
-        
         c = 0;
         timer = 0f;
         color = transform.GetComponent<Image>().color;
+
     }
 
     private void Update()

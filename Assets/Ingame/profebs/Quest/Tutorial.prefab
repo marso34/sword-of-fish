@@ -162,6 +162,7 @@ MonoBehaviour:
   Slider: {fileID: 0}
   QuestBoard: {fileID: 0}
   One: 0
+  TouchMo: 0
 --- !u!1001 &1462922138003102322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,11 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 435
+      value: 488
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 295
+      value: 365
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
