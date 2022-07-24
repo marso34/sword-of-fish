@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    public Rigidbody2D RB;
     public int AnimFlame = 10; // ?• ?‹ˆ ?Š¤?”„ë¦? ?‹œ?Š¸ ?”„? ˆ?„
     public int DieAnimFlame = 10; // ì£½ìŒ ?• ?‹ˆ ?Š¤?”„ë¦¬ì‹œ?Š¸ ?”„? ˆ?„
     public GameObject Barriar;
@@ -86,13 +87,13 @@ public class Player : MonoBehaviour
         TempBusterSp = 4.6f;     // J
         TempRotateSp = RotationSpeed;   // J
     }
-    
+
     public void GameWaitInit()//?˜?´?¬?Œ¨?„?—?„œ ê¸°ë‹¤ë¦´ë•Œ
     {
         MFish = Skin.GetComponent<SpriteRenderer>();//?Š¤?‚¨?˜ SpriteRenderer ì°¸ì¡°
         MKnife = MyKnife.GetComponent<SpriteRenderer>();//ì¹¼ì˜ SpriteRenderer
 
-       
+
     }//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ê±ï¿½È­    
 
     public IEnumerator Start_()//?¼ë°˜ì ?¸ ?Š¤????Š¸ (ì½”ë£¨?‹´) ë°˜ë³µë¬¸ì„.)
@@ -106,27 +107,15 @@ public class Player : MonoBehaviour
     }
     public void InitState() //J ì´ˆê¸°?™”
     {
-        C = Color.white;
+        if (Life)
+        {
+            C = Color.white;
 
-        Speed = TempMovementSp+transform.localScale.y/2;
-        MovementSpeed = TempMovementSp+transform.localScale.y/2;
-        BusterSpeed = TempBusterSp+transform.localScale.y/2;
-        RotationSpeed = TempRotateSp;
-    }
-    public void OffTrashEffect()
-    {
-        MovementSpeed = TempMovementSp+transform.localScale.y/2;
-        BusterSpeed = TempBusterSp+transform.localScale.y/2;
-        RotationSpeed = TempRotateSp+transform.localScale.y/2;
-        C = Color.white;
-    }
-    public void Eraser_()
-    {
-        Destroy(gameObject, 0.1f);
-    }
-    public void Shiled()
-    {
-        MyBody.tag = "Shiled";
+            Speed = TempMovementSp + transform.localScale.y / 2;
+            MovementSpeed = TempMovementSp + transform.localScale.y / 2;
+            BusterSpeed = TempBusterSp + transform.localScale.y / 2;
+            RotationSpeed = TempRotateSp;
+        }
     }
     public void NotInit()
     {
@@ -150,69 +139,21 @@ public class Player : MonoBehaviour
     }
     public virtual void DieLife()// ì£½ì—ˆ?„?•Œ,?†?„ê¸°ë³¸?†?„ë¡?,?ƒœê·? ì£½ìŒ?œ¼ë¡?, ?¼?´?”„ ì£½ìŒ?œ¼ë¡?, ì»¬ëŸ¬ë¦¬ì…‹,?‹œì²´ìƒ?„±,2ì´ˆë’¤ë¶??™œ
     {
-        if (transform.tag == "Player")
-        {
-            //ê¹œë¹¡?„.ì½”ë“œ
-            ShowDieAnim(0);
-            state = State.Die;
+   
+    }
+    public void Glitter()
+    {
+        translucence();
+        Invoke("ResetColor", 0.2f);
+        Invoke("translucence", 0.3f);
+        Invoke("ResetColor", 0.4f);
+        Invoke("translucence", 0.5f);
 
-            if (HP > 0)
-            {
-                var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
-                HP--;
-                MyBody.tag = "NotBody";
-                hitFlag = true;
-                translucence();
-                OnOutLine(14);
-                Invoke("OffOutLine", 0.07f);
-                Invoke("ResetColor", 0.2f);
-                Invoke("translucence", 0.3f);
-                Invoke("ResetColor", 0.4f);
-                Invoke("translucence", 0.5f);
-                Invoke("InitBody__", 1.5f);
-
-            }
-            else if (HP <= 0 && flagerror)
-            {
-                CreateFlesh();
-                NotInit();
-                Invoke("LifeOff", 0.015f);
-                flagerror = false;
-            }
-
-        }
-
-        if (transform.tag == "AiPlayer")
-        {
-
-            OnOutLine(14);
-            Invoke("OffOutLine", 0.07f);
-            state = State.Die;
-            LifeOff();
-
-            QM = GameObject.FindGameObjectWithTag("QM");
-            QM.GetComponent<QuestManager>().KnifeEC--;
-            if (SkillFlag)
-                OffSkillFlag(); // J
-            InitState(); // J
-            NotInit();
-
-            //reSpeed();
-
-            CreateFlesh();
-            Destroy(gameObject, 2f);
-            /*if (transform.tag == "AiPlayer")
-                Invoke("Respone", 2f);//?¼?‹¨???ë¦¬ìŠ¤?°?œ¼ë¡? ?•˜?Š”?° ë°”ê???•„?š”?ˆ?Œ
-            else if(transform.tag =="Player") MyKnife.tag = "NotKnife";
-            */
-        }
-        if (transform.tag == "InkOct")
-        {
-            if (GameObject.FindWithTag("Kraken") != null)
-                GameObject.FindWithTag("Kraken").GetComponent<Kraken>().CreateInkSwarm(transform.position, 0.4f);
-            Destroy(gameObject);
-        }
-
+    }
+    public void WhiteFlesh()
+    {
+        OnOutLine(14);
+        Invoke("OffOutLine", 0.07f);
     }
     public void Check_Flag()
     {
@@ -261,25 +202,19 @@ public class Player : MonoBehaviour
             return true;
         else return false;
     }
-    public void Respone()//ë¶??™œê³¼ì •
-    {
-        if (transform.tag == "AiPlayer")
-        {
-            ResetColor();
-            Vector3 postion_ = RandomPosition(jugeAi());
-
-            transform.Translate(postion_, Space.World);//?œ?¤?•œ?œ„ì¹˜ì— ?ƒ?„±    
-            Life = true;
-
-            SetRandomBody();
-            SetRandomKnife();
-            //sizeInit();
-            
-      
-        }
-
-
-    }
+    // public void Respone()//ë¶??™œê³¼ì •
+    // {
+    //     if (transform.tag == "AiPlayer")
+    //     {
+    //         ResetColor();
+    //         Vector3 postion_ = RandomPosition(jugeAi());
+    //         transform.Translate(postion_, Space.World);//?œ?¤?•œ?œ„ì¹˜ì— ?ƒ?„±    
+    //         Life = true;
+    //         SetRandomBody();
+    //         SetRandomKnife();
+    //         //sizeInit();
+    //     }
+    // }
 
     public void SetRandomBody()//?ƒˆë¡œìš´ ë°”ë”” ?Š¤?‚¨?–»?–´?˜¤ê¸?
     {
@@ -306,12 +241,11 @@ public class Player : MonoBehaviour
         else if (KnifeNumber == 2) KnifeAnims = skin_.PanKnife_R;
         else if (KnifeNumber == 3) KnifeAnims = skin_.Rager_R;
         else if (KnifeNumber == 4) KnifeAnims = skin_.XKnife;
-        else if(KnifeNumber == 5) KnifeAnims = skin_.CandyKnife;
+        else if (KnifeNumber == 5) KnifeAnims = skin_.CandyKnife;
     }
 
     public void InitBody()//ì¹? ?”Œ? ˆê·? ê¸°ë°˜?œ¼ë¡? ?Š¤?‚¨?„ ì´ˆê¸°?™”
     {
-
         BodyAnims = new Sprite[10];
         if (FishNumber == 0) BodyAnims = skin_.FirstTailAnims;
         else if (FishNumber == 1) BodyAnims = skin_.SharkTailAnims;
@@ -319,10 +253,8 @@ public class Player : MonoBehaviour
         else if (FishNumber == 3) BodyAnims = skin_.OctopusTailAnims;
         else if (FishNumber == 4) BodyAnims = skin_.WaileTailAnims_R;
         else if (FishNumber == 5) BodyAnims = skin_.BornAnims_E;
-        else if(FishNumber == 6) BodyAnims = skin_.Gabock_E;
-        else if(FishNumber == 7) BodyAnims = skin_.InkOctAnims_E;
-        
-        
+        else if (FishNumber == 6) BodyAnims = skin_.Gabock_E;
+        else if (FishNumber == 7) BodyAnims = skin_.InkOctAnims_E;
     }
     public void InitDieBody()
     {
@@ -333,9 +265,6 @@ public class Player : MonoBehaviour
         else if (FishNumber == 4) MFish.sprite = skin_.DieAnims[4];
         else if (FishNumber == 5) MFish.sprite = skin_.DieAnims[5];
         else if (FishNumber == 6) MFish.sprite = skin_.DieAnims[6];
-       
-        
-
     }
     public void ResetColor()//?ˆ¬ëª…ë„ 0?œ¼ë¡? ì¦? ?ˆ¬ëª…í•˜ì§??•Šê²?
     {
@@ -352,9 +281,9 @@ public class Player : MonoBehaviour
     }
     void SpeedInit()
     {
-        MovementSpeed = TempMovementSp+transform.localScale.y/2;
-        BusterSpeed = TempBusterSp+transform.localScale.y/2;
-        RotationSpeed = TempRotateSp+transform.localScale.y/2;
+        MovementSpeed = TempMovementSp + transform.localScale.y / 2;
+        BusterSpeed = TempBusterSp + transform.localScale.y / 2;
+        RotationSpeed = TempRotateSp + transform.localScale.y / 2;
         Speed = MovementSpeed;
     }
     public void sizeInit()//ê¸°ë³¸?‚¬?´ì¦ˆë¡œ ë°”ê¾¸ê¸?
@@ -376,7 +305,7 @@ public class Player : MonoBehaviour
         {
             if (isMove)
             {
-                
+
                 if (!hitFlag)
                     state = State.Move;
                 float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.
@@ -425,7 +354,7 @@ public class Player : MonoBehaviour
             for (int j = 0; j < 2; ++j)
             {
                 if (Speed == 0) break;
-                CreateBubbles();//ë²„ë¸”?ƒ?„±
+                // CreateBubbles();//ë²„ë¸”?ƒ?„±
 
                 yield return new WaitForSeconds(0.2f / Speed);
 
@@ -484,28 +413,35 @@ public class Player : MonoBehaviour
     public void PlayerMove()
     {
         isMove = true; //dir != Vector3.zero;
+
         if (isMove && Life)
         {
-                if(isMove) 
+            if (isMove)
+            {
+                Timer22 += Time.deltaTime;
+                if (Timer22 > MoveTime)
                 {
-                    Timer22 += Time.deltaTime;
-                    if (Timer22 > MoveTime)
-                    {
-                        Timer22 = 0;
-                        Timer33 ++;
-                        
-                    }
-
+                    Timer22 = 0;
+                    Timer33++;
 
                 }
-            transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
 
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
+
+            }
+
+            RB.velocity = dir * Speed * Time.deltaTime * 70;
+            // transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
+            
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
             float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
 
         }
-    }//?”Œ? ˆ?´?–´ ???ì§ì´ê²Œí•˜ê¸?
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
     public void chSpeed()// ë¬¼ê³ ê¸? ?´?™?†?„ ë©??‹°?—?„œ ?™ê¸°í™”.
     {
         Speed = BusterSpeed;
@@ -619,7 +555,7 @@ public class Player : MonoBehaviour
     } //ë²„ë¸”ë§Œë“¤ê¸?
     public virtual void KillScoreUp()
     {
-     
+
         //SizeUpKnife();
 
 
@@ -687,7 +623,7 @@ public class Player : MonoBehaviour
         if (FishNumber == 0)
         {
         }
-        else if (FishNumber == 1)
+        else if (FishNumber == 1) // ¾Æ±â»ó¾î
         {
             SkillFlag = true;
             CreateSkill();
@@ -701,15 +637,15 @@ public class Player : MonoBehaviour
             Invoke("OffSkillFlag", 3f);
             Invoke("OffOutLine", 3f);
         }
-        else if (FishNumber == 2)  // ë³´ê±°
+        else if (FishNumber == 2)  // º¸°Å
         {
             CreateSkill();
             for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
                 CreateSkill2();
         }
-        else if (FishNumber == 3)  // ???ì½”ì•¼
+        else if (FishNumber == 3)  //Å¸ÄÚ¾ß
             CreateSkill2();
-        else  // ê³ ë˜?‹ ?‚¬
+        else if (FishNumber == 4)   // °í·¡ ½Å»ç
         {
             CreateSkill();
             SkillFlag = true;
@@ -722,7 +658,7 @@ public class Player : MonoBehaviour
         if (FishNumber == 0)
         {
         }
-        else if (FishNumber == 1)
+        else if (FishNumber == 1) // ¾Æ±â»ó¾î
         {
             SkillFlag = true;
 
@@ -736,15 +672,15 @@ public class Player : MonoBehaviour
             Invoke("OffSkillFlag", 3f);
             Invoke("OffOutLine", 3f);
         }
-        else if (FishNumber == 2)  // ë³´ê±°
+        else if (FishNumber == 2)  // º¸°Å
         {
             CreateSkill(Name);
             for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
                 CreateSkill2(Name);
         }
-        else if (FishNumber == 3)  // ???ì½”ì•¼
+        else if (FishNumber == 3)  // Å¸ÄÚ¾ß
             CreateSkill2(Name);
-        else  // ê³ ë˜?‹ ?‚¬
+        else if (FishNumber == 4)  // °í·¡ ½Å»ç
         {
             CreateSkill2(Name);
             SkillFlag = true;
@@ -756,26 +692,7 @@ public class Player : MonoBehaviour
     {
         SkillFlag = false;
     }
-    public void EatStar()
-    {// ?Š¤??? ë¨¹ìŒ
-        reSpeed();
-        // InitState(); -> ?†?„ ì´ˆê¸°?™”?„ ?¬?•¨, ?ƒ?–´ ?Š¤?‚¬ ?“¸ ?•Œ?„ ?›?˜ ?†?„ë¡? ?Œ?•„ê°?..
-        C = Color.white;
-        OnStar();
-        Invoke("OffStar", 3f);
-    }
-    public void OnStar()
-    {
-        MyBody.tag = "Shiled";
-        Skin.GetComponent<Skin>().Flag = true;
-        OnOutLine(1);
-    }
-    public void OffStar()
-    {
-        MyBody.tag = "Body";
-        Skin.GetComponent<Skin>().Flag = false;
-        OffOutLine();
-    }
+    
     public void OnOutLine(int outlineSize) // J
     {
         Skin.GetComponent<Skin>().outlineSize = outlineSize;

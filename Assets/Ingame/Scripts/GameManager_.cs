@@ -42,21 +42,20 @@ public class GameManager_ : MonoBehaviour
     public GameObject QM;
     private void Start()
     {
+
+        Application.targetFrameRate = 60;
         GlobalTime = 1;
         resetFlag = false;
         // Players = new GameObject[MaxPlayerCount];
         // AiPlayers = new GameObject[MaxPlayerCount - 1];
-        //
         // Ai °ª ÇÒ´ç
         StartKeyFlag = false;
         enterGame = false;
         // FakePanel.SetActive(false);
         StartFlag_ = false;
         StartButtonFlag = false;
-        
         //SetResolution();
         Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
-
     }
 
     private void Update()
@@ -130,13 +129,13 @@ public class GameManager_ : MonoBehaviour
         GlobalTime = 0;
         
         StartButtonFlag = false;
-        ObjectCleaner();
         QM.GetComponent<QuestManager>().Flag = true;
         QM.GetComponent<QuestManager>().ResetCounter();
         QM.GetComponent<QuestManager>().IngameLevel = 1;
         QM.GetComponent<QuestManager>().ResetMaxCounter();
         QM.GetComponent<QuestManager>().ResetPlayerStat();
         Destroy(QM.GetComponent<QuestManager>().Player);
+        ObjectCleaner();
     }
     public void ObjectCleaner(){
         GameObject[] trush_ = GameObject.FindGameObjectsWithTag("Trush");
@@ -145,7 +144,9 @@ public class GameManager_ : MonoBehaviour
         GameObject[] AiPlayers = GameObject .FindGameObjectsWithTag("AiPlayer");
         GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
         GameObject []BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
+        GameObject V = GameObject.FindWithTag("V");
         Destroy(Kraken);
+        Destroy(V);
         for (int i = 0; i < BigTrash.Length; ++i)
         {
             Destroy(BigTrash[i],0f);

@@ -10,6 +10,6 @@ public class IceSkill : MonoBehaviour
     private void Start() {
         transform.tag = "FRZ";
         Destroy(transform.parent.gameObject,2f);
-         var b = Instantiate(IceSound, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        var b = Instantiate(IceSound, transform.position, Quaternion.Euler(0f, 0f, 0f));
     }
 }

@@ -91,7 +91,7 @@ public class HitFeel : MonoBehaviour
     {
         if(transform.parent.tag =="Player")
         transform.localScale = transform.localScale/transform.localScale.y;
-        else
+        else if(transform.parent.tag =="AiPlayer")
         {
             transform.localScale = (transform.localScale/transform.localScale.y)/2f;
         }

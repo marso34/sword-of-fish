@@ -15,13 +15,10 @@ public class Tentacle : MonoBehaviour
     public Sprite[] Image;
     SpriteRenderer Skin;
 
+    bool StartFlag;
     public bool Active = false;
-    float imgTimer;
-    float timer_ = 0f;
-
-    float imgWaitTime = 1.25f; // 
-    float imgWaitTime2 = 8f;
-
+    float imgTime; // 이미지 바꾸는 타이머
+    float timer_ = 0f; // 스킬일 경우 생존 시간 타이머
 
     float Speed = 5f;
     float dir = 1f;
@@ -32,15 +29,15 @@ public class Tentacle : MonoBehaviour
 
     void Start()
     {
-
-        HP = 15;
         Skin = GetComponent<SpriteRenderer>();
-        imgTimer = Random.Range(0f, imgWaitTime);
-        timer_ = 0f;
-        Skin.sprite = Image[(int)(imgTimer * imgWaitTime2)];
-        temp = Polygon[0];
         S = transform.GetComponent<SpriteRenderer>();
+        StartFlag = true;
+        imgTime = 0.125f;
+        HP = 15;
+        timer_ = 0f;
+        temp = Polygon[0];
         FRZFlag = false;
+        StartCoroutine("Start_");
     }
 
     // Update is called once per frame
@@ -49,14 +46,12 @@ public class Tentacle : MonoBehaviour
         statusColor();
         if (!FRZFlag && !transform.parent.GetComponent<Kraken>().FRZFlag)
         {
-            imgTimer += Time.deltaTime; // 이미지 바꾸는 시간 위한 타이머
             timer_ += Time.deltaTime; // 생존 시간 타이머
             statusColor();
 
             if (Active) // 스킬일 경우 움직임
             {
-                imgWaitTime = 1f;
-                imgWaitTime2 = 10f;
+                imgTime = 0.1f;
                 if (timer_ >= 3.6f)
                     Destroy(gameObject);
                 MoveTentacle();
@@ -66,18 +61,15 @@ public class Tentacle : MonoBehaviour
             {
 
             }
-            if (imgTimer >= imgWaitTime)  // 여기부터
-                imgTimer = 0;
-            Skin.sprite = Image[(int)(imgTimer * 8)];
-            ChangeCollider();    // 여기까지 이미지 그리기 및 이미지에 맞는 콜라이더
         }
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag =="FRZ") {
+        if (other.gameObject.tag == "FRZ")
+        {
             FRZOn();
-            Invoke("FRZOff",2.5f);
+            Invoke("FRZOff", 2.5f);
         }
     }
 
@@ -96,44 +88,49 @@ public class Tentacle : MonoBehaviour
             c = new Color(60f / 255f, 150f / 255f, 255f / 255f);
             S.color = c;
 
-           
+
 
         }
         else if (FRZFlag == false && !transform.parent.GetComponent<Kraken>().FRZFlag)
         {
             c = Color.white;
             S.color = c;
-            
+
 
         }
     }
-    void ChangeCollider()
+
+    IEnumerator Start_()
     {
-        temp.enabled = false;
-        if (Skin.sprite == Image[0] || Skin.sprite == Image[9])
+        while (true) yield return StartCoroutine("ChangeImg");
+    }
+    IEnumerator ChangeImg()//움직임애니매이션재생
+    {
+        int i = 0;
+
+        if (StartFlag) // 처음 이미지 랜덤으로 시작
         {
-            Polygon[0].enabled = true;
-            temp = Polygon[0];
+            i = Random.Range(0, 9);
+            StartFlag = false;
         }
-        else if (Skin.sprite == Image[1] || Skin.sprite == Image[8])
+
+        for (; i < 10; ++i)
         {
-            Polygon[1].enabled = true;
-            temp = Polygon[1];
-        }
-        else if (Skin.sprite == Image[2] || Skin.sprite == Image[7])
-        {
-            Polygon[2].enabled = true;
-            temp = Polygon[2];
-        }
-        else if (Skin.sprite == Image[3] || Skin.sprite == Image[6])
-        {
-            Polygon[3].enabled = true;
-            temp = Polygon[3];
-        }
-        else
-        {
-            Polygon[4].enabled = true;
-            temp = Polygon[4];
+            temp.enabled = false;
+            Skin.sprite = Image[i];
+
+            if (i < 5)
+            {
+                Polygon[i].enabled = true;
+                temp = Polygon[i];
+            }
+            else
+            {
+                Polygon[9 - i].enabled = true;
+                temp = Polygon[9 - i];
+            }
+
+            yield return new WaitForSeconds(imgTime);
         }
     }
 
@@ -153,34 +150,29 @@ public class Tentacle : MonoBehaviour
             UpdateOutline(true);
             Invoke("OffOutline", 0.07f);
 
+            float QR = Random.Range(1, 7);
+            var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f));
+            var KE1 = Instantiate(KillEffect2, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+
             if (other2.gameObject.tag == "EXPL")
             {
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
-                DT.transform.localScale *= 2f;
+                FloatingDamageTxt(5);
                 HP -= 5;
-                float QR = Random.Range(1, 7);
 
-                var KE1 = Instantiate(KillEffect2, transform.parent.position, Quaternion.Euler(0f, 0f, 20f * QR));
                 float R = Random.Range(0.5f, 1.0f);
 
                 KE1.transform.localScale = transform.localScale * R;
-
-                var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f));
             }
             else
             {
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
-                DT.transform.localScale *= 2f;
+                FloatingDamageTxt(1);
                 HP--;
-                float QR = Random.Range(1, 7);
-                var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-                var KE1 = Instantiate(KillEffect2, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+
                 float R = Random.Range(3.5f, 6f);
+                var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+
                 KE.transform.localScale = transform.localScale * R;
                 KE1.transform.localScale = transform.localScale * 2;
-                var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f));
             }
         }
 
@@ -218,4 +210,12 @@ public class Tentacle : MonoBehaviour
     {
         UpdateOutline(false);
     }
+
+    void FloatingDamageTxt(int Damage)
+    {
+        var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        DT.GetComponent<DamageTxt>().dtxt.text = Damage.ToString();
+        DT.transform.localScale *= 2f;
+    }
+
 }

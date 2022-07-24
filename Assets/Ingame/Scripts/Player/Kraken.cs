@@ -57,6 +57,7 @@ public class Kraken : MonoBehaviour
         FRZFlag = false;
         S = transform.GetComponent<SpriteRenderer>();
         // c = transform.GetComponent<SpriteRenderer>().color;
+        StartCoroutine("Start_");
     }
 
     // Update is called once per frame
@@ -68,9 +69,6 @@ public class Kraken : MonoBehaviour
         statusColor();
         if (HP > 0 && !FRZFlag)
         {
-
-            if (timer >= 1.25f)
-                timer = 0f;
             if (LegCount > 0)
             {
                 if (timer_ >= 4f && test)
@@ -104,12 +102,24 @@ public class Kraken : MonoBehaviour
                 MoveKraken(dir);
                 CreateBubbles();
             }
-
-            Skin.sprite = Image[(int)(timer * 8)];
             //ChangeCollider();
         }
-
     }
+
+    IEnumerator Start_()
+    {
+        while (true) yield return StartCoroutine("ChangeImg");
+    }
+    
+    IEnumerator ChangeImg()//움직임애니매이션재생
+    {
+        for (int i = 0; i < 10; ++i)
+        {
+            Skin.sprite = Image[i];
+            yield return new WaitForSeconds(0.125f);
+        }
+    }
+
     public void CreateBubbles()//랜덤하게 만들기 구현
     {
 
@@ -154,7 +164,7 @@ public class Kraken : MonoBehaviour
         Vector3 P = new Vector3(Random.Range(-2.0f, 2.1f), Random.Range(-1.0f, 1.1f));
         return P - transform.position;
     }
-    public void CreateInkOct()
+    public void CreateInkOct() // 먹물 분신 생성
     {
         var IO = Instantiate(InkOct, transform.position, Quaternion.Euler(0, 0, 0));
         IO.GetComponent<Player>().StartFlag = true;
@@ -220,7 +230,7 @@ public class Kraken : MonoBehaviour
 
         }
     }
-    void ChangeCollider()
+    void ChangeCollider() // 움직임에 따라 콜라이더 수정, 지금 사용x 나중에 사용하게 되면 코루틴으로 변경
     {
         float position = 0.1f;
 
@@ -246,7 +256,7 @@ public class Kraken : MonoBehaviour
             Circle.offset = new Vector2(-0.34f, 0.1f + position);
     }
 
-    void CreateTentacle()
+    void CreateTentacle() // 촉수 스킬 생성
     {
 
         Vector3 PlayerP = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -261,7 +271,7 @@ public class Kraken : MonoBehaviour
 
         a.GetComponent<Tentacle>().Active = true;
     }
-    void CreateInkBomb()
+    void CreateInkBomb() // 잉크 폭탄 생성
     {
         var a = Instantiate(SkillInk, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
@@ -270,7 +280,7 @@ public class Kraken : MonoBehaviour
     }
 
 
-    void CreateInkSwarm()
+    void CreateInkSwarm() // 화면 갈리는 잉크스웜 생성
     {
 
         var a = Instantiate(SkillInkSwarm, Player.transform.position, Quaternion.Euler(0, 0, 0));
@@ -353,7 +363,7 @@ public class Kraken : MonoBehaviour
     void win()
     {
         Player.GetComponent<PlayerScript>().BosskillScore++;
-        Destroy(gameObject);// 무언가 보스 터지는 이미지 넣어다라고 1.2초 준거
+        Destroy(gameObject); // 무언가 보스 터지는 이미지 넣어다라고 1.2초 준거
     }
     void UpdateOutline(bool outline)
     {

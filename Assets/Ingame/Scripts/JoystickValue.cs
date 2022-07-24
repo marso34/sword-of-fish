@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class JoystickValue : ScriptableObject
 {
-    public Vector3 joyTouch; 
+    public Vector2 joyTouch; 
 }

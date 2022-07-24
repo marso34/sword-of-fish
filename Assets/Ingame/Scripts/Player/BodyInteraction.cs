@@ -156,7 +156,7 @@ public class BodyInteraction : MonoBehaviour
             transform.parent.gameObject.GetComponent<Player>().ChangeSpeed(1f, 2f, 300f);
             transform.parent.gameObject.GetComponent<Player>().C = Color.green;
             transform.parent.gameObject.GetComponent<Player>().ResetColor();
-            transform.parent.gameObject.GetComponent<Player>().Invoke("OffTrashEffect", 2f);
+            transform.parent.gameObject.GetComponent<Player>().Invoke("InitState", 2f);
         }
     }
     void StopTime_()

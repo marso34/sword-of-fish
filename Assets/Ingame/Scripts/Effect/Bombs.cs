@@ -2,60 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bombs : MonoBehaviour
+public class Bombs : Item
 {
     // Start is called before the first frame update
     public GameObject BombSound;
     public GameObject BombSound2;
-    public ParticleSystem ItemEffect;
     public ParticleSystem Explosion;
 
-    public bool Active = false;
-    float timer = 0f;
-    float timer_ = 0f;
-    float timer22 = 0;
-    float watime2 = 0.6f;
-    bool flag = true;
+    public bool Active = false; // true¸é ¼³Ä¡¿ë ÆøÅº, false¸é ÆøÅº ¾ÆÀÌÅÛ
+    float ColorTimer = 0f; // »öº¯°æ Å¸ÀÌ¸Ó
+    float timer_ = 0f; // ÆøÅº ¼³Ä¡ »ýÁ¸ ½Ã°£
     int c = 0;
-
-    void shakeObj()
-    {
-        timer22 += Time.deltaTime;
-        if (timer22 > watime2)
-        {
-            flag = !flag;
-            timer22 = 0;
-        }
-        if (flag)
-            transform.Translate(Vector3.up * 0.6f * Time.deltaTime);
-        else transform.Translate(Vector3.down * 0.6f * Time.deltaTime);
-    }
 
     private void Update()
     {
         if (Active)
         {
-
-            transform.GetChild(0).gameObject.SetActive(false);
-            timer += Time.deltaTime;
+            transform.GetChild(0).gameObject.SetActive(false); // ¹è¸®¾î ÀÌ¹ÌÁö(GetChild(0)) Áö¿ì°í
+            ColorTimer += Time.deltaTime;
             timer_ += Time.deltaTime;
 
-            if (timer >= 0.3f) // ±ôºýÀÓ
+            if (ColorTimer >= 0.3f) // 0.3ÃÊ °£°ÝÀ¸·Î ºÓÀº»ö ±ôºýÀÓ
             {
-                timer = 0f;
+                ColorTimer = 0f;
                 c ^= 1;
             }
 
-            GetComponent<SpriteRenderer>().color = (c == 0) ? Color.white : Color.red;
+            GetComponent<SpriteRenderer>().color = (c == 0) ? Color.white : Color.red; // c°¡ 0ÀÌ¸é ±âº»»ö, 1ÀÌ¸é ºÓÀº»ö
 
             if (timer_ >= 1f)
             {
                 var KE1 = Instantiate(BombSound, transform.position, Quaternion.Euler(0f, 0f, 20f)); // Æø¹ß ¼Ò¸®
-                var a = Instantiate(Explosion, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                var a = Instantiate(Explosion, transform.position, Quaternion.Euler(0f, 0f, 0f)); // Æø¹ß ÀÌÆåÆ®
                 Destroy(gameObject);
             }
         }
-        else
+        else 
             shakeObj();
     }
 
@@ -65,9 +47,8 @@ public class Bombs : MonoBehaviour
         {
             other.transform.parent.gameObject.GetComponent<PlayerScript>().EatItem(1);
 
-            var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            // ?????? ?????? <- ???? ???????,.
-            var KE1 = Instantiate(BombSound2, transform.position, Quaternion.Euler(0f, 0f, 20f)); // ¾ÆÀÌÅÛ ¸Ô´Â ¼Ò¸®
+            var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f)); // ¾ÆÀÌÅÛ ¸Ô´Â ÀÌÆåÆ®
+            var b = Instantiate(BombSound2, transform.position, Quaternion.Euler(0f, 0f, 20f)); // ¾ÆÀÌÅÛ ¸Ô´Â ¼Ò¸®
             Destroy(gameObject, 0.2f);
         }
     }

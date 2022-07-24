@@ -19,16 +19,17 @@ public class JMove : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IDrag
     }
     public void OnDrag(PointerEventData eventData)//touch and moving mouce   1280 * 720   현재 해상도 x * y    x / 1280  y720 
     {
-        float x_  = (float)Screen.width / 1280f; // 기기 너비 저장
-        float y_= (float)Screen.height / 720f;
-       // RectTransform z = new RectTransform();
-        //z.position = new Vector2(x_,y_);
-       // Vector2 Clean = (eventData.position - rect.anchoredPosition);
-        //Vector2 Clean;
-        Vector2 Clean =new Vector2((eventData.position.x  * x_)- (rect.position.x * x_),(eventData.position.y * y_) - (rect.position.y* y_)) / (widthHalf);//- new Vector2(rect.anchoredPosition.x * x_,rect.anchoredPosition.y * y_));
-        //touch = Clean; /// (widthHalf); // touch point sort from canverce. if not this code , touch point and handle touch value is not same   1920 1080 => 145 130  ;    2160  1080 =>170 140    2560 1440=>330 300    2960 1440 => 470 390   ->(new Vector2(eventData.position.x  * x_,eventData.position.y * y_) - new Vector2(rect.anchoredPosition.x * x_,rect.anchoredPosition.y * y_)) - new Vector2(rect.transform.position.x,rect.transform.position.y) ;
-        float C = 220 * y_ -220;                //100 100   
-        touch = Clean;//(eventData.position -rect.anchoredPosition) - new Vector2(72f,75f); // touch point sort from canverce. if not this code , touch point and handle touch value is not same
+        float x_  = (float)Screen.width / 1920f; // 기준 해상도에 따른 현재 해상도 가로 비율
+        float y_= (float)Screen.height / 1080f;  // 기준 해상도에 따른 현재 해상도 세로 비율
+        Vector2 primeVector =  (eventData.position - new Vector2(rect.position.x,rect.position.y)); // 기준 해상도에 맞는 조이스틱 벡터의 크기, 즉 원래 벡터 크기
+        float RatioC = (new Vector2(x_, y_)).magnitude / (new Vector2(1, 1)).magnitude; // 조이스틱 벡터의 크기 비율 (기준 해상도 벡터 크기를 1로), Clean으로도 계산 가능하지만 코드 더러워짐, 어떻게 보면 화면 해상도 가로세로의 선형보간을 벡터로 구한 것
+        
+        Vector2 Clean = new Vector2((eventData.position.x  * x_)- (rect.position.x * x_), (eventData.position.y * y_) - (rect.position.y* y_)); // / widthHalf 제거. 어차피 normalized해서 사용, touch에서 / widthHalf
+   
+        touch = Clean.normalized * primeVector.magnitude / (widthHalf * RatioC); // Clean의 방향만 가져오고 원래 벡터 크기로 변경. 
+                                                                              // widthHarf도 기준 해상도 비율에 맞게 보정.
+        
+
         if(touch.magnitude > 1) 
             touch = touch.normalized;// joystick handle can't out from rect due to this code
         value.joyTouch = touch.normalized; // moved object by handle put in touch point
@@ -36,8 +37,12 @@ public class JMove : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IDrag
     }
     public void OnPointerDown(PointerEventData eventData) //only touch starting moment
     {
+       
         OnDrag(eventData);
     }
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
     public void OnPointerUp(PointerEventData eventData)//only touch outing moment
     {
      

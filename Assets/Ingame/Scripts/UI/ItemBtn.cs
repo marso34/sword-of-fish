@@ -22,6 +22,9 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public bool TutorialItem = false; //y
 
     int ItemNumber;
+    int c;
+    float timer;
+
 
     void Start()
     {
@@ -29,16 +32,32 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         img.sprite = Defualt;
         ItemNumber = 0;
         
+        c = 0;
+        timer = 0f;
+        color = transform.GetComponent<Image>().color;
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
+    private void Update()
+    {
+        if (img.sprite != Defualt) // 아이템 먹었을 때 푸른색으로 깜빡거리게
+        {
+            timer += Time.deltaTime;
  
+            if (timer >= 0.5f)
+            {
+                c ^= 1;
+                timer = 0f;
+            }
+        }
+        else c = 0;
+
+        color.r = (c == 0) ? Mathf.Lerp(color.r, 1f, Time.deltaTime * 10f) : Mathf.Lerp(color.r, 0, Time.deltaTime * 10f);
+        transform.GetComponent<Image>().color = color;
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (img.sprite != Defualt)
+        if (img.sprite != Defualt)  // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
             TutorialItem = true;
@@ -53,7 +72,6 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
             }
             else if (ItemNumber == 3)  // 쉴드
                 Player.GetComponent<Player>().CreatBarriar();
-            
 
             ItemNumber = 0;
         }
@@ -61,7 +79,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
 
     public void UseItem()
     {
-        if (img.sprite != Defualt)
+        if (img.sprite != Defualt) // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
             
@@ -83,14 +101,14 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void ChangeImage(int i)
+    public void ChangeImage(int i) // 플레이어가 아이템 먹었을 때 호출
     {
         // if (img.sprite == Defualt) {
         ItemNumber = i;
 
-        if (i == 1) img.sprite = ItemBomb;
-        else if (i == 2) img.sprite = ItemIce;
-        else if (i == 3) img.sprite = ItemShield;
+        if (i == 1) img.sprite = ItemBomb;        // 폭탄
+        else if (i == 2) img.sprite = ItemIce;    // 얼음
+        else if (i == 3) img.sprite = ItemShield; // 쉴드
         // }
     }
 }

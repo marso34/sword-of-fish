@@ -42,10 +42,12 @@ public class Tracking_player : MonoBehaviour
     }
     void Update()
     {
+        
         //SetResolution();
-        if (target != null && target.tag == "Player" )
+        if (target != null && target.tag == "Player")
         {
-            transform.position = new Vector3(target.position.x, target.position.y, z);//Tracking object
+            transform.GetComponent<Camera>().fieldOfView = 22+target.transform.localScale.y*3f;
+            transform.position = target.position + new Vector3(0f, 0f, z);//Tracking object
             RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
             if (ray2.collider != null)
             {
@@ -56,6 +58,7 @@ public class Tracking_player : MonoBehaviour
             transform.position = transform.position;// "Null instence" error depance
             target = null;
             dieFlag = false;
+            transform.GetComponent<Camera>().fieldOfView = 21f;
         }
         if(!dieFlag)
             z = -19;

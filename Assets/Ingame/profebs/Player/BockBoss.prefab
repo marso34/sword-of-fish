@@ -186,6 +186,12 @@ MonoBehaviour:
   KillSound: {fileID: 0}
   PlayerHitSound: {fileID: 0}
   QM: {fileID: 0}
+  skillcheck: 0
+  TutorialLev4: 0
+  Timer33: 0
+  Timer22: 0
+  MoveTime: 2
+  TuLev1: 0
   KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KillEffectO: {fileID: 2545687451895993892, guid: 051a4bac3775dde4097d5712160d7d02, type: 3}

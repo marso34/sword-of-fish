@@ -25,6 +25,7 @@ public class AiPlayerScript : Player
     bool ViewFlag;
     public void Start()//일반적인 스타트 (코루틴) 반복문임.)
     {
+        RB = transform.GetComponent<Rigidbody2D>();
         GM = GameObject.FindGameObjectWithTag("GM");
         Flag_get = false;
         AiPlayers_ = new GameObject[9];
@@ -36,10 +37,10 @@ public class AiPlayerScript : Player
         timer = 3;
         waitingTime = 3f;
         killScore = 0;
-        MovementSpeed = 2.3f + transform.localScale.y/2;//3.8
-        BusterSpeed = 4.6f + transform.localScale.y/2;// 부스터 속도 //10      
+        MovementSpeed = 2.3f + transform.localScale.y / 2;//3.8
+        BusterSpeed = 4.6f + transform.localScale.y / 2;// 부스터 속도 //10      
         Speed = MovementSpeed;// 스피드 변수를 기본스피드로 다시 초기화    
-        
+
 
         C.a = 1f;
         C.b = 1f;
@@ -47,8 +48,8 @@ public class AiPlayerScript : Player
         C.g = 1f;
         SetRandomBody();
         SetRandomKnife();
-          GameWaitInit();
-       
+        GameWaitInit();
+
 
         firstMoveFlag = true;
         if (transform.tag == "Attacker") waitingTime = 0.1f;
@@ -82,7 +83,7 @@ public class AiPlayerScript : Player
         {
             if (firstMoveFlag)
             {
-                
+
                 firstMoveFlag = false;
             }
             if (Life)
@@ -125,7 +126,34 @@ public class AiPlayerScript : Player
         //겜 끝나면 오류뜰듯
 
     }
+    public override void DieLife()
+    {
+        Speed = 0f;   // 나중에 수정 필요. 
+        PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
+        if (transform.tag == "InkOct")
+        {
+            if (GameObject.FindWithTag("Kraken") != null)
+                GameObject.FindWithTag("Kraken").GetComponent<Kraken>().CreateInkSwarm(transform.position, 0.4f);
+            Destroy(gameObject);
+        }
+        else
+        {
+            OnOutLine(14);
+            Invoke("OffOutLine", 0.07f);
+            state = State.Die;
+            LifeOff();
 
+            QM = GameObject.FindGameObjectWithTag("QM");
+            QM.GetComponent<QuestManager>().KnifeEC--;
+            if (SkillFlag)
+                OffSkillFlag(); // J
+            InitState(); // J
+            NotInit();
+            //reSpeed();
+            CreateFlesh();
+            Destroy(gameObject, 2f);
+        }
+    }
     void StartInit()//시작시 실행
     {
         GameStartInit();

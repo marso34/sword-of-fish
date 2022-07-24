@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 //flesh부분은 오류가있음 크기키우는함수도 개편될수있으니 유의바람.//  
 public class PlayerScript : Player
 {
-    
     public JoystickValue value;
     public GameObject Knife;//MFish초기화할때쓰임
     public GameObject Body;//MBody초기화 할때 쓰임 
@@ -53,9 +52,7 @@ public class PlayerScript : Player
     public GameObject TwoKillSound;
     public GameObject ThreeKillSound;
     public GameObject FourKillSound;
-
     public GameObject FiveKillSound;
-
 
 
     public Camera maincam_;
@@ -69,10 +66,10 @@ public class PlayerScript : Player
     float ReduceWTime = 0.3f;
     int MaxHP = 5;
 
-    
     public bool killcheck = false; //y 적 죽이기 튜토리얼
     public void Start()
     {
+        RB = transform.GetComponent<Rigidbody2D>();
         TuLev1 = false; //y 이동 튜토리얼 
         transform.position = Vector3.zero;
         HP = 5;
@@ -97,7 +94,7 @@ public class PlayerScript : Player
         waitingTime = 0.11f;
         waitingTime_ = 0.1f;
 
-       // GameWaitInit();
+        // GameWaitInit();
 
         timer1 = 0;
 
@@ -115,18 +112,23 @@ public class PlayerScript : Player
         CountWaitTime = 4f;
         RaiseFlag = false;
         KCFlag = false;
-          GameWaitInit();
-       
+        GameWaitInit();
+
+        // var a = Instantiate(Spectrum, transform.position, Quaternion.Euler(0, 0, 0));
+        // a.transform.parent = transform;
+        // a.transform.localPosition = Vector3.zero;
+        // a.transform.localScale = new Vector3(1f, 1f, 1f);
+
         StartCoroutine("Start_");
     }
 
 
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
     private void Update()
     {
-
-
-
         reset_();// 리겜하면 실행
         if (Life == false) NotInit();
         // *************************** ?????? ******* ????????? ????????¹??? ???**********
@@ -137,24 +139,18 @@ public class PlayerScript : Player
             Init_();
 
         }
+
         if (StartFlag2 == true)//찐스타트
         {
-
             if (firstFlag)
             {
-                
-                
-
                 firstFlag = false;
-
             }
-
-            dir = value.joyTouch;
 
             if (Life)
             {
+                dir = value.joyTouch;
 
-        
                 HPManager();
                 if (KCFlag)
                 {
@@ -173,8 +169,9 @@ public class PlayerScript : Player
                         CountKill = 0;
                     }
                 }
-                PlayerMove();//움직임 및 State초기화  
-                
+
+                PlayerMove();//움직임 및 State초기화          
+
                 if (cutGauge > 0 && isMove)
                     GetPlayer_BusterInput();
                 else if (cutGauge <= 0 || !isMove)
@@ -188,9 +185,6 @@ public class PlayerScript : Player
 
                 if (Speed == MovementSpeed)
                     RecuveryBusterGage();
-
-
-
 
             }
             else if (!Life)
@@ -219,7 +213,68 @@ public class PlayerScript : Player
             if (HP <= 0) DieLife();
 
         }
-        
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        // if (Life)
+        //     PlayerMove();
+
+    }
+    public void EatStar()
+    {// ?뒪??? 癒뱀쓬
+        reSpeed();
+        // InitState(); -> ?냽?룄 珥덇린?솕?룄 ?룷?븿, ?긽?뼱 ?뒪?궗 ?벝 ?븣?룄 ?썝?옒 ?냽?룄濡? ?룎?븘媛?..
+        C = Color.white;
+        OnStar();
+        Invoke("OffStar", 3f);
+    }
+    public void OnStar()
+    {
+        MyBody.tag = "Shiled";
+        Skin.GetComponent<Skin>().Flag = true;
+        OnOutLine(1);
+    }
+    public void OffStar()
+    {
+        MyBody.tag = "Body";
+        Skin.GetComponent<Skin>().Flag = false;
+        OffOutLine();
+    }
+    public override void DieLife()
+    {
+
+
+        //源쒕묀?엫.肄붾뱶
+        ShowDieAnim(0);
+        state = State.Die;
+
+        if (HP > 0)
+        {
+            var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
+            HP--;
+            MyBody.tag = "Shiled";
+            hitFlag = true;
+
+            WhiteFlesh();
+            Glitter();
+            Invoke("InitBody__", 1.5f);
+
+        }
+        if (HP <= 0 && flagerror)
+        {
+            Speed = 0f;   // 나중에 수정
+            PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
+            CreateFlesh();
+            NotInit();
+            Invoke("LifeOff", 0.015f);
+            flagerror = false;
+        }
+
+
     }
     public void HPManager()
     {
@@ -304,12 +359,12 @@ public class PlayerScript : Player
     void TestSkill()//임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.A))
-            PlaySkill();
-            // SkillBtn.GetComponent<SkillBtn>().UseSkill(); 
+            // PlaySkill();
+            SkillBtn.GetComponent<SkillBtn>().UseSkill();
 
     }
 
-    void TestItem()
+    void TestItem() // 임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.Z))
             ItemBtn.GetComponent<ItemBtn>().ChangeImage(1);
@@ -391,8 +446,8 @@ public class PlayerScript : Player
     {
         Destroy(gameObject);
     }
-   
-   
+
+
     public override void KillScoreUp()
     {
         Debug.Log(transform.tag + "죽였따");
@@ -451,7 +506,7 @@ public class PlayerScript : Player
 
     }//일단 이기능은 삭제
 
-    public void EatItem(int i)
+    public void EatItem(int i)  // 1이면 폭탄, 2이면 얼음, 3이면 쉴드 -> 아이템 먹을 때 아이템에서 i 넘겨줌
     {
         ItemBtn.GetComponent<ItemBtn>().ChangeImage(i);
     }
@@ -459,7 +514,7 @@ public class PlayerScript : Player
     public void StopMove()  //이동튜토리얼에서 사용
     {
         value.joyTouch = Vector3.zero;
-        transform.rotation = Quaternion.Euler(0f, 0f,  0f);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         transform.localScale = new Vector3(1, 1, 1);
     }
 }
