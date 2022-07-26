@@ -971,7 +971,7 @@ PrefabInstance:
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Guide
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8436214338098216722, guid: a2cb1ad14b0f0fd41a2ab7d5997611d8, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Canvas
       value: 
@@ -1015,7 +1015,7 @@ PrefabInstance:
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: TutoBack
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1672480670797088065, guid: ffe8d57e824832644b8117d484a28a78, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: killIcon
       value: 
@@ -1023,7 +1023,7 @@ PrefabInstance:
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: tutorial
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5996496855758631750, guid: 109a31da881ead64a9de7aea77a984c7, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: FleshIcon
       value: 
@@ -1053,6 +1053,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 857004039}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: IntroPenlT
+      value: 
+      objectReference: {fileID: 857004045}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: KnifeEnemy
       value: 
       objectReference: {fileID: 8835441081331634052, guid: 3e28ef7bea7a05d4f8e459ba324f0756, type: 3}
@@ -1077,13 +1081,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1944125338774598116, guid: d8467872804a404439f4b7350a1c7748, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: IntroPenelT
+      value: 
+      objectReference: {fileID: 857004045}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: TutorialName
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7976859860039498761, guid: bb25834d0d5006e4da138c4b8a8bc8a9, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: TutorialPlan
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5150571998780614078, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: IntroPanelName
       value: 
@@ -1985,6 +1993,10 @@ PrefabInstance:
     - target: {fileID: 3438068888359070348, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438068888359070348, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
+      propertyPath: m_TagString
+      value: IntroPanel
       objectReference: {fileID: 0}
     - target: {fileID: 3777541318886384281, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
       propertyPath: m_TagString

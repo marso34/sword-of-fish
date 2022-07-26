@@ -19,6 +19,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public Sprite ItemIce;
     public Sprite ItemShield;
 
+    public bool TutorialItem = false; //y
     Color color;
     int ItemNumber;
     int c;
@@ -33,6 +34,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         c = 0;
         timer = 0f;
         color = transform.GetComponent<Image>().color;
+
     }
 
     private void Update()
@@ -58,7 +60,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         if (img.sprite != Defualt)  // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
-
+            TutorialItem = true;
             if (ItemNumber == 1)  // 폭탄
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
@@ -80,7 +82,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         if (img.sprite != Defualt) // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
-
+            
             if (ItemNumber == 1)  // 폭탄
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));

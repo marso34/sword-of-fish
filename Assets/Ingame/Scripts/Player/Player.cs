@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
     public int Timer33 = 0;
     public double Timer22 = 0;
-    public float MoveTime = 2f;
+    public float MoveTime = 3f; 
     public bool TuLev1 = false;
     public void GameStartInit()// ê²Œìž„?‹œ?ž‘?‹œ ?•œë²ˆì‹¤?–‰
     {
