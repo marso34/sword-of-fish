@@ -45,7 +45,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944125338774598116}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b98bd55b316fee4db86f00067c428b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RB: {fileID: 0}
   AnimFlame: 10
   DieAnimFlame: 10
   Barriar: {fileID: 0}
@@ -202,6 +203,7 @@ MonoBehaviour:
   waitingTime: 0
   SkillCount: 0
   flag: 0
+  PlayerP: {fileID: 0}
 --- !u!1 &4868236191001879870
 GameObject:
   m_ObjectHideFlags: 0

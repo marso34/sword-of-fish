@@ -76,6 +76,8 @@ public class QuestManager : MonoBehaviour
     public Sprite FishIcon;
     public Sprite RankIcon;
     public Sprite FlagIcon;
+    public Sprite BockBossIcon;
+    public Sprite TakoBossIcon;
     public GameObject CanTrash;
     public GameObject PaperTrash;
     //------------------------------------------------------ y ????? ????
@@ -129,9 +131,9 @@ public class QuestManager : MonoBehaviour
     public GameObject body;
     void Start()
     {
-        Level_ = 0;//초기 렙설정
+        Level_ = 1;//초기 렙설정
 
-        IngameLevel = 0; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         TutorialLevel = 0;
         LoseFlag = false;
         OccupationTime = 0;
@@ -168,11 +170,11 @@ public class QuestManager : MonoBehaviour
     {//?? ???????? ??????? ????? ????
         if (Flag)
         {
-            if(Level_ ==0) 
+            if (Level_ == 0)
             {
                 Level_0_Action();
-            }    
-            
+            }
+
             if (Level_ == 1)
             {
                 Level_1_Action();
@@ -223,9 +225,9 @@ public class QuestManager : MonoBehaviour
     }// 게임 끝나는거 체크
 
 
-    public  void Level_0_Action() 
+    public void Level_0_Action()
     {
-        if(Level_ == 0 )
+        if (Level_ == 0)
         {/*
             ResetPlayerStat();
 
@@ -325,8 +327,35 @@ public class QuestManager : MonoBehaviour
 
             CurrentCount = 0;
         }
+
     }
-     public void CurrentCountInit()//퀘스트 완료조건 정의
+    public void Level_2_Action()
+    {
+        if (Level_ == 2)
+        {
+            if (IngameLevel == 1)
+            {
+
+            }
+            if (IngameLevel == 2)
+            {
+
+            }
+            if (IngameLevel == 3)
+            {
+
+            }
+            if (IngameLevel == 4)
+            {
+
+            }
+            if (IngameLevel == 5)
+            {
+
+            }
+        }
+    }
+    public void CurrentCountInit()//퀘스트 완료조건 정의
     {
         if (IngameLevel == 1)
         {
@@ -392,7 +421,7 @@ public class QuestManager : MonoBehaviour
             ShapeNum = 10;
             IntroPanel.SetActive(true);
 
-            
+
             TutorialLev = 1;
 
             GameObject.FindWithTag("plan").SetActive(false);
@@ -404,20 +433,20 @@ public class QuestManager : MonoBehaviour
             TutorialName = Instantiate(TutorialName);
             TutoBack = Instantiate(TutoBack);
 
-            
+
             tutorial.transform.SetParent(Canvas);
             TutoBack.transform.SetParent(GM.transform);
             tutorial.transform.SetSiblingIndex(0);
             tutorial.SetActive(false);
             TutoBack.SetActive(false);
             A = true;
-            
+
             TutorialName.transform.SetParent(IntroPenelT);
-            TutorialName.transform.localPosition = new Vector3(160, -500, 0);        
+            TutorialName.transform.localPosition = new Vector3(160, -500, 0);
             TutorialPlan.transform.localPosition = new Vector3(265, -120, 0);
             //GameObject.FindWithTag("IntroPanel").SetActive(false);
 
-            
+
         }
 
 
@@ -579,7 +608,7 @@ public class QuestManager : MonoBehaviour
         else Xc = -1;
         if (y < 0) Yc = 1;
         else Yc = 1;
-        float realX = x + 8* Xc;
+        float realX = x + 8 * Xc;
         float realY = y + 5 * Xc;
         return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
     }
@@ -712,13 +741,47 @@ public class QuestManager : MonoBehaviour
     {
         CurrentCountInit();
         QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
-        // QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<SpriteRenderer>().sprite;
-        QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).gameObject.SetActive(false);
-        //QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
-        QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).gameObject.SetActive(false);
+        if (Level_ == 1)
+        {
+            if (IngameLevel < 4){
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = killIcon;
+            }
+            else if (IngameLevel ==4){
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = BockBossIcon;
+            }
+            else if (IngameLevel == 5){
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = killIcon;
+            }
+            else if (IngameLevel == 6){
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = TrushIcon;
+            }
+            else if(IngameLevel == 7){
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = TakoBossIcon;
+            }
+            QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+
+        }
+        if(Level_ == 2){
+            if(IngameLevel == 1){
+                
+            }
+            if(IngameLevel == 2){
+
+            }
+            if(IngameLevel == 3){
+
+            }
+            if(IngameLevel == 4){
+
+            }
+            if(IngameLevel == 5){
+
+            }
+            
+        }
 
     }//갯수보두 초기화
-   
+
     /*
     public void ShapeB_Init()
     {
@@ -850,24 +913,25 @@ public class QuestManager : MonoBehaviour
     }
 
 
-    public void bornguide() { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
-        
-        
+    public void bornguide()
+    { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
+
+
         //Guide = GameObject.Find("GuidePet(Clone)").gameObject;
-        
+
         //Guide.transform.SetParent(PlayerT);
         //tutorial.SetActive(true);
         //TutorialPlan.SetActive(true);     
 
         GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject.SetActive(true);
         GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject.SetActive(true);
-        
 
-    } 
+
+    }
     public void Tutorial_Init() //플레이어 캔버스에 있는거 넣어둠
     {
 
-        
+
 
         tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
         TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
@@ -875,38 +939,38 @@ public class QuestManager : MonoBehaviour
         //TutoBack.gameObject(SortingLayer(1));
         if (TutorialLev == 1) //이동
         {
-                
-                
-                if(A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
-                {
-                    //tutorial.SetActive(true);
 
-                    TutorialPlan.SetActive(true);
-                    TutoBack.SetActive(true);
-                    
-                    tutorial.SetActive(true);
-                    Vector3 direction = Player.transform.localRotation * new Vector3(0,0,90);
-                    A = false;
-                }
-            
 
-            
+            if (A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
+            {
+                //tutorial.SetActive(true);
+
+                TutorialPlan.SetActive(true);
+                TutoBack.SetActive(true);
+
+                tutorial.SetActive(true);
+                Vector3 direction = Player.transform.localRotation * new Vector3(0, 0, 90);
+                A = false;
+            }
+
+
+
             TutorialPlan.GetComponent<Text>().text = "이동하면서 부스터를 사용해보세요";
-            
+
             if (Player.GetComponent<PlayerScript>().BusterFlag
-                && Player.GetComponent<PlayerScript>().cutGauge < 70) 
+                && Player.GetComponent<PlayerScript>().cutGauge < 70)
             {
 
                 timer += Time.deltaTime;
-                if (timer > waitingTime-2) //성공하고 좀이따 성공했다고 띄움
+                if (timer > waitingTime - 2) //성공하고 좀이따 성공했다고 띄움
                 {
-                    
+
                     timer = 0;
 
 
 
                     Player.GetComponent<PlayerScript>().StopMove();
-                    
+
                     tutorial.SetActive(true);
                     TutorialPlan.SetActive(true);
 
@@ -914,7 +978,7 @@ public class QuestManager : MonoBehaviour
                     Guide.GetComponent<GuidePet>().BornGuide();
                     tutorial.GetComponent<Tutorial>().Touch = 0;
                     TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
-                    
+
                     TutoBack.SetActive(true);
                     Player.GetComponent<PlayerScript>().BusterFlag = false;
                     TutorialLev++;
@@ -937,9 +1001,9 @@ public class QuestManager : MonoBehaviour
                 if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
                 {
 
-                    
+
                     timer = 0;
-                    
+
 
                     //bornguide();
                     Player.GetComponent<PlayerScript>().StopMove();
@@ -949,13 +1013,13 @@ public class QuestManager : MonoBehaviour
                     Guide.GetComponent<GuidePet>().BornGuide();
                     tutorial.GetComponent<Tutorial>().Touch = 0;
                     TutorialPlan.GetComponent<Text>().text = "쓰레기를 치우고 나온 아이템을 먹고 아이템 버튼을 눌러 사용하세요";
-                    
+
                     TutoBack.SetActive(true);
-                    
+
                     TutorialLev++;
 
                     itembtn = GameObject.Find("Player(Clone)").transform.Find("Canvas").transform.Find("NotEndGame").transform.Find("ItemBtn").gameObject;
-                    
+
                     //TrashMaxCount = 5;
                     Trash2MaxCount = 5;
 
@@ -975,9 +1039,9 @@ public class QuestManager : MonoBehaviour
                 if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
                 {
 
-                    
+
                     timer = 0;
-                    
+
                     Player.GetComponent<PlayerScript>().StopMove();
                     tutorial.SetActive(true);
                     TutorialPlan.SetActive(true);
@@ -986,34 +1050,34 @@ public class QuestManager : MonoBehaviour
                     Guide.GetComponent<GuidePet>().BornGuide();
                     tutorial.GetComponent<Tutorial>().Touch = 0;
                     TutorialPlan.GetComponent<Text>().text = "공격하는 물고기를 여러번 찌르고 나온 시체를 먹으세요";
-                    
+
                     TutoBack.SetActive(true);
                     TutorialLev++;
 
-                    
+
 
                 }
             }
         }
 
-        else if (TutorialLev ==4) 
+        else if (TutorialLev == 4)
         {
             body = GameObject.Find("Player(Clone)").transform.Find("body").gameObject;
-            if(tutorial.GetComponent<Tutorial>().TouchMo == false)
+            if (tutorial.GetComponent<Tutorial>().TouchMo == false)
             {
-                    BulletEnemyMaxCount = 1;
+                BulletEnemyMaxCount = 1;
             }
-            else if(tutorial.GetComponent<Tutorial>().TouchMo == true)
+            else if (tutorial.GetComponent<Tutorial>().TouchMo == true)
             {
                 BulletEnemyMaxCount = 0;
-                if(tutorial.GetComponent<Tutorial>().Touch == 1 )
+                if (tutorial.GetComponent<Tutorial>().Touch == 1)
                 {
                     BulletEnemyMaxCount = 1;
                 }
             }
 
-            
-            if(body.GetComponent<BodyInteraction>().TutorialFlesh)
+
+            if (body.GetComponent<BodyInteraction>().TutorialFlesh)
             {
                 timer += Time.deltaTime;
 
@@ -1021,13 +1085,13 @@ public class QuestManager : MonoBehaviour
                 {
 
                     timer = 0;
-                    
+
                     Player.GetComponent<PlayerScript>().StopMove();
                     Destroy(tutorial);
                     Destroy(TutoBack);
                     Destroy(TutorialName);
                     EndTutorial = true;
-                    
+
                 }
             }
         }

@@ -100,11 +100,7 @@ public class BodyInteraction : MonoBehaviour
                     KE1.transform.localScale = transform.parent.localScale * R / 3f;
                     Flag_Still(other.transform.parent.gameObject);
                 }
-
-                // if (other.transform.parent.tag == "Player")
-                // {
-                //    other.transform.parent.GetComponent<PlayerScript>().ShapeKillCount[transform.parent.GetComponent<Player>().FishNumber]++;
-                // }
+                
                 if (other.transform.parent.tag == "AiPlayer" && transform.parent.tag == "Player" && transform.parent.GetComponent<Player>().HP == 0)
                 {
                     StopTime_();
@@ -124,9 +120,10 @@ public class BodyInteraction : MonoBehaviour
             other.gameObject.GetComponent<flesh>().destroyme(transform.parent.gameObject);
         }
     }   // 시체 먹었을때
+
     void GiveSize()
     {
-        
+
         if (transform.parent.tag == "Player") chc = 0.2f;
         else if ((transform.parent.tag == "AiPlayer")) chc = 3f;
         Vector3 Porce = new Vector3(chsize, chsize, 0f);

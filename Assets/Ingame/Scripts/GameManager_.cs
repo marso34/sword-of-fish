@@ -40,6 +40,7 @@ public class GameManager_ : MonoBehaviour
     public GameObject LosePanel;
     public bool SuccesFlag = false;
     public GameObject QM;
+    
     private void Start()
     {
 
@@ -56,11 +57,16 @@ public class GameManager_ : MonoBehaviour
         StartButtonFlag = false;
         //SetResolution();
         Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
+
     }
 
     private void Update()
     {
        
+
+
+
+
         //OnPreCull();
         if (StartKeyFlag)
         {
