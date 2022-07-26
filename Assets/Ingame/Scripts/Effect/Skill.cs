@@ -15,7 +15,7 @@ public class Skill : MonoBehaviour
 
     void Start()
     {
-        FishNumber = transform.parent.gameObject.GetComponent<PlayerScript>().FishNumber;
+        FishNumber = transform.parent.gameObject.GetComponent<Player>().FishNumber;
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         init();
@@ -65,11 +65,10 @@ public class Skill : MonoBehaviour
 
     void SetSpeed()
     {
-        Speed = transform.parent.gameObject.GetComponent<PlayerScript>().Speed;
+        Speed = transform.parent.gameObject.GetComponent<Player>().Speed;
 
         if (Speed < 10f)
             Speed += 5f;
-
     }
 
     void FixDir()
