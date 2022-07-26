@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -95065453
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -974874526, guid: 78df1407cea25c44d8ba1f18ab319240, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -376,6 +376,7 @@ MonoBehaviour:
   KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
+  DamageText: {fileID: 0}
   Polygon:
   - {fileID: 8418111721831045497}
   - {fileID: 2809610472654538149}

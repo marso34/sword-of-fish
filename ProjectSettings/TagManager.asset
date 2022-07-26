@@ -55,6 +55,10 @@ TagManager:
   - Stage
   - plan1
   - Stagy Level
+  - IntroPanel
+  - Guide
+  - TutorialPlan
+  - TutoBack
   layers:
   - Default
   - TransparentFX
@@ -95,6 +99,27 @@ TagManager:
   - name: backGround
     uniqueID: 3611720015
     locked: 0
-  - name: Object
+  - name: Boss
     uniqueID: 3815887011
+    locked: 0
+  - name: Enemy
+    uniqueID: 3842815343
+    locked: 0
+  - name: Trash
+    uniqueID: 571197257
+    locked: 0
+  - name: Player
+    uniqueID: 1482589923
+    locked: 0
+  - name: Effect
+    uniqueID: 1830280351
+    locked: 0
+  - name: Effect2
+    uniqueID: 2127487813
+    locked: 0
+  - name: Skill
+    uniqueID: 4199901843
+    locked: 0
+  - name: Skill2
+    uniqueID: 150332939
     locked: 0

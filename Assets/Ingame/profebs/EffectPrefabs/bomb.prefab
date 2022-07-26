@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -95065453
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2f9fa7094840f414f8b7172612813786, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -137,9 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85c46276a42d534cbf093d81597fa2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemEffect: {fileID: 4326466764992459746, guid: 4cb0c2d74189d4d458e711842f14338d, type: 3}
+  Sound: {fileID: 0}
   BombSound: {fileID: 7261985289784294839, guid: 7124fb31473b76149a6c967058b876b2, type: 3}
   BombSound2: {fileID: 8040682977293023653, guid: 2b372bf828c511342a88c5fefdb96b54, type: 3}
-  ItemEffect: {fileID: 4326466764992459746, guid: 4cb0c2d74189d4d458e711842f14338d, type: 3}
   Explosion: {fileID: 2821843674677880367, guid: 8605f212c962a3b4a9f828974026ee94, type: 3}
   Active: 0
 --- !u!1001 &2699303002258475979
