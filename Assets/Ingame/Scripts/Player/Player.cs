@@ -713,6 +713,6 @@ public class Player : MonoBehaviour
     {
         MovementSpeed = 2.8f;
         BusterSpeed = 5.5f;
-        RotationSpeed = 650f;
+        RotationSpeed = 1200;
     }
 }

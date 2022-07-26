@@ -579,7 +579,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 7)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -14.9f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -15.55f, 0f), Quaternion.Euler(0f, 0f, 0f));
             Boss.name = "Boss";
         }
         BossEC++;

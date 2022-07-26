@@ -84,7 +84,7 @@ public class PlayerScript : Player
         killScore = 0;
         MovementSpeed = 2.3f + transform.localScale.y / 2f;//3.8
         BusterSpeed = 4.6f + transform.localScale.y / 2;// 부스터 속도 //10  
-        RotationSpeed = 1500f;
+        RotationSpeed = 1200f;
 
         Speed = MovementSpeed;// 스피드 변수를 기본스피드로 다시 초기화             
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
