@@ -163,7 +163,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2866431025190176503}
   - component: {fileID: 8160838555582291283}
-  - component: {fileID: 2926541092107851651}
   - component: {fileID: 8835441081331634055}
   m_Layer: 0
   m_Name: AiPlayer
@@ -245,27 +244,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &2926541092107851651
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8835441081331634052}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &8835441081331634055
 MonoBehaviour:
   m_ObjectHideFlags: 0

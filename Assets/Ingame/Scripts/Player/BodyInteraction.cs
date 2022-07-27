@@ -17,6 +17,9 @@ public class BodyInteraction : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").transform;
         Time.timeScale = 1;
     }
+    private void Update(){
+        transform.localPosition = Vector3.zero;
+    }
     public void OnCollisionEnter2D(Collision2D other2)
     {
         EatFlesh(other2.gameObject);
@@ -79,6 +82,7 @@ public class BodyInteraction : MonoBehaviour
         transform.parent.gameObject.GetComponent<Player>().ResetColor();
 
     }
+    
     void StabbedKnife(GameObject other)
     {
         //Debug.Log(other.transform.tag +"iiiii");

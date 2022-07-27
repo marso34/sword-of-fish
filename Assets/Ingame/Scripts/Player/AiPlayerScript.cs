@@ -25,7 +25,7 @@ public class AiPlayerScript : Player
     bool ViewFlag;
     public void Start()//일반적인 스타트 (코루틴) 반복문임.)
     {
-        RB = transform.GetComponent<Rigidbody2D>();
+        
         GM = GameObject.FindGameObjectWithTag("GM");
         Flag_get = false;
         AiPlayers_ = new GameObject[9];
@@ -49,7 +49,7 @@ public class AiPlayerScript : Player
         SetRandomBody();
         SetRandomKnife();
         GameWaitInit();
-
+        RB = MyBody.transform.GetComponent<Rigidbody2D>();
 
         firstMoveFlag = true;
         if (transform.tag == "Attacker") waitingTime = 0.1f;
@@ -65,6 +65,7 @@ public class AiPlayerScript : Player
     }
     private void Update()
     {
+        transform.position = MyBody.transform.position;
         reset_();
         // *************************** 특이사항 ******* 죽일때마다 애니재생되는무기 넣기**********        
         //SetIndicator();

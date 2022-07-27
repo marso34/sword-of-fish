@@ -2304,6 +2304,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage1
       objectReference: {fileID: 0}
+    - target: {fileID: 3592333234959495052, guid: 2df3ef4cd812a9d4d93146a5bfc7a8d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592333234959495053, guid: 2df3ef4cd812a9d4d93146a5bfc7a8d1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592333234959495053, guid: 2df3ef4cd812a9d4d93146a5bfc7a8d1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6225911059657596916, guid: 2df3ef4cd812a9d4d93146a5bfc7a8d1, type: 3}
       propertyPath: m_RootOrder
       value: 0

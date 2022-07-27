@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    bool Flag_ = false;
     public Rigidbody2D RB;
     public int AnimFlame = 10; // ?• ?‹ˆ ?Š¤?”„ë¦? ?‹œ?Š¸ ?”„? ˆ?„
     public int DieAnimFlame = 10; // ì£½ìŒ ?• ?‹ˆ ?Š¤?”„ë¦¬ì‹œ?Š¸ ?”„? ˆ?„
@@ -409,7 +410,11 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    public void rota(){
+        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity.normalized);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
+            float x_ = transform.localScale.x;
+    }
     public void PlayerMove()
     {
         isMove = true; //dir != Vector3.zero;
@@ -429,12 +434,11 @@ public class Player : MonoBehaviour
 
             }
 
-            RB.velocity = dir * Speed * Time.deltaTime * 70;
+            RB.velocity = dir * Speed * Time.deltaTime * 60;
             // transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
-            
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
-            float x_ = transform.localScale.x;// x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
+            rota();
+                        
+            // x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
 
         }
     }
@@ -620,8 +624,18 @@ public class Player : MonoBehaviour
     public void PlaySkill() //J
     {
         skillcheck = true;
+        Flag_ = !Flag_;
         if (FishNumber == 0)
-        {
+        {          
+            if(Flag_ == true){
+                MovementSpeed = 0;
+                BusterSpeed = 0;
+                Speed = 0;
+            }
+
+            else if(Flag_ == false){
+                DefultSpeed();
+            }
         }
         else if (FishNumber == 1) // ¾Æ±â»ó¾î
         {
@@ -654,9 +668,17 @@ public class Player : MonoBehaviour
     }
     public void PlaySkill(string Name) //J
     {
-
+        Flag_ = !Flag_;
         if (FishNumber == 0)
         {
+            if(Flag_ == true){
+                MovementSpeed = 0;
+                BusterSpeed = 0;
+                Speed = 0;
+            }
+            else if(Flag_ == false){
+                DefultSpeed();
+            }
         }
         else if (FishNumber == 1) // ¾Æ±â»ó¾î
         {

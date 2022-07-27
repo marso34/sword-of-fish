@@ -18,7 +18,7 @@ public class Ice : Item
 
             var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f)); // æ∆¿Ã≈€ ∏‘¥¬ ¿Ã∆Â∆Æ
             var b = Instantiate(IceEatSound, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            Destroy(gameObject, 0.2f);
+            Destroy(gameObject);
         }
     }
 }

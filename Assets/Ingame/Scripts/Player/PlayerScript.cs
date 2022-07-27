@@ -69,7 +69,6 @@ public class PlayerScript : Player
     public bool killcheck = false; //y ¿˚ ¡◊¿Ã±‚ ∆©≈‰∏ÆæÛ
     public void Start()
     {
-        RB = transform.GetComponent<Rigidbody2D>();
         TuLev1 = false; //y ¿Ãµø ∆©≈‰∏ÆæÛ 
         transform.position = Vector3.zero;
         HP = 5;
@@ -112,6 +111,8 @@ public class PlayerScript : Player
         CountWaitTime = 4f;
         RaiseFlag = false;
         KCFlag = false;
+        RB = MyBody.transform.GetComponent<Rigidbody2D>();
+
         GameWaitInit();
 
         // var a = Instantiate(Spectrum, transform.position, Quaternion.Euler(0, 0, 0));
@@ -123,12 +124,13 @@ public class PlayerScript : Player
     }
 
 
-
+    
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     private void Update()
     {
+        transform.position = MyBody.transform.position;
         reset_();// ∏Æ∞◊«œ∏È Ω««‡
         if (Life == false) NotInit();
         // *************************** ?????? ******* ????????? ????????©ˆ??? ???**********
@@ -218,12 +220,7 @@ public class PlayerScript : Player
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
-    private void FixedUpdate()
-    {
-        // if (Life)
-        //     PlayerMove();
-
-    }
+  
     public void EatStar()
     {// ?ä§??? Î®πÏùå
         reSpeed();
