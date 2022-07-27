@@ -41,9 +41,8 @@ public class BodyInteraction : MonoBehaviour
     {
         if (other.gameObject.tag == "SkillB" && transform.tag == "Body")
         {
-            transform.parent.gameObject.GetComponent<Player>().MovementSpeed = 0.8f;
-            transform.parent.gameObject.GetComponent<Player>().BusterSpeed = 1.5f;
-            transform.parent.gameObject.GetComponent<Player>().RotationSpeed = 50f;
+            transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
+            transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
             transform.parent.gameObject.GetComponent<Player>().C = Color.green;
             transform.parent.gameObject.GetComponent<Player>().ResetColor();
             transform.parent.gameObject.GetComponent<Player>().Invoke("InitState", 2f);
@@ -65,9 +64,8 @@ public class BodyInteraction : MonoBehaviour
         {
             transform.parent.gameObject.GetComponent<Player>().C = new Color(60f / 255f, 150f / 255f, 255f / 255f);
             transform.parent.gameObject.GetComponent<Player>().ResetColor();
-            transform.parent.GetComponent<Player>().MovementSpeed = 0;
-            transform.parent.GetComponent<Player>().RotationSpeed = 0;
-            transform.parent.GetComponent<Player>().BusterSpeed = 0;
+            transform.parent.GetComponent<Player>().StopMoveSpeed();
+            transform.parent.GetComponent<Player>().StopRotateSpeed();
             Invoke("resetPlayerStat", 2.5f);
 
         }
@@ -93,7 +91,7 @@ public class BodyInteraction : MonoBehaviour
                 {
                     transform.parent.gameObject.GetComponent<Player>().DieLife();
                     other.transform.parent.gameObject.GetComponent<Player>().KillScoreUp();
-                    if (other.name != "body")
+                    if (other.name != "body" && other.transform.parent.tag == "Player")
                         other.transform.GetComponent<HitFeel>().TimeStop(1f);
 
                     float QR = Random.Range(1, 7);
@@ -155,7 +153,8 @@ public class BodyInteraction : MonoBehaviour
     {
         if (transform.tag == "Body" && other.tag == "Trush" && transform.parent.tag == "Player")
         {
-            transform.parent.gameObject.GetComponent<Player>().ChangeSpeed(1f, 2f, 300f);
+            transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(1f);
+            transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(1f);
             transform.parent.gameObject.GetComponent<Player>().C = Color.green;
             transform.parent.gameObject.GetComponent<Player>().ResetColor();
             transform.parent.gameObject.GetComponent<Player>().Invoke("InitState", 2f);

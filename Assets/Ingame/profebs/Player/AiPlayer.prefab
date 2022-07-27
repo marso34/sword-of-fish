@@ -268,9 +268,14 @@ MonoBehaviour:
   Speed: 0
   RotationSpeed: 500
   MovementSpeed: 0
+  BusterSpeed: 0
+  BusterFlag: 0
+  ErrorFlag: 0
   TempMovementSp: 0
   TempBusterSp: 0
   TempRotateSp: 0
+  StateMoveFlag_: 0
+  StateRotateFlag_: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -282,8 +287,6 @@ MonoBehaviour:
   skin_: {fileID: 0}
   Flesh: {fileID: 8264412423978424977, guid: ae4cc6c29bf759440961ef339ef1c8bf, type: 3}
   chsize: 0.05
-  BusterSpeed: 0
-  BusterFlag: 0
   Bubble: {fileID: 7744744112347256152, guid: bcab08e21f4a60745993c92532f14a04, type: 3}
   StartFlag: 0
   Life: 0
@@ -743,16 +746,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5245195079369463352, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
-      propertyPath: Player_
-      value: 
-      objectReference: {fileID: 8835441081331634052}
-    - target: {fileID: 5245195079369463352, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1504582020055412037, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
-    - {fileID: 5245195079369463352, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
 --- !u!4 &5468561666112798768 stripped
 Transform:

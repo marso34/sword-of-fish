@@ -81,11 +81,6 @@ public class PlayerScript : Player
         for (int i = 0; i < MaxBodyShape; ++i) ShapeKillCount[i] = 0;
         StartFlag2 = false;
         killScore = 0;
-        MovementSpeed = 2.3f + transform.localScale.y / 2f;//3.8
-        BusterSpeed = 4.6f + transform.localScale.y / 2;// 부스터 속도 //10  
-        RotationSpeed = 1200f;
-
-        Speed = MovementSpeed;// 스피드 변수를 기본스피드로 다시 초기화             
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
 
         timer = 0;
@@ -124,7 +119,7 @@ public class PlayerScript : Player
     }
 
 
-    
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -179,7 +174,7 @@ public class PlayerScript : Player
                 else if (cutGauge <= 0 || !isMove)
                 {
                     Destroy(GameObject.FindWithTag("BS"));
-                    reSpeed();
+                    DefaultMoveSpeed();
                     BusterFlag = false;
                 }
                 GetPlayer_tp();
@@ -202,7 +197,11 @@ public class PlayerScript : Player
             TestSkill(); // J
             TestItem(); // J
 
-            if (!BusterFlag && skin_.GetComponent<SpriteRenderer>().color == Color.white && !SkillFlag) TempReSpped();
+            // if (!BusterFlag && skin_.GetComponent<SpriteRenderer>().color == Color.white && !SkillFlag)
+            // {
+            //     DefaultMoveSpeed();
+            //     DefaultRotateSpeed();
+            // }
             AnimState(dir);
             CheckWall();
             CheckMaxSize();
@@ -220,10 +219,10 @@ public class PlayerScript : Player
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
-  
+
     public void EatStar()
     {// ?뒪??? 癒뱀쓬
-        reSpeed();
+        DefaultMoveSpeed();
         // InitState(); -> ?냽?룄 珥덇린?솕?룄 ?룷?븿, ?긽?뼱 ?뒪?궗 ?벝 ?븣?룄 ?썝?옒 ?냽?룄濡? ?룎?븘媛?..
         C = Color.white;
         OnStar();
@@ -307,15 +306,26 @@ public class PlayerScript : Player
     {
         if (BusterFlag == true)
         {
-            chSpeed();
+            FastSpeed(1);
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
                 cutGauge -= 2f;
                 timer = 0;
             }
+
+            if (!StateMoveFlag_)
+                ErrorFlag = true;
+            else
+                ErrorFlag = false;
         }
-        else if (BusterFlag == false) reSpeed();
+        else if (BusterFlag == false && ErrorFlag)
+        {
+            DefaultMoveSpeed();
+            // ErrorFlag = false;
+
+        }
+
     }
     void ReduceSize()
     {
@@ -356,8 +366,8 @@ public class PlayerScript : Player
     void TestSkill()//임시 테스트용 J
     {
         if (Input.GetKeyDown(KeyCode.A))
-            // PlaySkill();
-            SkillBtn.GetComponent<SkillBtn>().UseSkill();
+            PlaySkill();
+            // SkillBtn.GetComponent<SkillBtn>().UseSkill();
 
     }
 
@@ -380,28 +390,26 @@ public class PlayerScript : Player
         {
             var bubbleSound = Instantiate(BubbleSound, transform.position, Quaternion.Euler(0, 0, 0));
             bubbleSound.transform.parent = transform;
-            chSpeed();
+            FastSpeed(1);
             BusterFlag = true;
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            chSpeed();
+            FastSpeed(1);
 
             BusterFlag = true;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Destroy(GameObject.FindWithTag("BS"));
-            reSpeed();
-            BusterFlag = false;
+            if (BusterFlag)
+            {
+                Destroy(GameObject.FindWithTag("BS"));
+                // DefaultMoveSpeed();
+                BusterFlag = false;
+            }
         }
     }
-    public void TempReSpped()
-    {
-        MovementSpeed = TempMovementSp + transform.localScale.y / 2; // J
-        BusterSpeed = TempBusterSp + transform.localScale.y / 2; // J
-        RotationSpeed = TempRotateSp + transform.localScale.y / 2; // J
-    }
+
     public void RecuveryBusterGage()//부스터회복
     {
         timer_ += Time.deltaTime;

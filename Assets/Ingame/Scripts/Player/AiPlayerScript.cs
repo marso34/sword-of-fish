@@ -60,8 +60,8 @@ public class AiPlayerScript : Player
     }
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
-        if (BusterFlag) chSpeed();
-        else reSpeed();
+        if (BusterFlag) FastSpeed(1);
+        else DefaultMoveSpeed();
     }
     private void Update()
     {
@@ -150,7 +150,7 @@ public class AiPlayerScript : Player
                 OffSkillFlag(); // J
             InitState(); // J
             NotInit();
-            //reSpeed();
+            //DefaultMoveSpeed();
             CreateFlesh();
             Destroy(gameObject, 2f);
         }
