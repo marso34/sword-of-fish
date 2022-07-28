@@ -132,7 +132,6 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Level_ = 1;//초기 렙설정
-
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         TutorialLevel = 0;
         LoseFlag = false;
@@ -140,10 +139,7 @@ public class QuestManager : MonoBehaviour
         TutorialLev = 0;
         waitingTime = 2;
         TempTuLev = 0;
-
     }
-
-    // Update is called once per frFLame
     void Update()
     {
         if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
@@ -222,13 +218,12 @@ public class QuestManager : MonoBehaviour
         //else if (ShapeNum == 2) ShapeB_EndCheck();
         else if (ShapeNum == 3) ShapeC_EndCheck();
         else if (ShapeNum == 10) Tutorial_EndCheck();
-    }// 게임 끝나는거 체크
-
-
+    }// 게임 끝나는거 체
     public void Level_0_Action()
     {
         if (Level_ == 0)
-        {/*
+        {
+            /*
             ResetPlayerStat();
 
             if(TutorialLev < 3)
@@ -246,8 +241,6 @@ public class QuestManager : MonoBehaviour
             }*/
         }
     }
-
-
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
         if (Level_ == 1)
@@ -256,7 +249,6 @@ public class QuestManager : MonoBehaviour
             if (IngameLevel == 1)
             {
                 Destroy(GameObject.FindGameObjectWithTag("tt"));
-
                 //TutorialName.SetActive(false);
                 //GM.GetComponent<GameManager_>().ObjectCleaner();
                 ResetMaxCounter();// 모든 맥스카운터 0으로 초기화
@@ -264,7 +256,6 @@ public class QuestManager : MonoBehaviour
                 KnifeEnemyMaxCount = 4;// 칼든 적물고기 최대 4마리소환
                 MaxCount = 2;// 킬 보드에 표시된 킬스코어 2달성시 클리어
                 Player.transform.localPosition = Vector3.zero;
-
             }
             else if (IngameLevel == 2)
             {
@@ -320,14 +311,10 @@ public class QuestManager : MonoBehaviour
                 MaxCount = 1;
                 // 보스잡을시 클리어
             }
-
-
             TrashMaxCount = 5;
             Trash2MaxCount = 5;
-
             CurrentCount = 0;
         }
-
     }
     public void Level_2_Action()
     {
@@ -335,15 +322,12 @@ public class QuestManager : MonoBehaviour
         {
             if (IngameLevel == 1)
             {
-
             }
             if (IngameLevel == 2)
             {
-
             }
             if (IngameLevel == 3)
             {
-
             }
             if (IngameLevel == 4)
             {
@@ -393,7 +377,6 @@ public class QuestManager : MonoBehaviour
         Player.GetComponent<PlayerScript>().BosskillScore = 0;
         Player.GetComponent<PlayerScript>().BigTrashC = 0;
     }
-
     public void ObjectCleanerNextStage()//다음 소 스테이지로 갈 때 필수적으로 지워야할것들만 지움
     {
 
@@ -612,7 +595,6 @@ public class QuestManager : MonoBehaviour
         float realY = y + 5 * Xc;
         return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
     }
-
     Vector3 SetPosition(float x, float y, float z)
     {
         return new Vector3(x, y, z);
@@ -694,7 +676,9 @@ public class QuestManager : MonoBehaviour
         var Obj = Instantiate(BubblesShiledObj, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
         BubblesShiledOC++;
     }
-
+    public void CreateTrashRope(){
+        
+    }
     public void CamAnimation()//미구현
     {
         //검정화면만들기  UI지우기, 캠이동하기, 소리재생, 원래 캐릭비추기 특정 몹 비추기
@@ -735,8 +719,6 @@ public class QuestManager : MonoBehaviour
 
 
     }// Shape초기화
-
-
     public void ShapeA_Init()
     {
         CurrentCountInit();
@@ -759,29 +741,27 @@ public class QuestManager : MonoBehaviour
                 QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = TakoBossIcon;
             }
             QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
-
         }
         if(Level_ == 2){
             if(IngameLevel == 1){
-                
+                //쓰레기줄 생성, 가운데 쓰레기 부수면 통과.
             }
             if(IngameLevel == 2){
-
+                // 아기 물고기 디펜스  
             }
             if(IngameLevel == 3){
-
+                // 새로운 물고기 10마리, 어태커 3마리 잡기
             }
             if(IngameLevel == 4){
-
+                // 거대쓰레기 산 파괴
             }
             if(IngameLevel == 5){
-
+                // 
             }
             
         }
 
     }//갯수보두 초기화
-
     /*
     public void ShapeB_Init()
     {
@@ -873,7 +853,6 @@ public class QuestManager : MonoBehaviour
         }
 */
     }//점령전
-
     public void EndGameCheck()// 게임 끝낫나 체크
     {
         if (GM.GetComponent<GameManager_>().EndFlag == false)
@@ -899,7 +878,6 @@ public class QuestManager : MonoBehaviour
             }
         }
     }//게임끝났는지 체크
-
     public void Tutorial_EndCheck()
     {
         if (EndTutorial)
@@ -911,8 +889,6 @@ public class QuestManager : MonoBehaviour
         }
 
     }
-
-
     public void bornguide()
     { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
 
@@ -1097,8 +1073,6 @@ public class QuestManager : MonoBehaviour
         }
 
     }
-
-
 }
 
 

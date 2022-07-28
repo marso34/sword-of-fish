@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
 
     public void InitTemp()
     {
+        RotationSpeed = 1200f;
         TempMovementSp = 2.3f; //J
         TempBusterSp = 4.6f;     // J
         TempRotateSp = RotationSpeed;   // J
@@ -504,7 +505,7 @@ public class Player : MonoBehaviour
 
             }
 
-            RB.velocity = dir * Speed * Time.deltaTime * 60;
+            RB.velocity = dir * Speed * Time.deltaTime * 60f;
             // transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?ò§Î∏åÏ†ù?ä∏ ?ù¥?èô?ï®?àò https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?óê?Çò?ò® ÏΩîÎìúÎ•? ?Ç¥Ïß? Î≥??òï?ïúÍ≤?.   
             rota();
 
@@ -626,7 +627,7 @@ public class Player : MonoBehaviour
     }//?Ç¨?ïòÎ©? ?ã§?ñâ?êò?äî?ï®?àò
     public virtual void CheckWall()
     {
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
+        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1f, LayerMask.GetMask("Wall"));
         if (ray2.collider != null)
         {
             transform.position = ray2.point;

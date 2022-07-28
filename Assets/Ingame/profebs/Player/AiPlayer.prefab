@@ -496,6 +496,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2866431025190176503}
     m_Modifications:
+    - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4279356489891661302, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: MyKnife
       value: 
@@ -559,6 +567,10 @@ PrefabInstance:
     - target: {fileID: 4523526302925924329, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_Name
       value: body
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523526302925924329, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7053345325316883323, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_Radius

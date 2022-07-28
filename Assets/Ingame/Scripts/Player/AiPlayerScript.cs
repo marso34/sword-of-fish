@@ -284,11 +284,11 @@ public class AiPlayerScript : Player
     public override void CheckWall()
     {
 
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
-        if (ray2.collider != null)
-        {
-            transform.position = ray2.point;
-        }
+        // RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
+        // if (ray2.collider != null)
+        // {
+        //     transform.position = ray2.point;
+        // }
 
     }//맵밖으로 못나가게하는함수
 
