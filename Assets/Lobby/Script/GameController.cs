@@ -21,7 +21,6 @@ public class GameController : MonoBehaviour
         Setting.SetActive(false);
         FishShop.SetActive(false);
         SwordShop.SetActive(false);
-
        // retry.SetActive(false);
     }
 }

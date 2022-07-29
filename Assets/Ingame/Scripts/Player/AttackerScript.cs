@@ -48,24 +48,18 @@ public class AttackerScript : Player
         bulletRange = new Vector3(10f, 4f, 0);
 
         RotationSpeed = 720f;
-        //TempMovementSp = 2.3f; //J
-        //TempBusterSp = 4.6f;     // J
-
-        TempMovementSp = 0f; //J
-        TempBusterSp = 0f;
-
+        TempMovementSp = 2.3f; //J
+        TempBusterSp = 4.6f;     // J
         TempRotateSp = RotationSpeed;   // J
         InitState();
 
         flag = true;
         SkillCount = 0;
 
-        MovementSpeed = 0f;
-        HP = 10; //4
+
+        HP = 4;
         Life = true;
         FRZFlag = false;
-
-
 
         state = State.Move;
         StartCoroutine("Start_");
@@ -170,8 +164,7 @@ public class AttackerScript : Player
         }
         else if (flag)
         {
-            //HP = (int)(transform.localScale.y * 3);
-            HP = 10;
+            HP = (int)(transform.localScale.y * 3);
             flag = false;
         }
     }

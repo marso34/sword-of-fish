@@ -129,11 +129,9 @@ public class QuestManager : MonoBehaviour
     public Transform PlayerT;
     public int TutorialLevel;
     public GameObject body;
-    public bool TIsMove = false;
-
     void Start()
     {
-        Level_ = 1;//초기 렙설정
+        Level_ = 0;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         TutorialLevel = 0;
         LoseFlag = false;
@@ -417,19 +415,18 @@ public class QuestManager : MonoBehaviour
             tutorial = Instantiate(tutorial);
             TutorialName = Instantiate(TutorialName);
             TutoBack = Instantiate(TutoBack);
-            
+
             
             tutorial.transform.SetParent(Canvas);
             TutoBack.transform.SetParent(GM.transform);
             tutorial.transform.SetSiblingIndex(0);
             tutorial.SetActive(false);
             TutoBack.SetActive(false);
-            TutorialPlan.SetActive(false);
             A = true;
 
             TutorialName.transform.SetParent(IntroPenelT);
-            TutorialName.transform.localPosition = new Vector3(0, 0, 0);        
-            
+            TutorialName.transform.localPosition = new Vector3(160, -500, 0);        
+            TutorialPlan.transform.localPosition = new Vector3(265, -120, 0);
             //GameObject.FindWithTag("IntroPanel").SetActive(false);
 
 
@@ -898,36 +895,23 @@ public class QuestManager : MonoBehaviour
     public void bornguide() { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
         
         
-
+        //Guide = GameObject.Find("GuidePet(Clone)").gameObject;
+        
+        //Guide.transform.SetParent(PlayerT);
+        //tutorial.SetActive(true);
+        //TutorialPlan.SetActive(true);     
 
         GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject.SetActive(true);
         GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject.SetActive(true);
 
     } 
-    public void NextTutorial()
-    {
-        Player.GetComponent<PlayerScript>().StopMove();
-                    
-        tutorial.SetActive(true);
-        TutorialPlan.SetActive(false);
-
-        Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
-        Guide.GetComponent<GuidePet>().BornGuide();
-        tutorial.GetComponent<Tutorial>().Touch = 0;
-                    
-        TutoBack.SetActive(true);
-                    
-                    
-        TutorialLev++;
-    }
-    
     public void Tutorial_Init() //플레이어 캔버스에 있는거 넣어둠
     {
 
-                
-        TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
+        
+
         tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
-        //TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
+        TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
         TutoBack = GameObject.Find("GameManager").transform.Find("TutoBack(Clone)").gameObject;
         //TutoBack.gameObject(SortingLayer(1));
         if (TutorialLev == 1) //이동
@@ -942,7 +926,7 @@ public class QuestManager : MonoBehaviour
                     TutoBack.SetActive(true);
                     
                     tutorial.SetActive(true);
-                    Vector3 direction = Player.transform.localRotation * new Vector3(0,0,-90);
+                    Vector3 direction = Player.transform.localRotation * new Vector3(0,0,90);
                     A = false;
                 }
             
@@ -951,7 +935,7 @@ public class QuestManager : MonoBehaviour
             TutorialPlan.GetComponent<Text>().text = "이동하면서 부스터를 사용해보세요";
             
             if (Player.GetComponent<PlayerScript>().BusterFlag
-                && Player.GetComponent<PlayerScript>().cutGauge < 70 && Player.transform.localRotation.z != 0) 
+                && Player.GetComponent<PlayerScript>().cutGauge < 70) 
             {
 
                 timer += Time.deltaTime;
@@ -959,9 +943,22 @@ public class QuestManager : MonoBehaviour
                 {
                     
                     timer = 0;
-                    Player.GetComponent<PlayerScript>().BusterFlag = false;
+
+
+
+                    Player.GetComponent<PlayerScript>().StopMove();
+                    
+                    tutorial.SetActive(true);
+                    TutorialPlan.SetActive(true);
+
+                    Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
+                    Guide.GetComponent<GuidePet>().BornGuide();
+                    tutorial.GetComponent<Tutorial>().Touch = 0;
                     TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
-                    NextTutorial();
+                    
+                    TutoBack.SetActive(true);
+                    Player.GetComponent<PlayerScript>().BusterFlag = false;
+                    TutorialLev++;
 
                 }
             }
@@ -983,12 +980,24 @@ public class QuestManager : MonoBehaviour
 
 
                     timer = 0;
-                    TutorialPlan.GetComponent<Text>().text = "쓰레기를 치우고 나온 아이템을 먹고"+"\n"+"아이템 버튼을 눌러 사용하세요";
-                    tutorial.GetComponent<Tutorial>().OnVideo1 = true;
-                    tutorial.GetComponent<Tutorial>().StopClick = true;
-                    NextTutorial();
-                    itembtn = GameObject.Find("Player(Clone)").transform.Find("Canvas").transform.Find("NotEndGame").transform.Find("ItemBtn").gameObject;
+                    
 
+                    //bornguide();
+                    Player.GetComponent<PlayerScript>().StopMove();
+                    tutorial.SetActive(true);
+                    TutorialPlan.SetActive(true);
+                    Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
+                    Guide.GetComponent<GuidePet>().BornGuide();
+                    tutorial.GetComponent<Tutorial>().Touch = 0;
+                    TutorialPlan.GetComponent<Text>().text = "쓰레기를 치우고 나온 아이템을 먹고 아이템 버튼을 눌러 사용하세요";
+                    
+                    TutoBack.SetActive(true);
+                    
+                    TutorialLev++;
+
+                    itembtn = GameObject.Find("Player(Clone)").transform.Find("Canvas").transform.Find("NotEndGame").transform.Find("ItemBtn").gameObject;
+                    
+                    //TrashMaxCount = 5;
                     Trash2MaxCount = 5;
 
 
@@ -1009,11 +1018,18 @@ public class QuestManager : MonoBehaviour
 
 
                     timer = 0;
-                    TutorialPlan.GetComponent<Text>().text = "공격하는 물고기를 여러번 찌르고"+"\n"+"나온 시체를 먹으세요";
-                    tutorial.GetComponent<Tutorial>().OnVideo2 = true;
-                    tutorial.GetComponent<Tutorial>().StopClick = true;
-                    tutorial.GetComponent<Tutorial>().BornAtt = false;
-                    NextTutorial();
+                    
+                    Player.GetComponent<PlayerScript>().StopMove();
+                    tutorial.SetActive(true);
+                    TutorialPlan.SetActive(true);
+
+                    Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
+                    Guide.GetComponent<GuidePet>().BornGuide();
+                    tutorial.GetComponent<Tutorial>().Touch = 0;
+                    TutorialPlan.GetComponent<Text>().text = "공격하는 물고기를 여러번 찌르고 나온 시체를 먹으세요";
+                    
+                    TutoBack.SetActive(true);
+                    TutorialLev++;
 
 
 
@@ -1023,12 +1039,18 @@ public class QuestManager : MonoBehaviour
 
         else if (TutorialLev == 4)
         {
-            //Cursor.visible = false;
             body = GameObject.Find("Player(Clone)").transform.Find("body").gameObject;
-
-            if(tutorial.GetComponent<Tutorial>().TouchMo == true && tutorial.GetComponent<Tutorial>().BornAtt)
+            if(tutorial.GetComponent<Tutorial>().TouchMo == false)
             {
-                BulletEnemyMaxCount = 1;
+                    BulletEnemyMaxCount = 1;
+            }
+            else if(tutorial.GetComponent<Tutorial>().TouchMo == true)
+            {
+                BulletEnemyMaxCount = 0;
+                if(tutorial.GetComponent<Tutorial>().Touch == 1 )
+                {
+                    BulletEnemyMaxCount = 1;
+                }
             }
 
 
