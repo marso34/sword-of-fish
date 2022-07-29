@@ -933,6 +933,11 @@ public class QuestManager : MonoBehaviour
         if (TutorialLev == 1) //이동
         {
 
+
+                if(A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
+                {
+                    //tutorial.SetActive(true);
+
                     //TutorialPlan.SetActive(true);
                     TutoBack.SetActive(true);
                     
@@ -942,30 +947,17 @@ public class QuestManager : MonoBehaviour
                 }
             
 
-            if (A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
-            {
-                //tutorial.SetActive(true);
-
-                TutorialPlan.SetActive(true);
-                TutoBack.SetActive(true);
-
-                tutorial.SetActive(true);
-                Vector3 direction = Player.transform.localRotation * new Vector3(0, 0, 90);
-                A = false;
-            }
-
-
-
+            
             TutorialPlan.GetComponent<Text>().text = "이동하면서 부스터를 사용해보세요";
-
+            
             if (Player.GetComponent<PlayerScript>().BusterFlag
                 && Player.GetComponent<PlayerScript>().cutGauge < 70 && Player.transform.localRotation.z != 0) 
             {
 
                 timer += Time.deltaTime;
-                if (timer > waitingTime - 2) //성공하고 좀이따 성공했다고 띄움
+                if (timer > waitingTime-2) //성공하고 좀이따 성공했다고 띄움
                 {
-
+                    
                     timer = 0;
                     Player.GetComponent<PlayerScript>().BusterFlag = false;
                     TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
@@ -975,7 +967,7 @@ public class QuestManager : MonoBehaviour
             }
 
 
-        
+        }
 
 
         else if (TutorialLev == 2) //부스터 튜토리얼
