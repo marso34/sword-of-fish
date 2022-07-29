@@ -892,8 +892,7 @@ public class QuestManager : MonoBehaviour
         }
 
     }
-    public void bornguide()
-    { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
+
 
 
     public void bornguide() { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
@@ -976,7 +975,7 @@ public class QuestManager : MonoBehaviour
             }
 
 
-        }
+        
 
 
         else if (TutorialLev == 2) //부스터 튜토리얼
@@ -1061,6 +1060,7 @@ public class QuestManager : MonoBehaviour
         }
 
     }
+    
 }
 
 
