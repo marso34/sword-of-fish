@@ -27,7 +27,8 @@ public class HitFeel : MonoBehaviour
 
     public void TimeStop(float weight)
     {
-
+        Vibrate vibrate1 = new Vibrate();
+        vibrate1.vibrate(30);
         FishWeight = weight;
         if (!stopping)
         {

@@ -49,7 +49,7 @@ public class Bombs : Item
 
             var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f)); // 아이템 먹는 이펙트
             var b = Instantiate(BombSound2, transform.position, Quaternion.Euler(0f, 0f, 20f)); // 아이템 먹는 소리
-            Destroy(gameObject, 0.2f);
+            Destroy(gameObject);
         }
     }
 }

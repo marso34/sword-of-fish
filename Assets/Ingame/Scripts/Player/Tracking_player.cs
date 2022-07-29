@@ -40,6 +40,7 @@ public class Tracking_player : MonoBehaviour
         }
 
     }
+   
     void Update()
     {
         
@@ -47,7 +48,7 @@ public class Tracking_player : MonoBehaviour
         if (target != null && target.tag == "Player")
         {
             transform.GetComponent<Camera>().fieldOfView = 22+target.transform.localScale.y*3f;
-            transform.position = target.position + new Vector3(0f, 0f, z);//Tracking object
+            transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
             RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
             if (ray2.collider != null)
             {

@@ -196,6 +196,7 @@ public class AttackerScript : Player
     }
     void Update()
     {
+        CheckWall();
         EmptyKnife();
         Init();
         lookrota();

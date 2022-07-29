@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1147069991
-  m_SortingLayer: 1
+  m_SortingLayerID: -95065453
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1020138212, guid: 3d5f32f0785471649bf3eef27e2072d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
+  FRZFlag: 0
 --- !u!50 &2283958417632157507
 Rigidbody2D:
   serializedVersion: 4
