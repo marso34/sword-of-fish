@@ -14,7 +14,7 @@ public class GuidePet : MonoBehaviour
 
     public GameObject tutorial;
     public GameObject TutoBack;
-    public GameObject TutorialPlan;
+
     public bool lev4up = false; 
     public bool A = false;
     
@@ -22,8 +22,8 @@ public class GuidePet : MonoBehaviour
     {
         tutorial.SetActive(false);
         TutoBack.SetActive(false);
-        Debug.Log("뷁");
         GameObject.Find("Player(Clone)").transform.Find("Canvas").gameObject.SetActive(true);
+
 
     }
 
@@ -31,7 +31,6 @@ public class GuidePet : MonoBehaviour
         tutorial.SetActive(true);
 
         GameObject.Find("Player(Clone)").transform.Find("Canvas").gameObject.SetActive(false);
-        GameObject.Find("Canvas").transform.Find("TutoBack(Clone)").gameObject.SetActive(true);
 
         
     }
@@ -41,18 +40,19 @@ public class GuidePet : MonoBehaviour
         //QM.GetComponent<QuestManager>().A = true;
         //QM.GetComponent<QuestManager>().bornguide(); 
         //Guide.transform.SetParent(Player.transform);
-        Guide.transform.localPosition = new Vector3(-4, 6, 0); //내려오기 전에 화면 위에 있는 위치
+        Guide.transform.localPosition = new Vector3(-6, -4.05f, 0); //내려오기 전에 화면 위에 있는 위치
         
 
     }
 
-
+    
 
     public void ShowMove() //가이드 물고기 자막 옆으로 이동
     {
-        Vector3 destination = new Vector3(-4, 3, 0);
+        Vector3 destination = new Vector3(-3, -4.05f, 0);
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, destination, 0.05f);
+
         //QM.GetComponent<QuestManager>().HideAiSkin();
 
     }
@@ -60,12 +60,9 @@ public class GuidePet : MonoBehaviour
     {
 
 
-        Vector3 EndDes = new Vector3(-4, 10, 0);
+        Vector3 EndDes = new Vector3(-6, -4.05f, 0);
         Vector3 speed = Vector3.zero; 
         transform.localPosition = Vector3.Lerp(transform.localPosition, EndDes, 0.05f);
-
-        Debug.Log("aa");
-   
         Invoke("OnCanvas", 1f);
 
             
@@ -77,13 +74,13 @@ public class GuidePet : MonoBehaviour
         TutoBack = GameObject.Find("TutoBack(Clone)");
 
         tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
-        TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
         
         Player = GameObject.Find("Player(Clone)").transform.gameObject;
 
-       Player.GetComponent<PlayerScript>().StopMove();
+        Player.GetComponent<PlayerScript>().StopMove();
 
-        Vector3 direction = Guide.transform.localRotation * new Vector3(0,0,90);
+
+        //Vector3 direction = Guide.transform.localRotation * new Vector3(0,0,90);
 
 
     }

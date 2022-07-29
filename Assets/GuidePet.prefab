@@ -27,14 +27,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8436214338098216722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1000, y: 1000}
@@ -108,9 +108,8 @@ MonoBehaviour:
   GM: {fileID: 7198577709366755191, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
   Guide: {fileID: 8436214338098216722}
   QM: {fileID: 3738707761099104101, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
-  tutorial: {fileID: 0}
-  TutoBack: {fileID: 0}
-  TutorialPlan: {fileID: 0}
+  tutorial: {fileID: 5996496855758631750, guid: 109a31da881ead64a9de7aea77a984c7, type: 3}
+  TutoBack: {fileID: 1672480670797088065, guid: ffe8d57e824832644b8117d484a28a78, type: 3}
   lev4up: 0
   A: 0
 --- !u!223 &8436214338098216175

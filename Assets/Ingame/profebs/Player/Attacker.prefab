@@ -138,12 +138,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b98bd55b316fee4db86f00067c428b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RB: {fileID: 0}
   AnimFlame: 10
   DieAnimFlame: 10
   Barriar: {fileID: 0}
   Skill: {fileID: 4560300863513622048, guid: dcc5e160bf7069b43bb3b3c4378f0c25, type: 3}
   Skill2: {fileID: 4468575930644372405, guid: fa16d19a804143d4e9edb2849f4cf7a7, type: 3}
-  isMove: 1
+  isMove: 0
   state: 0
   PlayerCount: 8
   Speed: 0
@@ -190,7 +191,7 @@ MonoBehaviour:
   TutorialLev4: 0
   Timer33: 0
   Timer22: 0
-  MoveTime: 5
+  MoveTime: 0
   TuLev1: 0
   KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
@@ -202,6 +203,7 @@ MonoBehaviour:
   waitingTime: 0
   SkillCount: 0
   flag: 0
+  PlayerP: {fileID: 0}
 --- !u!1 &4868236191001879870
 GameObject:
   m_ObjectHideFlags: 0

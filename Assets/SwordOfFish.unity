@@ -1699,6 +1699,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2014157509}
     - target: {fileID: 1028917796791138687, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 1028917796791138687, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028917796791138687, guid: 50b0e6338a533be459527f8efb0bf192, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
