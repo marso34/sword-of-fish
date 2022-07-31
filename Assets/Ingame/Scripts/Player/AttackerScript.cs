@@ -35,7 +35,7 @@ public class AttackerScript : Player
 
         MFish = Skin.transform.GetComponent<SpriteRenderer>();
         MKnife = MyKnife.transform.GetComponent<SpriteRenderer>();
-
+        RB = transform.GetComponent<Rigidbody2D>();
         time = 0;
 
         if (transform.name == "Boss") FishNumber = 2;
@@ -185,7 +185,11 @@ public class AttackerScript : Player
     public void MoveAtt()
     {
         dir = PlayerP.transform.position - transform.position;
-        if (Mathf.Abs(dir.magnitude) > Mathf.Abs(bulletRange.magnitude)) transform.Translate(dir * Speed / 2 * Time.deltaTime, Space.World);
+        if (Vector3.Distance(PlayerP.transform.position, transform.position) >= bulletRange.magnitude)
+            transform.position = Vector3.MoveTowards(transform.position, PlayerP.transform.position, Speed * Time.deltaTime);
+        else RB.velocity = Vector3.zero;
+
+
     }
     void Update()
     {
@@ -201,7 +205,7 @@ public class AttackerScript : Player
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
-                 SkillCount++;
+                SkillCount++;
                 var bullet_ = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 bullet_.GetComponent<bullet>().SetDir(dir);
                 timer = 0f;
@@ -210,12 +214,12 @@ public class AttackerScript : Player
                     SkillFlag_ = false;
                     if (transform.name == "Boss")
                     {
-                        C =  Color.red;
+                        C = Color.red;
                         S.color = C;
                         Invoke("UseSkill", 4f);
                     }
                 }
-               
+
             }
             transform.Translate(dir.normalized * 0.01f * Time.deltaTime, Space.World);
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.

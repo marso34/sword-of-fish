@@ -322,7 +322,7 @@ public class PlayerScript : Player
         else if (BusterFlag == false && ErrorFlag)
         {
             DefaultMoveSpeed();
-            // ErrorFlag = false;
+            ErrorFlag = false;
 
         }
 

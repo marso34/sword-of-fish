@@ -20,6 +20,8 @@ public class Skill2 : MonoBehaviour
 
     public GameObject BboomEffect;
     public GameObject StabSound;
+    public ParticleSystem DelEffect;
+
     bool FRZFlag;
     Color c;
     SpriteRenderer S;
@@ -130,10 +132,11 @@ public class Skill2 : MonoBehaviour
     }
     public void DestroyBossSkill(GameObject other)
     {
-        Instantiate(BboomEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        var KE = Instantiate(DelEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        KE.transform.parent = transform;
         Instantiate(StabSound, transform.position, Quaternion.Euler(0f, 0f, 0f));
         other.transform.parent.GetComponent<PlayerScript>().Handlebar(8f);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.01f);
     }
 
     void FRZOn()

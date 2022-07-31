@@ -16,6 +16,7 @@ public class Trush : MonoBehaviour
     public GameObject StabSound;
     public GameObject BarrerSound;
     public Sprite[] Image;
+    public ParticleSystem DelEffect;
 
     SpriteRenderer Skin;
 
@@ -160,7 +161,9 @@ public class Trush : MonoBehaviour
                 if (HP <= 0)
                 {
                     other.transform.parent.gameObject.GetComponent<PlayerScript>().TrushCount++;
-                    var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 0 + Random.Range(-180, 180)));
+                    var KE = Instantiate(DelEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                    KE.transform.parent = transform.GetChild(0);
+
                     var Sound1 = Instantiate(KillSound_, transform.position, Quaternion.Euler(0f, 0f, 0f));
                     other.transform.parent.GetComponent<PlayerScript>().Handlebar(15f);
                     {
