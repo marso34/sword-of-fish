@@ -69,8 +69,10 @@ public class Skill2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("Ω∫≈≥ ¡¢√À");
         if (other.transform.tag == "Knife" && other.transform.parent.tag == "Player" && transform.name == "Bullet" && transform.tag == "SkillB")
         {
+            Debug.Log("∫∏Ω∫ Ω∫≈≥ ¡¢√À");
             DestroyBossSkill(other.gameObject);
         }
         if (other.gameObject.tag == "FRZ")

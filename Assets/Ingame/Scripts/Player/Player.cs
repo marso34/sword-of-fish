@@ -124,7 +124,6 @@ public class Player : MonoBehaviour
     public void DefaultMoveSpeed()
     {
         if (transform.tag == "Player")
-        Debug.Log("원래 속도");
         Speed = TempMovementSp + transform.localScale.y / 2;
         MovementSpeed = TempMovementSp + transform.localScale.y / 2;
         BusterSpeed = TempBusterSp + transform.localScale.y / 2;
@@ -137,7 +136,6 @@ public class Player : MonoBehaviour
     {
         RotationSpeed = TempRotateSp;
         StateRotateFlag_ = false;
-        Debug.Log("원래 회전");
     }
 
     public void StopMoveSpeed()
@@ -146,7 +144,6 @@ public class Player : MonoBehaviour
         MovementSpeed = 0.0001f;
         BusterSpeed = 0.0001f;
         StateMoveFlag_ = true;
-        Debug.Log("정지");
     }
 
     public void StopRotateSpeed()
