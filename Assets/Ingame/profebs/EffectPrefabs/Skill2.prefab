@@ -129,7 +129,6 @@ MonoBehaviour:
   GM: {fileID: 0}
   BboomEffect: {fileID: 2545687451895993892, guid: 57f90e0b00add664081cb039459558ed, type: 3}
   StabSound: {fileID: 3093351488500678861, guid: ab2e30973f1f93e40b6760f076dd1a6a, type: 3}
-  DelEffect: {fileID: 8621052090283645862, guid: cce3954715d9da7418cc338090e9b747, type: 3}
 --- !u!50 &-6156800504499827921
 Rigidbody2D:
   serializedVersion: 4

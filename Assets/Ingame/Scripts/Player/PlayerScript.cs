@@ -323,7 +323,6 @@ public class PlayerScript : Player
         {
             DefaultMoveSpeed();
             ErrorFlag = false;
-
         }
 
     }
@@ -519,7 +518,7 @@ public class PlayerScript : Player
     public void StopMove()  //이동튜토리얼에서 사용
     {
         value.joyTouch = Vector3.zero;
-        transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         transform.localScale = new Vector3(1, 1, 1);
     }
 }

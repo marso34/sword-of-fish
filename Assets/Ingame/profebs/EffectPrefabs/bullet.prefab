@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5049296764597003781}
   - component: {fileID: 9104442979640858668}
   - component: {fileID: 9069920458319996169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bullet
   m_TagString: Trush
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -95,7 +95,6 @@ MonoBehaviour:
   - {fileID: 1170528122, guid: 14f5c598a7db8894abed39941bde7ae9, type: 3}
   - {fileID: -1230434194, guid: 656333538e46b3f4c96ced7a41c54dae, type: 3}
   - {fileID: -1230434194, guid: 656333538e46b3f4c96ced7a41c54dae, type: 3}
-  DelEffect: {fileID: 8621052090283645862, guid: dc2697f04356d7d4eb75ee8ddf1273ef, type: 3}
   HP: 0
   FRZFlag: 0
 --- !u!58 &9104442979640858668
@@ -136,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2983816746746282219}
   - component: {fileID: 2497233134820759815}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,9 +312,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6011719199607239918, guid: 4cb0c2d74189d4d458e711842f14338d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6358390344796697473, guid: 4cb0c2d74189d4d458e711842f14338d, type: 3}
       propertyPath: m_Name
       value: ItemEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358390344796697473, guid: 4cb0c2d74189d4d458e711842f14338d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb0c2d74189d4d458e711842f14338d, type: 3}

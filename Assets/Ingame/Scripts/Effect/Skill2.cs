@@ -20,8 +20,6 @@ public class Skill2 : MonoBehaviour
 
     public GameObject BboomEffect;
     public GameObject StabSound;
-    public ParticleSystem DelEffect;
-
     bool FRZFlag;
     Color c;
     SpriteRenderer S;
@@ -59,6 +57,9 @@ public class Skill2 : MonoBehaviour
                 }
             }
         }
+        else {
+            RB.velocity = dir.normalized * 0.001f * Time.deltaTime * 60f;
+        }
         if (Timer > 5f)
             DelFalg = true;
 
@@ -69,10 +70,8 @@ public class Skill2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Ω∫≈≥ ¡¢√À");
         if (other.transform.tag == "Knife" && other.transform.parent.tag == "Player" && transform.name == "Bullet" && transform.tag == "SkillB")
         {
-            Debug.Log("∫∏Ω∫ Ω∫≈≥ ¡¢√À");
             DestroyBossSkill(other.gameObject);
         }
         if (other.gameObject.tag == "FRZ")
@@ -134,11 +133,10 @@ public class Skill2 : MonoBehaviour
     }
     public void DestroyBossSkill(GameObject other)
     {
-        var KE = Instantiate(DelEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        KE.transform.parent = transform;
+        Instantiate(BboomEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
         Instantiate(StabSound, transform.position, Quaternion.Euler(0f, 0f, 0f));
         other.transform.parent.GetComponent<PlayerScript>().Handlebar(8f);
-        Destroy(gameObject, 0.01f);
+        Destroy(gameObject);
     }
 
     void FRZOn()

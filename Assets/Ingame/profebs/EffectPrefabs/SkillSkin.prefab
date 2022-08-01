@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 293558142112814242}
   - component: {fileID: 6823512264493351258}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SkillSkin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

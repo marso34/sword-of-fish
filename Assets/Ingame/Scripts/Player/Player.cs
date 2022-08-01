@@ -123,33 +123,49 @@ public class Player : MonoBehaviour
 
     public void DefaultMoveSpeed()
     {
-        if (transform.tag == "Player")
-        Speed = TempMovementSp + transform.localScale.y / 2;
-        MovementSpeed = TempMovementSp + transform.localScale.y / 2;
-        BusterSpeed = TempBusterSp + transform.localScale.y / 2;
-        StateMoveFlag_ = false;
-        
+        if (StateMoveFlag_ == false)
+        {
+            if (transform.tag == "Player")
+                Debug.Log("ø¯∑° º”µµ");
+            Speed = TempMovementSp + transform.localScale.y / 2;
+            MovementSpeed = TempMovementSp + transform.localScale.y / 2;
+            BusterSpeed = TempBusterSp + transform.localScale.y / 2;
+            StateMoveFlag_ = false;
+        }
         // 
     }
 
     public void DefaultRotateSpeed()
     {
-        RotationSpeed = TempRotateSp;
-        StateRotateFlag_ = false;
+        if (StateRotateFlag_ == false)
+        {
+            RotationSpeed = TempRotateSp;
+            StateRotateFlag_ = false;
+            Debug.Log("ø¯∑° »∏¿¸");
+        }
     }
 
     public void StopMoveSpeed()
     {
-        Speed = 0.0001f;
-        MovementSpeed = 0.0001f;
-        BusterSpeed = 0.0001f;
-        StateMoveFlag_ = true;
+        if (StateMoveFlag_ == false)
+        {
+            Speed = 0f;
+            MovementSpeed = 0f;
+            BusterSpeed = 0f;
+            StateMoveFlag_ = true;
+            Debug.Log("¡§¡ˆ");
+             Invoke("InitState",2.5f);
+        }
     }
 
     public void StopRotateSpeed()
     {
-        RotationSpeed = 0.0001f;
-        StateRotateFlag_ = true;
+        if (StateRotateFlag_ == false)
+        {
+            RotationSpeed = 0.0001f;
+            StateRotateFlag_ = true;
+
+        }
     }
 
     public void FastSpeed(float index)// Î¨ºÍ≥†Í∏? ?ù¥?èô?Üç?èÑ Î©??ã∞?óê?Ñú ?èôÍ∏∞Ìôî.
@@ -166,10 +182,13 @@ public class Player : MonoBehaviour
         {
             MovementSpeed = index;
             Speed = index;
-            Debug.Log(Speed +"slowMove");
+            Debug.Log(Speed + "slowMove");
             BusterSpeed = index * 2;
             StateMoveFlag_ = true;
             ErrorFlag = false;
+            SetColor(Color.green);
+            Invoke("InitState",2.5f);
+
         }
     }
 
@@ -178,7 +197,7 @@ public class Player : MonoBehaviour
         if (StateRotateFlag_ == false)
         {
             RotationSpeed = index * 300;
-            Debug.Log(RotationSpeed +"slowRotate");
+            Debug.Log(RotationSpeed + "slowRotate");
             StateRotateFlag_ = true;
         }
     }
@@ -188,8 +207,11 @@ public class Player : MonoBehaviour
         if (Life)
         {
             C = Color.white;
+            StateMoveFlag_ = false;
+            StateRotateFlag_ = false;
             DefaultMoveSpeed();
             DefaultRotateSpeed();
+
         }
     }
     public void NotInit()
@@ -347,7 +369,11 @@ public class Player : MonoBehaviour
         S.color = C;
         MKnife.color = C;
     }
-
+    public void SetColor(Color c){
+        S.color = c;
+        MKnife.color = C;
+        C = c;
+    }
     public void translucence() // J Î∞òÌà¨Î™ÖÌïòÍ≤?
     {
         C.a = 0.5f;
@@ -479,7 +505,6 @@ public class Player : MonoBehaviour
     }
     public void rota()
     {
-        Vector2 temp = dir;
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity.normalized);//?ù¥?èôÎ∞©Ìñ•?óê ÎßûÍ≤å ?†ïÎ©¥ÏùÑ Î≥¥ÎèÑÎ°? ?öå?†ÑÍ∞? Î∞õÏïÑ?ò§Í∏?.
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?îå?†à?ù¥?ñ¥?ò§Î∏åÏ†ù?ä∏?óêÍ≤? Î∞õÏïÑ?ò® ?öå?†ÑÍ∞? ?†Å?ö©
         float x_ = transform.localScale.x;
@@ -499,6 +524,8 @@ public class Player : MonoBehaviour
                     Timer33++;
 
                 }
+
+
             }
 
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
@@ -623,7 +650,8 @@ public class Player : MonoBehaviour
     }//?Ç¨?ïòÎ©? ?ã§?ñâ?êò?äî?ï®?àò
     public virtual void CheckWall()
     {
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1f, LayerMask.GetMask("Wall"));
+        var zero = GameObject.FindGameObjectWithTag("Wall");
+        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (zero.transform.position - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
         if (ray2.collider != null)
         {
             transform.position = ray2.point;
@@ -655,6 +683,7 @@ public class Player : MonoBehaviour
     }
     public void CreateSkill(string Name) // J ?ä§?Ç¨ ÎßåÎìú?äî ?ï®?àò
     {
+
         var a = Instantiate(Skill, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
         a.transform.localPosition = Vector3.zero;
@@ -665,6 +694,7 @@ public class Player : MonoBehaviour
     {
         var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
+        
         a.transform.localPosition = Vector3.zero;
         a.transform.localScale = new Vector3(1f, 1f, 1f);
     }
@@ -673,6 +703,7 @@ public class Player : MonoBehaviour
     {
         var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
+        
         a.transform.localPosition = Vector3.zero;
         a.transform.localScale = new Vector3(1f, 1f, 1f);
         a.name = Name;

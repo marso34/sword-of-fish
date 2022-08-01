@@ -17,7 +17,8 @@ public class BodyInteraction : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").transform;
         Time.timeScale = 1;
     }
-    private void Update(){
+    private void Update()
+    {
         transform.localPosition = Vector3.zero;
     }
     public void OnCollisionEnter2D(Collision2D other2)
@@ -41,14 +42,20 @@ public class BodyInteraction : MonoBehaviour
     {
         if (other.gameObject.tag == "SkillB" && transform.tag == "Body")
         {
-            transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-            transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
-            transform.parent.gameObject.GetComponent<Player>().C = Color.green;
-            transform.parent.gameObject.GetComponent<Player>().ResetColor();
-            transform.parent.gameObject.GetComponent<Player>().Invoke("InitState", 2f);
+            if (other.name == "Bullet" && transform.parent.tag == "Player")
+            {
+                transform.parent.GetComponent<PlayerScript>().DieLife();
+                transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
+                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);    
+                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;           
+            }
 
-            other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
-            if (transform.parent.tag == "Player") transform.parent.GetComponent<Player>().DieLife();
+            if (transform.parent.tag == "AiPlayer")
+            {
+                transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
+                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
+                other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
+            }                 
 
         }
 
@@ -66,21 +73,14 @@ public class BodyInteraction : MonoBehaviour
             transform.parent.gameObject.GetComponent<Player>().ResetColor();
             transform.parent.GetComponent<Player>().StopMoveSpeed();
             transform.parent.GetComponent<Player>().StopRotateSpeed();
-            Invoke("resetPlayerStat", 2.5f);
+
 
         }
         if (other.gameObject.tag == "BossSkillA" && transform.tag == "Body")
             if (transform.parent.tag == "Player") transform.parent.GetComponent<Player>().DieLife();
     }
-    public void resetPlayerStat()
-    {
-        transform.parent.gameObject.GetComponent<Player>().C = Color.white;
-        transform.parent.GetComponent<Player>().InitState();
 
-        transform.parent.gameObject.GetComponent<Player>().ResetColor();
 
-    }
-    
     void StabbedKnife(GameObject other)
     {
         //Debug.Log(other.transform.tag +"iiiii");
@@ -102,7 +102,7 @@ public class BodyInteraction : MonoBehaviour
                     KE1.transform.localScale = transform.parent.localScale * R / 3f;
                     Flag_Still(other.transform.parent.gameObject);
                 }
-                
+
                 if (other.transform.parent.tag == "AiPlayer" && transform.parent.tag == "Player" && transform.parent.GetComponent<Player>().HP == 0)
                 {
                     StopTime_();
@@ -156,8 +156,6 @@ public class BodyInteraction : MonoBehaviour
             transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(1f);
             transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(1f);
             transform.parent.gameObject.GetComponent<Player>().C = Color.green;
-            transform.parent.gameObject.GetComponent<Player>().ResetColor();
-            transform.parent.gameObject.GetComponent<Player>().Invoke("InitState", 2f);
         }
     }
     void StopTime_()

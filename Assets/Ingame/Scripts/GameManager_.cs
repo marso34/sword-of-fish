@@ -151,6 +151,7 @@ public class GameManager_ : MonoBehaviour
         GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
         GameObject []BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
         GameObject V = GameObject.FindWithTag("V");
+        Destroy(GameObject.FindGameObjectWithTag("Stage"));
         Destroy(Kraken);
         Destroy(V);
         for (int i = 0; i < BigTrash.Length; ++i)

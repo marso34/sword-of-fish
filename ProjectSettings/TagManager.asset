@@ -59,6 +59,7 @@ TagManager:
   - Guide
   - TutorialPlan
   - TutoBack
+  - Goal
   layers:
   - Default
   - TransparentFX

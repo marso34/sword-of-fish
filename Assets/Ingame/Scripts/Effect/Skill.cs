@@ -29,7 +29,7 @@ public class Skill : MonoBehaviour
 
         if (FishNumber == 1)
         {
-            if (timer > 1f / (Speed * 1.3f))
+            if (timer > 1f / (Speed))
             {
                 timer = 0f;
                 Instantiate(Spectrum, transform.position, Quaternion.Euler(0, 0, 0));
