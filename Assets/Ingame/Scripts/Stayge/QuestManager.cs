@@ -10,7 +10,7 @@ public class QuestManager : MonoBehaviour
     public GameObject[] Stayges;//스테이지 객체 배열
 
 
-    public int Level_;// 레벌
+    public int Level_;// 레벌aaaa
     public GameObject Levelboard;// 로비의 레벨 보드
     public GameObject Player;
     public GameObject Stayge; // 현재 실행되는 스테이지
