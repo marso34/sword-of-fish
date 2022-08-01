@@ -57,6 +57,9 @@ public class Skill2 : MonoBehaviour
                 }
             }
         }
+        else {
+            RB.velocity = dir.normalized * 0.001f * Time.deltaTime * 60f;
+        }
         if (Timer > 5f)
             DelFalg = true;
 

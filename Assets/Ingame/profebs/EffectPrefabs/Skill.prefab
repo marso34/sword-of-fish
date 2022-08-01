@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3199837090070671991}
   - component: {fileID: 5945686564688514467}
   - component: {fileID: 4522170459220818999}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 4560300863513622048}
   - component: {fileID: 1149334066261268846}
   - component: {fileID: -4565928807142791271}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9713,7 +9713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5581261972818695456}
   - component: {fileID: 6624935275732680278}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: whale2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9797,7 +9797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8158500693986759377}
   - component: {fileID: 963888470051693019}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: whale1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9881,7 +9881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8081210408492327340}
   - component: {fileID: 2773706108049202074}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: shark1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10012,7 +10012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6842724762299352914}
   - component: {fileID: 8556460243383067266}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: whale3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10097,7 +10097,7 @@ GameObject:
   - component: {fileID: 168982405554938466}
   - component: {fileID: 819933192546313416}
   - component: {fileID: 4114724296273210625}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bock2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

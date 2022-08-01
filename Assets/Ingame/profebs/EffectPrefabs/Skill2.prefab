@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -569989099536113870}
   - component: {fileID: -6156800504499827921}
   - component: {fileID: -6418188133216739682}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3813580204255737557, guid: 45327ff74d2ff2c4e85ecb7ad08960b3, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45327ff74d2ff2c4e85ecb7ad08960b3, type: 3}

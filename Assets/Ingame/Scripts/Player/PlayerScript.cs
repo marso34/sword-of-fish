@@ -323,7 +323,6 @@ public class PlayerScript : Player
         {
             DefaultMoveSpeed();
             ErrorFlag = false;
-
         }
 
     }

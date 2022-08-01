@@ -88,7 +88,7 @@ public class QuestManager : MonoBehaviour
     public Sprite UIM_Stage;
     public GameObject TutorialName;
     public GameObject TutorialPlan;
-
+    public bool StagyStagtFlag;
 
     public int TutorialLev;
     public int TempTuLev;
@@ -129,6 +129,9 @@ public class QuestManager : MonoBehaviour
     public Transform PlayerT;
     public int TutorialLevel;
     public GameObject body;
+    public GameObject[] Stagys1;
+    public GameObject[] Stagys2;
+
     void Start()
     {
         Level_ = 1;//초기 렙설정
@@ -139,6 +142,8 @@ public class QuestManager : MonoBehaviour
         TutorialLev = 0;
         waitingTime = 2;
         TempTuLev = 0;
+        Stayge = null;
+        StagyStagtFlag = false;
     }
     void Update()
     {
@@ -147,7 +152,7 @@ public class QuestManager : MonoBehaviour
             Player = GameObject.FindGameObjectWithTag("Player");
             Test_Method();
             FlagOnMethod();
-            if (Player != null)
+            if (Player != null && StagyStagtFlag)
             {
                 // Debug.Log("? ??" + KnifeEC + "???" + BulletEC);
                 QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
@@ -156,7 +161,7 @@ public class QuestManager : MonoBehaviour
                 SucssesFlagOnOff();
                 EndGameCheck();
                 Objectmanager();
-                if (IngameLevel > 8) IngameLevel = 5;
+                if (IngameLevel > 7) IngameLevel = 7;
                 if (IngameLevel < 0) IngameLevel = 0;
             }
         }
@@ -216,159 +221,39 @@ public class QuestManager : MonoBehaviour
         if (ShapeNum == 5) TimeOut_EndCheck();
         else if (ShapeNum == 1) ShapeA_EndCheck();
         //else if (ShapeNum == 2) ShapeB_EndCheck();
-        else if (ShapeNum == 3) ShapeC_EndCheck();
         else if (ShapeNum == 10) Tutorial_EndCheck();
     }// 게임 끝나는거 체
     public void Level_0_Action()
     {
-        if (Level_ == 0)
-        {
-            /*
-            ResetPlayerStat();
 
-            if(TutorialLev < 3)
-            {
-                KnifeEnemyMaxCount = 0;
-                BulletEnemyMaxCount = 0;
-                MaxCount = 1;
-            }
-
-            else if(TutorialLev >= 3)
-            {
-                TrashMaxCount = 5;
-                Trash2MaxCount = 5;
-
-            }*/
-        }
     }
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
-        if (Level_ == 1)
+        if (Level_ == 1 && IngameLevel <7)
         {
-            ResetPlayerStat();
-            if (IngameLevel == 1)
+            if (GameObject.FindGameObjectWithTag("Stage") != null)
             {
-                Destroy(GameObject.FindGameObjectWithTag("tt"));
-                //TutorialName.SetActive(false);
-                //GM.GetComponent<GameManager_>().ObjectCleaner();
-                ResetMaxCounter();// 모든 맥스카운터 0으로 초기화
-                ResetCounter();// 모든 현재 존재하는 오브젝트 카운트한거 0으로 다 초기화
-                KnifeEnemyMaxCount = 4;// 칼든 적물고기 최대 4마리소환
-                MaxCount = 2;// 킬 보드에 표시된 킬스코어 2달성시 클리어
-                Player.transform.localPosition = Vector3.zero;
+                Debug.Log(GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>().GoalCount + "yyyyy" + GameObject.FindGameObjectWithTag("Stage"));
+                Destroy(GameObject.FindGameObjectWithTag("Stage"));
             }
-            else if (IngameLevel == 2)
-            {
-                ResetMaxCounter();
-                KnifeEnemyMaxCount = 5;
-                BulletEnemyMaxCount = 1;// 총알쏘는 적 1마리 소환
-                MaxCount = 4;//킬 보드에 표시된 킬스코어 4달성시 클리어
-            }
-            else if (IngameLevel == 3)
-            {
-                ResetMaxCounter();
-                KnifeEnemyMaxCount = 5;
-                BulletEnemyMaxCount = 2;
-                MaxCount = 6;// 킬 보드에 표시된 킬스코어 6달성시 클리어
-            }
-            else if (IngameLevel == 4)
-            {
-                ObjectCleanerNextStage();
-                ResetMaxCounter();
-                //ResetCounter();
-                BossMaxCount = 1;
-                MaxCount = 1; // 보스 한명 잡을시 클리어
-            }
-            else if (IngameLevel == 5)
-            {
-                ResetMaxCounter();
-                ResetCounter();
-                KnifeEnemyMaxCount = 5;
-                BulletEnemyMaxCount = 3;
-                MaxCount = 9;// 킬 보드에 표시된 킬스코어 9달성시 클리어
-            }
-            else if (IngameLevel == 6)
-            {
-                Instantiate(Vectorv, Player.transform.position, Quaternion.Euler(0, 0, 0));
-                ResetCounter();
-                ObjectCleanerNextStage();
-                //?÷?????? ???? ??? ?÷?????????? ??????????? ???? ?????. ??? ?????? ??????????? ?? ??????? ????
-                ResetMaxCounter();
-                KnifeEnemyMaxCount = 0;
-                BulletEnemyMaxCount = 0;
-                BigTrashMaxCount = 1;
-                MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
-            }
-            else if (IngameLevel == 7)
-            {
-                Destroy(GameObject.FindGameObjectWithTag("V"));
-                ResetCounter();
-                ObjectCleanerNextStage();
-                ResetMaxCounter();
-                KnifeEnemyMaxCount = 2;
-                BulletEC = 2;
-                BossMaxCount = 1;
-                MaxCount = 1;
-                // 보스잡을시 클리어
-            }
+            CurrentCount = 0;
             TrashMaxCount = 5;
             Trash2MaxCount = 5;
-            CurrentCount = 0;
+            Stayge = Instantiate(Stagys1[IngameLevel - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
+
+
         }
     }
     public void Level_2_Action()
     {
-        if (Level_ == 2)
-        {
-            if (IngameLevel == 1)
-            {
-            }
-            if (IngameLevel == 2)
-            {
-            }
-            if (IngameLevel == 3)
-            {
-            }
-            if (IngameLevel == 4)
-            {
 
-            }
-            if (IngameLevel == 5)
-            {
-
-            }
-        }
     }
     public void CurrentCountInit()//퀘스트 완료조건 정의
     {
-        if (IngameLevel == 1)
+        if (Stayge != null)
         {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
-        }
-        else if (IngameLevel == 2)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;// 레벨에 따라 CurrentCount를 채워주는것은 달라져야한다.
-        }
-        else if (IngameLevel == 3)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;
-        }
-        else if (IngameLevel == 4)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;//Maxcount가 특정 물고기 번호
-        }
-        else if (IngameLevel == 5)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().killScore;//Maxcount가 특정 물고기 번호
-        }
-        else if (IngameLevel == 6)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().BigTrashC;
-        }
-
-        else if (IngameLevel == 7)
-        {
-            CurrentCount = Player.GetComponent<PlayerScript>().BosskillScore;
+            CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
+            Debug.Log(CurrentCount + "카운트");
         }
     }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
@@ -431,10 +316,6 @@ public class QuestManager : MonoBehaviour
 
 
         }
-
-
-
-
         else if (Level_ == 1)
         {
 
@@ -464,78 +345,7 @@ public class QuestManager : MonoBehaviour
 
 
         }
-        else if (Level_ == 2)
-        {
-            ShapeNum = 1;
-            //IntroPanelName.GetComponent<Text>().text = "2";
-            //IntroPanelPlan[1].SetActive(true);
-            //IntroPanelPlan[1].GetComponent<Image>().sprite = FleshIcon;
-            //IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "10개의 고기를 먹으세요";
-            limitTime = 1;
-            MaxCount = 25;
-            KnifeEnemyMaxCount = 3;
-            BulletEnemyMaxCount = 2;
-        }
-        else if (Level_ == 3)
-        {
-            ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = "3";
-            IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = killIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "10킬 하세요";
-            limitTime = 90;
-            MaxCount = 10;
-        }
-        else if (Level_ == 4)
-        {
-            ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = "4";
-            IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "돌고래4마리 를 잡으세요";
-            limitTime = 90;
-            MaxCount = 4;
-        }
-        else if (Level_ == 5)
-        {
-            ShapeNum = 2;
-            IntroPanelName.GetComponent<Text>().text = "5";
-            IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = RankIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "1등을 유지하세요";
-            limitTime = 40;
-            MaxCount = 1;
-        }
-        else if (Level_ == 6)
-        {
-            ShapeNum = 3;
-            IntroPanelName.GetComponent<Text>().text = "6";
-            IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = bubbleIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "물방울을 점령하세요";
-            limitTime = 40;
-            MaxCount = 10;
-        }
-        else if (Level_ == 7)
-        {
-            ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = "7";
-            IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = TrushIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "쓰레기를 정리하세요";
-            limitTime = 60;
-            MaxCount = 25;
-        }
-        else if (Level_ == 8)
-        {
-            ShapeNum = 3;
-            IntroPanelName.GetComponent<Text>().text = "8";
-            IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = FlagIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "깃발을 탈취하세요";
-            limitTime = 60;
-            MaxCount = 10;
-        }
+
         CurrentCount = 0;
         OccupationTime = 0;
         GM.GetComponent<GameManager_>().GlobalTime = limitTime;
@@ -544,7 +354,7 @@ public class QuestManager : MonoBehaviour
     {
         if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
         {
-            //GM.GetComponent<GameManager_>().SuccesFlag = true;
+
             Level_++;
             Flag = true;
 
@@ -639,7 +449,7 @@ public class QuestManager : MonoBehaviour
 
 
         }
-        else if (IngameLevel == 7)
+        else if (IngameLevel == 6)
         {
             var Boss = Instantiate(BossEnemy2, SetPosition(0, -15.55f, 0f), Quaternion.Euler(0f, 0f, 0f));
             Boss.name = "Boss";
@@ -676,8 +486,9 @@ public class QuestManager : MonoBehaviour
         var Obj = Instantiate(BubblesShiledObj, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
         BubblesShiledOC++;
     }
-    public void CreateTrashRope(){
-        
+    public void CreateTrashRope()
+    {
+
     }
     public void CamAnimation()//미구현
     {
@@ -713,7 +524,7 @@ public class QuestManager : MonoBehaviour
         {
             if (ShapeNum == 1) ShapeA_Init();
             //else if (ShapeNum == 2) ShapeB_Init();
-            else if (ShapeNum == 3) ShapeC_Init();
+
             else if (ShapeNum == 10) Tutorial_Init();
         }
 
@@ -725,76 +536,17 @@ public class QuestManager : MonoBehaviour
         QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
         if (Level_ == 1)
         {
-            if (IngameLevel < 4){
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = killIcon;
-            }
-            else if (IngameLevel ==4){
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = BockBossIcon;
-            }
-            else if (IngameLevel == 5){
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = killIcon;
-            }
-            else if (IngameLevel == 6){
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = TrushIcon;
-            }
-            else if(IngameLevel == 7){
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = TakoBossIcon;
-            }
+            QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
+
             QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
         }
-        if(Level_ == 2){
-            if(IngameLevel == 1){
-                //쓰레기줄 생성, 가운데 쓰레기 부수면 통과.
-            }
-            if(IngameLevel == 2){
-                // 아기 물고기 디펜스  
-            }
-            if(IngameLevel == 3){
-                // 새로운 물고기 10마리, 어태커 3마리 잡기
-            }
-            if(IngameLevel == 4){
-                // 거대쓰레기 산 파괴
-            }
-            if(IngameLevel == 5){
-                // 
-            }
-            
-        }
-
-    }//갯수보두 초기화
-    /*
-    public void ShapeB_Init()
-    {
-        Rank = new int[Players.Length];
-        for (int i = 0; i < Players.Length; ++i)
-            Rank[i] = Players[i].GetComponent<Player>().killScore;
-
-
-        QuestBoard_.GetComponent<QB>().ShapeB.SetActive(true);
-        System.Array.Sort(Rank);
-        System.Array.Reverse(Rank);
-        bool flag__ = true;
-        for (int i = 0; i < 4; ++i)
-        {
-
-            QuestBoard_.GetComponent<QB>().ShapeB.GetComponent<ShapeB>().Ranks[i].GetComponent<Text>().text = Rank[i].ToString();
-            if (Rank[i] == .GetComponent<Player>().killScore && flag__)
-            {
-                QuestBoard_.GetComponent<QB>().ShapeB.GetComponent<ShapeB>().Ranks[i].GetComponent<Text>().text = "Me";
-                flag__ = false;
-            }
-        }
-      //QuestBoard_.GetComponent<QB>().ShapeB.GetComponent<ShapeB>().first;
-    }//랭킹보드초기화*/
-    public void ShapeC_Init()
-    {
-        QuestBoard_.GetComponent<QB>().ShapeC.SetActive(true);
-        QuestBoard_.GetComponent<QB>().ShapeC.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)OccupationTime / 10f;
-    }//점령전초기화
+    }//???????? ????
     public void ShapeA_EndCheck()//shapeA에 대한 성공체크(갯수다모으는거)
     {
         if (CurrentCount >= MaxCount)
         {
+            Debug.Log("성공공공");
+            Debug.Log("맥스" + MaxCount);
             if (IngameLevel == 7)
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
@@ -809,50 +561,9 @@ public class QuestManager : MonoBehaviour
                 IngameLevel++;
             }
         }
-        /*
-        else if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
-        {
-            GM.GetComponent<GameManager_>().SuccesFlag = false;
-            LoseFlag = true;
-    }*/
+
     }
-    /* public void ShapeB_EndCheck()
-     {
-         if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
-         {
-             if (Rank[0] == .GetComponent<Player>().killScore)
-             {
-                // GM.GetComponent<GameManager_>().SuccesFlag = true;
-                 Level_++;
-                 Flag = true;
-             }
-             else 
-             {
-                 GM.GetComponent<GameManager_>().SuccesFlag = false;
-                 LoseFlag = true;
-             }
-         }
-
-
-     }   //랭킹보드로 끝나는판
-     */
-    public void ShapeC_EndCheck()
-    {
-        if (OccupationTime >= MaxCount)
-        {
-            //GM.GetComponent<GameManager_>().SuccesFlag = true;
-            Level_++;
-            Flag = true;
-        }
-        /*
-        else if (GM.GetComponent<GameManager_>().GlobalTime <= 0)
-        {
-            GM.GetComponent<GameManager_>().SuccesFlag = false;
-            LoseFlag = true;
-
-        }
-*/
-    }//점령전
+    //??????
     public void EndGameCheck()// 게임 끝낫나 체크
     {
         if (GM.GetComponent<GameManager_>().EndFlag == false)
@@ -877,7 +588,27 @@ public class QuestManager : MonoBehaviour
                 Flag = true;
             }
         }
-    }//게임끝났는지 체크
+    }//??????????? ??
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void Tutorial_EndCheck()
     {
         if (EndTutorial)
@@ -890,7 +621,7 @@ public class QuestManager : MonoBehaviour
 
     }
     public void bornguide()
-    { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
+    { //?÷???? ????? ????? ?????? ?÷???? ??????? ??
 
 
         //Guide = GameObject.Find("GuidePet(Clone)").gameObject;
@@ -931,14 +662,14 @@ public class QuestManager : MonoBehaviour
 
 
 
-            TutorialPlan.GetComponent<Text>().text = "이동하면서 부스터를 사용해보세요";
+            TutorialPlan.GetComponent<Text>().text = "?????? ?ν???? ??????????";
 
             if (Player.GetComponent<PlayerScript>().BusterFlag
                 && Player.GetComponent<PlayerScript>().cutGauge < 70)
             {
 
                 timer += Time.deltaTime;
-                if (timer > waitingTime - 2) //성공하고 좀이따 성공했다고 띄움
+                if (timer > waitingTime - 2) //??????? ????? ???????? ???
                 {
 
                     timer = 0;
@@ -953,7 +684,7 @@ public class QuestManager : MonoBehaviour
                     Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
                     Guide.GetComponent<GuidePet>().BornGuide();
                     tutorial.GetComponent<Tutorial>().Touch = 0;
-                    TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
+                    TutorialPlan.GetComponent<Text>().text = "????? ??????????";
 
                     TutoBack.SetActive(true);
                     Player.GetComponent<PlayerScript>().BusterFlag = false;
@@ -1006,13 +737,13 @@ public class QuestManager : MonoBehaviour
 
         else if (TutorialLev == 3)
         {
-            //여기서 인게임 레벨 바꾸기
+            //???? ????? ???? ????
 
-            if (itembtn.GetComponent<ItemBtn>().TutorialItem) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
+            if (itembtn.GetComponent<ItemBtn>().TutorialItem) //playerscript?? PlaySkill()??? ?????? ???? ????
             {
                 timer += Time.deltaTime;
 
-                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
+                if (timer > waitingTime) //??? ???? 3???? ????
                 {
 
 
@@ -1025,7 +756,7 @@ public class QuestManager : MonoBehaviour
                     Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
                     Guide.GetComponent<GuidePet>().BornGuide();
                     tutorial.GetComponent<Tutorial>().Touch = 0;
-                    TutorialPlan.GetComponent<Text>().text = "공격하는 물고기를 여러번 찌르고 나온 시체를 먹으세요";
+                    TutorialPlan.GetComponent<Text>().text = "??????? ?????? ?????? ???? ???? ????? ????????";
 
                     TutoBack.SetActive(true);
                     TutorialLev++;
@@ -1057,7 +788,7 @@ public class QuestManager : MonoBehaviour
             {
                 timer += Time.deltaTime;
 
-                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
+                if (timer > waitingTime) //??? ???? 3???? ????
                 {
 
                     timer = 0;
@@ -1071,9 +802,11 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
-
     }
 }
+
+
+
 
 
 

@@ -49,7 +49,7 @@ public class Tracking_player : MonoBehaviour
         {
             transform.GetComponent<Camera>().fieldOfView = 22+target.transform.localScale.y*3f;
             transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
-            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
+            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (new Vector3(0,1.1f,0) - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
             if (ray2.collider != null)
             {
                 transform.position = new Vector3(ray2.point.x + shake, ray2.point.y + shake,z - shake);              

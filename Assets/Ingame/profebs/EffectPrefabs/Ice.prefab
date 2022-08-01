@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3543270312506726259}
   - component: {fileID: 1634736128942468416}
   - component: {fileID: 5452925740675052568}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Barriar_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,10 +115,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1771799534898505138}
   - component: {fileID: 1771799534898505139}
-  - component: {fileID: 1771799534898505136}
   - component: {fileID: 1771799534898505137}
   - component: {fileID: 4484484390472195126}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Ice
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -193,27 +192,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1771799534898505136
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771799534898505140}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &1771799534898505137
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -84,8 +84,8 @@ public class AttackerScript : Player
             if (other.gameObject.tag == "SkillB")
             {
                 Debug.Log("보거 스킬에 닿음");
-                SlowON();
-                Invoke("SlowON", 2f);
+                SlowMoveSpeed(1f);
+                SlowRotateSpeed(1f);
             }
 
         }
