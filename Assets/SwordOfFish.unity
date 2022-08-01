@@ -909,8 +909,8 @@ GameObject:
   - component: {fileID: 829369921}
   - component: {fileID: 829369920}
   m_Layer: 0
-  m_Name: Stage
-  m_TagString: Respawn
+  m_Name: Stage1
+  m_TagString: Stage1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

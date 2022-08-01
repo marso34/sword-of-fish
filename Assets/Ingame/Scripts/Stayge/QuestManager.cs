@@ -293,7 +293,7 @@ public class QuestManager : MonoBehaviour
             TutorialLev = 1;
 
             GameObject.FindWithTag("plan").SetActive(false);
-            GameObject.FindWithTag("Stage").SetActive(false);
+            GameObject.FindWithTag("Stage1").SetActive(false);
             GameObject.FindWithTag("plan1").SetActive(false);
             GameObject.FindWithTag("Stagy Level").SetActive(false);
 
@@ -662,7 +662,7 @@ public class QuestManager : MonoBehaviour
 
 
 
-            TutorialPlan.GetComponent<Text>().text = "?????? ?¥í???? ??????????";
+            TutorialPlan.GetComponent<Text>().text = "?????????????????????";
 
             if (Player.GetComponent<PlayerScript>().BusterFlag
                 && Player.GetComponent<PlayerScript>().cutGauge < 70)
