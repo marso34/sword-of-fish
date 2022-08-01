@@ -320,7 +320,7 @@ public class QuestManager : MonoBehaviour
         {
 
             GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
-            GameObject.Find("IntroPanel").transform.Find("Stage").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("Stage1").gameObject.SetActive(true);
             GameObject.Find("IntroPanel").transform.Find("plan1").gameObject.SetActive(true);
             GameObject.Find("IntroPanel").transform.Find("Stagy Level").gameObject.SetActive(true);
 
