@@ -20,6 +20,7 @@ public class Spectrum : MonoBehaviour
         m = transform.GetChild(0).GetComponent<Renderer>().material; // 자식의 머티리얼 -> 실질적인 파티클
         PlayerSkin = transform.parent.GetComponent<PlayerScript>().Skin;
         image = PlayerSkin.GetComponent<SpriteRenderer>().sprite;
+
     }
 
     // Update is called once per frame
