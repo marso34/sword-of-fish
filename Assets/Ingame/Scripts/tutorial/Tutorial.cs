@@ -10,8 +10,8 @@ public class Tutorial : MonoBehaviour
 
     public GameObject tutorial;
     public GameObject GM;
-    public GameObject TutorialPlan; //?Ñ§Î™? ?Çò?ò§?äî ?Öç?ä§?ä∏
-    public GameObject TutorialName; //Îß? Ï≤òÏùå?óê ?ãú?ûë?ïòÍ∏? ?àÑÎ•¥Í≥† ?äú?Ü†Î¶¨Ïñº ?ú®?äî ?ù¥ÎØ∏Ï??
+    public GameObject TutorialPlan; //?Ñ§“Ô? ?Çò?ò§?äî ?Öç?ä§?ä∏
+    public GameObject TutorialName; //◊∫? “˙òÏùå?óê ?ãú?ûë?ïòÍ∏? ?àÑÎ•¥Í≥† ?äú?Ü†Î¶¨Ïñº ?ú®?äî ?ù¥ÎØ∏Ï??
     public GameObject QM;
 
     public GameObject player;
@@ -36,6 +36,19 @@ public class Tutorial : MonoBehaviour
 
     public bool One;
     public bool TouchMo = false;
+    public GameObject TutorialVideo1;   //ø¨º”∫£±‚ µøøµªÛ
+    public GameObject TutorialVideo2;   //æ∆¿Ã≈€ µøøµªÛ
+    public bool OnVideo1 =false;
+    public bool OnVideo2 =false;
+    float timer;
+    float waitingTime;
+    public bool StopClick;
+    int i_wid;
+    int i_hei;
+    private RectTransform rectTransform;
+    public int tutoriallev;
+    public bool TouchNo = false;
+    public bool BornAtt = false;
     public void Start() 
     {
         
@@ -49,7 +62,15 @@ public class Tutorial : MonoBehaviour
         //TutorialPlan.SetActive(true);
         //GuidePet = GameObject.FindWithTag("Guide");
         Touch = 0;
-    
+        timer = 0f;
+        waitingTime = 6f;
+
+        i_wid = Screen.width;
+        i_hei = Screen.height;
+        rectTransform = GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(i_wid, i_hei);
+        rectTransform.anchoredPosition = new Vector2(0,0);
+
     }
         
 
@@ -83,7 +104,7 @@ public class Tutorial : MonoBehaviour
 
         }
 
-        if(Touch == 1)
+        if(Touch != 0 && TouchNo == false)
         {
 
             GuidePet.GetComponent<GuidePet>().GoOut();
@@ -99,7 +120,23 @@ public class Tutorial : MonoBehaviour
         tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
         TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
         GuidePet = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
- 
+    
+
+        if(OnVideo1)
+        {
+
+            Debug.Log("?");
+            
+            Invoke("OnPlayVideo1", 1f);
+            TouchNo = true;
+            OnVideo1 = false;
+        }
+        if(OnVideo2)
+        {
+            Invoke("OnPlayVideo2", 1f);
+            TouchNo = true;
+            OnVideo2 = false;
+        }
     }
 
     public void OnClick()
@@ -121,12 +158,33 @@ public class Tutorial : MonoBehaviour
         tutorial.SetActive(false);
         //Tuto1.SetActive(false);
         TutoBack.SetActive(false);
-
-
-
-        
         GuidePet.SetActive(false);
-        
 
+    }
+
+    public void OnPlayVideo1()
+    {
+
+        Instantiate(TutorialVideo2);
+        TutorialVideo2 = GameObject.Find("TutorialVideo2(Clone)");
+        Debug.Log("æ∆¿Ã≈€");
+        Destroy(TutorialVideo2, 6f);
+        Invoke("TouchY", 6f);
+
+    }
+
+    public void OnPlayVideo2()
+    {
+
+        Instantiate(TutorialVideo1);
+        TutorialVideo1 = GameObject.Find("TutorialVideo1(Clone)");
+        Debug.Log("æ∆¿Ã≈€");
+        Destroy(TutorialVideo1, 6f);
+        Invoke("TouchY", 6f);
+    }
+    public void TouchY() {
+        TouchNo = false;
+        BornAtt = true;
+        
     }
 }
