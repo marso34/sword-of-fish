@@ -163,14 +163,6 @@ MonoBehaviour:
   QuestBoard: {fileID: 0}
   One: 0
   TouchMo: 0
-  TutorialVideo1: {fileID: 7473019659724158011, guid: c461ab29fa6dda2499af90ead29ad0be, type: 3}
-  TutorialVideo2: {fileID: 7473019659724158011, guid: 50c318d81cc493c489956ab204eae70e, type: 3}
-  OnVideo1: 0
-  OnVideo2: 0
-  StopClick: 0
-  tutoriallev: 0
-  TouchNo: 0
-  BornAtt: 0
 --- !u!1001 &1462922138003102322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,14 +170,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5996496855758631751}
     m_Modifications:
-    - target: {fileID: 5150571998780614076, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5150571998780614076, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614078, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_Name
       value: TuText
@@ -220,11 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1245
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,11 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 210
+      value: 488
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 340
+      value: 365
       objectReference: {fileID: 0}
     - target: {fileID: 5150571998780614079, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

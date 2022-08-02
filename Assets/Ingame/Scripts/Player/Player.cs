@@ -505,7 +505,6 @@ public class Player : MonoBehaviour
     }
     public void rota()
     {
-        Vector2 temp = dir;
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity.normalized);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
         float x_ = transform.localScale.x;
@@ -525,6 +524,8 @@ public class Player : MonoBehaviour
                     Timer33++;
 
                 }
+
+
             }
 
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
@@ -682,6 +683,7 @@ public class Player : MonoBehaviour
     }
     public void CreateSkill(string Name) // J ?Š¤?‚¬ ë§Œë“œ?Š” ?•¨?ˆ˜
     {
+
         var a = Instantiate(Skill, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
         a.transform.localPosition = Vector3.zero;

@@ -60,6 +60,8 @@ TagManager:
   - TutorialPlan
   - TutoBack
   - Goal
+  - Stage1
+  - 2WALL1
   layers:
   - Default
   - TransparentFX
