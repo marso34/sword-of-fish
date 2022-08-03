@@ -49,6 +49,7 @@ public class TutorialCanvas : MonoBehaviour
     public bool EndTutorial;
     public GameObject ItemBtn;
     public GameObject body;
+    public GameObject maincam_;
     public void Start() 
     {
                     QM = GameObject.FindWithTag("QM");
@@ -56,13 +57,13 @@ public class TutorialCanvas : MonoBehaviour
         if(QM.GetComponent<QuestManager>().Level_ == 0)
         {
             GuidePet = Instantiate(GuidePet);
-                    TuClone = GameObject.Find("Tutorial(Clone)").gameObject;
+            TuClone = GameObject.Find("Tutorial(Clone)").gameObject;
         canvas = GameObject.Find("GameManager").transform.Find("Canvas").gameObject;
 
         TuClone.transform.SetParent(canvas.transform);
-        
+        maincam_ = GameObject.FindWithTag("MainCamera");
         player = GameObject.Find("Player(Clone)").gameObject;
-        GuidePet.transform.SetParent(player.transform);
+        GuidePet.transform.SetParent(maincam_.transform);
         GuidePet.GetComponent<GuidePet>().BornGuide();
 
         Touch = 0;
