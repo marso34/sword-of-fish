@@ -10,181 +10,313 @@ public class Tutorial : MonoBehaviour
 
     public GameObject tutorial;
     public GameObject GM;
-    public GameObject TutorialPlan; //?꽕紐? ?굹?삤?뒗 ?뀓?뒪?듃
-    public GameObject TutorialName; //留? 泥섏쓬?뿉 ?떆?옉?븯湲? ?늻瑜닿퀬 ?뒠?넗由ъ뼹 ?쑉?뒗 ?씠誘몄??
+    public GameObject TutorialPlan; //?꽕紐? ?굹?삤?뒗 ?뀓?뒪?듃
+    public GameObject TutorialName; //留? 泥섏쓬?뿉 ?떆?옉?븯湲? ?늻瑜닿퀬 ?뒠?넗由ъ뼹 ?쑉?뒗 ?씠誘몄??
     public GameObject QM;
 
     public GameObject player;
 
 
     public GameObject TutoBack; //Canvas/Image 寃???? 諛곌꼍
-    public GameObject GuidePet; //?븷?븘踰꾩??
+
 
     public GameObject QB;
 
-
-
-
-
-    public GameObject Player;
 
     public GameObject Guide;
 
     public GameObject Slider;
 
-    public GameObject QuestBoard;    
+    public GameObject QuestBoard;
 
     public bool One;
     public bool TouchMo = false;
+
     public GameObject TutorialVideo1;   //연속베기 동영상
     public GameObject TutorialVideo2;   //아이템 동영상
-    public bool OnVideo1 =false;
-    public bool OnVideo2 =false;
+    public bool OnVideo1 = false;
+    public bool OnVideo2 = false;
     float timer;
     float waitingTime;
     public bool StopClick;
     int i_wid;
     int i_hei;
     private RectTransform rectTransform;
-    public int tutoriallev;
     public bool TouchNo = false;
     public bool BornAtt = false;
-    public void Start() 
+    bool A = true;
+    public GameObject canvas;
+    public GameObject TuClone;
+    public int TutorialLev;
+    public bool EndTutorial;
+    public GameObject ItemBtn;
+    public GameObject body;
+    public GameObject TutorialCanvas;
+    public bool EndTu;
+    public void Start()
     {
-        
-        
+        if (QM.GetComponent<QuestManager>().Level_ == 0)
+        {
+            tutorial = transform.gameObject;
 
-        GuidePet = Instantiate(GuidePet);
-        player = GameObject.Find("Player(Clone)").gameObject;
-        GuidePet.transform.SetParent(player.transform);
-        GuidePet.GetComponent<GuidePet>().BornGuide();
-        //tutorial.SetActive(true);
-        //TutorialPlan.SetActive(true);
-        //GuidePet = GameObject.FindWithTag("Guide");
-        Touch = 0;
-        timer = 0f;
-        waitingTime = 6f;
+            TuClone = GameObject.Find("Tutorial(Clone)").gameObject;
+            canvas = GameObject.Find("GameManager").transform.Find("Canvas").gameObject;
+            TutorialCanvas = GameObject.Find("Tutorial(Clone)").transform.Find("TutorialCanvas").gameObject;
+            TuClone.transform.SetParent(canvas.transform);
+            player = GameObject.Find("Player(Clone)").gameObject;
 
-        i_wid = Screen.width;
-        i_hei = Screen.height;
-        rectTransform = GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(i_wid, i_hei);
-        rectTransform.anchoredPosition = new Vector2(0,0);
+            TutorialLev = 1;    
+
+            EndTutorial = false;
+            EndTu =true; 
+            TuClone.transform.localPosition = new Vector3(0, 0, 0);
+
+            QM = GameObject.FindWithTag("QM");
+            GM = GameObject.FindWithTag("GM");
+        }
+
 
     }
-        
 
-    
 
-    public void OffCanvas()
+
+    public void Tutorial_EndCheck()
     {
-        tutorial.SetActive(true);
+
+        if (EndTutorial && EndTu)
+        {
+
+            tutorial.SetActive(true);
+            TutoBack.SetActive(true);
+            Guide.SetActive(true);
+            TutorialName.SetActive(true);
+            QM.GetComponent<QuestManager>().Level_++;
+            GM.GetComponent<GameManager_>().SuccesFlag = true;
+            /*
+            if(GameObject.FindWithTag("Tutorial")!=null)
+            {
+                Destroy(GameObject.FindWithTag("Tutorial"));
+            }
+            else
+            {
+                Debug.Log("튜토리얼 에러");
+            }
+
+
+            
+            if(GameObject.FindWithTag("TutoBack")!=null)
+            {
+                Destroy(GameObject.FindWithTag("TutoBack"));
+            }
+            else
+            {
+                Debug.Log("튜토리얼 에러");
+            }
+
+            if(GameObject.FindWithTag("Guide")!=null)
+            {
+                Destroy(GameObject.FindWithTag("Guide"));
+            }
+            else
+            {
+                Debug.Log("튜토리얼 에러");
+            }
+            if(GameObject.FindWithTag("TutorialName(Clone)")!=null)
+            {
+                Destroy(GameObject.FindWithTag("TutorialName(Clone)"));
+            }
+            else
+            {
+                Debug.Log("튜토리얼 에러");
+            }
+
+*/
+            
+            Debug.Log("썽공");
+
+            EndTu =false;
+            Destroy(TutoBack);
+            Destroy(Guide);
+            Destroy(TutorialName);
+            Destroy(tutorial);
+        }
+
+    }
+    public void bornguide()
+    { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
+
+        GameObject.Find("Tutorial(Clone)").gameObject.SetActive(true);
+        GameObject.Find("Tutorial(Clone)").transform.Find("TuText").gameObject.SetActive(true);
+
+    }
+
+
+    public void NextTutorial()
+    {
+        player.GetComponent<PlayerScript>().StopMove();
+
+        TutorialCanvas.SetActive(true);
+        TutorialPlan.SetActive(false);
+
+        Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
+        Guide.GetComponent<GuidePet>().BornGuide();
+        TutorialCanvas.GetComponent<TutorialCanvas>().Touch = 0;
+
         TutoBack.SetActive(true);
-        GameObject.Find("Player(Clone)").transform.Find("Canvas").gameObject.SetActive(false);
+
+
+        TutorialLev++;
     }
-
-
 
     public void Update()
     {
-
-
-        
-
-        if(Touch == 0) 
+        if(EndTu)
         {
-            //tutorial.SetActive(true);
-            //GuidePet.SetActive(true);
-            GuidePet.SetActive(true);
-            OffCanvas();
+            TutorialCanvas = GameObject.Find("Tutorial(Clone)").transform.Find("TutorialCanvas").gameObject;
+            TutorialPlan = GameObject.Find("Tutorial(Clone)").transform.Find("TutorialCanvas").transform.Find("TuText").gameObject;
+            TutoBack = GameObject.Find("GameManager").transform.Find("TutoBack(Clone)").gameObject;
+            player = GameObject.FindWithTag("Player");
+            TutorialName = GameObject.Find("GameManager").transform.Find("Canvas").transform.Find("IntroPanel").transform.Find("TutorialName(Clone)").gameObject;
+        }
 
-            TouchMo = false;
-            GuidePet.GetComponent<GuidePet>().ShowMove();
-            Invoke("ShowExplain", 1f);
+
+
+        QM.GetComponent<QuestManager>().ShapeNum = 10;
+        Tutorial_EndCheck();
+
+
+        //TutoBack.gameObject(SortingLayer(1));
+        if (TutorialLev == 1) //이동
+        {
+            if (A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
+            {
+                Debug.Log("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+                TutoBack.SetActive(true);
+
+                TutorialCanvas.SetActive(true);
+                Vector3 direction = player.transform.localRotation * new Vector3(0, 0, -90);
+                A = false;
+            }
+
+
+
+            TutorialPlan.GetComponent<Text>().text = "이동하면서 부스터를 사용해보세요";
+
+            if (player.GetComponent<PlayerScript>().BusterFlag
+                && player.GetComponent<PlayerScript>().cutGauge < 70 && player.transform.localRotation.z != 0)
+            {
+
+                timer += Time.deltaTime;
+                if (timer > waitingTime - 2) //성공하고 좀이따 성공했다고 띄움
+                {
+
+                    timer = 0;
+                    player.GetComponent<PlayerScript>().BusterFlag = false;
+                    TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
+                    NextTutorial();
+
+                }
+            }
+
 
         }
 
-        if(Touch != 0 && TouchNo == false)
+
+        else if (TutorialLev == 2) //부스터 튜토리얼
         {
 
-            GuidePet.GetComponent<GuidePet>().GoOut();
-            TouchMo = true;
-            //TutorialPlan.SetActive(false);
-           
-            Invoke("OnPlayerCanvas", 1f);
+            player.GetComponent<PlayerScript>().FishNumber = 2;
+            if (player.GetComponent<PlayerScript>().skillcheck) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
+            {
+                timer += Time.deltaTime;
+
+                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
+                {
 
 
+                    timer = 0;
+                    TutorialPlan.GetComponent<Text>().text = "쓰레기를 치우고 나온 아이템을 먹고" + "\n" + "아이템 버튼을 눌러 사용하세요";
+                    TutorialCanvas.GetComponent<TutorialCanvas>().OnVideo1 = true;
+                    TutorialCanvas.GetComponent<TutorialCanvas>().StopClick = true;
+                    NextTutorial();
+                    QM.GetComponent<QuestManager>().ResetCounter();
+                    QM.GetComponent<QuestManager>().TrashMaxCount = 10;
+                    ItemBtn = GameObject.Find("Player(Clone)").transform.Find("Canvas").transform.Find("NotEndGame").transform.Find("ItemBtn").gameObject;
+
+
+
+
+                }
+            }
         }
 
-        player = GameObject.Find("Player(Clone)").gameObject;
-        tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
-        TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
-        GuidePet = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
-    
-
-        if(OnVideo1)
+        else if (TutorialLev == 3)
         {
+            //여기서 인게임 레벨 바꾸기
 
-            Debug.Log("?");
-            
-            Invoke("OnPlayVideo1", 1f);
-            TouchNo = true;
-            OnVideo1 = false;
+
+            if (ItemBtn.GetComponent<ItemBtn>().TutorialItem) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
+            {
+                timer += Time.deltaTime;
+
+                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
+                {
+
+
+                    timer = 0;
+                    TutorialPlan.GetComponent<Text>().text = "공격하는 물고기를 여러번 찌르고" + "\n" + "나온 시체를 먹으세요";
+                    TutorialCanvas.GetComponent<TutorialCanvas>().OnVideo2 = true;
+                    TutorialCanvas.GetComponent<TutorialCanvas>().StopClick = true;
+                    TutorialCanvas.GetComponent<TutorialCanvas>().BornAtt = false;
+                    NextTutorial();
+
+
+
+                }
+            }
         }
-        if(OnVideo2)
+
+        else if (TutorialLev == 4)
         {
-            Invoke("OnPlayVideo2", 1f);
-            TouchNo = true;
-            OnVideo2 = false;
+            //Cursor.visible = false;
+            body = GameObject.Find("Player(Clone)").transform.Find("body").gameObject;
+
+            if (TutorialCanvas.GetComponent<TutorialCanvas>().TouchMo == true && TutorialCanvas.GetComponent<TutorialCanvas>().BornAtt)
+            {
+                QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 1;
+            }
+
+
+            if (body.GetComponent<BodyInteraction>().TutorialFlesh)
+            {
+                timer += Time.deltaTime;
+
+                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
+                {
+
+                    timer = 0;
+
+                    player.GetComponent<PlayerScript>().StopMove();
+
+                    EndTutorial = true;
+
+                }
+            }
         }
-    }
-
-    public void OnClick()
-    {
-        Touch++;
-        //Touch1 = Touch;
+        QM.GetComponent<QuestManager>().StagyStagtFlag = true;
 
     }
 
-    public void ShowExplain()
-    {
-        TutorialPlan.SetActive(true);
-        
-    }
 
 
-    public void OnPlayerCanvas() 
-    {
-        tutorial.SetActive(false);
-        //Tuto1.SetActive(false);
-        TutoBack.SetActive(false);
-        GuidePet.SetActive(false);
 
-    }
 
-    public void OnPlayVideo1()
-    {
 
-        Instantiate(TutorialVideo2);
-        TutorialVideo2 = GameObject.Find("TutorialVideo2(Clone)");
-        Debug.Log("아이템");
-        Destroy(TutorialVideo2, 6f);
-        Invoke("TouchY", 6f);
 
-    }
 
-    public void OnPlayVideo2()
-    {
 
-        Instantiate(TutorialVideo1);
-        TutorialVideo1 = GameObject.Find("TutorialVideo1(Clone)");
-        Debug.Log("아이템");
-        Destroy(TutorialVideo1, 6f);
-        Invoke("TouchY", 6f);
-    }
-    public void TouchY() {
-        TouchNo = false;
-        BornAtt = true;
-        
-    }
+
+
+
+
 }
