@@ -1112,7 +1112,7 @@ PrefabInstance:
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: tutorial
       value: 
-      objectReference: {fileID: 5996496855758631750, guid: 109a31da881ead64a9de7aea77a984c7, type: 3}
+      objectReference: {fileID: 263414225094584787, guid: 419a0985ebdcf7542b0d656dc70aa96b, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: FleshIcon
       value: 
@@ -1199,7 +1199,7 @@ PrefabInstance:
       objectReference: {fileID: 560677020}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.size
@@ -1208,25 +1208,29 @@ PrefabInstance:
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.data[0]
       value: 
-      objectReference: {fileID: 8030868389003855565, guid: d24e3ee9e1d90a04485d79b6828cf9a7, type: 3}
+      objectReference: {fileID: 263414225094584787, guid: 419a0985ebdcf7542b0d656dc70aa96b, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.data[1]
       value: 
-      objectReference: {fileID: 8668016930034477397, guid: da5e0a4d6221c454f9239c9981c6fb8a, type: 3}
+      objectReference: {fileID: 8030868389003855565, guid: d24e3ee9e1d90a04485d79b6828cf9a7, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.data[2]
       value: 
-      objectReference: {fileID: 6820542577613766103, guid: 369349242c6ea4f438561fe5c6896d22, type: 3}
+      objectReference: {fileID: 8668016930034477397, guid: da5e0a4d6221c454f9239c9981c6fb8a, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.data[3]
       value: 
-      objectReference: {fileID: 6378439639908267033, guid: 31824584294cee646bbb733764db097a, type: 3}
+      objectReference: {fileID: 6820542577613766103, guid: 369349242c6ea4f438561fe5c6896d22, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.data[4]
       value: 
-      objectReference: {fileID: 7211160799632442228, guid: 3f83def7a7d5d764b88c5479e5acfa92, type: 3}
+      objectReference: {fileID: 6378439639908267033, guid: 31824584294cee646bbb733764db097a, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys1.Array.data[5]
+      value: 
+      objectReference: {fileID: 7211160799632442228, guid: 3f83def7a7d5d764b88c5479e5acfa92, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: Stagys1.Array.data[6]
       value: 
       objectReference: {fileID: 4796607322112704862, guid: 2941737e211c5e04792cda418d137249, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}

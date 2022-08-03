@@ -107,36 +107,23 @@ public class QuestManager : MonoBehaviour
     public int waitingTime;
     public int TempFlesh;
     public GameObject TutoBack;
-    public GameObject Guide;
+
     public bool A = true;
     public GameObject BokBoss;
-    public GameObject JoyStick;
-    public GameObject Slider; //슬라이더 이미지1
 
-    public GameObject BusterBtn;
-    public GameObject SkillBtn;
-    public GameObject Stop;
-    public GameObject QuestBoard;
     bool B = false;
     public GameObject Vectorv;
-    public GameObject KillBoard;
-    public GameObject TimeBoard;
 
-    public int tempkill;
-    public bool temp = false;
-    public GameObject itembtn;
     public Transform IntroPenelT;
     public Transform PlayerT;
-    public int TutorialLevel;
-    public GameObject body;
+
     public GameObject[] Stagys1;
     public GameObject[] Stagys2;
 
     void Start()
     {
-        Level_ = 1;//초기 렙설정
+        Level_ = 0;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
-        TutorialLevel = 0;
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -144,6 +131,7 @@ public class QuestManager : MonoBehaviour
         TempTuLev = 0;
         Stayge = null;
         StagyStagtFlag = false;
+        GM.GetComponent<GameManager_>().SuccesFlag = false;
     }
     void Update()
     {
@@ -171,6 +159,8 @@ public class QuestManager : MonoBehaviour
     {//?? ???????? ??????? ????? ????
         if (Flag)
         {
+            GM.GetComponent<GameManager_>().SuccesFlag=false;
+            
             if (Level_ == 0)
             {
                 Level_0_Action();
@@ -221,11 +211,18 @@ public class QuestManager : MonoBehaviour
         if (ShapeNum == 5) TimeOut_EndCheck();
         else if (ShapeNum == 1) ShapeA_EndCheck();
         //else if (ShapeNum == 2) ShapeB_EndCheck();
-        else if (ShapeNum == 10) Tutorial_EndCheck();
+        else if (ShapeNum == 10) tutorial.GetComponent<Tutorial>().Tutorial_EndCheck();
     }// 게임 끝나는거 체
     public void Level_0_Action()
     {
-
+        if(Level_ == 0)
+        {
+            Stayge = Instantiate(Stagys1[0], Vector3.zero, Quaternion.Euler(0, 0, 0));
+            
+            tutorial = GameObject.Find("Tutorial(Clone)").gameObject;
+            //TutorialPlan = GameObject.Find("Tutorial(Clone)").transform.Find("TutorialCanvas").transform.Find("TuText").gameObject;
+            Debug.Log(" 레 벨 0 a c t i o n");
+        }
     }
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
@@ -239,7 +236,7 @@ public class QuestManager : MonoBehaviour
             CurrentCount = 0;
             TrashMaxCount = 5;
             Trash2MaxCount = 5;
-            Stayge = Instantiate(Stagys1[IngameLevel - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
+            Stayge = Instantiate(Stagys1[IngameLevel], Vector3.zero, Quaternion.Euler(0, 0, 0));
 
 
         }
@@ -287,6 +284,7 @@ public class QuestManager : MonoBehaviour
         if (Level_ == 0)
         {
             ShapeNum = 10;
+            IngameLevel = 1;
             IntroPanel.SetActive(true);
 
 
@@ -297,21 +295,16 @@ public class QuestManager : MonoBehaviour
             GameObject.FindWithTag("plan1").SetActive(false);
             GameObject.FindWithTag("Stagy Level").SetActive(false);
 
-            tutorial = Instantiate(tutorial);
+            //tutorial = Instantiate(tutorial);
             TutorialName = Instantiate(TutorialName);
             TutoBack = Instantiate(TutoBack);
-
-
-            tutorial.transform.SetParent(Canvas);
             TutoBack.transform.SetParent(GM.transform);
-            tutorial.transform.SetSiblingIndex(0);
-            tutorial.SetActive(false);
-            TutoBack.SetActive(false);
+
             A = true;
 
             TutorialName.transform.SetParent(IntroPenelT);
-            TutorialName.transform.localPosition = new Vector3(160, -500, 0);
-            TutorialPlan.transform.localPosition = new Vector3(265, -120, 0);
+            TutorialName.transform.localPosition = new Vector3(0,0,0);
+            Debug.Log("Init_ Stagge 레 벨 =  = 0");
             //GameObject.FindWithTag("IntroPanel").SetActive(false);
 
 
@@ -377,6 +370,7 @@ public class QuestManager : MonoBehaviour
         if (BigTrashMaxCount > BigTrashOC) CreateBigTrashO();//큰쓰레기 생성 캠액션 할것.
         if (TrashMaxCount > TrashOC)
         {
+            Debug.Log("쓰레기소환");
             CreateTrashO();//캔 쓰레기 생성
             TrashOC++;
         }
@@ -525,7 +519,7 @@ public class QuestManager : MonoBehaviour
             if (ShapeNum == 1) ShapeA_Init();
             //else if (ShapeNum == 2) ShapeB_Init();
 
-            else if (ShapeNum == 10) Tutorial_Init();
+            //if (ShapeNum == 10) tutorial.GetComponent<Tutorial>().Tutorial_Init();
         }
 
 
@@ -579,6 +573,7 @@ public class QuestManager : MonoBehaviour
             }
             else if (GM.GetComponent<GameManager_>().SuccesFlag)
             {
+                Debug.Log("성공성공");
                 // Level_++;
                 IngameLevel = 1;
                 GM.GetComponent<GameManager_>().EndFlag = true;
@@ -590,177 +585,7 @@ public class QuestManager : MonoBehaviour
         }
     }//??????????? ??
 
-    public void Tutorial_EndCheck()
-    {
-        if (EndTutorial)
-        {
-            Level_++;
-            GM.GetComponent<GameManager_>().SuccesFlag = true;
 
-
-        }
-
-    }
-
-
-
-    public void bornguide() 
-    { //플레이어 멈추고 가이드 물고기를 플레이어 자식으로 둠
-
-        GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject.SetActive(true);
-        GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject.SetActive(true);
-
-    } 
-
-
-    public void NextTutorial()
-    {
-        Player.GetComponent<PlayerScript>().StopMove();
-                    
-        tutorial.SetActive(true);
-        TutorialPlan.SetActive(false);
-
-        Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
-        Guide.GetComponent<GuidePet>().BornGuide();
-        tutorial.GetComponent<Tutorial>().Touch = 0;
-                    
-        TutoBack.SetActive(true);
-                    
-                    
-        TutorialLev++;
-    }
-    
-    public void Tutorial_Init() //플레이어 캔버스에 있는거 넣어둠
-    {
-
-                
-        TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
-        tutorial = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").gameObject;
-        //TutorialPlan = GameObject.Find("Canvas").transform.Find("Tutorial(Clone)").transform.Find("TuText").gameObject;
-        TutoBack = GameObject.Find("GameManager").transform.Find("TutoBack(Clone)").gameObject;
-        //TutoBack.gameObject(SortingLayer(1));
-        if (TutorialLev == 1) //이동
-        {
-                
-                
-                if(A)   //시작할때 튜토리얼 여러번켜져서 한번 켜지게 임시로 해둠
-                {
-                    //tutorial.SetActive(true);
-
-                    //TutorialPlan.SetActive(true);
-                    TutoBack.SetActive(true);
-                    
-                    tutorial.SetActive(true);
-                    Vector3 direction = Player.transform.localRotation * new Vector3(0,0,-90);
-                    A = false;
-                }
-            
-
-            
-            TutorialPlan.GetComponent<Text>().text = "이동하면서 부스터를 사용해보세요";
-            
-            if (Player.GetComponent<PlayerScript>().BusterFlag
-                && Player.GetComponent<PlayerScript>().cutGauge < 70 && Player.transform.localRotation.z != 0) 
-            {
-
-                timer += Time.deltaTime;
-                if (timer > waitingTime-2) //성공하고 좀이따 성공했다고 띄움
-                {
-                    
-                    timer = 0;
-                    Player.GetComponent<PlayerScript>().BusterFlag = false;
-                    TutorialPlan.GetComponent<Text>().text = "스킬을 사용해보세요";
-                    NextTutorial();
-
-                }
-            }
-
-
-        }
-
-
-        else if (TutorialLev == 2) //부스터 튜토리얼
-        {
-
-            Player.GetComponent<PlayerScript>().FishNumber = 2;
-            if (Player.GetComponent<PlayerScript>().skillcheck) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
-            {
-                timer += Time.deltaTime;
-
-                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
-                {
-
-                    
-                    timer = 0;
-                    TutorialPlan.GetComponent<Text>().text = "쓰레기를 치우고 나온 아이템을 먹고"+"\n"+"아이템 버튼을 눌러 사용하세요";
-                    tutorial.GetComponent<Tutorial>().OnVideo1 = true;
-                    tutorial.GetComponent<Tutorial>().StopClick = true;
-                    NextTutorial();
-                    itembtn = GameObject.Find("Player(Clone)").transform.Find("Canvas").transform.Find("NotEndGame").transform.Find("ItemBtn").gameObject;
-
-                    Trash2MaxCount = 5;
-
-
-                }
-            }
-        }
-
-        else if (TutorialLev == 3)
-        {
-            //여기서 인게임 레벨 바꾸기
-
-            if (itembtn.GetComponent<ItemBtn>().TutorialItem) //playerscript의 PlaySkill()함수 켜지면 여기도 켜짐
-            {
-                timer += Time.deltaTime;
-
-                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
-                {
-
-                    
-                    timer = 0;
-                    TutorialPlan.GetComponent<Text>().text = "공격하는 물고기를 여러번 찌르고"+"\n"+"나온 시체를 먹으세요";
-                    tutorial.GetComponent<Tutorial>().OnVideo2 = true;
-                    tutorial.GetComponent<Tutorial>().StopClick = true;
-                    tutorial.GetComponent<Tutorial>().BornAtt = false;
-                    NextTutorial();
-
-                    
-
-                }
-            }
-        }
-
-        else if (TutorialLev ==4) 
-        {
-            //Cursor.visible = false;
-            body = GameObject.Find("Player(Clone)").transform.Find("body").gameObject;
-
-            if(tutorial.GetComponent<Tutorial>().TouchMo == true && tutorial.GetComponent<Tutorial>().BornAtt)
-            {
-                BulletEnemyMaxCount = 1;
-            }
-
-            
-            if(body.GetComponent<BodyInteraction>().TutorialFlesh)
-            {
-                timer += Time.deltaTime;
-
-                if (timer > waitingTime) //스킬 쓰고 3초뒤에 성공
-                {
-
-                    timer = 0;
-                    
-                    Player.GetComponent<PlayerScript>().StopMove();
-                    Destroy(tutorial);
-                    Destroy(TutoBack);
-                    Destroy(TutorialName);
-                    EndTutorial = true;
-                    
-                }
-            }
-        }
-
-    }
 
 
 }
