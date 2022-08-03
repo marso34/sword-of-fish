@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9347d021503ed6047a3f349de3598f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RB: {fileID: 0}
   AnimFlame: 10
   DieAnimFlame: 10
   Barriar: {fileID: 5633779434967318931, guid: 543d359e13d76c14597cd3efc45f9a67, type: 3}
@@ -288,9 +289,14 @@ MonoBehaviour:
   Speed: 0
   RotationSpeed: 500
   MovementSpeed: 0
+  BusterSpeed: 0
+  BusterFlag: 0
+  ErrorFlag: 0
   TempMovementSp: 0
   TempBusterSp: 0
   TempRotateSp: 0
+  StateMoveFlag_: 0
+  StateRotateFlag_: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -302,8 +308,6 @@ MonoBehaviour:
   skin_: {fileID: 0}
   Flesh: {fileID: 8264412423978424977, guid: ae4cc6c29bf759440961ef339ef1c8bf, type: 3}
   chsize: 0.05
-  BusterSpeed: 0
-  BusterFlag: 0
   Bubble: {fileID: 7744744112347256152, guid: bcab08e21f4a60745993c92532f14a04, type: 3}
   StartFlag: 0
   Life: 0
@@ -325,6 +329,12 @@ MonoBehaviour:
   KillSound: {fileID: 0}
   PlayerHitSound: {fileID: 0}
   QM: {fileID: 0}
+  skillcheck: 0
+  TutorialLev4: 0
+  Timer33: 0
+  Timer22: 0
+  MoveTime: 3
+  TuLev1: 0
   Target: {fileID: 0}
   Indicator: {fileID: 2704039261075894569, guid: 6fba3959a6232d24d8ea06444e7ba14e, type: 3}
 --- !u!1001 &1228352546489687798

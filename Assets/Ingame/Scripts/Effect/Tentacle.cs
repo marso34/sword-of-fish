@@ -33,7 +33,7 @@ public class Tentacle : MonoBehaviour
         S = transform.GetComponent<SpriteRenderer>();
         StartFlag = true;
         imgTime = 0.125f;
-        HP = 15;
+        HP = 5;
         timer_ = 0f;
         temp = Polygon[0];
         FRZFlag = false;

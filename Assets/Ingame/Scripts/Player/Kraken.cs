@@ -50,7 +50,7 @@ public class Kraken : MonoBehaviour
         Circle = GetComponent<CircleCollider2D>();
         Skin = GetComponent<SpriteRenderer>();
         Skin.sprite = Image[0];
-        HP = 35;
+        HP = 12;
         Speed = 3.8f;
         RotationSpeed = 800f;
         waitTime = 4f;

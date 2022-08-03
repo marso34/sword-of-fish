@@ -365,12 +365,12 @@ public class QuestManager : MonoBehaviour
         // Debug.Log("捞芭 角青等促...");
         if (KnifeEnemyMaxCount > KnifeEC)
         {
-            Invoke("CreateKnifeE", 2.5f);
+            Invoke("CreateKnifeE", 4.5f);
             KnifeEC++;
         }// 漠 利 积己
         if (BulletEnemyMaxCount > BulletEC)
         {
-            Invoke("CreateBulletE", 2.5f);// 醚舅 利 积己
+            Invoke("CreateBulletE", 4.5f);// 醚舅 利 积己
             BulletEC++;
         }
         if (WaveMaxCount > WaveOC) Invoke("CreateWaveO", 2.5f);// 拱搬坷宏力 积己

@@ -23,7 +23,7 @@ public class Stage14 : Stage
             //GM.GetComponent<GameManager_>().ObjectCleaner();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            //ResetCounter();
+            QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().BossMaxCount = 1;
             QM.GetComponent<QuestManager>().MaxCount = 1; // 보스 한명 잡을시 클리어
             flag = false;
