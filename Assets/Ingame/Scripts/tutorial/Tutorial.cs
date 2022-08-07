@@ -158,7 +158,7 @@ public class Tutorial : MonoBehaviour
         TutorialCanvas.SetActive(true);
         TutorialPlan.SetActive(false);
 
-        Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
+        Guide = GameObject.Find("Main Camera").transform.Find("GuidePet(Clone)").gameObject;
         Guide.GetComponent<GuidePet>().BornGuide();
         TutorialCanvas.GetComponent<TutorialCanvas>().Touch = 0;
 

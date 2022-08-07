@@ -35,11 +35,11 @@ public class GuidePet : MonoBehaviour
     }
     public void BornGuide() 
     {
-        Guide = GameObject.Find("Player(Clone)").transform.Find("GuidePet(Clone)").gameObject;
+        Guide = GameObject.Find("Main Camera").transform.Find("GuidePet(Clone)").gameObject;
         //QM.GetComponent<QuestManager>().A = true;
         //QM.GetComponent<QuestManager>().bornguide(); 
         //Guide.transform.SetParent(Player.transform);
-        Guide.transform.localPosition = new Vector3(-4.5f, 6, 0); //내려오기 전에 화면 위에 있는 위치
+        Guide.transform.localPosition = new Vector3(-4.5f, 3.5f, 19); //내려오기 전에 화면 위에 있는 위치
         
 
     }
@@ -48,7 +48,7 @@ public class GuidePet : MonoBehaviour
 
     public void ShowMove() //가이드 물고기 자막 옆으로 이동
     {
-        Vector3 destination = new Vector3(-4.5f, 3.5f, 0);
+        Vector3 destination = new Vector3(-4.5f, 3.5f, 19);
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, destination, 0.05f);
         //QM.GetComponent<QuestManager>().HideAiSkin();
@@ -58,7 +58,7 @@ public class GuidePet : MonoBehaviour
     {
 
 
-        Vector3 EndDes = new Vector3(-4.5f, 8, 0);
+        Vector3 EndDes = new Vector3(-4.5f, 3.5f, 19);
         Vector3 speed = Vector3.zero; 
         transform.localPosition = Vector3.Lerp(transform.localPosition, EndDes, 0.05f);
         Invoke("OnCanvas", 1f);
