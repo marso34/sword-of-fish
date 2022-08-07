@@ -24,9 +24,9 @@ public class Stage12 : Stage
             //GM.GetComponent<GameManager_>().ObjectCleaner();
 
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 6;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 1;// 총알쏘는 적 1마리 소환
-            QM.GetComponent<QuestManager>().MaxCount = 13;//킬 보드에 표시된 킬스코어 4달성시 클리어
+            QM.GetComponent<QuestManager>().MaxCount = 10;//킬 보드에 표시된 킬스코어 4달성시 클리어
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
         }

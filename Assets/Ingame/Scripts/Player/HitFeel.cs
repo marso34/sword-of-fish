@@ -96,5 +96,9 @@ public class HitFeel : MonoBehaviour
         {
             transform.localScale = (transform.localScale/transform.localScale.y)/2f;
         }
+        else if(transform.parent.tag =="InkOct"){
+            transform.localScale = new Vector3(0.1f,1f,1f);
+            GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        }
     }
 }

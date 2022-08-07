@@ -62,6 +62,13 @@ TagManager:
   - Goal
   - Stage1
   - 2WALL1
+  - Tutorial
+  - TutorialCanvas
+  - Potal
+  - 1
+  - 2
+  - 3
+  - 4
   layers:
   - Default
   - TransparentFX

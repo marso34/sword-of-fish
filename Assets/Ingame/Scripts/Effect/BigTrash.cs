@@ -14,7 +14,7 @@ public class BigTrash : MonoBehaviour
     public GameObject PT;
     public GameObject DamageText;
 
-    bool Flag = true;
+    public bool Flag = true;
     void Start()
     {
 
