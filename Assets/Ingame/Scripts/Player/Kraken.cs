@@ -13,6 +13,7 @@ public class Kraken : MonoBehaviour
     public GameObject DamageText; // 데미지 표시
     public Sprite[] Image;
     public GameObject Point;
+    public ParticleSystem BubbleP;
     GameObject Player;
     CircleCollider2D Circle;
     SpriteRenderer Skin;
@@ -100,9 +101,12 @@ public class Kraken : MonoBehaviour
                     timer_ = 0;
                 }
                 MoveKraken(dir);
-                CreateBubbles();
+                // CreateBubbles();
+                BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
             }
             //ChangeCollider();
+
+
         }
     }
 

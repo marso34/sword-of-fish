@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b98bd55b316fee4db86f00067c428b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RB: {fileID: 0}
   AnimFlame: 10
   DieAnimFlame: 10
   Barriar: {fileID: 0}
@@ -149,9 +150,14 @@ MonoBehaviour:
   Speed: 0
   RotationSpeed: 0
   MovementSpeed: 0
+  BusterSpeed: 0
+  BusterFlag: 0
+  ErrorFlag: 0
   TempMovementSp: 0
   TempBusterSp: 0
   TempRotateSp: 0
+  StateMoveFlag_: 0
+  StateRotateFlag_: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -163,8 +169,6 @@ MonoBehaviour:
   skin_: {fileID: 0}
   Flesh: {fileID: 8264412423978424977, guid: ae4cc6c29bf759440961ef339ef1c8bf, type: 3}
   chsize: 0.05
-  BusterSpeed: 0
-  BusterFlag: 0
   Bubble: {fileID: 7744744112347256152, guid: bcab08e21f4a60745993c92532f14a04, type: 3}
   StartFlag: 0
   Life: 0
@@ -192,7 +196,7 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 5
   TuLev1: 0
-  KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
+  KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KillEffectO: {fileID: 2545687451895993892, guid: 051a4bac3775dde4097d5712160d7d02, type: 3}
   bullet: {fileID: 7188098298446391000, guid: 6a73647bf9ca7714899a543b6027b9dc, type: 3}
@@ -202,6 +206,7 @@ MonoBehaviour:
   waitingTime: 0
   SkillCount: 0
   flag: 0
+  PlayerP: {fileID: 0}
 --- !u!1 &4868236191001879870
 GameObject:
   m_ObjectHideFlags: 0

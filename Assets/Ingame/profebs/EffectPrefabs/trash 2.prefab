@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KillEffect: {fileID: 1972847932912936975, guid: 3c7009d5742233b4d8586764350bbdad, type: 3}
-  KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
+  KillEffect2: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillSound_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   Star: {fileID: 8918574881236972547, guid: 49f1ecaf45223c141942632aa95e9a82, type: 3}
   Hart: {fileID: 1771799534898505140, guid: 1ce45cb34533cc4408d7f06d16ed19d8, type: 3}

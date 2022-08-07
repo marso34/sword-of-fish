@@ -5,6 +5,7 @@ using UnityEngine;
 public class BubleParticle : MonoBehaviour
 {
     public ParticleSystem Buble;
+    public float Speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +17,15 @@ public class BubleParticle : MonoBehaviour
     {
         if (Buble != null)
         {
-            transform.GetChild(0).localScale = transform.parent.localScale * 0.2f;
+            transform.GetChild(0).localScale = transform.parent.localScale * 0.3f;
             ParticleSystem.MainModule main = Buble.main;
             ParticleSystem.EmissionModule emission = Buble.emission;
 
-            float size = transform.parent.localScale.y;
-            float speed = transform.parent.GetComponent<Player>().Speed;
+            // float size = transform.parent.localScale.y;
 
-            main.startSize = new ParticleSystem.MinMaxCurve(size * 0.15f, size * 0.4f);
-            main.startSpeed = new ParticleSystem.MinMaxCurve(speed * 0.4f, speed * 0.8f);
-            emission.rateOverTime = 3f + (speed * speed)/2;
+            main.startSize = new ParticleSystem.MinMaxCurve(0.15f, 0.2f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(Speed * 0.4f, Speed * 0.8f);
+            emission.rateOverTime = 3f + (Speed * Speed)/2;
         }
     }
 }

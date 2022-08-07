@@ -31,11 +31,6 @@ public class BigTrash : MonoBehaviour
                 var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
                 DT.transform.localScale *= 2f;
-
-                var KE1 = Instantiate(KillEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-                KE1.transform.localScale *= Random.Range(2.0f, 4.0f);
-                var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-                var KS = Instantiate(KillSound, transform.position, Quaternion.Euler(0, 0, 0));
             }
             else if (other.gameObject.tag == "EXPL")
             {
@@ -43,9 +38,17 @@ public class BigTrash : MonoBehaviour
                 DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
                 DT.transform.localScale *= 2f;
                 HP -= 5;
-                var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-                var KS = Instantiate(KillSound, transform.position, Quaternion.Euler(0, 0, 0));
             }
+
+            var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+            float x_ = transform.localScale.x;
+            if (x_ > 0)
+                x_ *= -1;
+
+            KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
+            KE.gameObject.GetComponent<Effect>().SetEffect(1);
+
+            var KS = Instantiate(KillSound, transform.position, Quaternion.Euler(0, 0, 0));
         }
 
     }
@@ -63,9 +66,9 @@ public class BigTrash : MonoBehaviour
             BE.transform.GetChild(2).tag = "AiPlayer";
             var BS = Instantiate(BoombSound, transform.position, Quaternion.Euler(0, 0, 0));
 
-            Invoke("win",1f);
+            Invoke("win", 1f);
             Destroy(transform.parent.gameObject, 3f);
-           
+
 
 
 
@@ -73,7 +76,7 @@ public class BigTrash : MonoBehaviour
     }
     void win()
     {
-         gameObject.SetActive(false);
+        gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().BigTrashC++;
     }
 }

@@ -112,6 +112,7 @@ public class AiPlayerScript : Player
                 }
                 PlayerMove();//움직임 및 State초기화         
                 SetBuster();
+                BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
             }
             else if (!Life)
             {

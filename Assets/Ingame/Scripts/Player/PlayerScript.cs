@@ -183,6 +183,8 @@ public class PlayerScript : Player
                 if (Speed == MovementSpeed)
                     RecuveryBusterGage();
 
+                BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
+
             }
             else if (!Life)
             {
@@ -366,7 +368,7 @@ public class PlayerScript : Player
     {
         if (Input.GetKeyDown(KeyCode.A))
             PlaySkill();
-            // SkillBtn.GetComponent<SkillBtn>().UseSkill();
+        // SkillBtn.GetComponent<SkillBtn>().UseSkill();
 
     }
 

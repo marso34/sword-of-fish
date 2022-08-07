@@ -46,8 +46,8 @@ public class BodyInteraction : MonoBehaviour
             {
                 transform.parent.GetComponent<PlayerScript>().DieLife();
                 transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);    
-                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;           
+                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
+                other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
             }
 
             if (transform.parent.tag == "AiPlayer")
@@ -55,7 +55,7 @@ public class BodyInteraction : MonoBehaviour
                 transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
                 transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
-            }                 
+            }
 
         }
 
@@ -96,10 +96,13 @@ public class BodyInteraction : MonoBehaviour
 
                     float QR = Random.Range(1, 7);
                     var KE = Instantiate(KillEffect, transform.parent.position, Quaternion.Euler(0f, 0f, 20f * QR));
-                    var KE1 = Instantiate(KillEffect2, transform.parent.position, Quaternion.Euler(0f, 0f, 20f * QR));
                     float R = Random.Range(0.8f, 1.7f);
-                    KE.transform.localScale = transform.parent.localScale * R / 1.5f;
-                    KE1.transform.localScale = transform.parent.localScale * R / 3f;
+                    float x_ = transform.localScale.x;
+                    if (x_ > 0)
+                        x_ *= -1;
+
+                    KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
+                    // KE.transform.localScale = transform.parent.localScale; * R / 1.5f;
                     Flag_Still(other.transform.parent.gameObject);
                 }
 
@@ -169,7 +172,8 @@ public class BodyInteraction : MonoBehaviour
     }
     public void BoomOn()
     {
-        var KE1 = Instantiate(KillEffect2, transform.parent.position, Quaternion.Euler(0f, 0f, 20f));
+        var KE1 = Instantiate(KillEffect, transform.parent.position, Quaternion.Euler(0f, 0f, 20f));
+        KE1.gameObject.GetComponent<Effect>().SetEffect(0);
     }
 
 }

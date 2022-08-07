@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public GameObject Barriar;
     public ParticleSystem Skill; // J
     public GameObject Skill2; // J
+    public ParticleSystem BubbleP; // J
     public bool isMove = false; //???ì§ì„?ƒ?ƒœ
     public enum State { Idle, Move, Die, };//?ƒ?ƒœ?“¤ ì§‘í•©
     public State state;// ?˜„?¬?ƒ?ƒœ
