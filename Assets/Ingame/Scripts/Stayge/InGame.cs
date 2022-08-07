@@ -20,7 +20,7 @@ public class InGame : MonoBehaviour
         if (QM.GetComponent<QuestManager>().GM.GetComponent<GameManager_>().StartButtonFlag)
         {
             Debug.Log("·Î±×°ª " + QM.GetComponent<QuestManager>().Flag);
-            if (QM.GetComponent<QuestManager>().Flag && Inflag)
+            if (Inflag) // QM.GetComponent<QuestManager>().Flag && 
             {
                 for (int i = 0; i < 2; i++)
                 {

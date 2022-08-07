@@ -24665,7 +24665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 30
-  HitEffect: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
+  HitEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
   BoombEffect: {fileID: 4973504494527794385, guid: 8605f212c962a3b4a9f828974026ee94, type: 3}
   BoombSound: {fileID: 7261985289784294839, guid: 7124fb31473b76149a6c967058b876b2, type: 3}
@@ -24758,7 +24758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 30
-  HitEffect: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
+  HitEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
   BoombEffect: {fileID: 4973504494527794385, guid: 8605f212c962a3b4a9f828974026ee94, type: 3}
   BoombSound: {fileID: 7261985289784294839, guid: 7124fb31473b76149a6c967058b876b2, type: 3}
@@ -24851,7 +24851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 30
-  HitEffect: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
+  HitEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
   BoombEffect: {fileID: 4973504494527794385, guid: 8605f212c962a3b4a9f828974026ee94, type: 3}
   BoombSound: {fileID: 7261985289784294839, guid: 7124fb31473b76149a6c967058b876b2, type: 3}

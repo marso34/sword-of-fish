@@ -61,7 +61,7 @@ public class QuestManager : MonoBehaviour
     public int BubblesShiledOC = 0;
     //-----------------------------
     public int CurrentCount;// ShapeA일때 사용 현재 내가 모은 갯수
-    public int[] Rank;// ShapeB일 떄 사용 현재 랭크 상위 4명만 표시
+    public int[] Rank;// ShapeB일 떄 사용 현재 랭크 상위 4명만 표시`
     public int OccupationTime;//ShapeC일 때 사용 점령전 얼마나 찾는지.
     public bool Flag = true;// update에서 한번만 실행할 구문 경계 구분 
     public Image me;//안쓰는 변수
@@ -122,7 +122,7 @@ public class QuestManager : MonoBehaviour
 
     void Start()
     {
-        Level_ = 2;//초기 렙설정
+        Level_ = 1;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
@@ -131,6 +131,7 @@ public class QuestManager : MonoBehaviour
         TempTuLev = 0;
         Stayge = null;
         StagyStagtFlag = false;
+        Flag = true;
         GM.GetComponent<GameManager_>().SuccesFlag = false;
     }
     void Update()
