@@ -14,7 +14,7 @@ public class BigTrash : MonoBehaviour
     public GameObject PT;
     public GameObject DamageText;
 
-    bool Flag = true;
+    public bool Flag = true;
     void Start()
     {
 
@@ -73,7 +73,7 @@ public class BigTrash : MonoBehaviour
     }
     void win()
     {
-         gameObject.SetActive(false);
+        gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().BigTrashC++;
     }
 }

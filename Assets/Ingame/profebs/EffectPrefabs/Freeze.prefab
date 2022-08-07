@@ -19576,6 +19576,7 @@ GameObject:
   - component: {fileID: 2103463885272064792}
   - component: {fileID: 2531183976057558642}
   - component: {fileID: 5709569694850286719}
+  - component: {fileID: 8667517439602524995}
   m_Layer: 0
   m_Name: Freeze
   m_TagString: WaitKnife
@@ -24442,6 +24443,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8667517439602524995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784195064203584359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ab84b7b296f884a903f323fc715680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
 --- !u!1 &6987752913962909366
 GameObject:
   m_ObjectHideFlags: 0

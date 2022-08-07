@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
     public double Timer22 = 0;
     public float MoveTime = 3f;
     public bool TuLev1 = false;
+    public Vector3 RagerPoint;
 
     public void GameStartInit()// ê²Œì„?‹œ?‘?‹œ ?•œë²ˆì‹¤?–‰
     {
@@ -93,6 +94,7 @@ public class Player : MonoBehaviour
         InitTemp();
         DefaultMoveSpeed();
         DefaultMoveSpeed();
+        RagerPoint = Vector3.zero;
     }
 
     public void GameWaitInit()//?˜?´?¬?Œ¨?„?—?„œ ê¸°ë‹¤ë¦´ë•Œ
@@ -273,7 +275,6 @@ public class Player : MonoBehaviour
         for (int i = 0; i < 3 + transform.localScale.y; ++i)
         {
             var flesh_ = Instantiate(Flesh, transform.position + RandomFleshPosition(), Quaternion.Euler(0, 0, 0));
-
         }
 
 
@@ -327,7 +328,6 @@ public class Player : MonoBehaviour
     {
         int R = Random.Range(1, 6);//ì¹¼ìŠ¤?‚¨ê°??ˆ˜6
         KnifeNumber = R;
-
     }
 
     public void InitKnife()// ë¬¼ê³ ê¸? ?”Œ? ˆê·¸ë?¼ê¸°ë°˜ìœ¼ë¡? ?Š¤?‚¨?„ ì´ˆê¸°?™”
@@ -650,8 +650,7 @@ public class Player : MonoBehaviour
     }//?‚¬?•˜ë©? ?‹¤?–‰?˜?Š”?•¨?ˆ˜
     public virtual void CheckWall()
     {
-        var zero = GameObject.FindGameObjectWithTag("Wall");
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (zero.transform.position - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
+        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (RagerPoint - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
         if (ray2.collider != null)
         {
             transform.position = ray2.point;

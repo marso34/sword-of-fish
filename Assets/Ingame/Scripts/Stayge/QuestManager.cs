@@ -122,7 +122,7 @@ public class QuestManager : MonoBehaviour
 
     void Start()
     {
-        Level_ = 0;//초기 렙설정
+        Level_ = 2;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
@@ -159,8 +159,12 @@ public class QuestManager : MonoBehaviour
     {//?? ???????? ??????? ????? ????
         if (Flag)
         {
-            GM.GetComponent<GameManager_>().SuccesFlag=false;
-            
+            GM.GetComponent<GameManager_>().SuccesFlag = false;
+            if (GameObject.FindGameObjectWithTag("Stage") != null)
+            {
+                Debug.Log(GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>().GoalCount + "yyyyy" + GameObject.FindGameObjectWithTag("Stage"));
+                Destroy(GameObject.FindGameObjectWithTag("Stage"));
+            }
             if (Level_ == 0)
             {
                 Level_0_Action();
@@ -170,7 +174,10 @@ public class QuestManager : MonoBehaviour
             {
                 Level_1_Action();
             }
-
+            if (Level_ == 2)
+            {
+                Level_2_Action();
+            }
             //Debug.Log(IngameLevel + "????" + MaxCount + " " + KnifeEC);
             //if (Level_ == 8) Players[Random.Range(1, 7)].GetComponent<Player>().Flag_get = true;
             // Stayge = Instantiate(Stayges[Level_ - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
@@ -215,10 +222,10 @@ public class QuestManager : MonoBehaviour
     }// 게임 끝나는거 체
     public void Level_0_Action()
     {
-        if(Level_ == 0)
+        if (Level_ == 0)
         {
             Stayge = Instantiate(Stagys1[0], Vector3.zero, Quaternion.Euler(0, 0, 0));
-            
+
             tutorial = GameObject.Find("Tutorial(Clone)").gameObject;
             //TutorialPlan = GameObject.Find("Tutorial(Clone)").transform.Find("TutorialCanvas").transform.Find("TuText").gameObject;
             Debug.Log(" 레 벨 0 a c t i o n");
@@ -226,32 +233,30 @@ public class QuestManager : MonoBehaviour
     }
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
-        if (Level_ == 1 && IngameLevel <7)
+        if (IngameLevel < 7)
         {
-            if (GameObject.FindGameObjectWithTag("Stage") != null)
-            {
-                Debug.Log(GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>().GoalCount + "yyyyy" + GameObject.FindGameObjectWithTag("Stage"));
-                Destroy(GameObject.FindGameObjectWithTag("Stage"));
-            }
             CurrentCount = 0;
             TrashMaxCount = 5;
             Trash2MaxCount = 5;
             Stayge = Instantiate(Stagys1[IngameLevel], Vector3.zero, Quaternion.Euler(0, 0, 0));
-
-
         }
     }
     public void Level_2_Action()
     {
-
+        if (IngameLevel < 2)
+        {
+            CurrentCount = 0;
+            TrashMaxCount = 5;
+            Trash2MaxCount = 5;
+            Stayge = Instantiate(Stagys2[IngameLevel - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
+        }
     }
     public void CurrentCountInit()//퀘스트 완료조건 정의
     {
-        if (Stayge != null)
-        {
+        
             CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
             Debug.Log(CurrentCount + "카운트");
-        }
+        
     }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
     {
@@ -303,7 +308,7 @@ public class QuestManager : MonoBehaviour
             A = true;
 
             TutorialName.transform.SetParent(IntroPenelT);
-            TutorialName.transform.localPosition = new Vector3(0,0,0);
+            TutorialName.transform.localPosition = new Vector3(0, 0, 0);
             Debug.Log("Init_ Stagge 레 벨 =  = 0");
             //GameObject.FindWithTag("IntroPanel").SetActive(false);
 
@@ -338,6 +343,36 @@ public class QuestManager : MonoBehaviour
 
 
         }
+        else if (Level_ == 2)
+        {
+
+            GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("Stage1").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("plan1").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("Stagy Level").gameObject.SetActive(true);
+
+            Color a;
+            a.a = 1;
+            a.b = 1;
+            a.g = 1;
+            a.r = 1;
+
+            GameObject uim_Stage = GameObject.Find("GameManager/Canvas/IntroPanel");
+            Color color = uim_Stage.GetComponent<Image>().color = a;
+            IntroPanel.GetComponent<Image>().sprite = UIM_Stage;
+
+
+            limitTime = 1;
+            ShapeNum = 1;
+            IntroPanelName.GetComponent<Text>().text = "2";
+            IntroPanelPlan[1].SetActive(true);
+            IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "킹크렙의 산맥";
+
+
+
+        }
+
 
         CurrentCount = 0;
         OccupationTime = 0;
@@ -380,6 +415,10 @@ public class QuestManager : MonoBehaviour
             Trash2OC++;
         }
         if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
+    }
+    void SetZeroRager()
+    {
+        Player.GetComponent<Player>().RagerPoint = Vector3.zero;
     }
     Vector3 ObjRandomPosition()// 랜덤위치
     {
@@ -445,7 +484,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 6)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -15.55f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -15.6f, 0f), Quaternion.Euler(0f, 0f, 0f));
             Boss.name = "Boss";
         }
         BossEC++;
@@ -526,10 +565,11 @@ public class QuestManager : MonoBehaviour
     }// Shape초기화
     public void ShapeA_Init()
     {
-        CurrentCountInit();
-        QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
-        if (Level_ == 1)
+        if (Stayge != null)
         {
+            CurrentCountInit();
+            QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
+
             QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
 
             QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
@@ -541,7 +581,8 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
-            if (IngameLevel == 7)
+            SetZeroRager();
+            if ((Level_==1&& IngameLevel == 7) || (Level_==2 && IngameLevel ==2))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();
@@ -553,6 +594,7 @@ public class QuestManager : MonoBehaviour
             {
                 Flag = true;
                 IngameLevel++;
+
             }
         }
 
@@ -570,18 +612,21 @@ public class QuestManager : MonoBehaviour
                 IngameLevel = 1;
                 LoseFlag = false;
                 Flag = true;
+                StagyStagtFlag = false;
             }
             else if (GM.GetComponent<GameManager_>().SuccesFlag)
             {
                 Debug.Log("성공성공");
-                // Level_++;
+                Level_++;
                 IngameLevel = 1;
                 GM.GetComponent<GameManager_>().EndFlag = true;
                 GM.GetComponent<GameManager_>().WinPanel.SetActive(true);
                 GM.GetComponent<GameManager_>().SuccesFlag = false;
-                Level_ = 1;
+                
                 Flag = true;
+                StagyStagtFlag = false;
             }
+
         }
     }//??????????? ??
 

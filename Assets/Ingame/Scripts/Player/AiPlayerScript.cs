@@ -29,9 +29,10 @@ public class AiPlayerScript : Player
         GM = GameObject.FindGameObjectWithTag("GM");
         Flag_get = false;
         AiPlayers_ = new GameObject[9];
-        S = Skin.transform.GetComponent<SpriteRenderer>();
+        
 
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
+        S = Skin.transform.GetComponent<SpriteRenderer>();
         RotationSpeed = 720f;
         Life = true;// 라이프 온
         timer = 3;

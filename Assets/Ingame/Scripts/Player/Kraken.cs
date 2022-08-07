@@ -166,7 +166,12 @@ public class Kraken : MonoBehaviour
     }
     public void CreateInkOct() // 먹물 분신 생성
     {
-        var IO = Instantiate(InkOct, transform.position, Quaternion.Euler(0, 0, 0));
+        var IO = Instantiate(InkOct, transform.position, Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
+        IO.transform.parent = transform;
+        IO.transform.localPosition = new Vector3(Random.Range(-0.9f,0.1f),0f,0f);
+        IO.transform.parent = null;
+        IO.transform.localScale = new Vector3(1,1,1);
+        IO.GetComponent<Player>().FishNumber =7;
         IO.GetComponent<Player>().StartFlag = true;
     }
     public void MoveKraken(Vector3 dir_)
