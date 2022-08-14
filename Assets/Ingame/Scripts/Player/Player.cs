@@ -320,7 +320,7 @@ public class Player : MonoBehaviour
         if (transform.tag == "AiPlayer")
         {
             int R = Random.Range(5, 6);// ëª¸ìŠ¤?‚¨ê°??ˆ˜5
-            FishNumber = 9; // R;
+            FishNumber = R;
         }
 
     }

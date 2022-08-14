@@ -255,7 +255,7 @@ public class QuestManager : MonoBehaviour
     }
     public void Level_2_Action()
     {
-        if (IngameLevel < 4)
+        if (IngameLevel < 5)
         {
             CurrentCount = 0;
             TrashMaxCount = 5;
@@ -627,7 +627,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
             SetZeroRager();
-            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 2))
+            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 4))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();
