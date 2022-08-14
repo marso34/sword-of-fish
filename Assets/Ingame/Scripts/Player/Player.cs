@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         RotationSpeed = 1200f;
         TempMovementSp = 2.3f; //J
         TempBusterSp = 4.6f;     // J
-        TempRotateSp = RotationSpeed;   // J
+        TempRotateSp = 1000f;   // J
     }
 
     public void DefaultMoveSpeed()
