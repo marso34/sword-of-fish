@@ -87,7 +87,7 @@ public class BodyInteraction : MonoBehaviour
     {
         //Debug.Log(other.transform.tag +"iiiii");
         if (other.gameObject.tag == "Knife" && transform.tag == "Body")
-            if (((other.transform.parent.tag == "InkOct" || other.transform.parent.gameObject.tag == "AiPlayer") && transform.parent.tag == "Player") || ((transform.parent.tag == "AiPlayer" ||transform.parent.tag == "InkOct") && other.transform.parent.tag == "Player" ||other.transform.parent.tag == "Victem"))
+            if (((other.transform.parent.tag == "InkOct" || other.transform.parent.gameObject.tag == "AiPlayer") && transform.parent.tag == "Player") || ((transform.parent.tag == "AiPlayer" ||transform.parent.tag == "InkOct") && other.transform.parent.tag == "Player"))
             {
                 if (other.transform.parent.gameObject != transform.parent.gameObject)
                 {

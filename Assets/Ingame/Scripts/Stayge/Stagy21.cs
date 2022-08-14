@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stagy21 : Stage
 {
     // Start is called before the first frame update
-    bool TrashFlag;
+   
     public GameObject Potal;// 포탈에 닿아서 n초있으면 클리어
     public int ClearLevel;
     public GameObject[] Wall;
@@ -24,12 +24,7 @@ public class Stagy21 : Stage
     // Update is called once per frame
     void Update()
     {
-        if (TrashFlag)
-        {
-            Debug.Log("쓰레기 생성");
-            Invoke("CreateTrash_", 0.5f);
-            TrashFlag = false;
-        }
+        TrashOn();
         if (flag)
         {
             setWalls();
@@ -52,6 +47,7 @@ public class Stagy21 : Stage
         QM.GetComponent<QuestManager>().ResetMaxCounter();
         QM.GetComponent<QuestManager>().MaxCount = 1;
         QM.GetComponent<QuestManager>().StagyStagtFlag = true;
+        QM.GetComponent<QuestManager>().ObjMFlag = false;
         QM.GetComponent<QuestManager>().Player.transform.position =  Wall[ClearLevel - 1].transform.position;
     }
     void setWalls()
@@ -71,17 +67,6 @@ public class Stagy21 : Stage
         Wall[ClearLevel - 1].transform.localScale = new Vector3(2, 1, 1);
         ClearLevel++;
     }
-    Vector3 DownTPosition()
-    {//떨어질쓰레기 위치설정
-        return new Vector3(Random.Range(-13, 13), 10f, 0);
-    }
-    void CreateTrash_()
-    {
-        GameObject T;
-        T = Instantiate(QM.GetComponent<QuestManager>().TrashObj, DownTPosition(), Quaternion.Euler(0, 0, Random.Range(0, 360f)));
-        T.GetComponent<Rigidbody2D>().gravityScale = 0.1f;
-        TrashFlag = true;
-        //T.name = "bullet(Clone)";
-    }
+   
 }
 
