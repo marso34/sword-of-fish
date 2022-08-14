@@ -28,7 +28,7 @@ public class BodyInteraction : MonoBehaviour
         HitSkill(other2.gameObject);
         TrashHit(other2.gameObject);
         HitEXPL(other2.gameObject);
-    }
+    } 
 
     void HitEXPL(GameObject other)
     {
@@ -58,7 +58,6 @@ public class BodyInteraction : MonoBehaviour
                 transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
             }
-
         }
 
         if (other.gameObject.tag == "SkillO" && transform.tag == "Body")
@@ -69,6 +68,7 @@ public class BodyInteraction : MonoBehaviour
             var KE22 = Instantiate(KillEffectO, transform.parent.position, Quaternion.Euler(0f, 0f, Random.Range(-80, 80)));
             KE22.transform.localScale = transform.localScale;
         }
+
         if (other.gameObject.tag == "FRZ" && transform.tag == "Body" && transform.parent.tag != "Player")
         {
             transform.parent.gameObject.GetComponent<Player>().C = new Color(60f / 255f, 150f / 255f, 255f / 255f);

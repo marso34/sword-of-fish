@@ -109,6 +109,7 @@ public class Boss : MonoBehaviour
         {
 
             HitOn();//DieImg에 보스터질때 구현
+            transform.Find("Bubble Particle").gameObject.SetActive(false);
             gameObject.SetActive(false);
             Invoke("win", 1.5f);
         }
