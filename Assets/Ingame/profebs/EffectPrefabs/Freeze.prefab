@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 8820577874352771917}
   m_Layer: 0
   m_Name: main
-  m_TagString: Untagged
+  m_TagString: FRZ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3758,12 +3758,13 @@ ParticleSystem:
     enabled: 0
     serializedVersion: 4
     type: 0
-    collisionMode: 0
-    colliderForce: 0
+    collisionMode: 1
+    colliderForce: 50
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 6575813438444824368}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -3820,7 +3821,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3928,11 +3929,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 129
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4968,7 +4969,7 @@ GameObject:
   - component: {fileID: 8374821835759317783}
   m_Layer: 0
   m_Name: sub4
-  m_TagString: Untagged
+  m_TagString: FRZ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8628,12 +8629,13 @@ ParticleSystem:
     enabled: 0
     serializedVersion: 4
     type: 0
-    collisionMode: 0
-    colliderForce: 0
+    collisionMode: 1
+    colliderForce: 50
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 2990709565981060961}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -8690,7 +8692,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8798,11 +8800,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 129
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9838,7 +9840,7 @@ GameObject:
   - component: {fileID: 3555058887657597653}
   m_Layer: 0
   m_Name: sub2
-  m_TagString: Untagged
+  m_TagString: FRZ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13498,12 +13500,13 @@ ParticleSystem:
     enabled: 0
     serializedVersion: 4
     type: 0
-    collisionMode: 0
-    colliderForce: 0
+    collisionMode: 1
+    colliderForce: 50
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 4717629395940917233}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -13560,7 +13563,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -13668,11 +13671,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 129
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -14706,9 +14709,10 @@ GameObject:
   - component: {fileID: 1015076271657573922}
   - component: {fileID: 380039776750762602}
   - component: {fileID: 7613030668824140502}
+  - component: {fileID: 8344221972755076747}
   m_Layer: 0
   m_Name: air
-  m_TagString: Untagged
+  m_TagString: FRZ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15138,7 +15142,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -15191,7 +15195,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -15244,8 +15248,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 6.283185
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -18368,12 +18372,13 @@ ParticleSystem:
     enabled: 0
     serializedVersion: 4
     type: 0
-    collisionMode: 0
-    colliderForce: 0
+    collisionMode: 1
+    colliderForce: 50
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 1015076271657573922}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -18430,7 +18435,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -18538,11 +18543,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 129
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -19565,6 +19570,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8344221972755076747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3927257680285392788}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc76c887084a4c4da590a3690d39a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IceSound: {fileID: 8308725781374282753, guid: f6ba373ac71e1dc48b6af49930e24536, type: 3}
+  Prt: {fileID: 6784195064203584359}
 --- !u!1 &6784195064203584359
 GameObject:
   m_ObjectHideFlags: 0
@@ -24469,7 +24488,7 @@ GameObject:
   - component: {fileID: 438402299967562381}
   m_Layer: 0
   m_Name: sub3
-  m_TagString: Untagged
+  m_TagString: FRZ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28129,12 +28148,13 @@ ParticleSystem:
     enabled: 0
     serializedVersion: 4
     type: 0
-    collisionMode: 0
-    colliderForce: 0
+    collisionMode: 1
+    colliderForce: 50
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 7166688483260009538}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -28191,7 +28211,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -28299,11 +28319,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 129
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -29339,7 +29359,7 @@ GameObject:
   - component: {fileID: 1631030469422051104}
   m_Layer: 0
   m_Name: sub1
-  m_TagString: Untagged
+  m_TagString: FRZ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32999,12 +33019,13 @@ ParticleSystem:
     enabled: 0
     serializedVersion: 4
     type: 0
-    collisionMode: 0
-    colliderForce: 0
+    collisionMode: 1
+    colliderForce: 50
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 8418589905174282756}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -33061,7 +33082,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -33169,11 +33190,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 129
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:

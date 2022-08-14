@@ -152,7 +152,6 @@ public class Tentacle : MonoBehaviour
 
             float QR = Random.Range(1, 7);
             var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f));
-            var KE1 = Instantiate(KillEffect2, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
 
             if (other2.gameObject.tag == "EXPL")
             {
@@ -161,7 +160,6 @@ public class Tentacle : MonoBehaviour
 
                 float R = Random.Range(0.5f, 1.0f);
 
-                KE1.transform.localScale = transform.localScale * R;
             }
             else
             {
@@ -171,8 +169,11 @@ public class Tentacle : MonoBehaviour
                 float R = Random.Range(3.5f, 6f);
                 var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
 
-                KE.transform.localScale = transform.localScale * R;
-                KE1.transform.localScale = transform.localScale * 2;
+                float x_ = transform.localScale.x;
+                if (x_ > 0)
+                    x_ *= -1;
+
+                KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
             }
         }
 

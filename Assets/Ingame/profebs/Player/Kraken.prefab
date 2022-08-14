@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7807c2ae73ce5a54c94077189a2fca32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
+  KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
@@ -547,7 +547,7 @@ MonoBehaviour:
   Speed: 0
   RotationSpeed: 0
   LegCount: 0
-  KillEffect: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
+  KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   waitTime: 0
@@ -868,7 +868,7 @@ PrefabInstance:
     - target: {fileID: 8261330106958550215, guid: 38507872d3b268041a177deb64302322, type: 3}
       propertyPath: KillEffect
       value: 
-      objectReference: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
+      objectReference: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
     - target: {fileID: 8261330106958550215, guid: 38507872d3b268041a177deb64302322, type: 3}
       propertyPath: KillEffect2
       value: 
@@ -978,7 +978,7 @@ PrefabInstance:
     - target: {fileID: 8261330106958550215, guid: 38507872d3b268041a177deb64302322, type: 3}
       propertyPath: KillEffect
       value: 
-      objectReference: {fileID: 6760050775345599335, guid: 7b125bb0d3c374a47b3b99862eeb59fc, type: 3}
+      objectReference: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
     - target: {fileID: 8261330106958550215, guid: 38507872d3b268041a177deb64302322, type: 3}
       propertyPath: KillEffect2
       value: 

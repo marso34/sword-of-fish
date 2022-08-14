@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 025bb36a421e62041b8703e7d66c5a97
+guid: 8e1cda325c223a54fa4b7dcfdc78a7cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -38,7 +38,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19a69a6cf04f8f940a6d6e8b2617baf0
-      internalID: 332501472
+      spriteID: e41b7579d68f16b4eb4fff1e73b67994
+      internalID: 1086426842
       vertices: []
       indices: 
       edges: []
@@ -151,8 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b54bc003ae881d848b7810565cef7a5f
-      internalID: 1819136752
+      spriteID: adbc70a931f3d4f449ab0851aa492c36
+      internalID: 1599875951
       vertices: []
       indices: 
       edges: []
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233cdd56d42435a488f5eb36accff2a4
-      internalID: -1275831619
+      spriteID: 7e0eb32ffa1de9744b2d829d10a7d019
+      internalID: -1333600655
       vertices: []
       indices: 
       edges: []
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ff606be4b3f4bb4c910de8daa677d3c
-      internalID: 1466569427
+      spriteID: 4892829b88e182b47bd74b6dedf6dc69
+      internalID: -1083275999
       vertices: []
       indices: 
       edges: []
@@ -214,8 +214,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 475942728441d3f4892dc43291e1e62a
-      internalID: -1798913587
+      spriteID: 797d00cbb4c2b324c8244ad697f1874a
+      internalID: 1028421893
       vertices: []
       indices: 
       edges: []
@@ -235,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 865debd43bc1c514bac80b05996e6bb5
-      internalID: -1046710755
+      spriteID: 6a97ba30e3858854ba97f06ed835d61e
+      internalID: 1910264690
       vertices: []
       indices: 
       edges: []
@@ -256,8 +256,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6f09dd0b41083e4fb7bf05234bf13d3
-      internalID: 40314977
+      spriteID: 15e9657fbdf006844a5d657b478efb74
+      internalID: -817786282
       vertices: []
       indices: 
       edges: []
@@ -277,8 +277,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d8cac03288429479d4c23b4b3909cc
-      internalID: 98852750
+      spriteID: 8e2bec30584158e419b5a24e8d52547a
+      internalID: 407585344
       vertices: []
       indices: 
       edges: []
@@ -298,8 +298,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12d8864ed1a3b1842a35a2d66e667ac7
-      internalID: 2008420940
+      spriteID: 208a028c0b2043f43aeeda9b14e35228
+      internalID: 2045728204
       vertices: []
       indices: 
       edges: []
@@ -319,8 +319,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3db7986513ad1be4ba8358a6f7a4d27d
-      internalID: 354207326
+      spriteID: 0d376e20fd6f60a40953dee7c06fc01a
+      internalID: -1693822085
       vertices: []
       indices: 
       edges: []
@@ -328,7 +328,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e01634d58ef9e684496a1fd17668b6e9
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -336,16 +336,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BornFish_8: 2008420940
-      BornFish_0: 332501472
-      BornFish_1: 1819136752
-      BornFish_4: -1798913587
-      BornFish_5: -1046710755
-      BornFish_3: 1466569427
-      BornFish_7: 98852750
-      BornFish_6: 40314977
-      BornFish_9: 354207326
-      BornFish_2: -1275831619
+      BornFish_8: 2045728204
+      BornFish_0: 1086426842
+      BornFish_1: 1599875951
+      BornFish_4: 1028421893
+      BornFish_5: 1910264690
+      BornFish_3: -1083275999
+      BornFish_7: 407585344
+      BornFish_6: -817786282
+      BornFish_9: -1693822085
+      BornFish_2: -1333600655
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

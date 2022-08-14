@@ -19,7 +19,7 @@ public class InGame : MonoBehaviour
     {
         if (QM.GetComponent<QuestManager>().GM.GetComponent<GameManager_>().StartButtonFlag)
         {
-            Debug.Log("로그값 " + QM.GetComponent<QuestManager>().Flag);
+            // Debug.Log("로그값 " + QM.GetComponent<QuestManager>().Flag);
             if (Inflag) // QM.GetComponent<QuestManager>().Flag && 
             {
                 for (int i = 0; i < 2; i++)

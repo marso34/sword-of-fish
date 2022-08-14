@@ -325,7 +325,6 @@ public class Kraken : MonoBehaviour
     }
     public void DestroyKraken(GameObject other2)
     {
-
         float QR = Random.Range(1, 7);
         float R = Random.Range(2f, 5f);
         if (HP > 0)
@@ -349,14 +348,14 @@ public class Kraken : MonoBehaviour
                 DT.transform.localScale *= 2f;
                 HP--;
                 var KE = Instantiate(KillEffect, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-                KE.transform.localScale = transform.localScale * R / 5f;
+                float x_ = transform.localScale.x;
+                if (x_ > 0)
+                    x_ *= -1;
+
+                KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
             }
 
-
-            var KE1 = Instantiate(KillEffect2, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-
             Debug.Log("ssss0");
-            KE1.transform.localScale = transform.localScale / 4.5f;
 
             var KS = Instantiate(KS_, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
         }

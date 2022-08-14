@@ -256,7 +256,7 @@ public class QuestManager : MonoBehaviour
     {
         
             CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
-            Debug.Log(CurrentCount + "카운트");
+            // Debug.Log(CurrentCount + "카운트");
         
     }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화

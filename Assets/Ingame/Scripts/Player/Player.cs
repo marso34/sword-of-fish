@@ -128,8 +128,8 @@ public class Player : MonoBehaviour
     {
         if (StateMoveFlag_ == false)
         {
-            if (transform.tag == "Player")
-                Debug.Log("원래 속도");
+            // if (transform.tag == "Player")
+            //     Debug.Log("원래 속도");
             Speed = TempMovementSp + transform.localScale.y / 2;
             MovementSpeed = TempMovementSp + transform.localScale.y / 2;
             BusterSpeed = TempBusterSp + transform.localScale.y / 2;
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
         {
             RotationSpeed = TempRotateSp;
             StateRotateFlag_ = false;
-            Debug.Log("원래 회전");
+            // Debug.Log("원래 회전");
         }
     }
 
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
             BusterSpeed = 0f;
             StateMoveFlag_ = true;
             Debug.Log("정지");
-             Invoke("InitState",2.5f);
+            Invoke("InitState",2.5f);
         }
     }
 
