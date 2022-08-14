@@ -320,7 +320,7 @@ public class Player : MonoBehaviour
         if (transform.tag == "AiPlayer")
         {
             int R = Random.Range(5, 6);// Î™∏Ïä§?Ç®Í∞??àò5
-            FishNumber = R;
+            FishNumber = 9; // R;
         }
 
     }
@@ -354,6 +354,7 @@ public class Player : MonoBehaviour
         else if (FishNumber == 6) BodyAnims = skin_.Gabock_E;
         else if (FishNumber == 7) BodyAnims = skin_.InkOctAnims_E;
         else if (FishNumber == 8) BodyAnims = skin_.Granpa_V;
+        else if (FishNumber == 9) BodyAnims = skin_.PupleAnims_E;
     }
     public void InitDieBody()
     {
@@ -364,6 +365,7 @@ public class Player : MonoBehaviour
         else if (FishNumber == 4) MFish.sprite = skin_.DieAnims[4];
         else if (FishNumber == 5) MFish.sprite = skin_.DieAnims[5];
         else if (FishNumber == 6) MFish.sprite = skin_.DieAnims[6];
+        else if (FishNumber == 9) MFish.sprite = skin_.DieAnims[6];
     }
     public void ResetColor()//?à¨Î™ÖÎèÑ 0?úºÎ°? Ï¶? ?à¨Î™ÖÌïòÏß??ïäÍ≤?
     {
@@ -684,7 +686,6 @@ public class Player : MonoBehaviour
     }
     public void CreateSkill(string Name) // J ?ä§?Ç¨ ÎßåÎìú?äî ?ï®?àò
     {
-
         var a = Instantiate(Skill, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
         a.transform.localPosition = Vector3.zero;
@@ -695,7 +696,6 @@ public class Player : MonoBehaviour
     {
         var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
-        
         a.transform.localPosition = Vector3.zero;
         a.transform.localScale = new Vector3(1f, 1f, 1f);
     }
@@ -753,6 +753,10 @@ public class Player : MonoBehaviour
             SkillFlag = true;
             Invoke("OffSkillFlag", 3f);
         }
+        else if (FishNumber == 9) // ∆€«√««Ω¨
+        {
+            CreateSkill2();
+        }
     }
     public void PlaySkill(string Name) //J
     {
@@ -794,6 +798,10 @@ public class Player : MonoBehaviour
             CreateSkill2(Name);
             SkillFlag = true;
             Invoke("OffSkillFlag", 3f);
+        }
+        else if (FishNumber == 9) // ∆€«√««Ω¨
+        {
+            CreateSkill2();
         }
     }
 

@@ -343,6 +343,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.41
       objectReference: {fileID: 0}
+    - target: {fileID: 2817093904908500640, guid: 14c725e6afd759f4c8c499d0026049bd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817093904908500640, guid: 14c725e6afd759f4c8c499d0026049bd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2817093904908500643, guid: 14c725e6afd759f4c8c499d0026049bd, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1109,6 +1117,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 857004045}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: BigTrashObj2
+      value: 
+      objectReference: {fileID: 6533883534692981103, guid: c69f05d35cef81d4a870a432c69f41af, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: BockBossIcon
       value: 
       objectReference: {fileID: -4760459866444222864, guid: ce97f0a737e5eac4fba3c91378fec2c1, type: 3}
@@ -1138,7 +1150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys2.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.size
@@ -1180,6 +1192,14 @@ PrefabInstance:
       propertyPath: Stagys2.Array.data[1]
       value: 
       objectReference: {fileID: 3158690595246343277, guid: cd3d519add734934eab0f3cb9a781978, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: Stagys2.Array.data[2]
+      value: 
+      objectReference: {fileID: 7211160799632442228, guid: c1c5401cc0bf8094ea649aac8d1d8806, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: Stagys2.Array.data[3]
+      value: 
+      objectReference: {fileID: 7211160799632442228, guid: dbe74aaa4e2c69c43993c13c04ddac38, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.data[0]
       value: 
@@ -4426,11 +4446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3139700132709353875, guid: b18f018b3f61ac0429a83ef2efe7275e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.97
+      value: -2.5500002
       objectReference: {fileID: 0}
     - target: {fileID: 3139700132709353875, guid: b18f018b3f61ac0429a83ef2efe7275e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.82
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 3139700132709353875, guid: b18f018b3f61ac0429a83ef2efe7275e, type: 3}
       propertyPath: m_LocalPosition.z

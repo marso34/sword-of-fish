@@ -97,7 +97,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6533883534692981103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d4d16f960d4a76429f18edf0e060439, type: 3}
   m_Name: 
@@ -114,6 +114,7 @@ MonoBehaviour:
   StabSound: {fileID: 0}
   BarrerSound: {fileID: 0}
   Image: []
+  DelEffect: {fileID: 0}
   HP: 0
   FRZFlag: 0
 --- !u!50 &6533883534692981090

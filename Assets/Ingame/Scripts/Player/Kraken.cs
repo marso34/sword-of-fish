@@ -362,7 +362,7 @@ public class Kraken : MonoBehaviour
 
         if (HP <= 0)
         {
-
+            transform.Find("Bubble Particle").gameObject.SetActive(false);
             HitOn();//DieImg에 보스터질때 구현
             gameObject.SetActive(false);
             Invoke("win", 1.5f);

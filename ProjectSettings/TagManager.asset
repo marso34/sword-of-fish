@@ -71,6 +71,7 @@ TagManager:
   - 4
   - Victem
   - ShowText
+  - SkillP
   layers:
   - Default
   - TransparentFX

@@ -56,9 +56,7 @@ public class Skill : MonoBehaviour
         }
         else if (FishNumber == 4) // 고래신사
         {
-            transform.Find("whale1").gameObject.SetActive(true);
-            transform.Find("whale2").gameObject.SetActive(true);
-            transform.Find("whale3").gameObject.SetActive(true);
+            transform.Find("tornado").gameObject.SetActive(true);
         }
         // else if (FishNumber == 5 or 6 or 7 ...) 다른 물고기 추가시
     }

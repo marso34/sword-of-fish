@@ -25,7 +25,8 @@ public class QuestManager : MonoBehaviour
     public GameObject BossEnemy2;// 1라운드 보스 타코야
     public GameObject VictimObj;
     public GameObject WaveObj;
-    public GameObject BigTrashObj;
+    public GameObject BigTrashObj; // 크라켄 쓰레기
+    public GameObject BigTrashObj2; // 킹크랩 쓰레기
     public GameObject TrashObj;
     public GameObject TrashObj2;
 
@@ -123,7 +124,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Level_ = 2;//초기 렙설정
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 3; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -248,7 +249,7 @@ public class QuestManager : MonoBehaviour
     }
     public void Level_2_Action()
     {
-        if (IngameLevel < 3)
+        if (IngameLevel < 4)
         {
             CurrentCount = 0;
             TrashMaxCount = 5;
@@ -508,7 +509,15 @@ public class QuestManager : MonoBehaviour
     }
     public void CreateBigTrashO()
     {//위치 정해져 있어야할듯? 바닥 쪽에
-        var Obj = Instantiate(BigTrashObj, SetPosition(0, 0, 0f), Quaternion.Euler(0f, 0f, 0f));
+        if (Level_ == 1)
+        {
+            var Obj = Instantiate(BigTrashObj, SetPosition(0, 0, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
+        }
+        else if (Level_ == 2)
+        {
+            var Obj = Instantiate(BigTrashObj, SetPosition(0, 0, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+        }
+
         BigTrashOC++;
     }
     public void CreateTrashO()
