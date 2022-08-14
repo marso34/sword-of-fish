@@ -23,6 +23,9 @@ public class AiPlayerScript : Player
     bool firstMoveFlag;
     Vector3 MinFar;
     bool ViewFlag;
+
+    float SkillTimer;
+
     public void Start()//일반적인 스타트 (코루틴) 반복문임.)
     {
         QM = GameObject.FindGameObjectWithTag("QM");
@@ -51,13 +54,13 @@ public class AiPlayerScript : Player
         SetRandomKnife();
         GameWaitInit();
         RB = MyBody.transform.GetComponent<Rigidbody2D>();
+        SkillTimer = 0f;
 
         firstMoveFlag = true;
         if (transform.tag == "Attacker") waitingTime = 0.1f;
         StartCoroutine("Start_");
         MinFar = new Vector3(13f, 5f, 1f);
         ViewFlag = false;
-
     }
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
@@ -114,10 +117,19 @@ public class AiPlayerScript : Player
                 PlayerMove();//움직임 및 State초기화         
                 SetBuster();
                 BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
+
+                SkillTimer += Time.deltaTime;
+
+                if (SkillTimer > 2f)
+                {
+                    PlaySkill();
+                    SkillTimer = 0f;
+                }
             }
             else if (!Life)
             {
                 dir = Vector3.zero;
+                transform.Find("Bubble Particle").gameObject.SetActive(false);
             }
             AnimState(dir);
             CheckWall();

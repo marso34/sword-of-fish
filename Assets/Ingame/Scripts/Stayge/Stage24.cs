@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage15 : Stage
+public class Stage24 : Stage
 {
     void Start()
     {
@@ -18,9 +18,12 @@ public class Stage15 : Stage
         {
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
+            //TutorialName.SetActive(false);
+            //GM.GetComponent<GameManager_>().ObjectCleaner();
             Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
+            //?¡À?????? ???? ??? ?¡À?????????? ??????????? ???? ?????. ??? ?????? ??????????? ?? ??????? ????
             QM.GetComponent<QuestManager>().ResetMaxCounter();
             QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;

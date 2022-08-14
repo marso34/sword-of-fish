@@ -5,6 +5,7 @@ using UnityEngine;
 public class Skill2 : MonoBehaviour
 {
     public GameObject Bubble;
+    public GameObject Tornado;
     public GameObject SkillSkin; // 스킨 담긴 오브젝트
     public SkillSkin SkillSkin_; //스킨
     public Vector3 dir; //움직일방향
@@ -50,13 +51,14 @@ public class Skill2 : MonoBehaviour
 
             if (FishNumber == 3) // 타코야 스킬
             {
-                RotateTimer += Time.deltaTime;
                 transform.Rotate(Vector3.forward * 40 * Time.deltaTime); // 타코야 스킬 회전 시키기
-                if (RotateTimer > 0.2f)
-                {
-                    CreateBubbles();
-                    RotateTimer = 0;
-                }
+            }
+            else if (FishNumber == 9)
+            {
+                if (transform.localScale.x < 0)
+                    transform.Rotate(Vector3.forward * 120 * Time.deltaTime); // 퍼플피쉬 스킬 회전 시키기
+                else 
+                    transform.Rotate(Vector3.back * 120 * Time.deltaTime); // 퍼플피쉬 스킬 회전 시키기
             }
         }
         else {
@@ -83,6 +85,16 @@ public class Skill2 : MonoBehaviour
             FRZOn();
             Invoke("FRZOff", 2.5f);
         }
+        if (other.transform.tag == "Body" && other.transform.parent.tag == "Player" && transform.tag == "SkillP")
+        {
+            Debug.Log("퍼플피쉬 스킬 접촉");
+            var SK = Instantiate(Tornado, transform.position, Quaternion.Euler(0f, 0f, 0f));
+
+            if (transform.localScale.x < 0)
+                SK.transform.localScale = new Vector3(-1f, 1f, 1f);
+            SK.transform.localScale *= 1.3f;
+            Destroy(gameObject);
+        }
     }
     public void Init()
     {
@@ -91,22 +103,29 @@ public class Skill2 : MonoBehaviour
     }
     public void ImgInit()
     {
-        if (FishNumber == 2)
+        if (FishNumber == 2) // 보거
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = SkillSkin_.BlowfishSkill;
             transform.tag = "SkillB";
         }
-        else if (FishNumber == 3)
+        else if (FishNumber == 3) // 아기상어
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = SkillSkin_.OctopusSkill;
             gameObject.GetComponent<Animator>().runtimeAnimatorController = SkillSkin_.OctopusSkillAnims;
             transform.tag = "SkillO";
         }
+        else if (FishNumber == 9) // 퍼플피쉬
+        {
+            transform.Find("Tornado").gameObject.SetActive(true);
+            transform.tag = "SkillP";
+            transform.localScale *= 0.3f;
+            Speed = 5f;
+        }
         // else if (FishNumber == ???) 나중에 추가될 물고기 스킬
     }
     public void DirInit()
     {
-        if (FishNumber == 2)
+        if (FishNumber == 2) // 보거
         {
             float DirX = Random.Range(-0.9f, 0.9f);
             float DirY = Random.Range(-0.9f, 0.9f);
@@ -118,7 +137,7 @@ public class Skill2 : MonoBehaviour
             transform.localScale *= 0.23f;
             Speed = 3.5f;
         }
-        else if (FishNumber == 3)
+        else if (FishNumber == 3 || FishNumber == 9) // 아기상어
         {
             dir = transform.parent.gameObject.GetComponent<Player>().dir; // 부모 벡터 가져오기 -> 부모가 가만히 있을 때 스킬 사용하면 스킬도 안 움직임 수정 필요 -> 이제 플레이어의 정지상태가 없기에 그대로 사용
 

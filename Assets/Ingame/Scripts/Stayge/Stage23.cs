@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage15 : Stage
+public class Stage23 : Stage
 {
     void Start()
     {
@@ -24,8 +24,7 @@ public class Stage15 : Stage
             QM.GetComponent<QuestManager>().ResetMaxCounter();
             QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
-            QM.GetComponent<QuestManager>().BigTrashMaxCount = 1;
-            QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
+            QM.GetComponent<QuestManager>().MaxCount = 1;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
         }

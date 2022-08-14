@@ -187,5 +187,4 @@ public class Kraken : Boss
 
         return (float)x;
     }
-    
 }

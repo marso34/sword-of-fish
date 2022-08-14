@@ -188,7 +188,7 @@ public class PlayerScript : Player
             }
             else if (!Life)
             {
-
+                transform.Find("Bubble Particle").gameObject.SetActive(false);
 
                 cutGauge = 100;
                 Destroy(GameObject.FindWithTag("BS"));
