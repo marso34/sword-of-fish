@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public bool StateRotateFlag_;
 
 
-    float MaxSize = 2f;
+    float MaxSize = 3f;
     public int fleshCount = 0;
     public SpriteRenderer MFish;// ?Ç¥ Î¨ºÍ≥†Í∏? ?ä§?Ç® ?ûê?ãù Í∞ùÏ≤¥?óê?Ñú Ï¥àÍ∏∞?ôî
     public SpriteRenderer MKnife;//?Ç¥ Ïπ? ?ä§?Ç®// ?ûê?ãù?óê?Ñú Ï¥àÍ∏∞?ôî.
@@ -353,6 +353,7 @@ public class Player : MonoBehaviour
         else if (FishNumber == 5) BodyAnims = skin_.BornAnims_E;
         else if (FishNumber == 6) BodyAnims = skin_.Gabock_E;
         else if (FishNumber == 7) BodyAnims = skin_.InkOctAnims_E;
+        else if (FishNumber == 8) BodyAnims = skin_.Granpa_V;
     }
     public void InitDieBody()
     {
@@ -810,5 +811,11 @@ public class Player : MonoBehaviour
     public void OffOutLine() // J
     {
         Skin.GetComponent<Skin>().outline = false;
+    }
+    public void Stage22_ex(){
+        if(QM.GetComponent<QuestManager>().Level_ ==2 && QM.GetComponent<QuestManager>().IngameLevel ==2){
+            GameObject ST = GameObject.FindGameObjectWithTag("Stage");
+            ST.GetComponent<Stage22>().EnemyCount--;
+        }
     }
 }

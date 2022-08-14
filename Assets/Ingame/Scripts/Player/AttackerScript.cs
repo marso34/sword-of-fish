@@ -319,6 +319,7 @@ public class AttackerScript : Player
             }
             transform.tag = "NotBody";
             CreateFlesh();
+            Stage22_ex();
             Destroy(transform.gameObject, 1.5f);
         }
 

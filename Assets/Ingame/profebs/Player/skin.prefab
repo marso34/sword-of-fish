@@ -271,6 +271,17 @@ MonoBehaviour:
   - {fileID: 1834911516, guid: 3eea1c6be3620d24aad85d1d833a80b0, type: 3}
   - {fileID: 474342872, guid: 3eea1c6be3620d24aad85d1d833a80b0, type: 3}
   - {fileID: -145062752, guid: 3eea1c6be3620d24aad85d1d833a80b0, type: 3}
+  Granpa_V:
+  - {fileID: 19796559, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: -704532207, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: -721082820, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: -1504960519, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: 2045015150, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: 1353688318, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: 945859650, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: -392648116, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: 1968620864, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
+  - {fileID: 1544794855, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
   outlineColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

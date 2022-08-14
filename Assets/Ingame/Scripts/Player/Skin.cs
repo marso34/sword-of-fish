@@ -21,6 +21,8 @@ public class Skin : MonoBehaviour
     public Sprite[] PupleAnims_E;
     public Sprite[] BornAnims_E;
     public Sprite[] Gabock_E;
+
+    public Sprite[] Granpa_V;
     public Gradient outlineColor;
     // public Color outlineColor = Color.white;
 
