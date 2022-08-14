@@ -69,6 +69,8 @@ TagManager:
   - 2
   - 3
   - 4
+  - Victem
+  - ShowText
   layers:
   - Default
   - TransparentFX

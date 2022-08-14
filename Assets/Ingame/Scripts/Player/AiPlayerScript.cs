@@ -25,11 +25,11 @@ public class AiPlayerScript : Player
     bool ViewFlag;
     public void Start()//일반적인 스타트 (코루틴) 반복문임.)
     {
-        
+        QM = GameObject.FindGameObjectWithTag("QM");
         GM = GameObject.FindGameObjectWithTag("GM");
         Flag_get = false;
         AiPlayers_ = new GameObject[9];
-        
+
 
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
         S = Skin.transform.GetComponent<SpriteRenderer>();
@@ -154,6 +154,7 @@ public class AiPlayerScript : Player
             NotInit();
             //DefaultMoveSpeed();
             CreateFlesh();
+            Stage22_ex();
             Destroy(gameObject, 2f);
         }
     }
@@ -199,17 +200,29 @@ public class AiPlayerScript : Player
         int Dice = Random.Range(0, 5);
         if (transform.tag == "AiPlayer")
         {
-            if (Random.Range(0, 7) == 1) BusterFlag = true;
-            else BusterFlag = false;
-            if (Dice == 0) return FleshTracking();
-            else if (Dice == 1) return LeftMove();
-            else if (Dice == 2)
-                return RightMove();
-            // else return MinDirTracking();
-            else if (Dice == 3)
-                return FleshTracking();
-            else return LeftMove();
+            if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
+            {
+                if (Random.Range(0, 7) == 1) BusterFlag = true;
+                if (Dice == 0) return VictemTracking();
+                else if (Dice == 1) return LeftMove();
+                else if (Dice == 2) return RightMove();
+                else return FleshTracking();
+            }
+            else
+            {
+                if (Random.Range(0, 7) == 1) BusterFlag = true;
+                else BusterFlag = false;
+                if (Dice == 0) return FleshTracking();
+                else if (Dice == 1) return LeftMove();
+                else if (Dice == 2)
+                    return RightMove();
+                // else return MinDirTracking();
+                else if (Dice == 3)
+                    return FleshTracking();
+                else return LeftMove();
+            }
         }
+
         if (transform.tag == "InkOct")
         {
             int Dice2 = Random.Range(0, 3);
@@ -224,7 +237,11 @@ public class AiPlayerScript : Player
         else return Vector3.zero;
 
     }// 이동방향값 랜덤하게 뽑는함수
-
+    Vector3 VictemTracking()
+    {
+        GameObject vi = GameObject.FindGameObjectWithTag("Victem");
+        return vi.transform.position - transform.position;
+    }
     Vector3 MinDirTracking()
     {
 
@@ -250,8 +267,10 @@ public class AiPlayerScript : Player
     }
     Vector3 PlayerTracking()
     {
-
-        return Player.transform.position - transform.position;
+        if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
+            return Vector3.zero;
+        else
+            return Player.transform.position - transform.position;
     }// 유저 따라가기 유저방향 반환
     Vector3 LeftMove()
     {

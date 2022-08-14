@@ -122,7 +122,7 @@ public class QuestManager : MonoBehaviour
 
     void Start()
     {
-        Level_ = 1;//초기 렙설정
+        Level_ = 2;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
@@ -140,18 +140,21 @@ public class QuestManager : MonoBehaviour
         {
             Player = GameObject.FindGameObjectWithTag("Player");
             Test_Method();
-            FlagOnMethod();
-            if (Player != null && StagyStagtFlag)
+            if (Player != null)
             {
-                // Debug.Log("? ??" + KnifeEC + "???" + BulletEC);
-                QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
+                FlagOnMethod();
+                if (StagyStagtFlag)
+                {
+                    // Debug.Log("? ??" + KnifeEC + "???" + BulletEC);
+                    QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
 
-                ShapeInit();
-                SucssesFlagOnOff();
-                EndGameCheck();
-                Objectmanager();
-                if (IngameLevel > 7) IngameLevel = 7;
-                if (IngameLevel < 0) IngameLevel = 0;
+                    ShapeInit();
+                    SucssesFlagOnOff();
+                    EndGameCheck();
+                    Objectmanager();
+                    if (IngameLevel > 7) IngameLevel = 7;
+                    if (IngameLevel < 0) IngameLevel = 0;
+                }
             }
         }
 
@@ -161,6 +164,7 @@ public class QuestManager : MonoBehaviour
         if (Flag)
         {
             GM.GetComponent<GameManager_>().SuccesFlag = false;
+            GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("Level" +" " +IngameLevel.ToString());
             if (GameObject.FindGameObjectWithTag("Stage") != null)
             {
                 Debug.Log(GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>().GoalCount + "yyyyy" + GameObject.FindGameObjectWithTag("Stage"));
@@ -244,7 +248,7 @@ public class QuestManager : MonoBehaviour
     }
     public void Level_2_Action()
     {
-        if (IngameLevel < 2)
+        if (IngameLevel < 3)
         {
             CurrentCount = 0;
             TrashMaxCount = 5;
@@ -254,10 +258,10 @@ public class QuestManager : MonoBehaviour
     }
     public void CurrentCountInit()//퀘스트 완료조건 정의
     {
-        
-            CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
-            Debug.Log(CurrentCount + "카운트");
-        
+
+        CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
+        Debug.Log(CurrentCount + "카운트");
+
     }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
     {
@@ -583,7 +587,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
             SetZeroRager();
-            if ((Level_==1&& IngameLevel == 7) || (Level_==2 && IngameLevel ==2))
+            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 2))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();
@@ -623,7 +627,7 @@ public class QuestManager : MonoBehaviour
                 GM.GetComponent<GameManager_>().EndFlag = true;
                 GM.GetComponent<GameManager_>().WinPanel.SetActive(true);
                 GM.GetComponent<GameManager_>().SuccesFlag = false;
-                
+
                 Flag = true;
                 StagyStagtFlag = false;
             }

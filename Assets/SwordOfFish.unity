@@ -1138,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys2.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.size
@@ -1176,6 +1176,10 @@ PrefabInstance:
       propertyPath: Stagys2.Array.data[0]
       value: 
       objectReference: {fileID: 331464638887370700, guid: 92e7ee104fd99b04f9653fc45fd7b8c5, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: Stagys2.Array.data[1]
+      value: 
+      objectReference: {fileID: 3158690595246343277, guid: cd3d519add734934eab0f3cb9a781978, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.data[0]
       value: 
