@@ -120,7 +120,7 @@ public class AiPlayerScript : Player
 
                 SkillTimer += Time.deltaTime;
 
-                if (SkillTimer > 2f)
+                if (SkillTimer > 4f)
                 {
                     PlaySkill();
                     SkillTimer = 0f;

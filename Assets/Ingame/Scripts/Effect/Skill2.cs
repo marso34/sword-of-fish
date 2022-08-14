@@ -87,12 +87,10 @@ public class Skill2 : MonoBehaviour
         }
         if (other.transform.tag == "Body" && other.transform.parent.tag == "Player" && transform.tag == "SkillP")
         {
-            Debug.Log("퍼플피쉬 스킬 접촉");
             var SK = Instantiate(Tornado, transform.position, Quaternion.Euler(0f, 0f, 0f));
 
             if (transform.localScale.x < 0)
                 SK.transform.localScale = new Vector3(-1f, 1f, 1f);
-            SK.transform.localScale *= 1.3f;
             Destroy(gameObject);
         }
     }

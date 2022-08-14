@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7211160799632442227}
-  - component: {fileID: -1832425534394541381}
+  - component: {fileID: 141668493838391422}
   m_Layer: 0
   m_Name: Stagy2-3
   m_TagString: Stage
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1832425534394541381
+--- !u!114 &141668493838391422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,4 +47,5 @@ MonoBehaviour:
   QM: {fileID: 0}
   flag: 0
   GoalCount: 0
-  Icon: {fileID: 939648672, guid: f737c410f3dac1c4187c209c4b1cb614, type: 3}
+  Icon: {fileID: 0}
+  TrashFlag: 0
