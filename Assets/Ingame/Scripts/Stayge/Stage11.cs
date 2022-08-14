@@ -29,6 +29,7 @@ public class Stage11 : Stage
             QM.GetComponent<QuestManager>().Player.transform.localPosition = Vector3.zero;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
+             QM.GetComponent<QuestManager>().ObjMFlag = true;
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().killScore;
     }

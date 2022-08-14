@@ -27,6 +27,7 @@ public class Stage13 : Stage
             QM.GetComponent<QuestManager>().MaxCount = 18;// 킬 보드에 표시된 킬스코어 6달성시 클리어
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
+             QM.GetComponent<QuestManager>().ObjMFlag = true;
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().killScore;
     }

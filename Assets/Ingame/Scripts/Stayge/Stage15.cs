@@ -28,6 +28,7 @@ public class Stage15 : Stage
             QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
+             QM.GetComponent<QuestManager>().ObjMFlag = true;
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
     }

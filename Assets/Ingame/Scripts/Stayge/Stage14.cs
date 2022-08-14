@@ -28,6 +28,7 @@ public class Stage14 : Stage
             QM.GetComponent<QuestManager>().MaxCount = 1; // 보스 한명 잡을시 클리어
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
+             QM.GetComponent<QuestManager>().ObjMFlag = true;
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BosskillScore;
     }
