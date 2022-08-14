@@ -239,8 +239,14 @@ public class AiPlayerScript : Player
     }// 이동방향값 랜덤하게 뽑는함수
     Vector3 VictemTracking()
     {
-        GameObject vi = GameObject.FindGameObjectWithTag("Victem");
-        return vi.transform.position - transform.position;
+        GameObject vi;
+        if (GameObject.FindGameObjectWithTag("Victem") != null)
+        {
+            vi = GameObject.FindGameObjectWithTag("Victem");
+            return vi.transform.position - transform.position;
+        }
+        else
+            return Vector3.zero - transform.position;
     }
     Vector3 MinDirTracking()
     {
@@ -267,9 +273,7 @@ public class AiPlayerScript : Player
     }
     Vector3 PlayerTracking()
     {
-        if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
-            return Vector3.zero;
-        else
+       
             return Player.transform.position - transform.position;
     }// 유저 따라가기 유저방향 반환
     Vector3 LeftMove()

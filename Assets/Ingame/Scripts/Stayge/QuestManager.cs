@@ -33,6 +33,7 @@ public class QuestManager : MonoBehaviour
     public int IngameLevel;
     //--------------------
     public bool LoseFlag;// 죽었거나 시간초 다됐을때
+    public bool ObjMFlag;
     public int ShapeNum;  // 스테이지 종류 번호 0 = 시간초, 1 = ShapeA, 2 = ShapeB, 3 = ShapeC
     public int limitTime;// 제한시간
     public int MaxCount;//클리어조건을 담당하는 카운트 현재 갯수는 Player?가 가지고있게 하자 시체갯수, 킬갯수, 점령갯수, 
@@ -123,7 +124,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Level_ = 2;//초기 렙설정
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 2; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -132,6 +133,7 @@ public class QuestManager : MonoBehaviour
         Stayge = null;
         StagyStagtFlag = false;
         Flag = true;
+        ObjMFlag = true;
         GM.GetComponent<GameManager_>().SuccesFlag = false;
     }
     void Update()
@@ -164,7 +166,7 @@ public class QuestManager : MonoBehaviour
         if (Flag)
         {
             GM.GetComponent<GameManager_>().SuccesFlag = false;
-            GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("Level" +" " +IngameLevel.ToString());
+            GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("Level" + " " + IngameLevel.ToString());
             if (GameObject.FindGameObjectWithTag("Stage") != null)
             {
                 Debug.Log(GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>().GoalCount + "yyyyy" + GameObject.FindGameObjectWithTag("Stage"));
@@ -259,10 +261,10 @@ public class QuestManager : MonoBehaviour
     public void CurrentCountInit()//퀘스트 완료조건 정의
     {
 
-        
-            CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
-            // Debug.Log(CurrentCount + "카운트");
-        
+
+        CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
+        // Debug.Log(CurrentCount + "카운트");
+
 
     }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
@@ -397,31 +399,34 @@ public class QuestManager : MonoBehaviour
     }//timeout으로 끝나는판
     public void Objectmanager()// 소 스테이지 초기화에서 정해준 오브젝트 최대 갯수만큼 각 오브젝트 계속 생성, 
     {
-        // Debug.Log("이거 실행된다...");
-        if (KnifeEnemyMaxCount > KnifeEC)
+        if (ObjMFlag)
         {
-            Invoke("CreateKnifeE", 4.5f);
-            KnifeEC++;
-        }// 칼 적 생성
-        if (BulletEnemyMaxCount > BulletEC)
-        {
-            Invoke("CreateBulletE", 4.5f);// 총알 적 생성
-            BulletEC++;
+            // Debug.Log("이거 실행된다...");
+            if (KnifeEnemyMaxCount > KnifeEC)
+            {
+                Invoke("CreateKnifeE", 4.5f);
+                KnifeEC++;
+            }// 칼 적 생성
+            if (BulletEnemyMaxCount > BulletEC)
+            {
+                Invoke("CreateBulletE", 4.5f);// 총알 적 생성
+                BulletEC++;
+            }
+            if (WaveMaxCount > WaveOC) Invoke("CreateWaveO", 2.5f);// 물결오브제 생성
+            if (BigTrashMaxCount > BigTrashOC) CreateBigTrashO();//큰쓰레기 생성 캠액션 할것.
+            if (TrashMaxCount > TrashOC)
+            {
+
+                CreateTrashO();//캔 쓰레기 생성
+                TrashOC++;
+            }
+            if (Trash2MaxCount > Trash2OC)
+            {
+                CreateTrash2O();
+                Trash2OC++;
+            }
+            if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
         }
-        if (WaveMaxCount > WaveOC) Invoke("CreateWaveO", 2.5f);// 물결오브제 생성
-        if (BigTrashMaxCount > BigTrashOC) CreateBigTrashO();//큰쓰레기 생성 캠액션 할것.
-        if (TrashMaxCount > TrashOC)
-        {
-            Debug.Log("쓰레기소환");
-            CreateTrashO();//캔 쓰레기 생성
-            TrashOC++;
-        }
-        if (Trash2MaxCount > Trash2OC)
-        {
-            CreateTrash2O();
-            Trash2OC++;
-        }
-        if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
     }
     void SetZeroRager()
     {
@@ -443,7 +448,13 @@ public class QuestManager : MonoBehaviour
         else Yc = -1;
         float realX = x + 8 * Xc;
         float realY = y + 5 * Yc;
-        return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
+        if (Level_ == 2)
+        {
+            return new Vector3(23f * Xc, 11f * Yc);
+        }
+        else
+            return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
+
     }
     Vector3 SetPosition(float x, float y, float z)
     {

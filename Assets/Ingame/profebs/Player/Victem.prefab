@@ -164,6 +164,8 @@ GameObject:
   - component: {fileID: 2866431025190176503}
   - component: {fileID: 8160838555582291283}
   - component: {fileID: 1409447684244292193}
+  - component: {fileID: 3502532230121490174}
+  - component: {fileID: 9216378955439384233}
   m_Layer: 0
   m_Name: Victem
   m_TagString: Victem
@@ -180,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 8835441081331634052}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5468561666112798768}
@@ -295,7 +297,7 @@ MonoBehaviour:
   endFlag: 0
   SkillFlag: 0
   GM: {fileID: 0}
-  C: {r: 0, g: 0, b: 0, a: 0}
+  C: {r: 1, g: 1, b: 1, a: 0}
   KnifeAnims: []
   BodyAnims: []
   S: {fileID: 0}
@@ -316,6 +318,45 @@ MonoBehaviour:
   MoveTime: 3
   TuLev1: 0
   RagerPoint: {x: 0, y: 0, z: 0}
+  KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
+  KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
+--- !u!50 &3502532230121490174
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835441081331634052}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &9216378955439384233
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835441081331634052}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &568068430810243033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,7 +847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -831,6 +872,18 @@ PrefabInstance:
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_LocalPosition.x
