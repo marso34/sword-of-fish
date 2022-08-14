@@ -23,6 +23,7 @@ public class Stage22 : Stage
         WaveLevel = 0;
         QM = GameObject.FindGameObjectWithTag("QM");
         flag = true;
+        TrashFlag = true;
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class Stage22 : Stage
     {
         if (flag)
         {
+            QM.GetComponent<QuestManager>().Player.transform.position = Vector3.zero;
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             //TutorialName.SetActive(false);
             //GM.GetComponent<GameManager_>().ObjectCleaner();

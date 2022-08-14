@@ -121,10 +121,12 @@ public class QuestManager : MonoBehaviour
     public GameObject[] Stagys1;
     public GameObject[] Stagys2;
 
+    float Xc;
+    float Yc;
     void Start()
     {
         Level_ = 2;//초기 렙설정
-        IngameLevel = 2; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -350,7 +352,6 @@ public class QuestManager : MonoBehaviour
             IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "크라켄의 둥지";
 
 
-
         }
         else if (Level_ == 2)
         {
@@ -436,24 +437,39 @@ public class QuestManager : MonoBehaviour
     {
         return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
     }
+    public void RandomSignDice()
+    {
+        float randomX;
+        float randomY;
+        float[] arr = {-1f,1f};
+        do
+        {
+            randomX = arr[Random.Range(0,2)];
+            randomY = arr[Random.Range(0,2)];
+            
+        } while (CheckSignDice(randomX, randomY));
+        Debug.Log(Xc+" "+Yc+"TTT"+randomX +" "+randomY+ "gggg");
+        Xc = randomX;
+        Yc = randomY;
+        
+        
+    }
+    public bool CheckSignDice(float x_, float y_)
+    {
+        if (x_ == Xc && y_ == Yc) return true;
+        else return false;
+    }
     Vector3 EnemyRandomPosition() //랜덤한 백터 반환
     {
         float x = Player.transform.position.x;
         float y = Player.transform.position.y;
-        float Xc;
-        float Yc;
-        if (x < 0) Xc = 1;
-        else Xc = -1;
-        if (y < 0) Yc = 1;
-        else Yc = -1;
-        float realX = x + 8 * Xc;
-        float realY = y + 5 * Yc;
-        if (Level_ == 2)
-        {
-            return new Vector3(23f * Xc, 11f * Yc);
-        }
-        else
-            return new Vector3(Random.Range(realX, realX + Xc * 3), Random.Range(realY, realY + Yc * 2), 0f);
+
+        if (x < 0) Xc = -1f;
+        else Xc = 1f;
+        if (y < 0) Yc = -1f;
+        else Yc = 1f;
+        RandomSignDice();
+        return new Vector3((Random.Range(19f, 23f)) * Xc, Random.Range(9f, 11f) * Yc);
 
     }
     Vector3 SetPosition(float x, float y, float z)
