@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillBtn : MonoBehaviour, IPointerDownHandler
+public class SkillBtn : UiButton
 {
     public GameObject Player;
     public GameObject Image;
@@ -39,10 +39,11 @@ public class SkillBtn : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public override void OnPointerDown(PointerEventData eventData)
     {
         if (SkillFlag && Player.GetComponent<PlayerScript>().MyBody.tag != "NotBody") // 플레이어가 not일 때는 스킬 사용 못 하게
         {
+            Effect();
             Player.GetComponent<PlayerScript>().PlaySkill();
             SkillFlag = false;
 

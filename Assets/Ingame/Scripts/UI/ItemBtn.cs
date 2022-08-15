@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemBtn : MonoBehaviour, IPointerDownHandler
+public class ItemBtn : UiButton
 {
     // Start is called before the first frame update
     public GameObject Player;
@@ -20,21 +20,16 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
     public Sprite ItemShield;
 
     public bool TutorialItem = false; //y
-    Color color;
-    int ItemNumber;
-    int c;
-    float timer;
 
+    int ItemNumber;
+    float timer;
 
     void Start()
     {
         img = Image.GetComponent<Image>();
         img.sprite = Defualt;
         ItemNumber = 0;
-        c = 0;
         timer = 0f;
-        color = transform.GetComponent<Image>().color;
-
     }
 
     private void Update()
@@ -42,24 +37,21 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         if (img.sprite != Defualt) // 아이템 먹었을 때 푸른색으로 깜빡거리게
         {
             timer += Time.deltaTime;
- 
-            if (timer >= 0.5f)
+
+            if (timer > 1f)
             {
-                c ^= 1;
+                Effect();
                 timer = 0f;
             }
         }
-        else c = 0;
-
-        color.r = (c == 0) ? Mathf.Lerp(color.r, 1f, Time.deltaTime * 10f) : Mathf.Lerp(color.r, 0, Time.deltaTime * 10f);
-        transform.GetComponent<Image>().color = color;
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public override void OnPointerDown(PointerEventData eventData)
     {
         if (img.sprite != Defualt)  // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
+
             TutorialItem = true;
             if (ItemNumber == 1)  // 폭탄
             {
@@ -82,7 +74,7 @@ public class ItemBtn : MonoBehaviour, IPointerDownHandler
         if (img.sprite != Defualt) // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
-            
+
             if (ItemNumber == 1)  // 폭탄
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));

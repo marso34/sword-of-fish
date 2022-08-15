@@ -77,7 +77,7 @@ public class Tornado : MonoBehaviour
         if (transform.gameObject.tag == "SkillP" &&  other.gameObject.tag == "Body" && other.transform.parent.tag == "Player" && Timer <= 2f)
         {
             Debug.Log("퍼플피쉬 스킬 접촉");
-            other.transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = (transform.position - other.gameObject.transform.parent.position) * 0.1f;
+            other.transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = (transform.position - other.gameObject.transform.parent.position).normalized * Random.Range(0.01f, 0.11f);
         }
     }
 }
