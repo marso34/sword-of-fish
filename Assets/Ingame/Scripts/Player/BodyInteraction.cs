@@ -28,11 +28,31 @@ public class BodyInteraction : MonoBehaviour
         HitSkill(other2.gameObject);
         TrashHit(other2.gameObject);
         HitEXPL(other2.gameObject);
-    } 
-
+        if (other2.transform.tag == "Wall")
+        {
+            transform.parent.GetComponent<Player>().CheckWall(other2.gameObject,true);
+           
+        }
+    }
+    /// <summary>
+    /// Sent each frame where a collider on another object is touching
+    /// this object's collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        
+    }
+    /// <summary>
+    /// Sent when a collider on another object stops touching this
+    /// object's collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    
     void HitEXPL(GameObject other)
     {
-        if(transform.parent.tag != "Player"){
+        if (transform.parent.tag != "Player")
+        {
             if (other.gameObject.tag == "EXPL" && transform.tag == "Body")
             {
                 transform.parent.GetComponent<Player>().HP--;
@@ -87,7 +107,7 @@ public class BodyInteraction : MonoBehaviour
     {
         //Debug.Log(other.transform.tag +"iiiii");
         if (other.gameObject.tag == "Knife" && transform.tag == "Body")
-            if (((other.transform.parent.tag == "InkOct" || other.transform.parent.gameObject.tag == "AiPlayer") && transform.parent.tag == "Player") || ((transform.parent.tag == "AiPlayer" ||transform.parent.tag == "InkOct") && other.transform.parent.tag == "Player"))
+            if (((other.transform.parent.tag == "InkOct" || other.transform.parent.gameObject.tag == "AiPlayer") && transform.parent.tag == "Player") || ((transform.parent.tag == "AiPlayer" || transform.parent.tag == "InkOct") && other.transform.parent.tag == "Player"))
             {
                 if (other.transform.parent.gameObject != transform.parent.gameObject)
                 {
