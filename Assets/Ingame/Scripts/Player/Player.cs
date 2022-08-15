@@ -30,7 +30,8 @@ public class Player : MonoBehaviour
     public bool StateMoveFlag_;
     public bool StateRotateFlag_;
 
-
+    public bool XFlag;
+    public bool YFlag;
     float MaxSize = 3f;
     public int fleshCount = 0;
     public SpriteRenderer MFish;// ?‚´ ë¬¼ê³ ê¸? ?Š¤?‚¨ ??‹ ê°ì²´?—?„œ ì´ˆê¸°?™”
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer S;//ëª¸íˆ¬ëª…ë„ ë°”ê???•Œ ?“°?Š”ë³??ˆ˜
 
     public GameObject BubbleSound;
-    public Vector3 dir;//???ì§ì¼ë°©í–¥
+    public Vector3 dir;//???ì§ì¼
                        // Start is called before the first frame update
     public GameObject Flag_Image;
     public bool Flag_get;
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour
     public float MoveTime = 3f;
     public bool TuLev1 = false;
     public Vector3 RagerPoint;
+    public Vector2 VWall;
 
     public void GameStartInit()// ê²Œì„?‹œ?‘?‹œ ?•œë²ˆì‹¤?–‰
     {
@@ -96,6 +98,7 @@ public class Player : MonoBehaviour
         DefaultMoveSpeed();
         DefaultMoveSpeed();
         RagerPoint = Vector3.zero;
+        VWall = Vector2.zero;
     }
 
     public void GameWaitInit()//?˜?´?¬?Œ¨?„?—?„œ ê¸°ë‹¤ë¦´ë•Œ
@@ -157,7 +160,7 @@ public class Player : MonoBehaviour
             BusterSpeed = 0f;
             StateMoveFlag_ = true;
             Debug.Log("Á¤Áö");
-            Invoke("InitState",2.5f);
+            Invoke("InitState", 2.5f);
         }
     }
 
@@ -190,7 +193,7 @@ public class Player : MonoBehaviour
             StateMoveFlag_ = true;
             ErrorFlag = false;
             SetColor(Color.green);
-            Invoke("InitState",2.5f);
+            Invoke("InitState", 2.5f);
 
         }
     }
@@ -320,7 +323,7 @@ public class Player : MonoBehaviour
         if (transform.tag == "AiPlayer")
         {
             int R = Random.Range(5, 6);// ëª¸ìŠ¤?‚¨ê°??ˆ˜5
-            FishNumber = R;
+            FishNumber = 9;
         }
 
     }
@@ -373,7 +376,8 @@ public class Player : MonoBehaviour
         S.color = C;
         MKnife.color = C;
     }
-    public void SetColor(Color c){
+    public void SetColor(Color c)
+    {
         S.color = c;
         MKnife.color = C;
         C = c;
@@ -526,18 +530,34 @@ public class Player : MonoBehaviour
                 {
                     Timer22 = 0;
                     Timer33++;
-
                 }
-
-
             }
 
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
             // transform.Translate(dir * Speed * Time.deltaTime, Space.World);// ?˜¤ë¸Œì ?Š¸ ?´?™?•¨?ˆ˜ https://www.youtube.com/watch?v=2pf1FE-Xcc8 ?—?‚˜?˜¨ ì½”ë“œë¥? ?‚´ì§? ë³??˜•?•œê²?.   
             rota();
+            if (XFlag) RB.velocity -= new Vector2(RB.velocity.x, 0);
+            if (YFlag) RB.velocity -= new Vector2(0, RB.velocity.y);
 
             // x_?— ?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸ scale.x ë¥? ?„£?Œ. scale.xê°? ?Œ?ˆ˜?¼?‹œ ?”Œ? ˆ?´?–´?Š” ì¢Œìš°ë°˜ì „?œ¼ë¡? ?šŒ? „?•œ?‹¤. ?´ë¥¼ì´?š©?•´?„œ ?™¼ìª½ìœ¼ë¡? ë§ì´ ?Œ?•„?„ ?’¤ì§‘ì–´ì§? ëª¨ì–‘?´ ?•ˆ?‚˜?˜¤ê²? ?•¨.                
-
+            if (VWall.x != 0)
+            {
+                if ((VWall.x < 0) != (dir.x < 0))
+                {
+                    XFlag = false;
+                    VWall -= new Vector2(VWall.x, 0);
+                }
+            }
+            if (VWall.y != 0)
+            {
+                if ((VWall.y < 0) != (dir.y < 0))
+                {
+                    YFlag = false;
+                    VWall -= new Vector2(0, VWall.y);
+                }
+            }
+            Debug.Log("º®°úÃæµ¹");
+            Debug.Log(XFlag + " " + YFlag + "Ãæµ¹1");
         }
     }
 
@@ -652,14 +672,24 @@ public class Player : MonoBehaviour
 
 
     }//?‚¬?•˜ë©? ?‹¤?–‰?˜?Š”?•¨?ˆ˜
-    public virtual void CheckWall()
+    public void CheckWall(GameObject other, bool T)//HitPÃæµ¹ ÇÑ ÁöÁ¡
     {
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (RagerPoint - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
-        if (ray2.collider != null)
-        {
-            transform.position = ray2.point;
-        }
-    }//ë§µë°–?œ¼ë¡? ëª»ë‚˜ê°?ê²Œí•˜?Š”?•¨?ˆ˜
+        
+        
+            VWall = new Vector3(VWall.x + other.transform.position.x, VWall.y + other.transform.position.y);
+            if (other.transform.position.x != 0)
+            {
+                if ((RB.velocity.x < 0) == (other.transform.position.x < 0)) XFlag = true;
+                else XFlag = false;
+            }
+            if (other.transform.position.y != 0)
+            {
+                if ((RB.velocity.y < 0) == (other.transform.position.y < 0)) YFlag = true;
+                else YFlag = false;
+            }
+            
+        
+    }//¸Ê¹Û????? ¸ø³ª??°ÔÇÏ?????????
     public void CreatBarriar()//?ƒœ?–´?‚ ?‹œ ë°©ì–´ë§? ê°?ì§?ê³? ?ƒœ?–´?‚˜ê¸?. ë°©ì–´ë§‰ë§Œ?“œ?Š” ?•¨?ˆ˜.
     {
         var a = Instantiate(Barriar, transform.position, Quaternion.Euler(0, 0, 0));
@@ -704,7 +734,7 @@ public class Player : MonoBehaviour
     {
         var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
-        
+
         a.transform.localPosition = Vector3.zero;
         a.transform.localScale = new Vector3(1f, 1f, 1f);
         a.name = Name;
@@ -726,7 +756,7 @@ public class Player : MonoBehaviour
                 DefaultMoveSpeed();
             }
         }
-        else if (FishNumber == 1) // ¾Æ±â»ó¾î
+        else if (FishNumber == 1) // ?????
         {
             SkillFlag = true;
             CreateSkill();
@@ -739,21 +769,21 @@ public class Player : MonoBehaviour
             Invoke("OffSkillFlag", 3f);
             Invoke("OffOutLine", 3f);
         }
-        else if (FishNumber == 2)  // º¸°Å
+        else if (FishNumber == 2)  // ????
         {
             CreateSkill();
             for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
                 CreateSkill2();
         }
-        else if (FishNumber == 3)  //Å¸ÄÚ¾ß
+        else if (FishNumber == 3)  //????
             CreateSkill2();
-        else if (FishNumber == 4)   // °í·¡ ½Å»ç
+        else if (FishNumber == 4)   // ???? ???
         {
             CreateSkill();
             SkillFlag = true;
             Invoke("OffSkillFlag", 3f);
         }
-        else if (FishNumber == 9) // ÆÛÇÃÇÇ½¬
+        else if (FishNumber == 9) // ???????
         {
             CreateSkill2();
         }
@@ -772,7 +802,7 @@ public class Player : MonoBehaviour
                 DefaultMoveSpeed();
             }
         }
-        else if (FishNumber == 1) // ¾Æ±â»ó¾î
+        else if (FishNumber == 1) // ?????
         {
             SkillFlag = true;
 
@@ -785,21 +815,21 @@ public class Player : MonoBehaviour
             Invoke("OffSkillFlag", 3f);
             Invoke("OffOutLine", 3f);
         }
-        else if (FishNumber == 2)  // º¸°Å
+        else if (FishNumber == 2)  // ????
         {
             CreateSkill(Name);
             for (int i = 0; i < 13 + (int)transform.localScale.y * 10; i++)
                 CreateSkill2(Name);
         }
-        else if (FishNumber == 3)  // Å¸ÄÚ¾ß
+        else if (FishNumber == 3)  // ????
             CreateSkill2(Name);
-        else if (FishNumber == 4)  // °í·¡ ½Å»ç
+        else if (FishNumber == 4)  // ???? ???
         {
             CreateSkill2(Name);
             SkillFlag = true;
             Invoke("OffSkillFlag", 3f);
         }
-        else if (FishNumber == 9) // ÆÛÇÃÇÇ½¬
+        else if (FishNumber == 9) // ???????
         {
             CreateSkill2();
         }
@@ -820,8 +850,10 @@ public class Player : MonoBehaviour
     {
         Skin.GetComponent<Skin>().outline = false;
     }
-    public void Stage22_ex(){
-        if(QM.GetComponent<QuestManager>().Level_ ==2 && QM.GetComponent<QuestManager>().IngameLevel ==2){
+    public void Stage22_ex()
+    {
+        if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
+        {
             GameObject ST = GameObject.FindGameObjectWithTag("Stage");
             ST.GetComponent<Stage22>().EnemyCount--;
         }

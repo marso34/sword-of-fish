@@ -132,7 +132,7 @@ public class AiPlayerScript : Player
                 transform.Find("Bubble Particle").gameObject.SetActive(false);
             }
             AnimState(dir);
-            CheckWall();
+       
             //CheckMaxSize();
             Check_Flag();
             //MyKnife.transform.localScale = new Vector3(0.1f, 2f, 1f);
@@ -318,15 +318,6 @@ public class AiPlayerScript : Player
         else return PlayerTracking();
 
     }//시체 추적
-    public override void CheckWall()
-    {
-
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, 1000f, LayerMask.GetMask("Wall"));
-        if (ray2.collider != null)
-        {
-            transform.position = ray2.point;
-        }
-
-    }//맵밖으로 못나가게하는함수
+ 
 
 }
