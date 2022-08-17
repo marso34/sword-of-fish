@@ -237,6 +237,8 @@ MonoBehaviour:
   TempRotateSp: 0
   StateMoveFlag_: 0
   StateRotateFlag_: 0
+  XFlag: 0
+  YFlag: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -276,6 +278,8 @@ MonoBehaviour:
   MoveTime: 5
   TuLev1: 0
   RagerPoint: {x: 0, y: 0, z: 0}
+  VWall: {x: 0, y: 0}
+  test: {fileID: 3746851511517188243, guid: 70288617a8c32e545b9ceef21cbf3d07, type: 3}
   value: {fileID: 11400000, guid: ac6fcc09914faab48bc696d6f9f0ec56, type: 2}
   Knife: {fileID: 441632554992936305}
   Body: {fileID: 2181776197300246872}

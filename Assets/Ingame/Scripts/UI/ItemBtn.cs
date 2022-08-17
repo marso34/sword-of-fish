@@ -51,6 +51,7 @@ public class ItemBtn : UiButton
         if (img.sprite != Defualt)  // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
+            Effect();
 
             TutorialItem = true;
             if (ItemNumber == 1)  // 폭탄

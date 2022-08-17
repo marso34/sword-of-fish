@@ -30,6 +30,7 @@ public class Stage24 : Stage
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
             QM.GetComponent<QuestManager>().BigTrashMaxCount = 1;
             QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
+            QM.GetComponent<QuestManager>().ObjMFlag = false;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
             QM.GetComponent<QuestManager>().ObjMFlag = true;

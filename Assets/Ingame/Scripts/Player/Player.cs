@@ -323,7 +323,11 @@ public class Player : MonoBehaviour
         if (transform.tag == "AiPlayer")
         {
             int R = Random.Range(5, 6);// Î™∏Ïä§?Ç®Í∞??àò5
-            FishNumber = 9;
+
+            if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3)
+                FishNumber = 9;
+            else
+                FishNumber = 5;
         }
 
     }
@@ -533,7 +537,7 @@ public class Player : MonoBehaviour
                 }
             }
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
-       
+
             rota();
 
             if (XFlag) RB.velocity -= new Vector2(RB.velocity.x, 0);
@@ -673,21 +677,21 @@ public class Player : MonoBehaviour
     }//?Ç¨?ïòÎ©? ?ã§?ñâ?êò?äî?ï®?àò
     public void CheckWall(GameObject other, bool T)//HitP√Êµπ «— ¡ˆ¡°
     {
-        
-        
-            VWall = new Vector3(VWall.x + other.transform.position.x, VWall.y + other.transform.position.y);
-            if (other.transform.position.x != 0)
-            {
-                if ((RB.velocity.x < 0) == (other.transform.position.x < 0)) XFlag = true;
-                else XFlag = false;
-            }
-            if (other.transform.position.y != 0)
-            {
-                if ((RB.velocity.y < 0) == (other.transform.position.y < 0)) YFlag = true;
-                else YFlag = false;
-            }
-            
-        
+
+
+        VWall = new Vector3(VWall.x + other.transform.position.x, VWall.y + other.transform.position.y);
+        if (other.transform.position.x != 0)
+        {
+            if ((RB.velocity.x < 0) == (other.transform.position.x < 0)) XFlag = true;
+            else XFlag = false;
+        }
+        if (other.transform.position.y != 0)
+        {
+            if ((RB.velocity.y < 0) == (other.transform.position.y < 0)) YFlag = true;
+            else YFlag = false;
+        }
+
+
     }//∏ π€????? ∏¯≥™??∞‘«œ?????????
     public void CreatBarriar()//?Éú?ñ¥?Ç†?ãú Î∞©Ïñ¥Îß? Í∞?Ïß?Í≥? ?Éú?ñ¥?ÇòÍ∏?. Î∞©Ïñ¥ÎßâÎßå?ìú?äî ?ï®?àò.
     {

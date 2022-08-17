@@ -20,7 +20,7 @@ public class Skill : MonoBehaviour
 
         init();
         SetSpeed();
-        Destroy(gameObject, skillTime + 0.3f);
+        Destroy(gameObject, skillTime);
     }
 
     void Update()

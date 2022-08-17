@@ -46,7 +46,7 @@ public class Stage22 : Stage
             QM.GetComponent<QuestManager>().BossMaxCount = 0;
             QM.GetComponent<QuestManager>().MaxCount = 1;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
-            QM.GetComponent<QuestManager>().ObjMFlag = false;
+            QM.GetComponent<QuestManager>().ObjMFlag = true;
             flag = false;
         }
         else

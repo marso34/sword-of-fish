@@ -129,7 +129,7 @@ public class QuestManager : MonoBehaviour
         Level_ = 1;//초기 렙설정
 
 
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 5; //n스테이지진입후 n-n 스테이지레벨    
         
         LoseFlag = false;
         OccupationTime = 0;
@@ -182,7 +182,6 @@ public class QuestManager : MonoBehaviour
             {
                 Level_0_Action();
             }
-
             if (Level_ == 1)
             {
                 Level_1_Action();

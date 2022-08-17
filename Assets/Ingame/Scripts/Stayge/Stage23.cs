@@ -18,16 +18,16 @@ public class Stage23 : Stage
         {
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
-            Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
             QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
-            QM.GetComponent<QuestManager>().MaxCount = 1;
+            QM.GetComponent<QuestManager>().MaxCount = 10;
+            QM.GetComponent<QuestManager>().ObjMFlag = true;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
         }
-        GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
+        GoalCount = 0; // QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
     }
 }

@@ -205,7 +205,7 @@ public class PlayerScript : Player
             //     DefaultRotateSpeed();
             // }
             AnimState(dir);
-            
+
             CheckMaxSize();
             ShowBoard();
             mobileBuster();
