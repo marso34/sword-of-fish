@@ -43,17 +43,25 @@ public class BigTrash : MonoBehaviour
 
                 var KS = Instantiate(KillSound, transform.position, Quaternion.Euler(0, 0, 0));
             }
-            else if (other.gameObject.tag == "EXPL")
+
+        }
+
+    }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+            if (other.gameObject.tag == "EXPL")
             {
                 var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
                 DT.transform.localScale *= 2f;
                 HP -= 5;
             }
-
-
-        }
-
     }
     // Update is called once per frame
     void Update()
@@ -71,9 +79,6 @@ public class BigTrash : MonoBehaviour
 
             Invoke("win", 1f);
             Destroy(transform.parent.gameObject, 3f);
-
-
-
 
         }
     }

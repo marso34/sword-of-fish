@@ -85,14 +85,7 @@ public class Skill2 : MonoBehaviour
             FRZOn();
             Invoke("FRZOff", 2.5f);
         }
-        if (other.transform.tag == "Body" && other.transform.parent.tag == "Player" && transform.tag == "SkillP")
-        {
-            var SK = Instantiate(Tornado, transform.position, Quaternion.Euler(0f, 0f, 0f));
-
-            if (transform.localScale.x < 0)
-                SK.transform.localScale = new Vector3(-1f, 1f, 1f);
-            Destroy(gameObject);
-        }
+        
     }
     public void Init()
     {

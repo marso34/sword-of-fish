@@ -9,6 +9,7 @@ public class Stagy21 : Stage
     public GameObject Potal;// 포탈에 닿아서 n초있으면 클리어
     public int ClearLevel;
     public GameObject[] Wall;
+    public GameObject ResponePoint;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class Stagy21 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashFlag = true;
         Potal = GameObject.FindGameObjectWithTag("Potal");
-
+        TrashGravity = 0.1f;
     }
 
     // Update is called once per frame
@@ -27,14 +28,13 @@ public class Stagy21 : Stage
         TrashOn();
         if (flag)
         {
+            GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
+            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
             setWalls();
             QMInit();
             flag = false;
         }
         GoalCount = Potal.GetComponent<Potal>().Goal;
-        ChRagerPoint();
-
-
     }
     void QMInit()
     {
@@ -48,23 +48,19 @@ public class Stagy21 : Stage
         QM.GetComponent<QuestManager>().MaxCount = 1;
         QM.GetComponent<QuestManager>().StagyStagtFlag = true;
         QM.GetComponent<QuestManager>().ObjMFlag = false;
-        QM.GetComponent<QuestManager>().Player.transform.position =  Wall[ClearLevel - 1].transform.position;
+        QM.GetComponent<QuestManager>().Player.transform.position =  ResponePoint.transform.position;
     }
     void setWalls()
     {
         Wall[0] = GameObject.FindGameObjectWithTag("1");
         Wall[1] = GameObject.FindGameObjectWithTag("2");
         Wall[2] = GameObject.FindGameObjectWithTag("3");
-        Wall[3] = GameObject.FindGameObjectWithTag("4");
+     
     }
-    public void ChRagerPoint()
-    {// wall자체 코드에서 벽부술시 레벨올리고, 이함수 호출
-
-        QM.GetComponent<QuestManager>().Player.GetComponent<Player>().RagerPoint = Wall[ClearLevel - 1].transform.position;
-    }
+    
     public void upWall()
     {
-        Wall[ClearLevel - 1].transform.localScale = new Vector3(2, 1, 1);
+         Destroy(Wall[ClearLevel-1]);
         ClearLevel++;
     }
    

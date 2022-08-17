@@ -24,4 +24,7 @@ public class Item : MonoBehaviour
         if (flag)   transform.Translate(Vector3.up * 0.6f * Time.deltaTime);
         else        transform.Translate(Vector3.down * 0.6f * Time.deltaTime);
     }
+    public virtual void eatItem(GameObject T){
+
+    }
 }

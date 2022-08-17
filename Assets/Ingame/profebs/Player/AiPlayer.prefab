@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2218907697303533689}
   - component: {fileID: 2779437651180978513}
   - component: {fileID: 1609925648751690650}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,6 +277,8 @@ MonoBehaviour:
   TempRotateSp: 0
   StateMoveFlag_: 0
   StateRotateFlag_: 0
+  XFlag: 0
+  YFlag: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -315,7 +317,7 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 3
   TuLev1: 0
-  RagerPoint: {x: 0, y: 0, z: 0}
+  VWall: {x: 0, y: 0}
   Target: {fileID: 0}
   Indicator: {fileID: 2704039261075894569, guid: 6fba3959a6232d24d8ea06444e7ba14e, type: 3}
 --- !u!1001 &568068430810243033
@@ -739,6 +741,10 @@ PrefabInstance:
     - target: {fileID: 2537902179814946789, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537902179814946789, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2537902179814946789, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_TagString

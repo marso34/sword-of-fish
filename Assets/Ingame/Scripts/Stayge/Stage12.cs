@@ -10,6 +10,7 @@ public class Stage12 : Stage
         GoalCount = 0;
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
+        TrashGravity = 0.005f;
     }
 
     // Update is called once per frame
@@ -17,6 +18,8 @@ public class Stage12 : Stage
     {
         if (flag)
         {
+            GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
+            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
 
@@ -30,6 +33,7 @@ public class Stage12 : Stage
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
              QM.GetComponent<QuestManager>().ObjMFlag = true;
+             TrashOn();
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().killScore;
     }

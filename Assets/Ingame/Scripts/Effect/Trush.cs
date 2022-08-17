@@ -44,7 +44,7 @@ public class Trush : MonoBehaviour
 
         Skin = transform.GetChild(0).GetComponent<SpriteRenderer>();
         InitImage();
-        HP = Random.Range(2, 4);
+        HP = Random.Range(1, 3);
         if (transform.name == "bullet(Clone)") HP = 1;
         rota = 15f;
         Dir = Vector3.zero;
@@ -66,10 +66,15 @@ public class Trush : MonoBehaviour
     {
         FRZFlag = true;
         Dir = Vector3.zero;
+        Rigidbody2D r = transform.GetComponent<Rigidbody2D>();
+        r.velocity = Vector2.zero;
+        r.gravityScale = 0;
     }
     void FRZOff()
     {
         FRZFlag = false;
+        Rigidbody2D r = transform.GetComponent<Rigidbody2D>();
+        r.gravityScale = 0.1f;
     }
     void statusColor()
     {
@@ -134,6 +139,20 @@ public class Trush : MonoBehaviour
             transform.Translate(Vector3.down * Speed * Time.deltaTime);
         }
     }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "EXPL") BrokenTrash();
+        if (other.gameObject.tag == "FRZ")
+        {
+            FRZOn();
+            Invoke("FRZOff", 2.5f);
+        }
+    }
     public void OnCollisionEnter2D(Collision2D other)
     {
         GameObject QM = GameObject.FindGameObjectWithTag("QM");
@@ -145,10 +164,6 @@ public class Trush : MonoBehaviour
             Destroy(gameObject);
 
         }
-
-        if (other.gameObject.tag == "EXPL") BrokenTrash();
-
-
         if ((other.gameObject.tag == "Knife" && other.transform.parent.tag == "Player"))
         {
             OnOutline();
@@ -184,8 +199,8 @@ public class Trush : MonoBehaviour
                 }
                 else
                 {
-                    if (!FRZFlag)
-                        Dir = ((transform.position - other.transform.parent.position) + (transform.position - (other.transform.parent.position + (other.transform.parent.GetComponent<Player>().dir.normalized * 0.25f))));
+                    //if (!FRZFlag)
+                       // Dir = ((transform.position - other.transform.parent.position) + (transform.position - (other.transform.parent.position + (other.transform.parent.GetComponent<Player>().dir.normalized * 0.25f))));
 
                 }
 
@@ -197,12 +212,6 @@ public class Trush : MonoBehaviour
         {
             other.transform.GetComponent<BodyInteraction>().BoomOn();
             other.transform.parent.GetComponent<Player>().DieLife();
-        }
-
-        if (other.gameObject.tag == "FRZ")
-        {
-            FRZOn();
-            Invoke("FRZOff", 2.5f);
         }
 
 

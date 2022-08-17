@@ -26,9 +26,10 @@ public class Tentacle : MonoBehaviour
     bool FRZFlag;
     Color c;
     SpriteRenderer S;
-
+    public bool InLife;
     void Start()
     {
+        InLife = true;
         Skin = GetComponent<SpriteRenderer>();
         S = transform.GetComponent<SpriteRenderer>();
         StartFlag = true;
@@ -43,36 +44,42 @@ public class Tentacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        statusColor();
-        if (!FRZFlag && !transform.parent.GetComponent<Kraken>().FRZFlag)
+        if (InLife)
         {
-            timer_ += Time.deltaTime; // 생존 시간 타이머
             statusColor();
-
-            if (Active) // 스킬일 경우 움직임
-            {
-                imgTime = 0.1f;
-                if (timer_ >= 3.6f)
-                    Destroy(gameObject);
-                MoveTentacle();
-                transform.GetChild(0).tag = "BossSkillA";
-            }
-            else
+            if (!FRZFlag && !transform.parent.GetComponent<Kraken>().FRZFlag)
             {
 
+                timer_ += Time.deltaTime; // 생존 시간 타이머
+                statusColor();
+
+                if (Active) // 스킬일 경우 움직임
+                {
+                    imgTime = 0.1f;
+                    if (timer_ >= 3.6f)
+                        Destroy(gameObject);
+                    MoveTentacle();
+                    transform.GetChild(0).tag = "BossSkillA";
+                }
             }
+            InDieCheck();
         }
     }
-
-    public void OnCollisionEnter2D(Collision2D other)
+    public void InDieCheck()
     {
-        if (other.gameObject.tag == "FRZ")
+        if (HP <= 0 && InLife)
         {
-            FRZOn();
-            Invoke("FRZOff", 2.5f);
+            InLife = false;
+            transform.parent.GetComponent<Kraken>().LegCount--;
+            Destroy(gameObject);
         }
     }
 
+    public void HitFRZ()
+    {
+        FRZOn();
+        Invoke("FRZOff", 2.5f);
+    }
     void FRZOn()
     {
         FRZFlag = true;
@@ -141,7 +148,18 @@ public class Tentacle : MonoBehaviour
 
         transform.Translate(new Vector3(0f, dir, 0f) * Speed * Time.deltaTime, Space.World);
     }
+    public void HitEXPL_(GameObject other2)
+    {
 
+        if (other2.gameObject.tag == "EXPL")
+        {
+            FloatingDamageTxt(5);
+            HP -= 5;
+
+            float R = Random.Range(0.5f, 1.0f);
+
+        }
+    }
     public void DestroyTentacle(GameObject other2)
     {
         if (HP > 0)
@@ -153,34 +171,18 @@ public class Tentacle : MonoBehaviour
             float QR = Random.Range(1, 7);
             var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f));
 
-            if (other2.gameObject.tag == "EXPL")
-            {
-                FloatingDamageTxt(5);
-                HP -= 5;
+            FloatingDamageTxt(1);
+            HP--;
 
-                float R = Random.Range(0.5f, 1.0f);
+            float R = Random.Range(3.5f, 6f);
+            var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
 
-            }
-            else
-            {
-                FloatingDamageTxt(1);
-                HP--;
+            float x_ = transform.localScale.x;
+            if (x_ < 0)
+                x_ *= -1;
 
-                float R = Random.Range(3.5f, 6f);
-                var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+            KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
 
-                float x_ = transform.localScale.x;
-                if (x_ > 0)
-                    x_ *= -1;
-
-                KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
-            }
-        }
-
-        if (HP <= 0)
-        {
-            transform.parent.GetComponent<Kraken>().LegCount--;
-            Destroy(gameObject);
         }
     }
 

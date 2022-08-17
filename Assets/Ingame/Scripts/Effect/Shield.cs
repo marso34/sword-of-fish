@@ -10,15 +10,12 @@ public class Shield : Item
     {
         shakeObj();
     }
-    public void OnCollisionEnter2D(Collision2D other)
+    
+    public override void eatItem(GameObject T)
     {
-        if ((other.gameObject.tag == "Body" || other.gameObject.tag == "Shiled") && other.transform.parent.tag == "Player")
-        {
-            other.transform.parent.gameObject.GetComponent<PlayerScript>().EatItem(3);
-
-            var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            var b = Instantiate(ShieldSound, transform.position, Quaternion.Euler(0f, 0f, 20f));
-            Destroy(gameObject, 0.2f);
-        }
+        T.transform.gameObject.GetComponent<PlayerScript>().EatItem(3);
+        var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        var b = Instantiate(ShieldSound, transform.position, Quaternion.Euler(0f, 0f, 20f));
+        Destroy(gameObject, 0.2f);
     }
 }

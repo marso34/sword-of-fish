@@ -9,16 +9,17 @@ public class Tracking_player : MonoBehaviour
     public float z = -19;
     float bustValue_ = 1;
     bool dieFlag = false;
+    bool StartFlag;
+    Rigidbody2D RB;
     private void Start()
     {
-       
-
+        StartFlag = true;
         shake = 0;
         target = transform;
-        
+        RB = transform.GetComponent<Rigidbody2D>();
     }
 
- public void SetResolution()
+    public void SetResolution()
     {
         int setWidth = 1280; // 사용자 설정 너비
         int setHeight = 720; // 사용자 설정 높이
@@ -40,20 +41,26 @@ public class Tracking_player : MonoBehaviour
         }
 
     }
-   
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    ///
     void Update()
     {
-        
-        //SetResolution();
-        if (target != null && target.tag == "Player")
+         if (target != null && target.tag == "Player")
         {
-            transform.GetComponent<Camera>().fieldOfView = 22+target.transform.localScale.y*3f;
-            transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
-            RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (new Vector3(0,1.1f,0) - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
-            if (ray2.collider != null)
-            {
-                transform.position = new Vector3(ray2.point.x + shake, ray2.point.y + shake,z - shake);              
+            if(StartFlag){
+                transform.position = new Vector3(target.position.x,target.position.y,z);
+                StartFlag = false;
             }
+            var dir = target.GetComponent<PlayerScript>().MyBody.transform.position - transform.position;
+            RB.velocity  = dir * 2f;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
+            // transform.GetComponent<Camera>().fieldOfView = 22+target.transform.localScale.y*3f;
+            // transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
+            // RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (new Vector3(0,1.1f,0) - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
+            // if (ray2.collider != null)
+            // {
+            //     transform.position = new Vector3(ray2.point.x + shake, ray2.point.y + shake,z - shake);              
+            // }
         }
         else {
             transform.position = transform.position;// "Null instence" error depance
@@ -61,14 +68,16 @@ public class Tracking_player : MonoBehaviour
             dieFlag = false;
             transform.GetComponent<Camera>().fieldOfView = 21f;
         }
-        if(!dieFlag)
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        //SetResolution();
+        if (!dieFlag)
             z = -19;
-        else if(dieFlag && z < -11) z +=1;
+        else if (dieFlag && z < -11) z += 1;
     }
     public void target_set(GameObject player)
     {
         target = player.transform;
-      
+
     }
     public void CrushCam()
     {
@@ -77,23 +86,25 @@ public class Tracking_player : MonoBehaviour
     IEnumerator CamAction()//카메라 흔들기.
     {
 
-        shake = (0.05f + (Mathf.Pow(2, target.localScale.y) / 100))*2;
+        shake = (0.05f + (Mathf.Pow(2, target.localScale.y) / 100)) * 2;
         if (target.tag == "Player")
         {
             shake += 0.05f;
         }
-      
+
         yield return new WaitForSecondsRealtime(0.06f); //+(Mathf.Pow(2, target.localScale.y) / 100)
 
         shake = 0;
-        transform.position = new Vector3(transform.position.x, transform.position.y, z);    
+        transform.position = new Vector3(transform.position.x, transform.position.y, z);
     }
-    public void BustValue(bool value) {
+    public void BustValue(bool value)
+    {
         if (value)
-             bustValue_ = 0.5f;
+            bustValue_ = 0.5f;
         else bustValue_ = 1.5f;
     }
-    public void DieCamAction(){
+    public void DieCamAction()
+    {
         dieFlag = true;
     }
 }

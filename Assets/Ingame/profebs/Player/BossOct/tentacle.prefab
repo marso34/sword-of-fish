@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3597523820510336868}
   - component: {fileID: 7596720097715938132}
   - component: {fileID: 8261330106958550215}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: tentacle
   m_TagString: BossSkillA
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 8161170874428885252}
   - component: {fileID: 6038242017982435176}
   - component: {fileID: 3340377375602300361}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: hitCheck
   m_TagString: Tentacle
   m_Icon: {fileID: 0}

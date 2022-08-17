@@ -78,7 +78,7 @@ public class HitFeel : MonoBehaviour
     }  //실질적으로 유닛회전,이동 속도 줄이는 함수.
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if ((other.transform.tag == "Trush" || (other.transform.tag == "SkillB" && other.transform.name == "Bullet") ||other.transform.tag =="BigTrash" || other.transform.tag =="Kraken" || other.transform.tag  =="Attacker" ||other.transform.tag =="Tentacle" || other.transform.tag =="InkOct" || other.transform.tag == "BTK") && (transform.tag == "Knife" && transform.parent.tag == "Player"))
+        if ((other.transform.tag == "Trush" || (other.transform.tag == "SkillB" && other.transform.name == "Bullet") || other.transform.tag == "BigTrash" || other.transform.tag == "Kraken" || other.transform.tag == "Attacker" || other.transform.tag == "Tentacle" || other.transform.tag == "InkOct" || other.transform.tag == "BTK") && (transform.tag == "Knife" && transform.parent.tag == "Player"))
         {
             // if (other.transform.tag == "Kraken" || other.transform.tag == "Attacker" ||other.transform.tag == "Tentacle")
 
@@ -90,15 +90,19 @@ public class HitFeel : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if(transform.parent.tag =="Player")
-        transform.localScale = transform.localScale/transform.localScale.y;
-        else if(transform.parent.tag =="AiPlayer")
+        if (transform.parent != null)
         {
-            transform.localScale = (transform.localScale/transform.localScale.y)/2f;
-        }
-        else if(transform.parent.tag =="InkOct"){
-            transform.localScale = new Vector3(0.1f,1f,1f);
-            GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+            if (transform.parent.tag == "Player")
+                transform.localScale = transform.localScale / transform.localScale.y;
+            else if (transform.parent.tag == "AiPlayer")
+            {
+                transform.localScale = (transform.localScale / transform.localScale.y) / 2f;
+            }
+            else if (transform.parent.tag == "InkOct")
+            {
+                transform.localScale = new Vector3(0.1f, 1f, 1f);
+                GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            }
         }
     }
 }

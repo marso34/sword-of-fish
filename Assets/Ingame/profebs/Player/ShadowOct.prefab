@@ -299,6 +299,8 @@ MonoBehaviour:
   TempRotateSp: 0
   StateMoveFlag_: 0
   StateRotateFlag_: 0
+  XFlag: 0
+  YFlag: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -337,6 +339,7 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 3
   TuLev1: 0
+  VWall: {x: 0, y: 0}
   Target: {fileID: 0}
   Indicator: {fileID: 2704039261075894569, guid: 6fba3959a6232d24d8ea06444e7ba14e, type: 3}
 --- !u!1001 &1228352546489687798

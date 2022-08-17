@@ -30,6 +30,7 @@ public class Boss : MonoBehaviour
     public Vector3 dir;
     public float timer = 0f;
     public float timer_ = 0f;
+    public bool Life;
 
     public IEnumerator Start_()
     {
@@ -41,6 +42,17 @@ public class Boss : MonoBehaviour
         {
             Skin.sprite = Image[i];
             yield return new WaitForSeconds(0.125f);
+        }
+    }
+    public void DieCheck()
+    {
+        if (HP <= 0 && Life)
+        {
+            HitOn();//DieImg에 보스터질때 구현
+            Life = false;
+            transform.Find("Bubble Particle").gameObject.SetActive(false);
+            Invoke("win", 1.5f);
+            gameObject.SetActive(false);
         }
     }
     public void ChangeCollider() // 움직임에 따라 콜라이더 수정, 지금 사용x 나중에 사용하게 되면 코루틴으로 변경
@@ -68,6 +80,17 @@ public class Boss : MonoBehaviour
         else if (Skin.sprite == Image[9])
             Circle.offset = new Vector2(-0.34f, 0.1f + position);
     }
+    public void HitEXPL_(GameObject other2)
+    {
+
+        if (other2.gameObject.tag == "EXPL")
+        {
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+            DT.transform.localScale *= 2f;
+            HP -= 5;
+        }
+    }
     public void Damaged(GameObject other2)
     {
         float QR = Random.Range(1, 7);
@@ -79,40 +102,24 @@ public class Boss : MonoBehaviour
 
 
 
-            if (other2.gameObject.tag == "EXPL")
-            {
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
-                DT.transform.localScale *= 2f;
-                HP -= 5;
-            }
-            else
-            {
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
-                DT.transform.localScale *= 2f;
-                HP--;
-                var KE = Instantiate(KillEffect, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-                float x_ = transform.localScale.x;
-                if (x_ > 0)
-                    x_ *= -1;
 
-                KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
-            }
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
+            DT.transform.localScale *= 2f;
+            HP--;
+            var KE = Instantiate(KillEffect, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+            float x_ = transform.localScale.x;
+            if (x_ > 0)
+                x_ *= -1;
 
-            Debug.Log("ssss0");
-
-            var KS = Instantiate(KS_, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+            KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
         }
 
-        if (HP <= 0)
-        {
+        Debug.Log("ssss0");
 
-            HitOn();//DieImg에 보스터질때 구현
-            transform.Find("Bubble Particle").gameObject.SetActive(false);
-            gameObject.SetActive(false);
-            Invoke("win", 1.5f);
-        }
+        var KS = Instantiate(KS_, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+
+
     }
     void HitOn()
     {
