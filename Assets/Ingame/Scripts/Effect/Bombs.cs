@@ -34,21 +34,22 @@ public class Bombs : Item
             {
                 var KE1 = Instantiate(BombSound, transform.position, Quaternion.Euler(0f, 0f, 20f)); // ∆¯πﬂ º“∏Æ
                 var a = Instantiate(Explosion, transform.position, Quaternion.Euler(0f, 0f, 0f)); // ∆¯πﬂ ¿Ã∆Â∆Æ
+                a.transform.localScale = transform.localScale;
                 Destroy(gameObject);
             }
         }
-        else 
+        else
             shakeObj();
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public override void eatItem(GameObject T)
     {
-        if (!Active && (other.gameObject.tag == "Body" || other.gameObject.tag == "Shiled") && other.transform.parent.tag == "Player")
+        if (!Active)
         {
-            other.transform.parent.gameObject.GetComponent<PlayerScript>().EatItem(1);
+            T.transform.gameObject.GetComponent<PlayerScript>().EatItem(1);
 
             var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f)); // æ∆¿Ã≈€ ∏‘¥¬ ¿Ã∆Â∆Æ
-            var b = Instantiate(BombSound2, transform.position, Quaternion.Euler(0f, 0f, 20f)); // æ∆¿Ã≈€ ∏‘¥¬ º“∏Æ
+            var b = Instantiate(BombSound2, transform.position, Quaternion.Euler(0f, 0f, 0f));
             Destroy(gameObject);
         }
     }

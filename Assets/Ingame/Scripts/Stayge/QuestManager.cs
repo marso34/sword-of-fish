@@ -433,10 +433,7 @@ public class QuestManager : MonoBehaviour
             if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
         }
     }
-    void SetZeroRager()
-    {
-        Player.GetComponent<Player>().RagerPoint = Vector3.zero;
-    }
+    
     Vector3 ObjRandomPosition()// 랜덤위치
     {
         return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
@@ -627,7 +624,7 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
-            SetZeroRager();
+           
             if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 4))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;

@@ -7,7 +7,7 @@ public class canvaus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetResolution();
+        //SetResolution();
     }
 
     public void SetResolution()

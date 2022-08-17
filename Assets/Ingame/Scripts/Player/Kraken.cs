@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Kraken : Boss
 {
-   
+
     public GameObject SkillTentacle; // 다리 스킬
     public GameObject SkillInk;      // 먹물 발사
     public GameObject SkillInkSwarm; // 먹구름 생성
@@ -17,6 +17,7 @@ public class Kraken : Boss
     public GameObject Bubble;
     void Start()
     {
+        Life = true;
         HitFlag = false;
         LegCount = 4;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,46 +41,50 @@ public class Kraken : Boss
         Player = GameObject.FindGameObjectWithTag("Player"); // 일단 임시로
         timer += Time.deltaTime; // 이미지 바꾸는 시간 위한 타이머
         timer_ += Time.deltaTime; // 일단 스킬용으로 대충 만든 거
-        statusColor();
-        if (HP > 0 && !FRZFlag)
-        {
-            if (LegCount > 0)
-            {
-                if (timer_ >= 4f && test)
-                {
-                    // CreateTentacle();
-                    test = false;
-                }
 
-                if (timer_ >= Random.Range(3f, 7f))
+        if (Life)
+        {
+            statusColor();
+            if (HP > 0 && !FRZFlag)
+            {
+                if (LegCount > 0)
                 {
-                    timer_ = 0f;
-                    CMPD = AbsVector(Sub(AbsVector(Player.transform.position), AbsVector(transform.position)));
-                    if (LegCount > 0 && (Mathf.Abs(CMPD.x) < 8f && Mathf.Abs(CMPD.y) < 6f))
-                        CreateTentacle();
-                    else
+                    if (timer_ >= 4f && test)
                     {
-                        CreateInkBomb();
-                        CreateInkSwarm();
+                        // CreateTentacle();
+                        test = false;
+                    }
+
+                    if (timer_ >= Random.Range(3f, 7f))
+                    {
+                        timer_ = 0f;
+                        CMPD = AbsVector(Sub(AbsVector(Player.transform.position), AbsVector(transform.position)));
+                        if (LegCount > 0 && (Mathf.Abs(CMPD.x) < 8f && Mathf.Abs(CMPD.y) < 6f))
+                            CreateTentacle();
+                        else
+                        {
+                            CreateInkBomb();
+                            CreateInkSwarm();
+                        }
                     }
                 }
-            }
-            else
-            {
-                if (timer_ >= waitTime)
+                else
                 {
-                    dir = SetDir();
-                    for (int i = 0; i < Random.Range(3, 6); ++i)
-                        CreateInkOct();
-                    timer_ = 0;
+                    if (timer_ >= waitTime)
+                    {
+                        dir = SetDir();
+                        for (int i = 0; i < Random.Range(3, 6); ++i)
+                            CreateInkOct();
+                        timer_ = 0;
+                    }
+                    MoveKraken(dir);
+                    // CreateBubbles();
+                    BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
                 }
-                MoveKraken(dir);
-                // CreateBubbles();
-                BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
+                //ChangeCollider();
+
             }
-            //ChangeCollider();
-
-
+            DieCheck();
         }
     }
 
@@ -94,12 +99,12 @@ public class Kraken : Boss
     }
     public void CreateInkOct() // 먹물 분신 생성
     {
-        var IO = Instantiate(InkOct, transform.position, Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
+        var IO = Instantiate(InkOct, transform.position, Quaternion.Euler(Random.Range(-180f, 180f), 0, 0));
         IO.transform.parent = transform;
-        IO.transform.localPosition = new Vector3(Random.Range(-0.9f,0.1f),0f,0f);
+        IO.transform.localPosition = new Vector3(Random.Range(-0.9f, 0.1f), 0f, 0f);
         IO.transform.parent = null;
-        IO.transform.localScale = new Vector3(1,1,1);
-        IO.GetComponent<Player>().FishNumber =7;
+        IO.transform.localScale = new Vector3(1, 1, 1);
+        IO.GetComponent<Player>().FishNumber = 7;
         IO.GetComponent<Player>().StartFlag = true;
     }
     public void MoveKraken(Vector3 dir_)
@@ -129,10 +134,22 @@ public class Kraken : Boss
     {
         if (LegCount == 0)
         {
-            if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player") || other.transform.tag == "EXPL")
+            if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
             {
                 Damaged(other.gameObject);
             }
+        }
+    }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "EXPL")
+        {
+            HitEXPL_(other.gameObject);
         }
         if (other.gameObject.tag == "FRZ")
         {

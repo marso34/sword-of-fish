@@ -93,8 +93,7 @@ public class AiPlayerScript : Player
             }
             if (Life)
             {
-                if (transform.tag == "InkOct")
-                    Init_();
+                
                 var T = (Player.transform.position - transform.position);
                 if (Mathf.Abs(MinFar.magnitude) > Mathf.Abs(T.magnitude)) ViewFlag = true;
                 else ViewFlag = false;
@@ -125,6 +124,7 @@ public class AiPlayerScript : Player
                     PlaySkill();
                     SkillTimer = 0f;
                 }
+                DieCheck();
             }
             else if (!Life)
             {
@@ -140,6 +140,13 @@ public class AiPlayerScript : Player
         }
         //겜 끝나면 오류뜰듯
 
+    }
+    public void DieCheck(){
+        if(HP <0 && Life){
+
+            DieLife();
+            Life = false;
+        }
     }
     public override void DieLife()
     {
@@ -168,6 +175,8 @@ public class AiPlayerScript : Player
             CreateFlesh();
             Stage22_ex();
             Destroy(gameObject, 2f);
+            MyKnife.transform.parent = null;
+            MyKnife.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
         }
     }
     void StartInit()//시작시 실행
@@ -238,10 +247,10 @@ public class AiPlayerScript : Player
         if (transform.tag == "InkOct")
         {
             int Dice2 = Random.Range(0, 3);
-            if (Dice == 0)
+            if (Dice2 == 0)
                 return RightMove();
             // else return MinDirTracking();
-            else if (Dice == 1)
+            else if (Dice2 == 1)
                 return PlayerTracking();
             else return LeftMove();
         }

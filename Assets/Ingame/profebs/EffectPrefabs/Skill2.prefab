@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5852717706263042207}
   - component: {fileID: 4936414882071350006}
   - component: {fileID: -569989099536113870}
-  - component: {fileID: -6156800504499827921}
   - component: {fileID: -6418188133216739682}
-  m_Layer: 0
+  - component: {fileID: -2893971710096843899}
+  m_Layer: 1
   m_Name: Skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,23 @@ MonoBehaviour:
   BboomEffect: {fileID: 2545687451895993892, guid: 57f90e0b00add664081cb039459558ed, type: 3}
   StabSound: {fileID: 3093351488500678861, guid: ab2e30973f1f93e40b6760f076dd1a6a, type: 3}
   DelEffect: {fileID: 8621052090283645862, guid: cce3954715d9da7418cc338090e9b747, type: 3}
---- !u!50 &-6156800504499827921
+--- !u!58 &-6418188133216739682
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4468575930644372405}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &-2893971710096843899
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -153,22 +169,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-6418188133216739682
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4468575930644372405}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1001 &6000621586313480727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3813580204255737557, guid: 45327ff74d2ff2c4e85ecb7ad08960b3, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45327ff74d2ff2c4e85ecb7ad08960b3, type: 3}

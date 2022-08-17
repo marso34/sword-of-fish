@@ -10,6 +10,7 @@ public class Explosion : MonoBehaviour
     bool flag = true;
     void Start()
     {
+        
         Destroy(gameObject, 1.3f);
     }
 

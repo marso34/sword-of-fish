@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     public double Timer22 = 0;
     public float MoveTime = 3f;
     public bool TuLev1 = false;
-    public Vector3 RagerPoint;
+
     public Vector2 VWall;
 
     public void GameStartInit()// ê²Œìž„?‹œ?ž‘?‹œ ?•œë²ˆì‹¤?–‰
@@ -97,7 +97,8 @@ public class Player : MonoBehaviour
         InitTemp();
         DefaultMoveSpeed();
         DefaultMoveSpeed();
-        RagerPoint = Vector3.zero;
+        XFlag = false;
+        YFlag = false;
         VWall = Vector2.zero;
     }
 
@@ -124,7 +125,7 @@ public class Player : MonoBehaviour
         RotationSpeed = 1200f;
         TempMovementSp = 2.3f; //J
         TempBusterSp = 4.6f;     // J
-        TempRotateSp = 1000f;   // J
+        TempRotateSp = 1200f;   // J
     }
 
     public void DefaultMoveSpeed()
@@ -137,6 +138,7 @@ public class Player : MonoBehaviour
             MovementSpeed = TempMovementSp + transform.localScale.y / 2;
             BusterSpeed = TempBusterSp + transform.localScale.y / 2;
             StateMoveFlag_ = false;
+            DefaultRotateSpeed();
         }
         // 
     }
@@ -146,7 +148,7 @@ public class Player : MonoBehaviour
         if (StateRotateFlag_ == false)
         {
             RotationSpeed = TempRotateSp;
-            StateRotateFlag_ = false;
+            
             // Debug.Log("¿ø·¡ È¸Àü");
         }
     }
@@ -533,30 +535,10 @@ public class Player : MonoBehaviour
                 }
             }
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
-       
+
             rota();
 
-            if (XFlag) RB.velocity -= new Vector2(RB.velocity.x, 0);
-            if (YFlag) RB.velocity -= new Vector2(0, RB.velocity.y);
 
-            if (VWall.x != 0)
-            {
-                if ((VWall.x < 0) != (dir.x < 0))
-                {
-                    XFlag = false;
-                    VWall -= new Vector2(VWall.x, 0);
-                }
-            }
-            if (VWall.y != 0)
-            {
-                if ((VWall.y < 0) != (dir.y < 0))
-                {
-                    YFlag = false;
-                    VWall -= new Vector2(0, VWall.y);
-                }
-            }
-            Debug.Log("º®°úÃæµ¹");
-            Debug.Log(XFlag + " " + YFlag + "Ãæµ¹1");
         }
     }
 
@@ -673,21 +655,11 @@ public class Player : MonoBehaviour
     }//?‚¬?•˜ë©? ?‹¤?–‰?˜?Š”?•¨?ˆ˜
     public void CheckWall(GameObject other, bool T)//HitPÃæµ¹ ÇÑ ÁöÁ¡
     {
-        
-        
-            VWall = new Vector3(VWall.x + other.transform.position.x, VWall.y + other.transform.position.y);
-            if (other.transform.position.x != 0)
-            {
-                if ((RB.velocity.x < 0) == (other.transform.position.x < 0)) XFlag = true;
-                else XFlag = false;
-            }
-            if (other.transform.position.y != 0)
-            {
-                if ((RB.velocity.y < 0) == (other.transform.position.y < 0)) YFlag = true;
-                else YFlag = false;
-            }
-            
-        
+
+
+       
+
+
     }//¸Ê¹Û????? ¸ø³ª??°ÔÇÏ?????????
     public void CreatBarriar()//?ƒœ?–´?‚ ?‹œ ë°©ì–´ë§? ê°?ì§?ê³? ?ƒœ?–´?‚˜ê¸?. ë°©ì–´ë§‰ë§Œ?“œ?Š” ?•¨?ˆ˜.
     {

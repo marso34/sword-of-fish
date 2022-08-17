@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1944125338774598123}
   - component: {fileID: -5373030723915883429}
   - component: {fileID: 1944125338774598127}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Attacker
   m_TagString: Attacker
   m_Icon: {fileID: 0}
@@ -159,6 +159,8 @@ MonoBehaviour:
   TempRotateSp: 0
   StateMoveFlag_: 0
   StateRotateFlag_: 0
+  XFlag: 0
+  YFlag: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -197,7 +199,7 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 5
   TuLev1: 0
-  RagerPoint: {x: 0, y: 0, z: 0}
+  VWall: {x: 0, y: 0}
   KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KillEffectO: {fileID: 2545687451895993892, guid: 051a4bac3775dde4097d5712160d7d02, type: 3}
@@ -218,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8340153076063862944}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2537902179814946789, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2537902179814946789, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_IsActive
@@ -381,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2732186800577997942, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2732186800577997942, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_IsActive

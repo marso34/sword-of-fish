@@ -24,6 +24,7 @@ public class Stage22 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         flag = true;
         TrashFlag = true;
+        TrashGravity = 0.1f;
     }
 
     // Update is called once per frame
@@ -31,6 +32,8 @@ public class Stage22 : Stage
     {
         if (flag)
         {
+            GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
+            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
             QM.GetComponent<QuestManager>().Player.transform.position = Vector3.zero;
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             //TutorialName.SetActive(false);

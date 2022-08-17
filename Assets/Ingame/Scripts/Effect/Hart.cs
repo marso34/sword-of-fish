@@ -10,17 +10,14 @@ public class Hart : Item
     {
         shakeObj();
     }
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        if ((other.gameObject.tag == "Body" || other.gameObject.tag == "Shiled") && other.transform.parent.tag == "Player")
-        {
-            if (other.transform.parent.GetComponent<Player>().HP > 0 && other.transform.parent.GetComponent<Player>().HP < 5)
-                other.transform.parent.GetComponent<Player>().HP++;
+   
+     public override void eatItem(GameObject T){
+         if (T.transform.GetComponent<Player>().HP > 0 && T.transform.GetComponent<Player>().HP < 5)
+                T.transform.GetComponent<Player>().HP++;
 
             var a = Instantiate(ItemEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
             var b = Instantiate(HartSound, transform.position, Quaternion.Euler(0f, 0f, 20f));
             Destroy(gameObject);
-        }
     }
 }
 

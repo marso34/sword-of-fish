@@ -88,7 +88,7 @@ public class PlayerScript : Player
         waitingTime = 0.11f;
         waitingTime_ = 0.1f;
 
-        // GameWaitInit();
+        GameWaitInit();
 
         timer1 = 0;
 
@@ -125,7 +125,7 @@ public class PlayerScript : Player
     /// </summary>
     private void Update()
     {
-        transform.position = MyBody.transform.position;
+        
         reset_();// ¸®°×ÇÏ¸é ½ÇÇà
         if (Life == false) NotInit();
         // *************************** ?????? ******* ????????? ????????©ö??? ???**********
@@ -138,7 +138,8 @@ public class PlayerScript : Player
         }
 
         if (StartFlag2 == true)//Âð½ºÅ¸Æ®
-        {
+        { 
+            transform.position = MyBody.transform.position;
             if (firstFlag)
             {
                 firstFlag = false;

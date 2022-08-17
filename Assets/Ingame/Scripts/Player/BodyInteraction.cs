@@ -23,23 +23,13 @@ public class BodyInteraction : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D other2)
     {
-        EatFlesh(other2.gameObject);
-        StabbedKnife(other2.gameObject);
-        HitSkill(other2.gameObject);
+         StabbedKnife(other2.gameObject);
+        
         TrashHit(other2.gameObject);
-        HitEXPL(other2.gameObject);
-        if (other2.transform.tag == "Wall")
-        {
-            transform.parent.GetComponent<Player>().CheckWall(other2.gameObject,true);
-           
-        }
+        if (other2.gameObject.tag == "BossSkillA" && transform.tag == "Body")
+            if (transform.parent.tag == "Player") transform.parent.GetComponent<Player>().DieLife();
     }
-    /// <summary>
-    /// Sent each frame where a collider on another object is touching
-    /// this object's collider (2D physics only).
-    /// </summary>
-    /// <param name="other">The Collision2D data associated with this collision.</param>
-    private void OnCollisionStay2D(Collision2D other)
+    void HitEXPL(GameObject other)
     {
         
     }
@@ -49,58 +39,19 @@ public class BodyInteraction : MonoBehaviour
     /// </summary>
     /// <param name="other">The Collision2D data associated with this collision.</param>
     
-    void HitEXPL(GameObject other)
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (transform.parent.tag != "Player")
-        {
-            if (other.gameObject.tag == "EXPL" && transform.tag == "Body")
-            {
-                transform.parent.GetComponent<Player>().HP--;
-                transform.parent.GetComponent<Player>().DieLife();
-            }
-        }
+        HitEXPL(other.gameObject);
+        
+       
+        EatFlesh(other.gameObject);    
     }
-    void HitSkill(GameObject other)
-    {
-        if (other.gameObject.tag == "SkillB" && transform.tag == "Body")
-        {
-            if (other.name == "Bullet" && transform.parent.tag == "Player")
-            {
-                transform.parent.GetComponent<PlayerScript>().DieLife();
-                transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
-                other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
-            }
-
-            if (transform.parent.tag == "AiPlayer")
-            {
-                transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
-                other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
-            }
-        }
-
-        if (other.gameObject.tag == "SkillO" && transform.tag == "Body")
-        {
-            transform.parent.gameObject.GetComponent<Player>().DieLife();
-            //other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().KillScoreUp();
-            var KE22 = Instantiate(KillEffectO, transform.parent.position, Quaternion.Euler(0f, 0f, Random.Range(-80, 80)));
-            KE22.transform.localScale = transform.localScale;
-        }
-
-        if (other.gameObject.tag == "FRZ" && transform.tag == "Body" && transform.parent.tag != "Player")
-        {
-            transform.parent.gameObject.GetComponent<Player>().C = new Color(60f / 255f, 150f / 255f, 255f / 255f);
-            transform.parent.gameObject.GetComponent<Player>().ResetColor();
-            transform.parent.GetComponent<Player>().StopMoveSpeed();
-            transform.parent.GetComponent<Player>().StopRotateSpeed();
-
-
-        }
-        if (other.gameObject.tag == "BossSkillA" && transform.tag == "Body")
-            if (transform.parent.tag == "Player") transform.parent.GetComponent<Player>().DieLife();
-    }
+    
 
 
     void StabbedKnife(GameObject other)

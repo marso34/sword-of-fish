@@ -237,6 +237,8 @@ MonoBehaviour:
   TempRotateSp: 0
   StateMoveFlag_: 0
   StateRotateFlag_: 0
+  XFlag: 0
+  YFlag: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -275,7 +277,7 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 5
   TuLev1: 0
-  RagerPoint: {x: 0, y: 0, z: 0}
+  VWall: {x: 0, y: 0}
   value: {fileID: 11400000, guid: ac6fcc09914faab48bc696d6f9f0ec56, type: 2}
   Knife: {fileID: 441632554992936305}
   Body: {fileID: 2181776197300246872}
@@ -1795,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_BodyType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_GravityScale
@@ -1875,7 +1877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523526302925924329, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4523526302925924329, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_TagString
@@ -1900,6 +1902,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4523526302925924329, guid: 73db255457f607a4bb052da79167992a, type: 3}
   m_PrefabInstance: {fileID: 2342420260158897841}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7421817070249915535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2181776197300246872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4eb8a29a0c11e04b95e204218e1fe93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2181776197300246873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4523526302925924328, guid: 73db255457f607a4bb052da79167992a, type: 3}

@@ -18,7 +18,7 @@ public class Tornado : MonoBehaviour
     float SizeX;
     float SizeY;
 
-    float Timer;
+    public float Timer;
 
     void Start()
     {
@@ -40,7 +40,7 @@ public class Tornado : MonoBehaviour
         Alpha = Child0.color;
         Timer = 0f;
 
-        transform.tag = "SkillP";
+        transform.tag = "Tornado";
 
         Destroy(gameObject, 3f);
     }

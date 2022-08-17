@@ -69,25 +69,35 @@ public class AttackerScript : Player
     {
         if (Life)
         {
-            if (other.gameObject.tag == "EXPL" || (other.transform.tag == "Knife" && other.transform.parent.tag == "Player") || other.transform.tag == "SkillO")
+            if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player") || other.transform.tag == "SkillO")
             {
                 HitAttacker(other.gameObject);
             }
-            if (other.gameObject.tag == "FRZ")
-            {
-                FRZOn();
-                Invoke("FRZOff", 2.5f);
-            }
 
-            // Debug.Log(other.gameObject.tag);
+        }
+    }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "EXPL")
+            HitEXPL(other.gameObject);
+        if (other.gameObject.tag == "FRZ")
+        {
+            FRZOn();
+            Invoke("FRZOff", 2.5f);
+        }
 
-            if (other.gameObject.tag == "SkillB")
-            {
-                Debug.Log("º¸°Å ½ºÅ³¿¡ ´êÀ½");
-                SlowMoveSpeed(1f);
-                SlowRotateSpeed(1f);
-            }
+        // Debug.Log(other.gameObject.tag);
 
+        if (other.gameObject.tag == "SkillB")
+        {
+            Debug.Log("º¸°Å ½ºÅ³¿¡ ´êÀ½");
+            SlowMoveSpeed(1f);
+            SlowRotateSpeed(1f);
         }
     }
     void FRZOn()
@@ -151,6 +161,7 @@ public class AttackerScript : Player
     {
         MyKnife.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         MyKnife.tag = "NotKnife";
+        MyKnife.transform.parent = null;
         MyKnife.transform.localScale = Vector3.zero;
 
     }
@@ -193,7 +204,7 @@ public class AttackerScript : Player
     }
     void Update()
     {
-      
+
         EmptyKnife();
         Init();
         lookrota();
@@ -224,6 +235,7 @@ public class AttackerScript : Player
             transform.Translate(dir.normalized * 0.01f * Time.deltaTime, Space.World);
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//ÀÌµ¿¹æÇâ¿¡ ¸Â°Ô Á¤¸éÀ» º¸µµ·Ï È¸Àü°ª ¹Þ¾Æ¿À±â.
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);///ÇÃ·¹ÀÌ¾î¿ÀºêÁ§Æ®¿¡°Ô ¹Þ¾Æ¿Â È¸Àü°ª Àû¿ë
+            DieCheck();
         }
         //nï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ù¶óº¸±ï¿½.
         //Nï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½
@@ -236,12 +248,33 @@ public class AttackerScript : Player
                 Skin.GetComponent<SpriteRenderer>().color = C;
                 time = 0;
             }
+            
         }
 
         isMove = true;
         AnimState(dir);
         //if (HP <= 0 && Life) dieAttacker();
 
+    }
+    void DieCheck(){
+        if (HP <= 0)
+        {
+            Life = false;
+            state = State.Die;
+            if (gameObject.name == "Boss")
+                Invoke("Win", 1.5f);
+            else if (gameObject.name == "Attacker")
+            {
+                P.transform.GetComponent<PlayerScript>().KillScoreUp();
+                QM.GetComponent<QuestManager>().BulletEC--;
+            }
+            transform.tag = "NotBody";
+            CreateFlesh();
+            Stage22_ex();
+            MyKnife.transform.parent = null;
+            MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            Destroy(transform.gameObject, 1.5f);
+        }
     }
     void UseSkill()
     {
@@ -252,7 +285,18 @@ public class AttackerScript : Player
         SkillCount = 0;
         SkillFlag_ = true;
     }
+    public void HitEXPL(GameObject other)
+    {
 
+        if (other.transform.tag == "EXPL")
+        {
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+            HP -= 5;
+            if (transform.name == "Boss")
+                DT.transform.localScale *= 2f;
+        }
+    }
     public void HitAttacker(GameObject other)
     {
         Debug.Log("³ªakw");
@@ -266,16 +310,7 @@ public class AttackerScript : Player
         {
             float QR = Random.Range(1, 7);
             float R = Random.Range(0.8f, 1.7f);
-
-            if (other.transform.tag == "EXPL")
-            {
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
-                HP -= 5;
-                if (transform.name == "Boss")
-                    DT.transform.localScale *= 2f;
-            }
-            else if (other.transform.tag == "Knife")
+            if (other.transform.tag == "Knife")
             {
                 var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
@@ -306,24 +341,6 @@ public class AttackerScript : Player
             var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
 
         }
-        if (HP <= 0 && Life)
-        {
-            Life = false;
-            state = State.Die;
-            if (gameObject.name == "Boss")
-                Invoke("Win", 1.5f);
-            else if (gameObject.name == "Attacker")
-            {
-                P.transform.GetComponent<PlayerScript>().KillScoreUp();
-                QM.GetComponent<QuestManager>().BulletEC--;
-            }
-            transform.tag = "NotBody";
-            CreateFlesh();
-            Stage22_ex();
-            Destroy(transform.gameObject, 1.5f);
-        }
-
-
     }
     public void dieAttacker()
     {

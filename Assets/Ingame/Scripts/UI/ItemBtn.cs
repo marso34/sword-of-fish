@@ -18,7 +18,7 @@ public class ItemBtn : UiButton
     public Sprite ItemBomb;
     public Sprite ItemIce;
     public Sprite ItemShield;
-
+    public Vector3 scaleib;
     public bool TutorialItem = false; //y
 
     int ItemNumber;
@@ -26,10 +26,12 @@ public class ItemBtn : UiButton
 
     void Start()
     {
+
         img = Image.GetComponent<Image>();
         img.sprite = Defualt;
         ItemNumber = 0;
         timer = 0f;
+        scaleib = new Vector3(1 + Player.transform.localScale.y / 10, 1 + Player.transform.localScale.y / 10, 1 + Player.transform.localScale.y / 10);
     }
 
     private void Update()
@@ -56,11 +58,13 @@ public class ItemBtn : UiButton
             if (ItemNumber == 1)  // ÆøÅº
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
+                a.transform.localScale = scaleib;
                 a.GetComponent<Bombs>().Active = true;
             }
             else if (ItemNumber == 2)  // ¾óÀ½
             {
                 var a = Instantiate(Preeze, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
+                a.transform.localScale = scaleib;
             }
             else if (ItemNumber == 3)  // ½¯µå
                 Player.GetComponent<Player>().CreatBarriar();
@@ -78,11 +82,14 @@ public class ItemBtn : UiButton
             if (ItemNumber == 1)  // ÆøÅº
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
+                a.transform.localScale = scaleib;
                 a.GetComponent<Bombs>().Active = true;
+
             }
             else if (ItemNumber == 2)  // ¾óÀ½
             {
                 var a = Instantiate(Preeze, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
+                a.transform.localScale = scaleib;
             }
             else if (ItemNumber == 3)  // ½¯µå
             {

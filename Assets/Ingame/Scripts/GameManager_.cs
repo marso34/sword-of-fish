@@ -68,7 +68,7 @@ public class GameManager_ : MonoBehaviour
         StartButtonFlag = false;
         //SetResolution();
         Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
-        SetResolution_();
+       // SetResolution_();
     }
    
     private void Update()
