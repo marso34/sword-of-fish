@@ -18,7 +18,6 @@ public class Stage16 : Stage
         if (flag)
         {
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
-            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             //TutorialName.SetActive(false);
             //GM.GetComponent<GameManager_>().ObjectCleaner();

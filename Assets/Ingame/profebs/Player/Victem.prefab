@@ -279,6 +279,8 @@ MonoBehaviour:
   TempRotateSp: 0
   StateMoveFlag_: 0
   StateRotateFlag_: 0
+  XFlag: 0
+  YFlag: 0
   fleshCount: 0
   MFish: {fileID: 0}
   MKnife: {fileID: 0}
@@ -317,7 +319,7 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 3
   TuLev1: 0
-  RagerPoint: {x: 0, y: 0, z: 0}
+  VWall: {x: 0, y: 0}
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
 --- !u!50 &3502532230121490174
@@ -354,9 +356,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05, y: 0.08}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!1001 &568068430810243033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,7 +630,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1419166287529513582, guid: 73db255457f607a4bb052da79167992a, type: 3}
+    - {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+    - {fileID: 7053345325316883323, guid: 73db255457f607a4bb052da79167992a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 73db255457f607a4bb052da79167992a, type: 3}
 --- !u!4 &2818417219401238388 stripped
 Transform:
@@ -826,9 +831,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 2866431025190176503}
     m_Modifications:
     - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 332501472, guid: 025bb36a421e62041b8703e7d66c5a97, type: 3}
+      objectReference: {fileID: 19796559, guid: 32ccc234b7dfa134fa58901a6f8782a3, type: 3}
     - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -847,7 +860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1971589745530292082, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -891,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_LocalPosition.z

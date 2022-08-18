@@ -72,6 +72,7 @@ public class QuestManager : MonoBehaviour
     public Sprite TimeIcon;
     public GameObject SpearImg;
     public Sprite FleshIcon;
+    public Sprite[] BossIcon;
     public Sprite bubbleIcon;
     public Sprite TrushIcon;
     public Sprite killIcon;
@@ -126,10 +127,8 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
-        Level_ = 2;//초기 렙설정
-
-        IngameLevel = 3; //n스테이지진입후 n-n 스테이지레벨    
-        
+        Level_ = 1;//초기 렙설정
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -350,10 +349,8 @@ public class QuestManager : MonoBehaviour
             ShapeNum = 1;
             IntroPanelName.GetComponent<Text>().text = "1";
             IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "크라켄의 둥지";
-
-
+            IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "적들을 처치하세요";
         }
         else if (Level_ == 2)
         {

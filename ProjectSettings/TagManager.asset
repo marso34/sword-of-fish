@@ -75,6 +75,7 @@ TagManager:
   - Tornado
   - TrashPoint
   - CrabNippers
+  - BP
   layers:
   - Default
   - TransparentFX
@@ -138,4 +139,7 @@ TagManager:
     locked: 0
   - name: Skill2
     uniqueID: 150332939
+    locked: 0
+  - name: UI
+    uniqueID: 1016163577
     locked: 0

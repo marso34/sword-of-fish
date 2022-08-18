@@ -377,6 +377,7 @@ MonoBehaviour:
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
+  C: {r: 0, g: 0, b: 0, a: 0}
   Polygon:
   - {fileID: 127717192}
   - {fileID: 127717191}
@@ -397,6 +398,7 @@ MonoBehaviour:
   - {fileID: -857072564, guid: 78df1407cea25c44d8ba1f18ab319240, type: 3}
   Active: 0
   HP: 0
+  InLife: 0
 --- !u!1 &880910870875096360
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +412,7 @@ GameObject:
   - component: {fileID: 880910870875096362}
   - component: {fileID: -4438871214978783046}
   - component: {fileID: 5512369461569814567}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Kraken
   m_TagString: Kraken
   m_Icon: {fileID: 0}
@@ -526,9 +528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   GM: {fileID: 0}
-  SkillTentacle: {fileID: 883011340292383301, guid: 38507872d3b268041a177deb64302322, type: 3}
-  SkillInk: {fileID: 8921444021151194250, guid: ff35b61e8039f544e89e915869557b8d, type: 3}
-  SkillInkSwarm: {fileID: 5730068235574958321, guid: cb8ed2da0ba8cdd45b78115f04a5840c, type: 3}
   DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
   Image:
   - {fileID: -3640003177370580343, guid: ee0a64cd0158efb44a78c274c6d580e5, type: 3}
@@ -541,21 +540,36 @@ MonoBehaviour:
   - {fileID: -5606440847016423257, guid: ee0a64cd0158efb44a78c274c6d580e5, type: 3}
   - {fileID: 5176585454676990531, guid: ee0a64cd0158efb44a78c274c6d580e5, type: 3}
   - {fileID: -7420599558025332633, guid: ee0a64cd0158efb44a78c274c6d580e5, type: 3}
+  DieImg: {fileID: 3616492235698635530}
   Point: {fileID: 6199777396429591143}
   BubbleP: {fileID: 4784075346979863939}
-  DieImg: {fileID: 3616492235698635530}
+  Player: {fileID: 0}
+  PlayerP: {x: 0, y: 0, z: 0}
+  Circle: {fileID: 0}
+  Skin: {fileID: 0}
+  HP: 0
   Speed: 0
   RotationSpeed: 0
-  LegCount: 0
   KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
-  KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
-  waitTime: 0
   HitSkin: {fileID: 0}
-  InkOct: {fileID: 8835441081331634052, guid: 5fe6c3f016132dc42a131059f37a55c2, type: 3}
+  KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   FRZFlag: 0
-  Bubble: {fileID: 7744744112347256152, guid: bcab08e21f4a60745993c92532f14a04, type: 3}
+  c: {r: 0, g: 0, b: 0, a: 0}
+  S: {fileID: 0}
   HitFlag: 0
+  dir: {x: 0, y: 0, z: 0}
+  timer: 0
+  timer_: 0
+  Life: 0
+  C: {r: 0, g: 0, b: 0, a: 0}
+  SkillTentacle: {fileID: 883011340292383301, guid: 38507872d3b268041a177deb64302322, type: 3}
+  SkillInk: {fileID: 8921444021151194250, guid: ff35b61e8039f544e89e915869557b8d, type: 3}
+  SkillInkSwarm: {fileID: 5730068235574958321, guid: cb8ed2da0ba8cdd45b78115f04a5840c, type: 3}
+  LegCount: 0
+  waitTime: 0
+  InkOct: {fileID: 8835441081331634052, guid: c5ad3a45003a8f546bda92288029fdf8, type: 3}
+  Bubble: {fileID: 7744744112347256152, guid: bcab08e21f4a60745993c92532f14a04, type: 3}
 --- !u!58 &5512369461569814567
 CircleCollider2D:
   m_ObjectHideFlags: 0

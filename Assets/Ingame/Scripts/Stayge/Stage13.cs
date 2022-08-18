@@ -19,7 +19,6 @@ public class Stage13 : Stage
         if (flag)
         {
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
-            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
             //TutorialName.SetActive(false);

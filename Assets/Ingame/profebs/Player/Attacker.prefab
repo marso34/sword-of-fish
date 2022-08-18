@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1944125338774598123}
   - component: {fileID: -5373030723915883429}
   - component: {fileID: 1944125338774598127}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Attacker
   m_TagString: Attacker
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!212 &-5373030723915883429
 SpriteRenderer:
   m_ObjectHideFlags: 0

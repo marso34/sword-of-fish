@@ -12,12 +12,16 @@ public class Stage: MonoBehaviour
     public Sprite Icon;
     public bool TrashFlag;
     public float TrashGravity;
-
+    public GameObject BlackPanel;
     // Update is called once per frame
    Vector3 DownTPosition()
     {//떨어질쓰레기 위치설정
         GameObject TP = GameObject.FindGameObjectWithTag("TrashPoint");
-        return new Vector3(Random.Range(-13, 13), TP.transform.position.y, 0);
+        int Trange = 13;
+        if(QM.GetComponent<QuestManager>().Level_ == 1) Trange = 30;
+        else if (QM.GetComponent<QuestManager>().Level_ == 2) Trange = 13;
+
+        return new Vector3(Random.Range(-1*Trange, Trange), TP.transform.position.y, 0);
     }
     void CreateTrash_()
     {

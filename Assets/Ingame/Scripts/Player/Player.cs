@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         StartFlag = false;
         InitTemp();
         DefaultMoveSpeed();
-        DefaultMoveSpeed();
+        DefaultRotateSpeed();
         XFlag = false;
         YFlag = false;
         VWall = Vector2.zero;
@@ -147,8 +147,7 @@ public class Player : MonoBehaviour
     {
         if (StateRotateFlag_ == false)
         {
-            RotationSpeed = TempRotateSp;
-            
+            RotationSpeed = 1200f;
             // Debug.Log("원래 회전");
         }
     }
@@ -163,6 +162,7 @@ public class Player : MonoBehaviour
             StateMoveFlag_ = true;
             Debug.Log("정지");
             Invoke("InitState", 2.5f);
+            Invoke("DefaultRotateSpeed",2.5f);
         }
     }
 
@@ -539,7 +539,7 @@ public class Player : MonoBehaviour
                 }
             }
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
-
+            if(transform.tag =="InkOct") Debug.Log("타코이동");
             rota();
 
 

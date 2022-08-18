@@ -170,7 +170,7 @@ public class AttackerScript : Player
         if (transform.name == "Boss" && flag)
         {
             HP = 12;
-            transform.localScale = new Vector3(4f, 4f, 1f);
+            transform.localScale = new Vector3(6f, 6f, 6f);
             flag = false;
         }
         else if (flag)
