@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     public GameObject Point;
     public ParticleSystem BubbleP;
     public GameObject Player;
+    public Vector3 PlayerP;
     public CircleCollider2D Circle;
     public SpriteRenderer Skin;
     public int HP;
@@ -31,9 +32,11 @@ public class Boss : MonoBehaviour
     public float timer = 0f;
     public float timer_ = 0f;
     public bool Life;
+    public Color C;
 
     public IEnumerator Start_()
     {
+        
         while (true) yield return StartCoroutine("ChangeImg");
     }
     public IEnumerator ChangeImg()//움직임애니매이션재생
@@ -48,11 +51,15 @@ public class Boss : MonoBehaviour
     {
         if (HP <= 0 && Life)
         {
-            HitOn();//DieImg에 보스터질때 구현
             Life = false;
+            transform.GetComponent<SpriteRenderer>().color = Color.clear;
+            HitOn();//DieImg에 보스터질때 구현
+            S = DieImg.GetComponent<SpriteRenderer>();
             transform.Find("Bubble Particle").gameObject.SetActive(false);
+            StopAllCoroutines();
+            StartCoroutine("Die");
             Invoke("win", 1.5f);
-            gameObject.SetActive(false);
+            
         }
     }
     public void ChangeCollider() // 움직임에 따라 콜라이더 수정, 지금 사용x 나중에 사용하게 되면 코루틴으로 변경
@@ -91,6 +98,33 @@ public class Boss : MonoBehaviour
             HP -= 5;
         }
     }
+    IEnumerator Die() //二쎌쓬 ?븷?땲
+    {
+        for (int i = 0; i < 50; ++i)
+        {
+            
+            //if (Life) break;
+            ShowDieAnim(i);
+
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+    public void ShowDieAnim(int index)//二쎌뿀?쓣?븣 ?븷?땲留ㅼ씠?뀡 ?옱?깮?븿?닔
+    {
+
+        if (S.color.a > 0 && !Life)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                if (i == index)
+                {
+                    C.a -= 0.02f;
+                    S.color = C;
+                    
+                }
+            }
+        }
+    }
     public void Damaged(GameObject other2)
     {
         float QR = Random.Range(1, 7);
@@ -123,7 +157,7 @@ public class Boss : MonoBehaviour
     }
     void HitOn()
     {
-        DieImg.SetActive(true);//DieImg에 보스터질때 구현
+        DieImg.SetActive(true);//DieImg에 보스터질때 구현   
     }
     void HitOff()
     {
@@ -134,7 +168,6 @@ public class Boss : MonoBehaviour
     void win()
     {
         Player.GetComponent<PlayerScript>().BosskillScore++;
-        Destroy(gameObject); // 무언가 보스 터지는 이미지 넣어다라고 1.2초 준거
     }
     void UpdateOutline(bool outline)
     {

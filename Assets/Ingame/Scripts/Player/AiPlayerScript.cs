@@ -55,12 +55,13 @@ public class AiPlayerScript : Player
         GameWaitInit();
         RB = MyBody.transform.GetComponent<Rigidbody2D>();
         SkillTimer = 0f;
-
+         isMove = true;
         firstMoveFlag = true;
         if (transform.tag == "Attacker") waitingTime = 0.1f;
         StartCoroutine("Start_");
         MinFar = new Vector3(13f, 5f, 1f);
         ViewFlag = false;
+        
     }
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
@@ -73,12 +74,13 @@ public class AiPlayerScript : Player
         reset_();
         // *************************** 특이사항 ******* 죽일때마다 애니재생되는무기 넣기**********        
         //SetIndicator();
-        if (transform.tag == "InkOct") FishNumber = 7;
+        
         AiPlayers_ = GameObject.FindGameObjectsWithTag("AiPlayer");// 모든플레이어 담아야함
         Player = GameObject.FindGameObjectWithTag("Player");
 
         if (StartFlag == true && Player != null)
         {
+            if (transform.tag == "InkOct") FishNumber = 7;
             GameStartInit();
             Target = Player;
             Init_();
@@ -88,7 +90,6 @@ public class AiPlayerScript : Player
         {
             if (firstMoveFlag)
             {
-
                 firstMoveFlag = false;
             }
             if (Life)
@@ -246,13 +247,14 @@ public class AiPlayerScript : Player
 
         if (transform.tag == "InkOct")
         {
-            int Dice2 = Random.Range(0, 3);
-            if (Dice2 == 0)
+            Debug.Log("문어이동");
+            if (Dice == 0)
                 return RightMove();
             // else return MinDirTracking();
-            else if (Dice2 == 1)
-                return PlayerTracking();
-            else return LeftMove();
+            else if (Dice == 1)
+                 return LeftMove();
+            else return PlayerTracking();
+            
         }
 
         else return Vector3.zero;

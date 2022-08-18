@@ -28,12 +28,12 @@ public class BigTrash : MonoBehaviour
                 other.transform.GetComponent<HitFeel>().TimeStop(0.8f);
                 HP -= 1;
 
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f
+                var DT = Instantiate(DamageText, other.contacts[0].point, Quaternion.Euler(0f
                 , 0f, 0f));
                 DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
                 DT.transform.localScale *= 2f;
 
-                var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+                var KE = Instantiate(HitEffect, other.contacts[0].point, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
                 float x_ = transform.localScale.x;
                 if (x_ > 0)
                     x_ *= -1;
@@ -41,7 +41,7 @@ public class BigTrash : MonoBehaviour
                 KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
                 KE.gameObject.GetComponent<Effect>().SetEffect(1);
 
-                var KS = Instantiate(KillSound, transform.position, Quaternion.Euler(0, 0, 0));
+                var KS = Instantiate(KillSound, other.contacts[0].point, Quaternion.Euler(0, 0, 0));
             }
 
         }

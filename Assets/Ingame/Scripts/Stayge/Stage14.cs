@@ -19,7 +19,7 @@ public class Stage14 : Stage
         if (flag)
         {
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
-            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
+            //보스 보여주고 플레이하는 캠액션, UI다끄고 카메라 방향 보스향했다가 다시 플레이어로 오고 UI다키고.
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
             //TutorialName.SetActive(false);

@@ -9,7 +9,7 @@ public class Tentacle : MonoBehaviour
     public GameObject KillEffect2;
     public GameObject KS_;
     public GameObject DamageText;
-
+    public Color C;
     public PolygonCollider2D[] Polygon;
     public PolygonCollider2D temp;
     public Sprite[] Image;
@@ -29,6 +29,7 @@ public class Tentacle : MonoBehaviour
     public bool InLife;
     void Start()
     {
+        C = new Color (1,1,1,1);
         InLife = true;
         Skin = GetComponent<SpriteRenderer>();
         S = transform.GetComponent<SpriteRenderer>();
@@ -71,7 +72,8 @@ public class Tentacle : MonoBehaviour
         {
             InLife = false;
             transform.parent.GetComponent<Kraken>().LegCount--;
-            Destroy(gameObject);
+            StopAllCoroutines();
+            StartCoroutine("Die");
         }
     }
 
@@ -140,7 +142,33 @@ public class Tentacle : MonoBehaviour
             yield return new WaitForSeconds(imgTime);
         }
     }
+     IEnumerator Die() //Ï£ΩÏùå ?ï†?ãà
+    {
+        for (int i = 0; i < 50; ++i)
+        {
+            if(i == 49) Destroy(gameObject);
+            //if (Life) break;
+            ShowDieAnim(i);
 
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+    public void ShowDieAnim(int index)//Ï£ΩÏóà?ùÑ?ïå ?ï†?ãàÎß§Ïù¥?Öò ?û¨?Éù?ï®?àò
+    {
+
+        if (S.color.a > 0 && !InLife)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                if (i == index)
+                {
+                    C.a -= 0.02f;
+                    S.color = C;
+                    
+                }
+            }
+        }
+    }
     void MoveTentacle()
     {
         if (timer_ >= 1.65f) // ª˝¡∏Ω√∞£

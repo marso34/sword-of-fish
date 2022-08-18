@@ -17,6 +17,7 @@ public class Kraken : Boss
     public GameObject Bubble;
     void Start()
     {
+        C = new Color(1,1,1,1);
         Life = true;
         HitFlag = false;
         LegCount = 4;
@@ -132,7 +133,7 @@ public class Kraken : Boss
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (LegCount == 0)
+        if (LegCount <= 0)
         {
             if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
             {
@@ -160,14 +161,14 @@ public class Kraken : Boss
     void CreateTentacle() // 촉수 스킬 생성
     {
 
-        Vector3 PlayerP = GameObject.FindGameObjectWithTag("Player").transform.position;
+        
         if (Random.Range(0, 10) == 1) CreateInkSwarm();
         var a = Instantiate(SkillTentacle, Point.transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
         a.transform.localPosition = Vector3.zero;
         a.transform.localScale = new Vector3(1f, 1f, 1f);
 
-        a.transform.Translate(new Vector3(PlayerP.x, -transform.localScale.y - 1f, 1f), Space.World); // 텐타클 보스 주변 랜덤으로 생성
+        a.transform.Translate(new Vector3(Player.transform.position.x, -transform.localScale.y - 1f, 1f), Space.World); // 텐타클 보스 주변 랜덤으로 생성
         // a.transform.parent = null;
 
         a.GetComponent<Tentacle>().Active = true;

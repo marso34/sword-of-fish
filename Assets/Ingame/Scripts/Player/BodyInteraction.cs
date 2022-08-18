@@ -23,7 +23,7 @@ public class BodyInteraction : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D other2)
     {
-         StabbedKnife(other2.gameObject);
+        StabbedKnife(other2.gameObject);
         
         TrashHit(other2.gameObject);
         if (other2.gameObject.tag == "BossSkillA" && transform.tag == "Body")

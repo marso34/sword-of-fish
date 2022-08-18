@@ -17,6 +17,7 @@ public class Tracking_player : MonoBehaviour
         shake = 0;
         target = transform;
         RB = transform.GetComponent<Rigidbody2D>();
+        z = -19;
     }
 
     public void SetResolution()
@@ -46,23 +47,30 @@ public class Tracking_player : MonoBehaviour
     ///
     void Update()
     {
-         if (target != null && target.tag == "Player")
+        if (target != null && target.tag == "Player")
         {
-            if(StartFlag){
-                transform.position = new Vector3(target.position.x,target.position.y,z);
+
+            if (StartFlag)
+            {
+                transform.position = new Vector3(target.position.x, target.position.y, z);
                 StartFlag = false;
             }
             var dir = target.GetComponent<PlayerScript>().MyBody.transform.position - transform.position;
-            RB.velocity  = dir * 2f;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
-            // transform.GetComponent<Camera>().fieldOfView = 22+target.transform.localScale.y*3f;
+            RB.velocity = dir * 2f;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
+            if(transform.GetComponent<Camera>().fieldOfView <28){
+            transform.GetComponent<Camera>().fieldOfView = 22 + target.transform.localScale.y * 3f;
+            }
+            else transform.GetComponent<Camera>().fieldOfView = 28;
             // transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
             // RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (new Vector3(0,1.1f,0) - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
             // if (ray2.collider != null)
             // {
             //     transform.position = new Vector3(ray2.point.x + shake, ray2.point.y + shake,z - shake);              
             // }
+          
         }
-        else {
+        else
+        {
             transform.position = transform.position;// "Null instence" error depance
             target = null;
             dieFlag = false;
@@ -70,9 +78,8 @@ public class Tracking_player : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(0, 0, 0);
         //SetResolution();
-        if (!dieFlag)
-            z = -19;
-        else if (dieFlag && z < -11) z += 1;
+
+        if (dieFlag && z < -11) z += 1;
     }
     public void target_set(GameObject player)
     {

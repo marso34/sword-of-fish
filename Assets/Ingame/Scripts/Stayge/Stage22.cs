@@ -12,6 +12,7 @@ public class Stage22 : Stage
     public int GoalLevel;
     public bool SucssesFlag;
     public bool WavingFlag;
+    public GameObject Granpa;
 
     void Start()
     {
@@ -32,12 +33,14 @@ public class Stage22 : Stage
     {
         if (flag)
         {
+            //Granpa = GameObject.FindGameObjectWithTag("VicTem");
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
             QM.GetComponent<QuestManager>().Player.transform.position = Vector3.zero;
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             //TutorialName.SetActive(false);
-            //GM.GetComponent<GameManager_>().ObjectCleaner();
+            //GM.GetComponent<GameManager_>().ObjectCleaner();\
+            
             QM.GetComponent<QuestManager>().ShapeNum = 1;
             Destroy(GameObject.FindGameObjectWithTag("V"));
             QM.GetComponent<QuestManager>().ResetCounter();
@@ -49,11 +52,12 @@ public class Stage22 : Stage
             QM.GetComponent<QuestManager>().BossMaxCount = 0;
             QM.GetComponent<QuestManager>().MaxCount = 1;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
-            QM.GetComponent<QuestManager>().ObjMFlag = true;
+            QM.GetComponent<QuestManager>().ObjMFlag = false;
             flag = false;
         }
         else
         {
+            
             TrashOn();
             if (CheckWaveEnd() && WaveLevel < GoalLevel)
             {
