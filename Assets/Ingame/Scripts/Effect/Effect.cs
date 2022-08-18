@@ -15,13 +15,21 @@ public class Effect : MonoBehaviour
     {
         if (i == 0) // trash, 대검
         {
-             transform.Find("effect").gameObject.SetActive(false);
+            transform.Find("effect").gameObject.SetActive(false);
         }
         else if (i == 1) // BigTrash
         {
             transform.Find("effect1").gameObject.SetActive(false);
             transform.Find("effect2").gameObject.transform.localScale *= 0.3f;
             transform.Find("effect3").gameObject.transform.localScale *= 0.3f;
+        }
+        else if (i == 2) // 크랩 스킬
+        {
+            transform.Find("effect").gameObject.SetActive(false);
+            transform.Find("effect1").gameObject.SetActive(false);
+            transform.Find("effect2").gameObject.SetActive(false);
+            transform.Find("effect4").gameObject.SetActive(true);
+            transform.Find("effect5").gameObject.SetActive(true);
         }
     }
 }

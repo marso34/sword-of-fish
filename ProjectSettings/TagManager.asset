@@ -74,6 +74,7 @@ TagManager:
   - SkillP
   - Tornado
   - TrashPoint
+  - CrabNippers
   layers:
   - Default
   - TransparentFX

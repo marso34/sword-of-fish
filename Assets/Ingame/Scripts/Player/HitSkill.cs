@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class HitSkill : MonoBehaviour
 {
-    // Start is called before the first frame update
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         OnSkill(other.gameObject);
     }
-    /// <summary>
-    /// Sent each frame where another object is within a trigger collider
-    /// attached to this object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Tornado" && gameObject.tag == "Body" && transform.parent.tag == "Player")
@@ -26,20 +16,28 @@ public class HitSkill : MonoBehaviour
             transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = (other.transform.position - transform.parent.position).normalized * Random.Range(0.01f, 0.11f);
             Debug.Log("½ÇÇàµÊ");
         }
+
+        if (other.gameObject.tag == "CrabNippers" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")
+        {
+            Debug.Log("Áý°Ô¹ß Á¢ÃË");
+            if (other.transform.parent.gameObject.GetComponent<CrabSkill>().flag)
+                transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = (other.transform.parent.gameObject.GetComponent<CrabSkill>().EffectPosition() - transform.parent.position).normalized * 5f;
+        }
+
     }
     void OnSkill(GameObject other)
     {
-         if (other.gameObject.transform.tag == "Potal")
+        if (other.gameObject.transform.tag == "Potal")
         {
             Debug.Log("¼º°ø");
             other.GetComponent<Potal>().succes();
         }
-    
+
         if (other.gameObject.tag == "SkillB" && transform.tag == "Body")
         {
             if (other.name == "Bullet" && transform.parent.tag == "Player")
             {
-                transform.parent.GetComponent<PlayerScript>().DieLife();
+                DamagedPlayer();
                 transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
                 transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
@@ -55,7 +53,7 @@ public class HitSkill : MonoBehaviour
 
         if (other.gameObject.tag == "SkillO" && transform.tag == "Body")
         {
-            transform.parent.gameObject.GetComponent<Player>().DieLife();
+            DamagedPlayer();
             //other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().KillScoreUp();
             var KE22 = Instantiate(transform.GetComponent<BodyInteraction>().KillEffectO, transform.parent.position, Quaternion.Euler(0f, 0f, Random.Range(-80, 80)));
@@ -87,6 +85,18 @@ public class HitSkill : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-        
+
+        if (other.gameObject.tag == "CrabNippers" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")
+        {
+            Debug.Log("Áý°Ô¹ß Á¢ÃË");
+            other.transform.parent.gameObject.GetComponent<CrabSkill>().flag = true;
+            other.transform.parent.gameObject.GetComponent<CrabSkill>().SkillFlag = true;
+            Invoke("DamagedPlayer", 0.3f);
+        }
+    }
+
+    void DamagedPlayer()
+    {
+        transform.parent.gameObject.GetComponent<Player>().DieLife();
     }
 }
