@@ -130,8 +130,8 @@ public class BodyInteraction : MonoBehaviour
         if (transform.tag == "Body" && other.tag == "Trush" && transform.parent.tag == "Player")
         {
             transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(1f);
-            transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(1f);
-            transform.parent.gameObject.GetComponent<Player>().C = Color.green;
+            //transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(1f);
+         
         }
     }
     void StopTime_()

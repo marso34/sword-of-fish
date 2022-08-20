@@ -54,6 +54,7 @@ public class Tracking_player : MonoBehaviour
             {
                 transform.position = new Vector3(target.position.x, target.position.y, z);
                 StartFlag = false;
+              transform.GetComponent<Camera>().fieldOfView = 22;
             }
             var dir = target.GetComponent<PlayerScript>().MyBody.transform.position - transform.position;
             RB.velocity = dir * 2f;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;

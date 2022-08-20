@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public enum State { Idle, Move, Die, };//?ƒ?ƒœ?“¤ ì§‘í•©
     public State state;// ?˜„?¬?ƒ?ƒœ
     public int PlayerCount = 8;
+    public bool BSErrorFlag;
     public float Speed;//ë³??•˜?Š” ?Š¤?”¼?“œë¥? ?‹´?Š” ë³??ˆ˜
     public float RotationSpeed;//?šŒ? „?†?„
     public float MovementSpeed;//ê¸°ë³¸ ?Š¤?”¼?Š¸ ?ƒ?ˆ˜
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
 
     public bool XFlag;
     public bool YFlag;
-    float MaxSize = 3f;
+    float MaxSize = 2f;
     public int fleshCount = 0;
     public SpriteRenderer MFish;// ?‚´ ë¬¼ê³ ê¸? ?Š¤?‚¨ ??‹ ê°ì²´?—?„œ ì´ˆê¸°?™”
     public SpriteRenderer MKnife;//?‚´ ì¹? ?Š¤?‚¨// ??‹?—?„œ ì´ˆê¸°?™”.
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer S;//ëª¸íˆ¬ëª…ë„ ë°”ê???•Œ ?“°?Š”ë³??ˆ˜
 
     public GameObject BubbleSound;
-    public Vector3 dir;//???ì§ì¼
+    public Vector3 dir;//???ì§ì
                        // Start is called before the first frame update
     public GameObject Flag_Image;
     public bool Flag_get;
@@ -87,15 +88,16 @@ public class Player : MonoBehaviour
     public double Timer22 = 0;
     public float MoveTime = 3f;
     public bool TuLev1 = false;
-
+    public bool SlowFlag;
     public Vector2 VWall;
+    public bool SharkFlag;
 
     public void GameStartInit()// ê²Œì„?‹œ?‘?‹œ ?•œë²ˆì‹¤?–‰
     {
         Init_();
         StartFlag = false;
         InitTemp();
-        DefaultMoveSpeed();
+        //DefaultMoveSpeed();
         DefaultRotateSpeed();
         XFlag = false;
         YFlag = false;
@@ -106,7 +108,7 @@ public class Player : MonoBehaviour
     {
         MFish = Skin.GetComponent<SpriteRenderer>();//?Š¤?‚¨?˜ SpriteRenderer ì°¸ì¡°
         MKnife = MyKnife.GetComponent<SpriteRenderer>();//ì¹¼ì˜ SpriteRenderer
-
+        BSErrorFlag = true;
 
     }//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ê±ï¿½È­    
 
@@ -128,20 +130,21 @@ public class Player : MonoBehaviour
         TempRotateSp = 1200f;   // J
     }
 
-    public void DefaultMoveSpeed()
-    {
-        if (StateMoveFlag_ == false)
-        {
-            // if (transform.tag == "Player")
-            //     Debug.Log("¿ø·¡ ¼Óµµ");
-            Speed = TempMovementSp + transform.localScale.y / 2;
-            MovementSpeed = TempMovementSp + transform.localScale.y / 2;
-            BusterSpeed = TempBusterSp + transform.localScale.y / 2;
-            StateMoveFlag_ = false;
-            DefaultRotateSpeed();
-        }
-        // 
-    }
+    // public void DefaultMoveSpeed()
+    // {
+    //     if (StateMoveFlag_ == false)
+    //     {
+    //         if (GameObject.FindGameObjectWithTag("BS") != null) ;
+    //         Destroy(GameObject.FindGameObjectWithTag("BS"));
+    //         // if (transform.tag == "Player")
+    //         //     Debug.Log("¿ø·¡ ¼Óµµ");
+    //         
+    //         StateMoveFlag_ = false;
+    //         DefaultRotateSpeed();
+    //         BSErrorFlag = true;
+    //     }
+    //     // 
+    // }
 
     public void DefaultRotateSpeed()
     {
@@ -162,7 +165,7 @@ public class Player : MonoBehaviour
             StateMoveFlag_ = true;
             Debug.Log("Á¤Áö");
             Invoke("InitState", 2.5f);
-            Invoke("DefaultRotateSpeed",2.5f);
+            Invoke("DefaultRotateSpeed", 2.5f);
         }
     }
 
@@ -178,47 +181,64 @@ public class Player : MonoBehaviour
 
     public void FastSpeed(float index)// ë¬¼ê³ ê¸? ?´?™?†?„ ë©??‹°?—?„œ ?™ê¸°í™”.
     {
-        if (StateMoveFlag_ == false)
-        {
-            Speed = BusterSpeed * index;
-        }
+        BusterFlag = true;
     }
-
+    public void OffFastSpeed()
+    {
+        BusterFlag = false;
+    }
+    public void Sharkmove()
+    {
+        SharkFlag = true;
+        Invoke("SharkOff", 3f);
+    }
+    public void SharkOff()
+    {
+        SharkFlag = false;
+    }
     public void SlowMoveSpeed(float index)
     {
-        if (StateMoveFlag_ == false)
-        {
-            MovementSpeed = index;
-            Speed = index;
-            Debug.Log(Speed + "slowMove");
-            BusterSpeed = index * 2;
-            StateMoveFlag_ = true;
-            ErrorFlag = false;
-            SetColor(Color.green);
-            Invoke("InitState", 2.5f);
+        // if (StateMoveFlag_ == false)
+        // {
+        //     MovementSpeed = index;
+        //     Speed = index;
+        //     Debug.Log(Speed + "slowMove");
+        //     BusterSpeed = index * 2;
+        //     StateMoveFlag_ = true;
+        //     ErrorFlag = false;
+        //     SetColor(Color.green);
+        //     Invoke("InitState", 2.5f);
 
-        }
+        // }
+        SetColor(Color.green);
+        SlowFlag = true;
+        Invoke("OffSlow", 2f);
     }
-
-    public void SlowRotateSpeed(float index)
+    public void OffSlow()
     {
-        if (StateRotateFlag_ == false)
-        {
-            RotationSpeed = index * 300;
-            Debug.Log(RotationSpeed + "slowRotate");
-            StateRotateFlag_ = true;
-        }
+        SlowFlag = false;
+        InitState();
     }
+    // public void SlowRotateSpeed(float index)
+    // {
+    //     // if (StateRotateFlag_ == false)
+    //     // {
+    //     //     RotationSpeed = index * 300;
+    //     //     Debug.Log(RotationSpeed + "slowRotate");
+    //     //     StateRotateFlag_ = true;
+    //     // }
+
+    // }
 
     public void InitState() //J ì´ˆê¸°?™”
     {
         if (Life)
         {
             C = Color.white;
-            StateMoveFlag_ = false;
-            StateRotateFlag_ = false;
-            DefaultMoveSpeed();
-            DefaultRotateSpeed();
+            // StateMoveFlag_ = false;
+            // StateRotateFlag_ = false;
+            //    DefaultMoveSpeed();
+            //  DefaultRotateSpeed();
 
         }
     }
@@ -277,13 +297,10 @@ public class Player : MonoBehaviour
     }
     public void CreateFlesh()//?‹œì²´ìƒ?„±
     {
-
         for (int i = 0; i < 3 + transform.localScale.y; ++i)
         {
             var flesh_ = Instantiate(Flesh, transform.position + RandomFleshPosition(), Quaternion.Euler(0, 0, 0));
         }
-
-
     }//?‹œì²? ë§Œë“¤ê¸?
 
     public Vector3 RandomFleshPosition() //?œ?¤?•œ ?‹œì²´ìœ„ì¹˜ë°±?„° ë°˜í™˜
@@ -473,6 +490,12 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < 50; ++i)
         {
+
+            if (i == 49 && !Life && transform.tag != "Player")
+            {
+                if (gameObject.name == "Boss") transform.GetComponent<AttackerScript>().Win();
+                Destroy(gameObject);
+            }
             //if (Life) break;
             ShowDieAnim(i);
 
@@ -487,6 +510,7 @@ public class Player : MonoBehaviour
         {
             for (int i = 0; i < 50; i++)
             {
+
                 if (i == index)
                 {
                     C.a -= 0.02f;
@@ -519,16 +543,21 @@ public class Player : MonoBehaviour
     }
     public void rota()
     {
+        if (SlowFlag) RotationSpeed = 300f;
+        else RotationSpeed = 1200f;
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity.normalized);//?´?™ë°©í–¥?— ë§ê²Œ ? •ë©´ì„ ë³´ë„ë¡? ?šŒ? „ê°? ë°›ì•„?˜¤ê¸?.
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?”Œ? ˆ?´?–´?˜¤ë¸Œì ?Š¸?—ê²? ë°›ì•„?˜¨ ?šŒ? „ê°? ? ?š©
         float x_ = transform.localScale.x;
     }
     public void PlayerMove()
     {
+        Speed = TempMovementSp + transform.localScale.y / 2;
+        MovementSpeed = TempMovementSp + transform.localScale.y / 2;
+        BusterSpeed = TempBusterSp + transform.localScale.y / 2;
         isMove = true; //dir != Vector3.zero;
-
         if (isMove && Life)
         {
+
             if (isMove)
             {
                 Timer22 += Time.deltaTime;
@@ -538,11 +567,18 @@ public class Player : MonoBehaviour
                     Timer33++;
                 }
             }
+            if (SharkFlag)
+            {
+                
+                Speed = BusterSpeed * 3f;
+                if(BusterFlag) Speed = BusterSpeed *4f;
+            }
+            else if (SlowFlag) Speed = 1f;
+            else if (BusterFlag) Speed = BusterSpeed;
+            else Speed = MovementSpeed;
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
-            if(transform.tag =="InkOct") Debug.Log("Å¸ÄÚÀÌµ¿");
+            if (transform.tag == "InkOct") Debug.Log("Å¸ÄÚÀÌµ¿");
             rota();
-
-
         }
     }
 
@@ -704,7 +740,6 @@ public class Player : MonoBehaviour
     {
         var a = Instantiate(Skill2, transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
-
         a.transform.localPosition = Vector3.zero;
         a.transform.localScale = new Vector3(1f, 1f, 1f);
         a.name = Name;
@@ -712,27 +747,14 @@ public class Player : MonoBehaviour
     public void PlaySkill() //J
     {
         skillcheck = true;
-        Flag_ = !Flag_;
-        if (FishNumber == 0)
-        {
-            Debug.Log("½ºÅ³ »ç¿ë");
-            if (Flag_ == true)
-            {
-                StopMoveSpeed();
-            }
 
-            else if (Flag_ == false)
-            {
-                DefaultMoveSpeed();
-            }
-        }
-        else if (FishNumber == 1) // ?????
+        if (FishNumber == 1 && !StateMoveFlag_) // ?????
         {
             SkillFlag = true;
             CreateSkill();
             OnOutLine(1);
-
-            FastSpeed(3);
+            Sharkmove();
+            //StateMoveFlag_ = true;
             MyBody.tag = "Shiled";
             Invoke("InitState", 3f);
             Invoke("Init_", 3f);
@@ -760,25 +782,26 @@ public class Player : MonoBehaviour
     }
     public void PlaySkill(string Name) //J
     {
-        Flag_ = !Flag_;
-        if (FishNumber == 0)
-        {
-            if (Flag_ == true)
-            {
-                StopMoveSpeed();
-            }
-            else if (Flag_ == false)
-            {
-                DefaultMoveSpeed();
-            }
-        }
-        else if (FishNumber == 1) // ?????
+        // Flag_ = !Flag_;
+        // if (FishNumber == 0)
+        // {
+        //     if (Flag_ == true)
+        //     {
+        //         StopMoveSpeed();
+        //     }
+        //     else if (Flag_ == false)
+        //     {
+        //        // DefaultMoveSpeed();
+        //     }
+        // }
+        if (FishNumber == 1 && !StateMoveFlag_) // ?????
         {
             SkillFlag = true;
 
             OnOutLine(1);
 
             FastSpeed(3);
+            StateMoveFlag_ = true;
             MyBody.tag = "Shiled";
             Invoke("InitState", 3f);
             Invoke("Init_", 3f);

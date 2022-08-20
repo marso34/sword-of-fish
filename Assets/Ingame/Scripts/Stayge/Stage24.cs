@@ -10,6 +10,7 @@ public class Stage24 : Stage
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.1f;
+        TrashFlag = true;
     }
 
     // Update is called once per frame

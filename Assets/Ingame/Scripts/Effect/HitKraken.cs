@@ -8,7 +8,7 @@ public class HitKraken : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if((transform.parent.tag !="BossSkillA" && other.transform.tag =="Knife" && other.transform.parent.tag =="Player")){
             Debug.Log("PLAYER");
-            transform.parent.GetComponent<Tentacle>().DestroyTentacle(other.gameObject);
+            transform.parent.GetComponent<Tentacle>().DestroyTentacle(other.gameObject,other.contacts[0].point);
             
         }
     }

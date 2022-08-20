@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5139307731403701433}
   - component: {fileID: 4875927844831279921}
   - component: {fileID: 5245195079369463352}
+  - component: {fileID: 6256370960382244974}
   m_Layer: 0
   m_Name: Knife
   m_TagString: WaitKnife
@@ -150,3 +151,15 @@ MonoBehaviour:
   Player_: {fileID: 0}
   cam: {fileID: 0}
   shake: 0
+--- !u!114 &6256370960382244974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537902179814946789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba319e9e9b0ef894c8abb92f650660b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
