@@ -125,7 +125,7 @@ public class PlayerScript : Player
     /// </summary>
     private void Update()
     {
-        
+
         reset_();// ∏Æ∞◊«œ∏È Ω««‡
         if (Life == false) NotInit();
         // *************************** ?????? ******* ????????? ????????©ˆ??? ???**********
@@ -138,7 +138,7 @@ public class PlayerScript : Player
         }
 
         if (StartFlag2 == true)//¬Ω∫≈∏∆Æ
-        { 
+        {
             transform.position = MyBody.transform.position;
             if (firstFlag)
             {
@@ -175,7 +175,7 @@ public class PlayerScript : Player
                 else if (cutGauge <= 0 || !isMove)
                 {
                     Destroy(GameObject.FindWithTag("BS"));
-                    DefaultMoveSpeed();
+                    //DefaultMoveSpeed();
                     BusterFlag = false;
                 }
                 GetPlayer_tp();
@@ -225,7 +225,7 @@ public class PlayerScript : Player
 
     public void EatStar()
     {// ?ä§??? Î®πÏùå
-        DefaultMoveSpeed();
+        //DefaultMoveSpeed();
         // InitState(); -> ?Üç?èÑ Ï¥àÍ∏∞?ôî?èÑ ?è¨?ï®, ?ÉÅ?ñ¥ ?ä§?Ç¨ ?ì∏ ?ïå?èÑ ?õê?ûò ?Üç?èÑÎ°? ?èå?ïÑÍ∞?..
         C = Color.white;
         OnStar();
@@ -316,18 +316,7 @@ public class PlayerScript : Player
                 cutGauge -= 2f;
                 timer = 0;
             }
-
-            if (!StateMoveFlag_)
-                ErrorFlag = true;
-            else
-                ErrorFlag = false;
         }
-        else if (BusterFlag == false && ErrorFlag)
-        {
-            DefaultMoveSpeed();
-            ErrorFlag = false;
-        }
-
     }
     void ReduceSize()
     {
@@ -390,23 +379,21 @@ public class PlayerScript : Player
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var bubbleSound = Instantiate(BubbleSound, transform.position, Quaternion.Euler(0, 0, 0));
-            bubbleSound.transform.parent = transform;
             FastSpeed(1);
             BusterFlag = true;
+            if(cutGauge <=0) BusterFlag = false;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) )
         {
             FastSpeed(1);
 
             BusterFlag = true;
+            if(cutGauge <=0) BusterFlag = false;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             if (BusterFlag)
             {
-                Destroy(GameObject.FindWithTag("BS"));
-                // DefaultMoveSpeed();
                 BusterFlag = false;
             }
         }

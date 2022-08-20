@@ -57,11 +57,12 @@ public class Skill2 : MonoBehaviour
             {
                 if (transform.localScale.x < 0)
                     transform.Rotate(Vector3.forward * 120 * Time.deltaTime); // 퍼플피쉬 스킬 회전 시키기
-                else 
+                else
                     transform.Rotate(Vector3.back * 120 * Time.deltaTime); // 퍼플피쉬 스킬 회전 시키기
             }
         }
-        else {
+        else
+        {
             RB.velocity = dir.normalized * 0.001f * Time.deltaTime * 60f;
         }
         if (Timer > 5f)
@@ -72,21 +73,7 @@ public class Skill2 : MonoBehaviour
         if (GM.GetComponent<GameManager_>().EndFlag == true) Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("스킬 접촉");
-        if (other.transform.tag == "Knife" && other.transform.parent.tag == "Player" && transform.name == "Bullet" && transform.tag == "SkillB")
-        {
-            Debug.Log("보스 스킬 접촉");
-            DestroyBossSkill(other.gameObject);
-        }
-        if (other.gameObject.tag == "FRZ")
-        {
-            FRZOn();
-            Invoke("FRZOff", 2.5f);
-        }
-        
-    }
+
     public void Init()
     {
         DirInit();
@@ -113,6 +100,23 @@ public class Skill2 : MonoBehaviour
             Speed = 5f;
         }
         // else if (FishNumber == ???) 나중에 추가될 물고기 스킬
+    }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.gameObject.tag == "FRZ")
+        {
+            transform.GetComponent<Skill2>().FRZOn();
+            Invoke("FRZOff", 2.5f);
+        }
+        if (transform.name == "Bullet" && other.transform.gameObject.tag == "EXPL")
+        {
+            DestroyBossSkill(other.gameObject);
+        }
     }
     public void DirInit()
     {
@@ -145,20 +149,21 @@ public class Skill2 : MonoBehaviour
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized); //이동방향에 맞게 정면을 보도록 회전값 받아오기.
         transform.localRotation = toRotation; //회전값 적용
     }
-    public void DestroyBossSkill(GameObject other)
+    public void DestroyBossSkill(GameObject other)//복어만 해당
     {
         var KE = Instantiate(DelEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));
         KE.transform.parent = transform;
         Instantiate(StabSound, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        other.transform.parent.GetComponent<PlayerScript>().Handlebar(8f);
+        if (other.transform.tag == "Player")
+            other.transform.parent.GetComponent<PlayerScript>().Handlebar(8f);
         Destroy(gameObject, 0.01f);
     }
 
-    void FRZOn()
+    public void FRZOn()
     {
         FRZFlag = true;
     }
-    void FRZOff()
+    public void FRZOff()
     {
         FRZFlag = false;
     }

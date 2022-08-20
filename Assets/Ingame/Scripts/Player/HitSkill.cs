@@ -39,14 +39,14 @@ public class HitSkill : MonoBehaviour
             {
                 DamagedPlayer();
                 transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
+               // transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
             }
 
             if (transform.parent.tag == "AiPlayer")
             {
                 transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-                transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
+                //transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
             }
         }

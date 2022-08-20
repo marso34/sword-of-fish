@@ -71,7 +71,7 @@ public class AttackerScript : Player
         {
             if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player") || other.transform.tag == "SkillO")
             {
-                HitAttacker(other.gameObject);
+                HitAttacker(other.gameObject, other.contacts[0].point);
             }
 
         }
@@ -97,7 +97,7 @@ public class AttackerScript : Player
         {
             Debug.Log("º¸°Å ½ºÅ³¿¡ ´êÀ½");
             SlowMoveSpeed(1f);
-            SlowRotateSpeed(1f);
+            //SlowRotateSpeed(1f);
         }
     }
     void FRZOn()
@@ -148,7 +148,7 @@ public class AttackerScript : Player
             }
             else if (FRZFlag == false)
             {
-                if (SkillCount < 2)
+                if ((transform.name =="BockBoss" && SkillCount < 2) || transform.name == "Attacker")
                 {
                     InitState();
                     // C = Color.white;
@@ -235,8 +235,9 @@ public class AttackerScript : Player
             transform.Translate(dir.normalized * 0.01f * Time.deltaTime, Space.World);
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//ÀÌµ¿¹æÇâ¿¡ ¸Â°Ô Á¤¸éÀ» º¸µµ·Ï È¸Àü°ª ¹Þ¾Æ¿À±â.
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);///ÇÃ·¹ÀÌ¾î¿ÀºêÁ§Æ®¿¡°Ô ¹Þ¾Æ¿Â È¸Àü°ª Àû¿ë
-            DieCheck();
+            
         }
+        if(Life)DieCheck();
         //nï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ù¶óº¸±ï¿½.
         //Nï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½
         if (!Life)
@@ -261,9 +262,8 @@ public class AttackerScript : Player
         {
             Life = false;
             state = State.Die;
-            if (gameObject.name == "Boss")
-                Invoke("Win", 1.5f);
-            else if (gameObject.name == "Attacker")
+            FRZOff();
+            if (gameObject.name == "Attacker")
             {
                 P.transform.GetComponent<PlayerScript>().KillScoreUp();
                 QM.GetComponent<QuestManager>().BulletEC--;
@@ -273,7 +273,7 @@ public class AttackerScript : Player
             Stage22_ex();
             MyKnife.transform.parent = null;
             MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            Destroy(transform.gameObject, 1.5f);
+           
         }
     }
     void UseSkill()
@@ -297,7 +297,7 @@ public class AttackerScript : Player
                 DT.transform.localScale *= 2f;
         }
     }
-    public void HitAttacker(GameObject other)
+    public void HitAttacker(GameObject other,Vector3 V)
     {
         Debug.Log("³ªakw");
         OnOutLine(14);
@@ -321,8 +321,7 @@ public class AttackerScript : Player
                     other.transform.GetComponent<HitFeel>().TimeStop(other.transform.parent.localScale.y);
 
 
-                var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-
+                var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
                 float x_ = transform.localScale.x;
                 if (x_ > 0)
                     x_ *= -1;
@@ -333,7 +332,7 @@ public class AttackerScript : Player
             }
             else if (other.transform.tag == "SkillO")
             {
-                var KE1 = Instantiate(KillEffectO, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+                var KE1 = Instantiate(KillEffectO, V, Quaternion.Euler(0f, 0f, 20f * QR));
                 KE1.transform.localScale = transform.localScale / 3f;
                 --HP;
             }
@@ -346,7 +345,7 @@ public class AttackerScript : Player
     {
         Debug.Log("die att " + HP + Life);
     }
-    void Win()
+    public void Win()
     {
 
         P.transform.GetComponent<PlayerScript>().BosskillScore++;

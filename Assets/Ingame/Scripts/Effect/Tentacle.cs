@@ -188,28 +188,28 @@ public class Tentacle : MonoBehaviour
 
         }
     }
-    public void DestroyTentacle(GameObject other2)
+    public void DestroyTentacle(GameObject other2,Vector3 V)
     {
         if (HP > 0)
         {
             Debug.Log("HP ????");
             UpdateOutline(true);
             Invoke("OffOutline", 0.07f);
-
+            float R = Random.Range(2f, 5f);
             float QR = Random.Range(1, 7);
-            var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f));
+            var KS = Instantiate(KS_, V, Quaternion.Euler(0f, 0f, 20f));
 
             FloatingDamageTxt(1);
             HP--;
 
-            float R = Random.Range(3.5f, 6f);
-            var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+           
+            var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
 
             float x_ = transform.localScale.x;
             if (x_ < 0)
                 x_ *= -1;
 
-            KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
+            KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z) *R;
 
         }
     }

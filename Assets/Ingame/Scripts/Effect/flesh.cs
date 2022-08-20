@@ -31,7 +31,7 @@ public class flesh : MonoBehaviour
         S.color = C;
         state = State.non;
         Speed = 8f;
-        Invoke("setActive",0f);                           
+        Invoke("setActive", 0f);
     }
     IEnumerator non()
     {
@@ -59,7 +59,7 @@ public class flesh : MonoBehaviour
     {
         if (index == 49)
         {
-            
+
             Invoke("onLast", 5f);
         }
         else if (S.color.a <= 1)
@@ -93,7 +93,7 @@ public class flesh : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-    } 
+    }
     public void ShowOffAnim(int index)//죽었을때 애니매이션 재생함수
     {
         if (index == 49) Destroy(gameObject); //삭제
@@ -115,13 +115,13 @@ public class flesh : MonoBehaviour
     }
     public void destroyme(GameObject Obj)
     {
-        if(Obj.tag =="Player")
+        if (Obj.tag == "Player")
             Instantiate(eatSound, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     public void eraser_()
     {
-        
+
         Destroy(gameObject);
     }
     private void Update()
@@ -130,17 +130,19 @@ public class flesh : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag("Player");  // J
         AiPlayers = GameObject.FindGameObjectsWithTag("AiPlayer");  // J
-
-        if (transform.tag == "Flesh")
-            dir = MinDirWhale();  // J
-        if (dir.magnitude < 5f + Player.transform.localScale.y)  // J
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);  // J
+        if (Player != null)
+        {
+            if (transform.tag == "Flesh")
+                dir = MinDirWhale();  // J
+            if (dir.magnitude < 5f + Player.transform.localScale.y)  // J
+                transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);  // J
+        }
     }
-    
+
     Vector3 MinDirWhale() // J
     {//wewew
         Vector3 min = new Vector3(1000, 1000, 1);
-        
+
         if (Player.GetComponent<Player>().SkillFlag == true && (Player.GetComponent<Player>().FishNumber == 4 || Player.GetComponent<Player>().FishNumber == 5))
             min = Player.transform.position - transform.position;
         Vector3 TrDir;

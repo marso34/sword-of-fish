@@ -66,7 +66,7 @@ public class AiPlayerScript : Player
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
         if (BusterFlag) FastSpeed(1);
-        else DefaultMoveSpeed();
+        //else DefaultMoveSpeed();
     }
     private void Update()
     {
@@ -175,9 +175,10 @@ public class AiPlayerScript : Player
             //DefaultMoveSpeed();
             CreateFlesh();
             Stage22_ex();
-            Destroy(gameObject, 2f);
+            
             MyKnife.transform.parent = null;
             MyKnife.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
+            MKnife.transform.parent = transform;
         }
     }
     void StartInit()//시작시 실행
@@ -225,6 +226,7 @@ public class AiPlayerScript : Player
             if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
             {
                 if (Random.Range(0, 7) == 1) BusterFlag = true;
+                else BusterFlag = false;
                 if (Dice == 0) return VictemTracking();
                 else if (Dice == 1) return LeftMove();
                 else if (Dice == 2) return RightMove();

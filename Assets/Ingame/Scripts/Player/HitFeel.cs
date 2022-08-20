@@ -11,6 +11,7 @@ public class HitFeel : MonoBehaviour
     float TempBusterSp;
     float TempMoveSp;
     float TempRotateSp;
+    float TempSpeed;
     //Temp는 기존에 있던속도 담아둔 변수.
     public Transform cam;
     Vector3 camPosition_original;
@@ -33,9 +34,10 @@ public class HitFeel : MonoBehaviour
         FishWeight = weight;
         if (!stopping)
         {
-            TempBusterSp = Player_.transform.GetComponent<Player>().RotationSpeed;
-            TempMoveSp = Player_.transform.GetComponent<Player>().BusterSpeed;
-            TempRotateSp = Player_.transform.GetComponent<Player>().MovementSpeed;
+            TempBusterSp = Player_.transform.GetComponent<Player>().BusterSpeed;
+            TempMoveSp = Player_.transform.GetComponent<Player>().MovementSpeed;
+            TempRotateSp = Player_.transform.GetComponent<Player>().RotationSpeed;
+            TempSpeed = Player_.transform.GetComponent<Player>().Speed;
             stopping = true;
             PlayerValue(0);
             if (transform.parent.tag == "Player")
@@ -62,27 +64,33 @@ public class HitFeel : MonoBehaviour
 
     }// 줄였다가, 원상복구시키는 코루틴.
 
-    void PlayerValue(float value)
+    void PlayerValue(float value) // 손 봥야하는 곳!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     {
-        Player_.transform.GetComponent<Player>().RotationSpeed = TempBusterSp * value;
-        // Player_.transform.GetComponent<Player>().BusterSpeed = TempMoveSp * value;
-        // Player_.transform.GetComponent<Player>().MovementSpeed = TempRotateSp * value;
-        // Player_.transform.GetComponent<Player>().Speed = TempRotateSp * value;
-        SlowFlag = false;
-
+        if (Player_.transform.GetComponent<Player>().FishNumber == 1 && Player_.transform.GetComponent<Player>().SkillFlag)
+        {
+            Player_.transform.GetComponent<Player>().RotationSpeed = TempRotateSp * value;
+            Player_.transform.GetComponent<Player>().MovementSpeed = TempMoveSp * value; 
+            Player_.transform.GetComponent<Player>().BusterSpeed = (4.6f + (Player_.transform.localScale.y / 2)) * 3;
+            Player_.transform.GetComponent<Player>().Speed = Player_.transform.GetComponent<Player>().BusterSpeed;
+        }
+        else
+        {
+            Player_.transform.GetComponent<Player>().RotationSpeed = TempRotateSp * value;
+            Player_.transform.GetComponent<Player>().MovementSpeed = TempMoveSp * value;
+            Player_.transform.GetComponent<Player>().BusterSpeed = TempBusterSp * value;
+            Player_.transform.GetComponent<Player>().Speed = TempSpeed * value;
+        }
     } // 유닛회전,이동 속도 줄어들기 이전으로 바꿔주는함수.
     void PlayerSlowValue()
     {
-        SlowFlag = true;
-         Player_.transform.GetComponent<Player>().RotationSpeed = TempBusterSp * 0.2f;
-        // Player_.transform.GetComponent<Player>().BusterSpeed = TempMoveSp * 0.1f;
-        // Player_.transform.GetComponent<Player>().Speed = TempRotateSp * 0.1f;
-        // Player_.transform.GetComponent<Player>().MovementSpeed = TempRotateSp * 0.01f;
-
+        Player_.transform.GetComponent<Player>().RotationSpeed = TempRotateSp * 0.1f;
+        Player_.transform.GetComponent<Player>().BusterSpeed = TempBusterSp * 0.1f;
+        Player_.transform.GetComponent<Player>().Speed = TempMoveSp * 0.1f;
+        Player_.transform.GetComponent<Player>().MovementSpeed = TempMoveSp * 0.01f;
     }  //실질적으로 유닛회전,이동 속도 줄이는 함수.
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if ((other.transform.tag == "Trush" || (other.transform.tag == "SkillB" && other.transform.name == "Bullet") || other.transform.tag == "BigTrash" || other.transform.tag == "Kraken" || other.transform.tag == "Attacker" || other.transform.tag == "Tentacle" || other.transform.tag == "InkOct" || other.transform.tag == "BTK") && (transform.tag == "Knife" && transform.parent.tag == "Player"))
+        if ((other.transform.tag == "Trush" || other.transform.tag == "BigTrash" || other.transform.tag == "Kraken" || other.transform.tag == "Attacker" || other.transform.tag == "Tentacle" || other.transform.tag == "InkOct" || other.transform.tag == "BTK") && (transform.tag == "Knife" && transform.parent.tag == "Player"))
         {
             // if (other.transform.tag == "Kraken" || other.transform.tag == "Attacker" ||other.transform.tag == "Tentacle")
 

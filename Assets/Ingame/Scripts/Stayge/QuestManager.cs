@@ -246,8 +246,7 @@ public class QuestManager : MonoBehaviour
         if (IngameLevel < 7)
         {
             CurrentCount = 0;
-            TrashMaxCount = 5;
-            Trash2MaxCount = 5;
+           
             Stayge = Instantiate(Stagys1[IngameLevel], Vector3.zero, Quaternion.Euler(0, 0, 0));
         }
     }
@@ -428,7 +427,7 @@ public class QuestManager : MonoBehaviour
             if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
         }
     }
-    
+
     Vector3 ObjRandomPosition()// 랜덤위치
     {
         return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
@@ -437,18 +436,18 @@ public class QuestManager : MonoBehaviour
     {
         float randomX;
         float randomY;
-        float[] arr = {-1f,1f};
+        float[] arr = { -1f, 1f };
         do
         {
-            randomX = arr[Random.Range(0,2)];
-            randomY = arr[Random.Range(0,2)];
-            
+            randomX = arr[Random.Range(0, 2)];
+            randomY = arr[Random.Range(0, 2)];
+
         } while (CheckSignDice(randomX, randomY));
-        Debug.Log(Xc+" "+Yc+"TTT"+randomX +" "+randomY+ "gggg");
+        Debug.Log(Xc + " " + Yc + "TTT" + randomX + " " + randomY + "gggg");
         Xc = randomX;
         Yc = randomY;
-        
-        
+
+
     }
     public bool CheckSignDice(float x_, float y_)
     {
@@ -457,14 +456,17 @@ public class QuestManager : MonoBehaviour
     }
     Vector3 EnemyRandomPosition() //랜덤한 백터 반환
     {
-        float x = Player.transform.position.x;
-        float y = Player.transform.position.y;
+        if (Player != null)
+        {
+            float x = Player.transform.position.x;
+            float y = Player.transform.position.y;
 
-        if (x < 0) Xc = -1f;
-        else Xc = 1f;
-        if (y < 0) Yc = -1f;
-        else Yc = 1f;
-        RandomSignDice();
+            if (x < 0) Xc = -1f;
+            else Xc = 1f;
+            if (y < 0) Yc = -1f;
+            else Yc = 1f;
+            RandomSignDice();
+        }
         return new Vector3((Random.Range(19f, 23f)) * Xc, Random.Range(9f, 11f) * Yc);
 
     }
@@ -619,7 +621,7 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
-           
+
             if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 4))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;

@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 880910870875096364}
   - component: {fileID: 880910870875096362}
   - component: {fileID: -4438871214978783046}
-  - component: {fileID: 5512369461569814567}
+  - component: {fileID: 3245312445749018849}
   m_Layer: 1
   m_Name: Kraken
   m_TagString: Kraken
@@ -570,8 +570,8 @@ MonoBehaviour:
   waitTime: 0
   InkOct: {fileID: 8835441081331634052, guid: c5ad3a45003a8f546bda92288029fdf8, type: 3}
   Bubble: {fileID: 7744744112347256152, guid: bcab08e21f4a60745993c92532f14a04, type: 3}
---- !u!58 &5512369461569814567
-CircleCollider2D:
+--- !u!60 &3245312445749018849
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -583,9 +583,31 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.28, y: 0.15}
-  serializedVersion: 2
-  m_Radius: 0.1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.844, y: 0.45}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.19095775, y: 0.44733164}
+      - {x: -0.5332979, y: 0.40831766}
+      - {x: -0.6345565, y: 0.23750001}
+      - {x: -0.6345565, y: -0.09431788}
+      - {x: -0.80453646, y: -0.17690209}
+      - {x: -0.6677648, y: -0.3288513}
+      - {x: -0.64768785, y: -0.40620422}
+      - {x: -0.0084634535, y: -0.38429222}
+      - {x: 0.004050821, y: -0.30286244}
+      - {x: 0.10877255, y: -0.19671708}
+      - {x: -0.013611972, y: -0.14566436}
+      - {x: -0.04251652, y: 0.17842165}
+      - {x: -0.04523001, y: 0.20965186}
 --- !u!1 &3616492235698635530
 GameObject:
   m_ObjectHideFlags: 0

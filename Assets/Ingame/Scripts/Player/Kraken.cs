@@ -137,7 +137,7 @@ public class Kraken : Boss
         {
             if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
             {
-                Damaged(other.gameObject);
+                Damaged(other.gameObject, other.contacts[0].point);
             }
         }
     }

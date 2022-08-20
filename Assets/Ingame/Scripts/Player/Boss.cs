@@ -125,7 +125,7 @@ public class Boss : MonoBehaviour
             }
         }
     }
-    public void Damaged(GameObject other2)
+    public void Damaged(GameObject other2, Vector3 V)
     {
         float QR = Random.Range(1, 7);
         float R = Random.Range(2f, 5f);
@@ -141,12 +141,12 @@ public class Boss : MonoBehaviour
             DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
             DT.transform.localScale *= 2f;
             HP--;
-            var KE = Instantiate(KillEffect, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+            var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * R));
             float x_ = transform.localScale.x;
             if (x_ > 0)
                 x_ *= -1;
 
-            KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
+            KE.transform.localScale = new Vector3(1,1,1) * R;
         }
 
         Debug.Log("ssss0");
