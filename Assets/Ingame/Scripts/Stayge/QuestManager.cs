@@ -127,8 +127,8 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
-        Level_ = 1;//초기 렙설정
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        Level_ = 2;//초기 렙설정
+        IngameLevel = 4; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -537,7 +537,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (Level_ == 2)
         {
-            var Obj = Instantiate(BigTrashObj, SetPosition(0, 0, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -4.5f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
         }
 
         BigTrashOC++;

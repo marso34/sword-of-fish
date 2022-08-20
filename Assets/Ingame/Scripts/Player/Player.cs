@@ -541,11 +541,8 @@ public class Player : MonoBehaviour
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
             if(transform.tag =="InkOct") Debug.Log("Å¸ÄÚÀÌµ¿");
             rota();
-
-
         }
     }
-
 
     public void GetPlayer_tp()// ? ë©? êµ¬í˜„
     {

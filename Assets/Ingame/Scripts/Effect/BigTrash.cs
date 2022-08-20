@@ -28,17 +28,15 @@ public class BigTrash : MonoBehaviour
                 other.transform.GetComponent<HitFeel>().TimeStop(0.8f);
                 HP -= 1;
 
-                var DT = Instantiate(DamageText, other.contacts[0].point, Quaternion.Euler(0f
-                , 0f, 0f));
+                var DT = Instantiate(DamageText, other.contacts[0].point, Quaternion.Euler(0f, 0f, 0f));
                 DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
                 DT.transform.localScale *= 2f;
 
-                var KE = Instantiate(HitEffect, other.contacts[0].point, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
                 float x_ = transform.localScale.x;
                 if (x_ > 0)
                     x_ *= -1;
-
-                KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
+                var KE = Instantiate(HitEffect, other.contacts[0].point, Quaternion.Euler(0, 0, Random.Range(-180f, 180f)));
+                KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z).normalized * 3.5f;
                 KE.gameObject.GetComponent<Effect>().SetEffect(1);
 
                 var KS = Instantiate(KillSound, other.contacts[0].point, Quaternion.Euler(0, 0, 0));
@@ -54,14 +52,13 @@ public class BigTrash : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-            if (other.gameObject.tag == "EXPL")
-            {
-                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
-                DT.transform.localScale *= 2f;
-                HP -= 5;
-            }
+        if (other.gameObject.tag == "EXPL")
+        {
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+            DT.transform.localScale *= 2f;
+            HP -= 5;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -69,16 +66,21 @@ public class BigTrash : MonoBehaviour
         if (HP <= 0 && Flag)
         {
             Flag = false;
-            var KE1 = Instantiate(KillEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-            KE1.transform.localScale *= Random.Range(2.0f, 4.0f);
-            var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-            var BE = Instantiate(BoombEffect, new Vector3(transform.position.x - 2f, transform.position.y + 3.5f, transform.position.z), Quaternion.Euler(0, 0, 0));
-            BE.transform.localScale *= 2;
-            BE.transform.GetChild(2).tag = "AiPlayer";
-            var BS = Instantiate(BoombSound, transform.position, Quaternion.Euler(0, 0, 0));
+            // var KE1 = Instantiate(KillEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+            // KE1.transform.localScale *= Random.Range(2.0f, 4.0f);
+            // var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
 
-            Invoke("win", 1f);
-            Destroy(transform.parent.gameObject, 3f);
+
+            if (transform.name == "_Kraken") // 크라켄 쓰레기일 경우만
+            {
+                var BE = Instantiate(BoombEffect, new Vector3(transform.position.x - 2f, transform.position.y + 3.5f, transform.position.z), Quaternion.Euler(0, 0, 0));
+                BE.transform.localScale *= 2;
+                BE.transform.GetChild(2).tag = "AiPlayer";
+                var BS = Instantiate(BoombSound, transform.position, Quaternion.Euler(0, 0, 0));
+
+                Invoke("win", 1f);
+                Destroy(transform.parent.gameObject, 3f);
+            }
 
         }
     }

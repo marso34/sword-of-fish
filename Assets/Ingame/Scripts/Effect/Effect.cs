@@ -20,8 +20,8 @@ public class Effect : MonoBehaviour
         else if (i == 1) // BigTrash
         {
             transform.Find("effect1").gameObject.SetActive(false);
-            transform.Find("effect2").gameObject.transform.localScale *= 0.3f;
-            transform.Find("effect3").gameObject.transform.localScale *= 0.3f;
+            transform.Find("effect2").gameObject.transform.localScale *= 0.4f;
+            transform.Find("effect3").gameObject.transform.localScale *= 0.4f;
         }
         else if (i == 2) // Å©·¦ ½ºÅ³
         {

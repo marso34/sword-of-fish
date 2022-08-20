@@ -16,6 +16,7 @@ public class HitFeel : MonoBehaviour
     Vector3 camPosition_original;
     public float shake;
     float FishWeight;//
+    bool SlowFlag;
 
     private void Start()
     {
@@ -46,12 +47,12 @@ public class HitFeel : MonoBehaviour
     IEnumerator Stop_()
     {
 
-        yield return new WaitForSecondsRealtime(0.00f);
-        PlayerValue(1);
+        // yield return new WaitForSecondsRealtime(0.00f);
+        //PlayerValue(1);
         PlayerSlowValue();
 
-        yield return new WaitForSecondsRealtime(0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2);
-        PlayerValue(1);
+        yield return new WaitForSecondsRealtime(0.15f); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
+         PlayerValue(1);
         stopping = false;
 
 
@@ -64,17 +65,20 @@ public class HitFeel : MonoBehaviour
     void PlayerValue(float value)
     {
         Player_.transform.GetComponent<Player>().RotationSpeed = TempBusterSp * value;
-        Player_.transform.GetComponent<Player>().BusterSpeed = TempMoveSp * value;
-        Player_.transform.GetComponent<Player>().MovementSpeed = TempRotateSp * value;
-        Player_.transform.GetComponent<Player>().Speed = TempRotateSp * value;
+        // Player_.transform.GetComponent<Player>().BusterSpeed = TempMoveSp * value;
+        // Player_.transform.GetComponent<Player>().MovementSpeed = TempRotateSp * value;
+        // Player_.transform.GetComponent<Player>().Speed = TempRotateSp * value;
+        SlowFlag = false;
 
     } // 유닛회전,이동 속도 줄어들기 이전으로 바꿔주는함수.
     void PlayerSlowValue()
     {
-        Player_.transform.GetComponent<Player>().RotationSpeed = TempBusterSp * 0.1f;
-        Player_.transform.GetComponent<Player>().BusterSpeed = TempMoveSp * 0.1f;
-        Player_.transform.GetComponent<Player>().Speed = TempRotateSp * 0.1f;
-        Player_.transform.GetComponent<Player>().MovementSpeed = TempRotateSp * 0.01f;
+        SlowFlag = true;
+         Player_.transform.GetComponent<Player>().RotationSpeed = TempBusterSp * 0.2f;
+        // Player_.transform.GetComponent<Player>().BusterSpeed = TempMoveSp * 0.1f;
+        // Player_.transform.GetComponent<Player>().Speed = TempRotateSp * 0.1f;
+        // Player_.transform.GetComponent<Player>().MovementSpeed = TempRotateSp * 0.01f;
+
     }  //실질적으로 유닛회전,이동 속도 줄이는 함수.
     public void OnCollisionEnter2D(Collision2D other)
     {
@@ -103,6 +107,10 @@ public class HitFeel : MonoBehaviour
                 transform.localScale = new Vector3(0.1f, 1f, 1f);
                 GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             }
+            if(SlowFlag){
+                Player_.GetComponent<Player>().RB.velocity = Vector2.zero;
+            }
+            
         }
     }
 }

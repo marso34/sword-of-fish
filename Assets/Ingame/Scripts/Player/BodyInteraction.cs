@@ -12,10 +12,12 @@ public class BodyInteraction : MonoBehaviour
     public float chsize = 0.001f;
     public float chc;
     public bool TutorialFlesh = false;
+    
     private void Start()
     {
         cam = GameObject.FindWithTag("MainCamera").transform;
         Time.timeScale = 1;
+    
     }
     private void Update()
     {

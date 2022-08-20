@@ -37,7 +37,7 @@ public class Stage24 : Stage
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
             QM.GetComponent<QuestManager>().ObjMFlag = true;
         }
-        GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
+        GoalCount = 0; //QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
         TrashOn();
         
     }

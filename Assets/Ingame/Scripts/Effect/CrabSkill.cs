@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrabSkill : MonoBehaviour
 {
     public GameObject GM;
+    public GameObject KingCrab;
     public ParticleSystem Nippers; // 집게발 파티클
     public ParticleSystem Effect;
     public GameObject Colider;
@@ -13,7 +14,9 @@ public class CrabSkill : MonoBehaviour
     Rigidbody2D RB;
 
     public bool flag;
+    public bool LEFT;
     public bool SkillFlag;
+
 
     float timer;
     float waitTime;
@@ -21,14 +24,16 @@ public class CrabSkill : MonoBehaviour
     void Start()
     {
         GM = GameObject.FindGameObjectWithTag("GM");
+        KingCrab = GameObject.FindGameObjectWithTag("KingCrab");
         Colider.transform.tag = "CrabNippers";
         Player = GameObject.FindGameObjectWithTag("Player");
         RB = transform.GetComponent<Rigidbody2D>();
 
         flag = false;
+        LEFT = KingCrab.GetComponent<KingCrab>().NippersFlag;
         SkillFlag = false;
         timer = 0f;
-        waitTime = 5f;
+        waitTime = 3f;
 
         Vector3 dir = Player.transform.position - transform.position;
         RB.velocity = dir.normalized * 1f;
@@ -41,8 +46,16 @@ public class CrabSkill : MonoBehaviour
 
             if (main.startRotation.mode == ParticleSystemCurveMode.Constant)
             {
-                main.startRotation = (220f - transform.eulerAngles.z) * Mathf.Deg2Rad;
-                Debug.Log(transform.localRotation.z + " : 회전");
+                if (LEFT)
+                {
+                    Nippers.transform.localScale = new Vector3(2f, -2f, 2f);
+                    main.startRotation = (40f + transform.eulerAngles.z) * Mathf.Deg2Rad;
+                }
+                else
+                {
+                    Nippers.transform.localScale = new Vector3(2f, 2f, 2f);
+                    main.startRotation = (220f - transform.eulerAngles.z) * Mathf.Deg2Rad;
+                }
             }
         }
     }
