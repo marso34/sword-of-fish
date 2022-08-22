@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7211160799632442228
+--- !u!1 &3158690595246343277
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7211160799632442227}
-  - component: {fileID: 8223378878871650607}
+  - component: {fileID: 3158690595246343278}
+  - component: {fileID: 2746803275975223633}
   m_Layer: 0
-  m_Name: Stagy2-3
+  m_Name: Stage2-3
   m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7211160799632442227
+--- !u!4 &3158690595246343278
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7211160799632442228}
+  m_GameObject: {fileID: 3158690595246343277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.7324977, y: 4.1587634, z: -0.10709136}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8223378878871650607
+--- !u!114 &2746803275975223633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7211160799632442228}
+  m_GameObject: {fileID: 3158690595246343277}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef199c3c6617602458b6ad56ee2dbb12, type: 3}
@@ -47,5 +47,13 @@ MonoBehaviour:
   QM: {fileID: 0}
   flag: 0
   GoalCount: 0
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: ae3c9f7dff1ff5947bea89f50634d9d1, type: 3}
   TrashFlag: 0
+  TrashGravity: 0
+  BlackPanel: {fileID: 0}
+  WaveLevel: 0
+  EnemyCount: 0
+  GoalLevel: 0
+  SucssesFlag: 0
+  WavingFlag: 0
+  Granpa: {fileID: 0}

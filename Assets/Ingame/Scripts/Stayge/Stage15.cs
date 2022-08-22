@@ -26,7 +26,7 @@ public class Stage15 : Stage
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
             QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
-            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
+            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 2;
             QM.GetComponent<QuestManager>().BigTrashMaxCount = 1;
             QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
             flag = false;

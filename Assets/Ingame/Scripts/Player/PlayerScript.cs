@@ -82,13 +82,14 @@ public class PlayerScript : Player
         StartFlag2 = false;
         killScore = 0;
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
-
+        SharkFlag = false;
+        SlowFlag = false;
+        BusterFlag = false;
+        FRZFlag = false;
         timer = 0;
         timer_ = 0;
         waitingTime = 0.11f;
         waitingTime_ = 0.1f;
-
-        GameWaitInit();
 
         timer1 = 0;
 
@@ -148,7 +149,7 @@ public class PlayerScript : Player
             if (Life)
             {
                 dir = value.joyTouch;
-
+                if (cutGauge <= 0) BusterFlag = false;
                 HPManager();
                 if (KCFlag)
                 {
@@ -261,6 +262,7 @@ public class PlayerScript : Player
             WhiteFlesh();
             Glitter();
             Invoke("InitBody__", 1.5f);
+            MyKnife.GetComponent<HitFeel>().TimeStop(2f);
 
         }
         if (HP <= 0 && flagerror)
@@ -309,7 +311,6 @@ public class PlayerScript : Player
     {
         if (BusterFlag == true)
         {
-            FastSpeed(1);
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
@@ -381,19 +382,14 @@ public class PlayerScript : Player
         {
             FastSpeed(1);
             BusterFlag = true;
-            if(cutGauge <=0) BusterFlag = false;
+            if (cutGauge <= 0) BusterFlag = false;
         }
-        if (Input.GetKey(KeyCode.Space) )
-        {
-            FastSpeed(1);
 
-            BusterFlag = true;
-            if(cutGauge <=0) BusterFlag = false;
-        }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             if (BusterFlag)
             {
+                OffFastSpeed();
                 BusterFlag = false;
             }
         }

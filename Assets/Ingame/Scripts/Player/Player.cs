@@ -92,6 +92,8 @@ public class Player : MonoBehaviour
     public Vector2 VWall;
     public bool SharkFlag;
 
+    public bool FRZFlag;
+
     public void GameStartInit()// Í≤åÏûÑ?ãú?ûë?ãú ?ïúÎ≤àÏã§?ñâ
     {
         Init_();
@@ -129,7 +131,13 @@ public class Player : MonoBehaviour
         TempBusterSp = 4.6f;     // J
         TempRotateSp = 1200f;   // J
     }
-
+    public void FRZOn(){
+        FRZFlag = true;
+        Invoke("FRZOff",2f);
+    }
+    public void FRZOff(){
+        FRZFlag = false;
+    }
     // public void DefaultMoveSpeed()
     // {
     //     if (StateMoveFlag_ == false)
@@ -181,19 +189,31 @@ public class Player : MonoBehaviour
 
     public void FastSpeed(float index)// Î¨ºÍ≥†Í∏? ?ù¥?èô?Üç?èÑ Î©??ã∞?óê?Ñú ?èôÍ∏∞Ìôî.
     {
+        if (!SharkFlag && transform.tag =="Player")
+        {
+            var b = Instantiate(BubbleSound, transform.position, Quaternion.Euler(0, 0, 0));
+            b.tag = "BS";
+        }
         BusterFlag = true;
     }
     public void OffFastSpeed()
     {
+        if (GameObject.FindGameObjectWithTag("BS"))
+            Destroy(GameObject.FindGameObjectWithTag("BS"));
         BusterFlag = false;
     }
     public void Sharkmove()
     {
+        var b = Instantiate(BubbleSound, transform.position, Quaternion.Euler(0, 0, 0));
+        b.tag = "BS";
         SharkFlag = true;
         Invoke("SharkOff", 3f);
     }
     public void SharkOff()
     {
+
+        if (GameObject.FindGameObjectWithTag("BS"))
+            Destroy(GameObject.FindGameObjectWithTag("BS"));
         SharkFlag = false;
     }
     public void SlowMoveSpeed(float index)
@@ -543,7 +563,11 @@ public class Player : MonoBehaviour
     }
     public void rota()
     {
-        if (SlowFlag) RotationSpeed = 300f;
+        if(FRZFlag) RotationSpeed = 0f;
+        else if(MyKnife.GetComponent<HitFeel>().SlowFlag_){
+            RotationSpeed = (20 - MyKnife.GetComponent<HitFeel>().FishWeight*10) *3;
+        }
+        else if (SlowFlag) RotationSpeed = 300f;
         else RotationSpeed = 1200f;
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity.normalized);//?ù¥?èôÎ∞©Ìñ•?óê ÎßûÍ≤å ?†ïÎ©¥ÏùÑ Î≥¥ÎèÑÎ°? ?öå?†ÑÍ∞? Î∞õÏïÑ?ò§Í∏?.
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);//?îå?†à?ù¥?ñ¥?ò§Î∏åÏ†ù?ä∏?óêÍ≤? Î∞õÏïÑ?ò® ?öå?†ÑÍ∞? ?†Å?ö©
@@ -557,7 +581,6 @@ public class Player : MonoBehaviour
         isMove = true; //dir != Vector3.zero;
         if (isMove && Life)
         {
-
             if (isMove)
             {
                 Timer22 += Time.deltaTime;
@@ -567,11 +590,11 @@ public class Player : MonoBehaviour
                     Timer33++;
                 }
             }
-            if (SharkFlag)
+            if(FRZFlag) Speed = 0;
+            else if (SharkFlag)
             {
-                
                 Speed = BusterSpeed * 3f;
-                if(BusterFlag) Speed = BusterSpeed *4f;
+                if (BusterFlag) Speed = BusterSpeed * 4f;
             }
             else if (SlowFlag) Speed = 1f;
             else if (BusterFlag) Speed = BusterSpeed;
@@ -708,6 +731,8 @@ public class Player : MonoBehaviour
     {
         if (GM.GetComponent<GameManager_>().resetFlag)
         {
+            if(GameObject.FindGameObjectWithTag("Bubble") != null)
+                Destroy(GameObject.FindGameObjectWithTag("Bubble"));
             Destroy(gameObject);
         }
     }

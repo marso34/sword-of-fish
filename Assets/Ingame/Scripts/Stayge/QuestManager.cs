@@ -128,7 +128,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Level_ = 2;//초기 렙설정
-        IngameLevel = 4; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -139,9 +139,11 @@ public class QuestManager : MonoBehaviour
         Flag = true;
         ObjMFlag = true;
         GM.GetComponent<GameManager_>().SuccesFlag = false;
+        Levelboard.GetComponent<Text>().text = Level_.ToString();
     }
     void Update()
     {
+        
         if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
@@ -219,7 +221,7 @@ public class QuestManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G)) Player.transform.localScale = new Vector3(Player.transform.localScale.x + 1f, Player.transform.localScale.y + 1f, 1f);
         if (Input.GetKeyDown(KeyCode.R)) Player.GetComponent<Player>().HP++;
-        Levelboard.GetComponent<Text>().text = Level_.ToString();
+        
         //if (Input.GetKeyDown(KeyCode.P)) Level_++;
         if (Input.GetKeyDown(KeyCode.O)) Level_--;
     }
@@ -432,20 +434,9 @@ public class QuestManager : MonoBehaviour
     {
         return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
     }
-    public void RandomSignDice()
+    public int  RandomSignDice()
     {
-        float randomX;
-        float randomY;
-        float[] arr = { -1f, 1f };
-        do
-        {
-            randomX = arr[Random.Range(0, 2)];
-            randomY = arr[Random.Range(0, 2)];
-
-        } while (CheckSignDice(randomX, randomY));
-        Debug.Log(Xc + " " + Yc + "TTT" + randomX + " " + randomY + "gggg");
-        Xc = randomX;
-        Yc = randomY;
+        return Random.Range(0,2);
 
 
     }
@@ -460,15 +451,24 @@ public class QuestManager : MonoBehaviour
         {
             float x = Player.transform.position.x;
             float y = Player.transform.position.y;
-
-            if (x < 0) Xc = -1f;
-            else Xc = 1f;
-            if (y < 0) Yc = -1f;
-            else Yc = 1f;
-            RandomSignDice();
+            if (x < 0) Xc = +1f;
+            else Xc = -1f;
+            if (y < 0) Yc = +1f;
+            else Yc = -1f;
         }
-        return new Vector3((Random.Range(19f, 23f)) * Xc, Random.Range(9f, 11f) * Yc);
-
+        float x_ = 0f;
+        float y_ = 0f;
+        if(Level_ ==1 ){
+            x_ = 23f;
+            y_ = 11f;
+        }
+        else if(Level_ ==2){
+            x_ = 17f;
+            y_ = 5f;
+        }
+        if( RandomSignDice() == 0) return new Vector3(x_ * Xc,Random.Range(-1*y_,y_),0);
+        else return new Vector3(Random.Range(-1 * x_,x_), y_ * Yc,0);
+        
     }
     Vector3 SetPosition(float x, float y, float z)
     {
@@ -666,7 +666,7 @@ public class QuestManager : MonoBehaviour
                 Flag = true;
                 StagyStagtFlag = false;
             }
-
+            Levelboard.GetComponent<Text>().text = Level_.ToString();
         }
     }//??????????? ??
 

@@ -5,21 +5,28 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     // Start is called before the first frame update
-    Vector3 dir;
+    Rigidbody2D RB;
+    public Vector3 dir;
     private void Start()
     {
+        RB = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 2.0f);
+        
+       
     }
     // Update is called once per frame
     void Update()
     {
         if (dir != null && !transform.GetComponent<Trush>().FRZFlag)
-            transform.Translate(dir.normalized * 5 * Time.deltaTime, Space.World);
-
+            RB.velocity = dir.normalized * 5;
     }
     public void SetDir(Vector3 dir_)
     {
         dir = dir_;
+        
+         
+       
+        Debug.Log("방향설정");
     }
 
     public void DelBullet()

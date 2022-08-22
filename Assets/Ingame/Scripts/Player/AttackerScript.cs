@@ -15,16 +15,17 @@ public class AttackerScript : Player
 
     public int SkillCount;
     public bool flag;
-    Vector3 bulletRange;
+    public Vector3 bulletRange;
     public GameObject PlayerP;
     GameObject P;
-    bool FRZFlag;
+
 
     float Watingtime3 = 0.02f;
     float time;
 
     private void Start()
     {
+        RB = GetComponent<Rigidbody2D>();
         SkillFlag_ = true;
         Debug.Log("³ª´Â ÀÚ¿¬ÀÎÀÌ´Ù.");
         GM = GameObject.FindGameObjectWithTag("GM");
@@ -45,14 +46,13 @@ public class AttackerScript : Player
         P = GameObject.FindGameObjectWithTag("Player");
         timer = 0;
         waitingTime = 2f;
-        bulletRange = new Vector3(10f, 4f, 0);
+        bulletRange = new Vector3(9f, 3f, 0);
 
         RotationSpeed = 720f;
         TempMovementSp = 2.3f; //J
         TempBusterSp = 4.6f;     // J
         TempRotateSp = RotationSpeed;   // J
         InitState();
-
         flag = true;
         SkillCount = 0;
 
@@ -60,10 +60,9 @@ public class AttackerScript : Player
         HP = 4;
         Life = true;
         FRZFlag = false;
-
         state = State.Move;
         StartCoroutine("Start_");
-
+        Speed = MovementSpeed;
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -100,20 +99,7 @@ public class AttackerScript : Player
             //SlowRotateSpeed(1f);
         }
     }
-    void FRZOn()
-    {
-        if (Life)
-        {
-            FRZFlag = true;
-            dir = Vector3.zero;
-            Speed = 0f;
-        }
-    }
-    void FRZOff()
-    {
-        if (Life)
-            FRZFlag = false;
-    }
+
 
     void SlowON()
     {
@@ -132,6 +118,7 @@ public class AttackerScript : Player
         {
             InitState();
             waitingTime = 2f;
+            Speed = MovementSpeed;
         }
     }
 
@@ -148,7 +135,7 @@ public class AttackerScript : Player
             }
             else if (FRZFlag == false)
             {
-                if ((transform.name =="BockBoss" && SkillCount < 2) || transform.name == "Attacker")
+                if ((transform.name == "BockBoss" && SkillCount < 2) || transform.name == "Attacker")
                 {
                     InitState();
                     // C = Color.white;
@@ -196,15 +183,14 @@ public class AttackerScript : Player
     public void MoveAtt()
     {
         dir = PlayerP.transform.position - transform.position;
-        if (Vector3.Distance(PlayerP.transform.position, transform.position) >= bulletRange.magnitude)
-            transform.position = Vector3.MoveTowards(transform.position, PlayerP.transform.position, Speed * Time.deltaTime);
+        if (Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) >= Mathf.Abs(bulletRange.magnitude))
+            RB.velocity = dir/3;
         else RB.velocity = Vector3.zero;
-
+        Debug.Log(Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) + " " + Mathf.Abs(bulletRange.magnitude));
 
     }
     void Update()
     {
-
         EmptyKnife();
         Init();
         lookrota();
@@ -217,9 +203,9 @@ public class AttackerScript : Player
             if (timer > waitingTime)
             {
                 SkillCount++;
-                var bullet_ = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                GameObject bullet_ = Instantiate(bullet, transform.GetChild(1).transform.position, Quaternion.Euler(0f, 0f, 0f));
                 bullet_.GetComponent<bullet>().SetDir(dir);
-                timer = 0f;
+                Debug.Log("°è¼Ó");
                 if (SkillCount > 2 && SkillFlag_)
                 {
                     SkillFlag_ = false;
@@ -230,14 +216,14 @@ public class AttackerScript : Player
                         Invoke("UseSkill", 4f);
                     }
                 }
-
+                timer = 0f;
+                waitingTime = Random.Range(3,6);
             }
-            transform.Translate(dir.normalized * 0.01f * Time.deltaTime, Space.World);
+
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//ÀÌµ¿¹æÇâ¿¡ ¸Â°Ô Á¤¸éÀ» º¸µµ·Ï È¸Àü°ª ¹Þ¾Æ¿À±â.
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);///ÇÃ·¹ÀÌ¾î¿ÀºêÁ§Æ®¿¡°Ô ¹Þ¾Æ¿Â È¸Àü°ª Àû¿ë
-            
         }
-        if(Life)DieCheck();
+        if (Life) DieCheck();
         //nï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ù¶óº¸±ï¿½.
         //Nï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½
         if (!Life)
@@ -249,19 +235,19 @@ public class AttackerScript : Player
                 Skin.GetComponent<SpriteRenderer>().color = C;
                 time = 0;
             }
-            
         }
-
         isMove = true;
         AnimState(dir);
         //if (HP <= 0 && Life) dieAttacker();
-
     }
-    void DieCheck(){
+    void DieCheck()
+    {
         if (HP <= 0)
         {
+            gameObject.layer = 4;
             Life = false;
             state = State.Die;
+            ShowDieAnim(0);
             FRZOff();
             if (gameObject.name == "Attacker")
             {
@@ -271,16 +257,16 @@ public class AttackerScript : Player
             transform.tag = "NotBody";
             CreateFlesh();
             Stage22_ex();
+            MyKnife.tag = "NotKnife";
             MyKnife.transform.parent = null;
             MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-           
+            MyKnife.transform.parent = transform;
         }
     }
     void UseSkill()
     {
         string N = "Bullet";
         Skin.GetComponent<SpriteRenderer>().color = Color.white;
-
         PlaySkill(N);
         SkillCount = 0;
         SkillFlag_ = true;
@@ -297,14 +283,14 @@ public class AttackerScript : Player
                 DT.transform.localScale *= 2f;
         }
     }
-    public void HitAttacker(GameObject other,Vector3 V)
+    public void HitAttacker(GameObject other, Vector3 V)
     {
         Debug.Log("³ªakw");
         OnOutLine(14);
         Invoke("OffOutLine", 0.07f);
 
-        ShowDieAnim(0);
-        state = State.Die;
+        //ShowDieAnim(0);
+
 
         if (HP > 0 && Life)
         {
@@ -318,8 +304,7 @@ public class AttackerScript : Player
                     DT.transform.localScale *= 2f;
 
                 if (other.name != "body")
-                    other.transform.GetComponent<HitFeel>().TimeStop(other.transform.parent.localScale.y);
-
+                    other.transform.GetComponent<HitFeel>().TimeStop(1f);
 
                 var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
                 float x_ = transform.localScale.x;
@@ -338,7 +323,6 @@ public class AttackerScript : Player
             }
 
             var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-
         }
     }
     public void dieAttacker()

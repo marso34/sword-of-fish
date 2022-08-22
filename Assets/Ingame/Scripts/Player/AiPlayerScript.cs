@@ -36,16 +36,16 @@ public class AiPlayerScript : Player
 
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
         S = Skin.transform.GetComponent<SpriteRenderer>();
-        RotationSpeed = 720f;
+   
         Life = true;// 라이프 온
         timer = 3;
         waitingTime = 3f;
         killScore = 0;
-        MovementSpeed = 2.3f + transform.localScale.y / 2;//3.8
-        BusterSpeed = 4.6f + transform.localScale.y / 2;// 부스터 속도 //10      
-        Speed = MovementSpeed;// 스피드 변수를 기본스피드로 다시 초기화    
-
-
+      
+        SharkFlag = false;
+        SlowFlag = false;
+        BusterFlag = false;
+        FRZFlag = false;
         C.a = 1f;
         C.b = 1f;
         C.r = 1f;
@@ -94,7 +94,6 @@ public class AiPlayerScript : Player
             }
             if (Life)
             {
-                
                 var T = (Player.transform.position - transform.position);
                 if (Mathf.Abs(MinFar.magnitude) > Mathf.Abs(T.magnitude)) ViewFlag = true;
                 else ViewFlag = false;
@@ -117,9 +116,7 @@ public class AiPlayerScript : Player
                 PlayerMove();//움직임 및 State초기화         
                 SetBuster();
                 BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
-
                 SkillTimer += Time.deltaTime;
-
                 if (SkillTimer > 4f)
                 {
                     PlaySkill();
@@ -142,6 +139,7 @@ public class AiPlayerScript : Player
         //겜 끝나면 오류뜰듯
 
     }
+    
     public void DieCheck(){
         if(HP <0 && Life){
 
@@ -152,7 +150,10 @@ public class AiPlayerScript : Player
     public override void DieLife()
     {
         Speed = 0f;   // 나중에 수정 필요. 
-        PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
+        RB.velocity = Vector2.zero;
+        MyKnife.tag = "NotKnife";
+        MyBody.gameObject.layer = 4;
+        //PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
         if (transform.tag == "InkOct")
         {
             if (GameObject.FindWithTag("Kraken") != null)
@@ -256,7 +257,6 @@ public class AiPlayerScript : Player
             else if (Dice == 1)
                  return LeftMove();
             else return PlayerTracking();
-            
         }
 
         else return Vector3.zero;

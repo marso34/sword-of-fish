@@ -25,7 +25,7 @@ public class BodyInteraction : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D other2)
     {
-        StabbedKnife(other2.gameObject);
+        StabbedKnife(other2.gameObject,other2.contacts[0].point);
         
         TrashHit(other2.gameObject);
         if (other2.gameObject.tag == "BossSkillA" && transform.tag == "Body")
@@ -56,7 +56,7 @@ public class BodyInteraction : MonoBehaviour
     
 
 
-    void StabbedKnife(GameObject other)
+    void StabbedKnife(GameObject other,Vector3 V)
     {
         //Debug.Log(other.transform.tag +"iiiii");
         if (other.gameObject.tag == "Knife" && transform.tag == "Body")
@@ -68,9 +68,9 @@ public class BodyInteraction : MonoBehaviour
                     other.transform.parent.gameObject.GetComponent<Player>().KillScoreUp();
                     if (other.name != "body" && other.transform.parent.tag == "Player")
                         other.transform.GetComponent<HitFeel>().TimeStop(1f);
-
+                    
                     float QR = Random.Range(1, 7);
-                    var KE = Instantiate(KillEffect, transform.parent.position, Quaternion.Euler(0f, 0f, 20f * QR));
+                    var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
                     float R = Random.Range(0.8f, 1.7f);
                     float x_ = transform.localScale.x;
                     if (x_ > 0)

@@ -52,6 +52,7 @@ public class Boss : MonoBehaviour
         if (HP <= 0 && Life)
         {
             Life = false;
+            gameObject.layer = 4;
             transform.GetComponent<SpriteRenderer>().color = Color.clear;
             HitOn();//DieImg에 보스터질때 구현
             S = DieImg.GetComponent<SpriteRenderer>();
