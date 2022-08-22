@@ -19,7 +19,7 @@ public class Shake : MonoBehaviour
         BigTrash = GameObject.FindGameObjectWithTag("BigTrash");
 
         alpha = transform.GetComponent<SpriteRenderer>().color;
-        alphaSpeed = 0.4f;
+        alphaSpeed = 0.6f;
 
         if (Random.Range(-1f, 1f) >= 0)
             LEFTorRIGHT = 1;

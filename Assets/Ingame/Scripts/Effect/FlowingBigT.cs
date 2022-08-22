@@ -22,7 +22,7 @@ public class FlowingBigT : MonoBehaviour
         if (BigT != null)
         {
             
-            Debug.Log("aaaawkwlsksdkakd");
+            // Debug.Log("aaaawkwlsksdkakd");
             Vector2 dir = BigT.transform.position - transform.position; 
            transform.Translate(dir.normalized * 0.001f * Time.deltaTime, Space.World);
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.

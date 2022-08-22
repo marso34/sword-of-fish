@@ -20,6 +20,8 @@ public class CrabSkin : MonoBehaviour
     public Sprite[] T2;
     public Sprite[] T3;
 
+    public int HP;
+
     void Start()
     {
         for (int i = 0; i < 13; i++)
@@ -31,8 +33,14 @@ public class CrabSkin : MonoBehaviour
 
     void Update()
     {
+        HP = transform.GetComponent<KingCrab>().HP;
 
-    }
+        // if ( ) // 페이즈2에서 쓰레기 끄기
+        // {
+        //     Child[10].transform.gameObject.SetActive(false);
+        //     Child[11].transform.gameObject.SetActive(false);
+        // }
+    }   
 
     public IEnumerator Start_()
     {

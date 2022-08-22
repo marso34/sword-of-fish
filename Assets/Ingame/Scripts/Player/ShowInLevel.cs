@@ -27,7 +27,7 @@ public class ShowInLevel : MonoBehaviour
     }
     public void showText(string arr)
     {
-        Debug.Log(c);
+        // Debug.Log(c);
         GetComponent<Text>().color = c;
         GetComponent<Text>().text = arr;
         Invoke("unlookthis", 2f);

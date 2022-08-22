@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 395749827027585020}
   - component: {fileID: 5924998775910502753}
   - component: {fileID: 5670197594386358694}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1365,8 +1365,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -1381,15 +1381,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4881,7 +4881,7 @@ GameObject:
   - component: {fileID: 5878166779286162255}
   - component: {fileID: 6432379413851731162}
   - component: {fileID: 7926281006394548375}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6235,8 +6235,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -6251,15 +6251,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9751,7 +9751,7 @@ GameObject:
   - component: {fileID: 2277896117538031041}
   - component: {fileID: 3273706397567230537}
   - component: {fileID: 6286522232201381634}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11105,8 +11105,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -11121,15 +11121,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14621,7 +14621,7 @@ GameObject:
   - component: {fileID: 8087176643225399396}
   - component: {fileID: 1114054800626583682}
   - component: {fileID: 6942523866962201299}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15975,8 +15975,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -15991,15 +15991,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19491,9 +19491,11 @@ GameObject:
   - component: {fileID: 4121459729646515201}
   - component: {fileID: 8007014905868068500}
   - component: {fileID: 7850310403113324123}
-  m_Layer: 0
+  - component: {fileID: 4299476455682724328}
+  - component: {fileID: 1031635774574881613}
+  m_Layer: 1
   m_Name: Crab_Skill_Armor
-  m_TagString: Untagged
+  m_TagString: CrabArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24299,6 +24301,104 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!60 &4299476455682724328
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049652030073426559}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.92, y: 1.08}
+    newSize: {x: 1.92, y: 1.08}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.36313987, y: 1.4280638}
+      - {x: -0.5224646, y: 1.7572224}
+      - {x: -0.6033231, y: 1.4547768}
+      - {x: -0.93397367, y: 1.3234338}
+      - {x: -1.1545941, y: 1.4698765}
+      - {x: -1.195478, y: 1.283582}
+      - {x: -1.5538265, y: 1.1081637}
+      - {x: -1.746266, y: 1.267725}
+      - {x: -1.7665678, y: 0.97111666}
+      - {x: -2.0721426, y: 0.7312189}
+      - {x: -2.4218113, y: 0.477731}
+      - {x: -2.6589615, y: 0.8724302}
+      - {x: -2.7875035, y: 0.653731}
+      - {x: -3.2654831, y: 0.7461631}
+      - {x: -3.314362, y: 0.5179529}
+      - {x: -3.7331529, y: -0.16175365}
+      - {x: -4.008055, y: -0.108724326}
+      - {x: -3.8520002, y: -0.37794375}
+      - {x: -3.9714472, y: -0.7034338}
+      - {x: -4.041263, y: -1.440115}
+      - {x: -2.7367704, y: -1.0846196}
+      - {x: -2.9739137, y: -1.4176539}
+      - {x: -2.7412086, y: -2.5170195}
+      - {x: -2.5071118, y: -2.9235544}
+      - {x: -2.0644317, y: -3.2085192}
+      - {x: -1.55938, y: -2.0692434}
+      - {x: -1.0769428, y: -2.318872}
+      - {x: 1.2242593, y: -2.1466553}
+      - {x: 1.6057451, y: -1.9452432}
+      - {x: 2.1696868, y: -2.8524778}
+      - {x: 2.7183542, y: -2.4789586}
+      - {x: 2.8330421, y: -1.9455154}
+      - {x: 2.8875873, y: -1.026642}
+      - {x: 2.9043717, y: -0.7076082}
+      - {x: 4.437015, y: -1.2266533}
+      - {x: 4.512143, y: -1.284387}
+      - {x: 4.5556135, y: -0.96948206}
+      - {x: 4.2540298, y: -1.0021249}
+      - {x: 4.0897613, y: -0.7125369}
+      - {x: 4.131336, y: -0.29042855}
+      - {x: 3.837751, y: -0.29701728}
+      - {x: 3.7162223, y: -0.12906349}
+      - {x: 3.519161, y: 0.17279682}
+      - {x: 3.5073812, y: 0.5018473}
+      - {x: 3.302272, y: 0.4434541}
+      - {x: 3.1279147, y: 0.54933596}
+      - {x: 2.915096, y: 0.72134554}
+      - {x: 2.7580574, y: 0.9848337}
+      - {x: 2.707924, y: 0.85727537}
+      - {x: 2.4632912, y: 0.7409608}
+      - {x: 2.2951255, y: 0.69752085}
+      - {x: 2.0319872, y: 0.82262576}
+      - {x: 1.943298, y: 1.1953516}
+      - {x: 1.6825187, y: 0.95581555}
+      - {x: 1.4355888, y: 1.0414262}
+      - {x: 1.276931, y: 1.1648421}
+      - {x: 0.78160894, y: 1.2810059}
+      - {x: 0.6516507, y: 1.4767568}
+      - {x: 0.4531412, y: 1.3452177}
+      - {x: 0.11708978, y: 1.5665823}
+--- !u!114 &1031635774574881613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049652030073426559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff426c8e32669714192cfc38f963f4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Polygon: {fileID: 4299476455682724328}
 --- !u!1 &8293056219860125680
 GameObject:
   m_ObjectHideFlags: 0
@@ -24310,7 +24410,7 @@ GameObject:
   - component: {fileID: 2393279215362243703}
   - component: {fileID: 7132410346366735875}
   - component: {fileID: 3113715456492469472}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25664,8 +25764,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -25680,15 +25780,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -29180,7 +29280,7 @@ GameObject:
   - component: {fileID: 6231648943819357460}
   - component: {fileID: 7774435030227561590}
   - component: {fileID: 3349443740037539667}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30534,8 +30634,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -30550,15 +30650,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -34050,7 +34150,7 @@ GameObject:
   - component: {fileID: 1837221187193406287}
   - component: {fileID: 3217852484289042871}
   - component: {fileID: 8665475486459881015}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: C3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35404,8 +35504,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.19607843}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.19607843}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -35420,15 +35520,15 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6361
-        atime2: 25829
-        atime3: 32768
-        atime4: 0
+        atime2: 15035
+        atime3: 25829
+        atime4: 32768
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

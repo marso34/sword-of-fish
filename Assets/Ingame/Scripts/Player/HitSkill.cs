@@ -93,6 +93,17 @@ public class HitSkill : MonoBehaviour
             other.transform.parent.gameObject.GetComponent<CrabSkill>().SkillFlag = true;
             Invoke("DamagedPlayer", 0.3f);
         }
+
+        if (other.gameObject.tag == "CrabBeam" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")
+        {
+            DamagedPlayer();
+        }
+
+        if (other.gameObject.tag == "CrabArmor" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")
+        {
+            DamagedPlayer();
+            other.transform.parent.GetComponent<KingCrab>().RecoveryHP();
+        }
     }
 
     void DamagedPlayer()

@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Crab_Skill_Bubble : MonoBehaviour
 {
-    ParticleSystem.ShapeModule shape;
-    ParticleSystem.EmissionModule emisson;
+    public ParticleSystem BubbleBeam;
+
     float timer;
-
-
+    int Count;
+    int MaxCnt;
 
     void Start()
     {
-        shape = transform.GetComponent<ParticleSystem>().shape;
-        emisson = transform.GetComponent<ParticleSystem>().emission;
-        timer = 0f;
+        MaxCnt = Random.Range(3, 6);
+        Destroy(gameObject, 5f);
     }
 
     // Update is called once per frame
@@ -22,10 +21,12 @@ public class Crab_Skill_Bubble : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= 0.5f)
+        if (timer >= 0.5f && Count < MaxCnt)
         {
-            shape.radius = Mathf.Lerp(shape.radius, 1f, Time.deltaTime * 0.5f);
-            emisson.rateOverTime = 100f + timer * 10f;
+            var bubble = Instantiate(BubbleBeam, transform.position, Quaternion.Euler(0, 0, Random.Range(100f, 260f)));
+            bubble.transform.parent = transform;
+            timer = 0.4f;
+            Count++;
         }
     }
 }

@@ -77,6 +77,8 @@ TagManager:
   - CrabNippers
   - BP
   - KingCrab
+  - CrabBeam
+  - CrabArmor
   layers:
   - Default
   - TransparentFX

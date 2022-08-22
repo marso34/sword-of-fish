@@ -7,7 +7,7 @@ public class KingCrab : Boss
     public ParticleSystem SkillNippers;
     public ParticleSystem SkillArmor;
     public ParticleSystem SkillBubble;
-
+    public ParticleSystem HealEffect;
 
     public GameObject ArmL;
     public GameObject ArmR;
@@ -18,8 +18,7 @@ public class KingCrab : Boss
 
     public bool NippersFlag;
 
-    float timer2;
-
+    float timer2; // 테스트용
 
     Vector3 ArmDir;
     float ArmAngles;
@@ -52,16 +51,17 @@ public class KingCrab : Boss
     {
         timer2 += Time.deltaTime;
 
-        if (timer2 >= 4f)
+        if (timer2 >= 5f)
         {
-            CreateNippers();
+            // CreateNippers();
             // CreateTrash();
-            // CreateArmor();
+            CreateArmor();
             // CreateBubble();
             timer2 = 0f;
         }
 
         MoveArm();
+        MoveCrab();
     }
 
     void CreateNippers()
@@ -70,12 +70,12 @@ public class KingCrab : Boss
 
         if (Player.transform.position.x < 0)
         {
-            Position = Point1.transform.position + new Vector3(-0.7f, 0f, 0f);
+            Position = Point1.transform.position + new Vector3(-2f, 0f, 0f);
             NippersFlag = true;  // left
         }
         else
         {
-            Position = Point2.transform.position + new Vector3(0.62f, 0f, 0f); ;
+            Position = Point2.transform.position + new Vector3(2f, 0f, 0f); ;
             NippersFlag = false; // right
         }
 
@@ -85,12 +85,12 @@ public class KingCrab : Boss
     void CreateArmor()
     {
         var Armor = Instantiate(SkillArmor, transform.position, Quaternion.Euler(0, 0, 0));
-        Destroy(Armor, 2f);
+        Armor.transform.parent = transform;
     }
 
-    void CreateBubble()
+    void CreateBubble() // 입에 게거품은 5초간 지속
     {
-
+        var Bubble = Instantiate(SkillBubble, transform.position, Quaternion.Euler(0, 0, 0));
     }
 
     void CreateTrash()
@@ -99,6 +99,12 @@ public class KingCrab : Boss
         ArmAngles = 120f;
         ArmSpeed = 5f;
         Invoke("DefaultPositionArms", 1.1f);
+    }
+
+    void DefaultPositionArms()
+    {
+        ArmAngles = 0f;
+        ArmSpeed = 3f;
     }
 
     void MoveArm()
@@ -125,9 +131,20 @@ public class KingCrab : Boss
         }
     }
 
-    void DefaultPositionArms()
+    void MoveCrab()
     {
-        ArmAngles = 0f;
-        ArmSpeed = 3f;
+
+    }
+
+    public void RecoveryHP()
+    {
+        if (HP < 11)
+            HP += 2;
+        else if (HP < 12)
+            HP++;
+
+        // var Heal = Instantiate(HealEffect, transform.position, Quaternion.Euler(0, 0, 0));
+        // Heal.transform.parent = transform;
+        // Destroy(Heal.gameObject, 1f);
     }
 }
