@@ -21,18 +21,16 @@ public class Buster : UiButton, IPointerUpHandler
     public override void OnPointerDown(PointerEventData eventData)
     {
         Effect();
-        Player.GetComponent<PlayerScript>().BusterFlag = true;
-        var bubbleSound = Instantiate(BubbleSound, transform.position, Quaternion.Euler(0, 0, 0));
-        bubbleSound.transform.parent = transform;
+        Player.GetComponent<PlayerScript>().FastSpeed(1);
+      
         Debug.Log("부스터발동");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Player.GetComponent<PlayerScript>().BusterFlag = false;
-
-        if (GameObject.FindGameObjectWithTag("BS") != null)
-            Destroy(GameObject.FindGameObjectWithTag("BS"));
+        
+        Player.GetComponent<PlayerScript>().OffFastSpeed();
+      
     }
 }
 

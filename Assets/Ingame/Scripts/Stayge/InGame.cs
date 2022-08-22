@@ -17,7 +17,7 @@ public class InGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (QM.GetComponent<QuestManager>().GM.GetComponent<GameManager_>().StartButtonFlag)
+        if (!QM.GetComponent<QuestManager>().GM.GetComponent<GameManager_>().StartButtonFlag)
         {
             // Debug.Log("·Î±×°ª " + QM.GetComponent<QuestManager>().Flag);
             if (Inflag) // QM.GetComponent<QuestManager>().Flag && 

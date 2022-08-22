@@ -144,6 +144,7 @@ public class Tentacle : MonoBehaviour
     }
      IEnumerator Die() //ì£½ìŒ ?• ?‹ˆ
     {
+        gameObject.layer = 4;
         for (int i = 0; i < 50; ++i)
         {
             if(i == 49) Destroy(gameObject);

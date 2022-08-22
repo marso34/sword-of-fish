@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 6301600182199427307}
   - {fileID: 4434987380853970353}
+  - {fileID: 284972474206221741}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,7 +46,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944125338774598116}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   isMove: 1
   state: 0
   PlayerCount: 8
+  BSErrorFlag: 0
   Speed: 0
   RotationSpeed: 0
   MovementSpeed: 0
@@ -199,7 +201,10 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 5
   TuLev1: 0
+  SlowFlag: 0
   VWall: {x: 0, y: 0}
+  SharkFlag: 0
+  FRZFlag: 0
   KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KillEffectO: {fileID: 2545687451895993892, guid: 051a4bac3775dde4097d5712160d7d02, type: 3}
@@ -211,6 +216,37 @@ MonoBehaviour:
   SkillCount: 0
   flag: 0
   PlayerP: {fileID: 0}
+--- !u!1 &4664505565929029580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 284972474206221741}
+  m_Layer: 1
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &284972474206221741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664505565929029580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944125338774598120}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4868236191001879870
 GameObject:
   m_ObjectHideFlags: 0

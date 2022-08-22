@@ -25,7 +25,7 @@ public class Stage13 : Stage
             //TutorialName.SetActive(false);
             //GM.GetComponent<GameManager_>().ObjectCleaner();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 3;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 1;
             QM.GetComponent<QuestManager>().MaxCount = 18;// 킬 보드에 표시된 킬스코어 6달성시 클리어
             flag = false;

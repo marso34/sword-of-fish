@@ -64,8 +64,7 @@ public class HitSkill : MonoBehaviour
         {
             transform.parent.gameObject.GetComponent<Player>().C = new Color(60f / 255f, 150f / 255f, 255f / 255f);
             transform.parent.gameObject.GetComponent<Player>().ResetColor();
-            transform.parent.GetComponent<Player>().StopMoveSpeed();
-            transform.parent.GetComponent<Player>().StopRotateSpeed();
+            transform.parent.GetComponent<Player>().FRZOn();
         }
         if (transform.parent.tag != "Player")
         {

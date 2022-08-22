@@ -52,6 +52,7 @@ public class Tracking_player : MonoBehaviour
 
             if (StartFlag)
             {
+                z=-19;
                 transform.position = new Vector3(target.position.x, target.position.y, z);
                 StartFlag = false;
               transform.GetComponent<Camera>().fieldOfView = 22;
@@ -72,6 +73,7 @@ public class Tracking_player : MonoBehaviour
         }
         else
         {
+            StartFlag = true;
             transform.position = transform.position;// "Null instence" error depance
             target = null;
             dieFlag = false;

@@ -266,6 +266,7 @@ MonoBehaviour:
   isMove: 0
   state: 0
   PlayerCount: 6
+  BSErrorFlag: 0
   Speed: 0
   RotationSpeed: 500
   MovementSpeed: 0
@@ -317,7 +318,10 @@ MonoBehaviour:
   Timer22: 0
   MoveTime: 3
   TuLev1: 0
+  SlowFlag: 0
   VWall: {x: 0, y: 0}
+  SharkFlag: 0
+  FRZFlag: 0
   Target: {fileID: 0}
   Indicator: {fileID: 2704039261075894569, guid: 6fba3959a6232d24d8ea06444e7ba14e, type: 3}
 --- !u!1001 &568068430810243033
@@ -511,7 +515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_BodyType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_GravityScale
@@ -805,6 +809,14 @@ PrefabInstance:
     - target: {fileID: 4875927844831279921, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139307731403701433, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139307731403701433, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
+      propertyPath: m_Constraints
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5245195079369463352, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_Enabled

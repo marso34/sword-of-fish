@@ -62,11 +62,11 @@ public class Stage22 : Stage
             if (CheckWaveEnd() && WaveLevel < GoalLevel)
             {
                 WaveRun();
-                Debug.Log(WaveLevel + "레벨");
+                //Debug.Log(WaveLevel + "레벨");
             }
             if (WaveLevel == GoalLevel) GoalCount++;
         }
-        Debug.Log(EnemyCount + "적수");
+        //Debug.Log(EnemyCount + "적수");
     }
     public bool CheckWaveEnd()
     {

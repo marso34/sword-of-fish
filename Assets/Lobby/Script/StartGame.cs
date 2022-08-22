@@ -6,12 +6,12 @@ public class StartGame : MonoBehaviour
 {
     public GameObject InGame;
     public GameObject QM;
-   
+
     public GameObject GM;
     public GameObject GMC;
-    
-    
-    
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,33 +22,36 @@ public class StartGame : MonoBehaviour
         //if (MusicFlag)
         //{
         //    var a = Instantiate(IntroMusic, Vector3.zero, Quaternion.Euler(0, 0, 0));
-         //   Debug.Log("澜厩积己");
-         //   MusicFlag = false;
-           
-       // }
+        //   Debug.Log("澜厩积己");
+        //   MusicFlag = false;
+
+        // }
     }
-   
+
     // Update is called once per frame
     public void RMMusic()
     {
-       // Destroy(GameObject.FindGameObjectWithTag("IntroM"));
+        // Destroy(GameObject.FindGameObjectWithTag("IntroM"));
         Debug.Log("ssss");
     }
     public void OnClick_()
     {
         //LobbyMusic.SetActive(false);
-        
-        InGame.SetActive(true);
-       
+        for (int i = 0; i < 2; ++i)
+        {
+            if (i == QM.GetComponent<QuestManager>().Level_ - 1)
+                InGame.transform.GetChild(i).gameObject.SetActive(true);
+            else InGame.transform.GetChild(i).gameObject.SetActive(false);
+        }
         GMC.SetActive(false);
         //LBanner.GetComponent<AddmobBanner>().DestroyAd();
-       
-        
-         GM.GetComponent<GameManager_>().Start___();
-         
+
+
+        GM.GetComponent<GameManager_>().Start___();
+
         gameObject.SetActive(false);
-        
-      // RMMusic();
+
+        // RMMusic();
 
         /*GameObject[] Fleshs = new GameObject[GameObject.FindGameObjectsWithTag("Flesh").Length];
         Debug.Log(Fleshs.Length);
