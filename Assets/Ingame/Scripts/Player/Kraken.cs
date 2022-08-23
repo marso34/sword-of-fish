@@ -17,7 +17,7 @@ public class Kraken : Boss
     public GameObject Bubble;
     void Start()
     {
-        C = new Color(1,1,1,1);
+        C = new Color(1, 1, 1, 1);
         Life = true;
         HitFlag = false;
         LegCount = 4;
@@ -150,7 +150,8 @@ public class Kraken : Boss
     {
         if (other.transform.tag == "EXPL")
         {
-            HitEXPL_(other.gameObject);
+            if (LegCount > 0)
+                HitEXPL_(other.gameObject);
         }
         if (other.gameObject.tag == "FRZ")
         {
@@ -161,7 +162,7 @@ public class Kraken : Boss
     void CreateTentacle() // 촉수 스킬 생성
     {
 
-        
+
         if (Random.Range(0, 10) == 1) CreateInkSwarm();
         var a = Instantiate(SkillTentacle, Point.transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;

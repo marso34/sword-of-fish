@@ -127,7 +127,7 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
-        Level_ = 2;//초기 렙설정
+        Level_ = 1;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
@@ -143,7 +143,7 @@ public class QuestManager : MonoBehaviour
     }
     void Update()
     {
-        
+
         if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
@@ -172,7 +172,7 @@ public class QuestManager : MonoBehaviour
         if (Flag)
         {
             GM.GetComponent<GameManager_>().SuccesFlag = false;
-            GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("Level" + " " + IngameLevel.ToString());
+            //GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("Level" + " " + IngameLevel.ToString());
             if (GameObject.FindGameObjectWithTag("Stage") != null)
             {
                 Debug.Log(GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>().GoalCount + "yyyyy" + GameObject.FindGameObjectWithTag("Stage"));
@@ -221,7 +221,7 @@ public class QuestManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G)) Player.transform.localScale = new Vector3(Player.transform.localScale.x + 1f, Player.transform.localScale.y + 1f, 1f);
         if (Input.GetKeyDown(KeyCode.R)) Player.GetComponent<Player>().HP++;
-        
+
         //if (Input.GetKeyDown(KeyCode.P)) Level_++;
         if (Input.GetKeyDown(KeyCode.O)) Level_--;
     }
@@ -248,7 +248,7 @@ public class QuestManager : MonoBehaviour
         if (IngameLevel < 7)
         {
             CurrentCount = 0;
-           
+
             Stayge = Instantiate(Stagys1[IngameLevel], Vector3.zero, Quaternion.Euler(0, 0, 0));
         }
     }
@@ -414,7 +414,11 @@ public class QuestManager : MonoBehaviour
                 BulletEC++;
             }
             if (WaveMaxCount > WaveOC) Invoke("CreateWaveO", 2.5f);// 물결오브제 생성
-            if (BigTrashMaxCount > BigTrashOC) CreateBigTrashO();//큰쓰레기 생성 캠액션 할것.
+            if (BigTrashMaxCount > BigTrashOC)
+            {
+                Invoke("CreateBigTrashO", 4f);//큰쓰레기 생성 캠액션 할것.
+                BigTrashOC++;
+            }
             if (TrashMaxCount > TrashOC)
             {
 
@@ -426,7 +430,13 @@ public class QuestManager : MonoBehaviour
                 CreateTrash2O();
                 Trash2OC++;
             }
-            if (BossMaxCount > BossEC) CreateBossE();//보스 생성 캠액션할것.켐 액션 할것.
+            if (BossMaxCount > BossEC)
+            {
+                if (Level_ == 1 && IngameLevel == 4)
+                    Invoke("CreateBossE", 4f);//보스 생성 캠액션할것.켐 액션 할것.
+                else CreateBossE();
+                BossEC++;
+            }
         }
     }
 
@@ -434,9 +444,9 @@ public class QuestManager : MonoBehaviour
     {
         return new Vector3(Random.Range(-13, 13), Random.Range(-8, 8), 0f);
     }
-    public int  RandomSignDice()
+    public int RandomSignDice()
     {
-        return Random.Range(0,2);
+        return Random.Range(0, 2);
 
 
     }
@@ -458,17 +468,19 @@ public class QuestManager : MonoBehaviour
         }
         float x_ = 0f;
         float y_ = 0f;
-        if(Level_ ==1 ){
+        if (Level_ == 1)
+        {
             x_ = 23f;
             y_ = 11f;
         }
-        else if(Level_ ==2){
+        else if (Level_ == 2)
+        {
             x_ = 17f;
             y_ = 5f;
         }
-        if( RandomSignDice() == 0) return new Vector3(x_ * Xc,Random.Range(-1*y_,y_),0);
-        else return new Vector3(Random.Range(-1 * x_,x_), y_ * Yc,0);
-        
+        if (RandomSignDice() == 0) return new Vector3(x_ * Xc, Random.Range(-1 * y_, y_), 0);
+        else return new Vector3(Random.Range(-1 * x_, x_), y_ * Yc, 0);
+
     }
     Vector3 SetPosition(float x, float y, float z)
     {
@@ -478,13 +490,7 @@ public class QuestManager : MonoBehaviour
     {
         int SizeDice = Random.Range(0, 8);
         float Size;
-        float bigSize = Player.transform.localScale.y + 1.2f;
-        float littleBigSize = Player.transform.localScale.y + 0.5f;
-        if (SizeDice == 0)
-            Size = Random.Range(Player.transform.localScale.y, bigSize);
-        else if (SizeDice == 1 || SizeDice == 2) Size = Random.Range(Player.transform.localScale.y, littleBigSize);
-        else Size = Player.transform.localScale.y;
-        if (Size > 3) Size = 3;
+        Size = Random.Range(0.8f, 3.0f);
         return new Vector3(Size, Size, 1f);
     }
     //같은 오브젝트들끼리 중첩되서 소환되면 둘다 삭제 하고 다시소환되기. 다른오브젝트면 우선순위낮은 놈이 삭제되기.
@@ -503,23 +509,19 @@ public class QuestManager : MonoBehaviour
         var Enemy = Instantiate(BulletEnemy, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f));
         Enemy.transform.localScale = RandomSize();
         Enemy.name = "Attacker";
-
     }
     public void CreateBossE()
     {
-        if (IngameLevel == 4)
+        if (IngameLevel == 4 || IngameLevel == 3)
         {
             var Boss = Instantiate(BokBoss, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f)); //위치정해저있어야됨 좌우로 계쏙 움직임.
             Boss.name = "Boss";
-
-
         }
         else if (IngameLevel == 6)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -15.6f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -12.68f, 0f), Quaternion.Euler(0f, 0f, 0f));
             Boss.name = "Boss";
         }
-        BossEC++;
     }
     public void CreateVictimO()
     {// 위치 정해져있어야할듯.
@@ -542,7 +544,7 @@ public class QuestManager : MonoBehaviour
             var Obj = Instantiate(BigTrashObj2, SetPosition(0, -4.5f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
         }
 
-        BigTrashOC++;
+
     }
     public void CreateTrashO()
     {
@@ -644,9 +646,10 @@ public class QuestManager : MonoBehaviour
     {
         if (GM.GetComponent<GameManager_>().EndFlag == false)
         {
+
             if (LoseFlag || Player.GetComponent<PlayerScript>().StartFlag2 && Player.GetComponent<PlayerScript>().Life == false)
             {
-
+                Player.GetComponent<Player>().MyBody.tag = "NotBody";
                 GM.GetComponent<GameManager_>().EndFlag = true;
                 GM.GetComponent<GameManager_>().LosePanel.SetActive(true);
                 IngameLevel = 1;
@@ -656,6 +659,7 @@ public class QuestManager : MonoBehaviour
             }
             else if (GM.GetComponent<GameManager_>().SuccesFlag)
             {
+                Player.GetComponent<Player>().MyBody.tag = "NotBody";
                 Debug.Log("성공성공");
                 Level_++;
                 IngameLevel = 1;

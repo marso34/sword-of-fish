@@ -18,13 +18,17 @@ public class Stage24 : Stage
     {
         if (flag)
         {
+            ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
-            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
+            Cam.transform.position = new Vector3(0, 0, Cam.transform.position.z);
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
             //TutorialName.SetActive(false);
             //GM.GetComponent<GameManager_>().ObjectCleaner();
-            Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+            Destroy(GameObject.FindGameObjectWithTag("V"));
+            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+            if (GameObject.FindWithTag("BTP") != null) ;
+            VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BTP"));
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             //?°¿?????? ???? ??? ?°¿?????????? ??????????? ???? ?????. ??? ?????? ??????????? ?? ??????? ????
@@ -40,6 +44,11 @@ public class Stage24 : Stage
         }
         GoalCount = 0; //QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
         TrashOn();
-        
+
+    }
+    public void ShowText()
+    {
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("æ≤∑π±‚ ¥ıπÃ∏¶ ∫Œº≈¡‡!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("æ≤∑π±‚ ¥ıπÃ∏¶ ∫Œº≈¡‡!");
     }
 }

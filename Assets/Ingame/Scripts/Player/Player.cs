@@ -600,6 +600,12 @@ public class Player : MonoBehaviour
             else if (BusterFlag) Speed = BusterSpeed;
             else Speed = MovementSpeed;
             RB.velocity = dir * Speed * Time.deltaTime * 60f;
+
+            if(!BusterFlag) {
+                if(GameObject.FindWithTag("BS")!=null){
+                    Destroy(GameObject.FindWithTag("BS"));
+                }
+            }
             if (transform.tag == "InkOct") Debug.Log("타코이동");
             rota();
         }
@@ -869,10 +875,14 @@ public class Player : MonoBehaviour
     }
     public void Stage22_ex()
     {
-        if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
+        if (QM.GetComponent<QuestManager>().Level_ == 2 && (QM.GetComponent<QuestManager>().IngameLevel == 2 || QM.GetComponent<QuestManager>().IngameLevel == 3))
         {
             GameObject ST = GameObject.FindGameObjectWithTag("Stage");
+            if(QM.GetComponent<QuestManager>().IngameLevel == 2)
             ST.GetComponent<Stage22>().EnemyCount--;
+            else if (QM.GetComponent<QuestManager>().IngameLevel == 3){
+                 ST.GetComponent<Stage23>().EnemyCount--;
+            }
         }
     }
 }

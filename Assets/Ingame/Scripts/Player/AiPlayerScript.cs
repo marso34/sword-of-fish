@@ -36,12 +36,12 @@ public class AiPlayerScript : Player
 
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
         S = Skin.transform.GetComponent<SpriteRenderer>();
-   
+
         Life = true;// 라이프 온
         timer = 3;
         waitingTime = 3f;
         killScore = 0;
-      
+
         SharkFlag = false;
         SlowFlag = false;
         BusterFlag = false;
@@ -55,13 +55,13 @@ public class AiPlayerScript : Player
         GameWaitInit();
         RB = MyBody.transform.GetComponent<Rigidbody2D>();
         SkillTimer = 0f;
-         isMove = true;
+        isMove = true;
         firstMoveFlag = true;
         if (transform.tag == "Attacker") waitingTime = 0.1f;
         StartCoroutine("Start_");
         MinFar = new Vector3(13f, 5f, 1f);
         ViewFlag = false;
-        
+
     }
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
@@ -72,9 +72,9 @@ public class AiPlayerScript : Player
     {
         transform.position = MyBody.transform.position;
         reset_();
-        // *************************** 특이사항 ******* 죽일때마다 애니재생되는무기 넣기**********        
+        // *************************** ?????? ******* ????????? ????????¹??? ???**********        
         //SetIndicator();
-        
+
         AiPlayers_ = GameObject.FindGameObjectsWithTag("AiPlayer");// 모든플레이어 담아야함
         Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -130,7 +130,7 @@ public class AiPlayerScript : Player
                 transform.Find("Bubble Particle").gameObject.SetActive(false);
             }
             AnimState(dir);
-       
+
             //CheckMaxSize();
             Check_Flag();
             //MyKnife.transform.localScale = new Vector3(0.1f, 2f, 1f);
@@ -139,9 +139,11 @@ public class AiPlayerScript : Player
         //겜 끝나면 오류뜰듯
 
     }
-    
-    public void DieCheck(){
-        if(HP <0 && Life){
+
+    public void DieCheck()
+    {
+        if (HP < 0 && Life)
+        {
 
             DieLife();
             Life = false;
@@ -151,6 +153,9 @@ public class AiPlayerScript : Player
     {
         Speed = 0f;   // 나중에 수정 필요. 
         RB.velocity = Vector2.zero;
+        MyKnife.transform.parent = null;
+        MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        MKnife.transform.parent = transform;
         MyKnife.tag = "NotKnife";
         MyBody.gameObject.layer = 4;
         //PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
@@ -176,10 +181,8 @@ public class AiPlayerScript : Player
             //DefaultMoveSpeed();
             CreateFlesh();
             Stage22_ex();
-            
-            MyKnife.transform.parent = null;
-            MyKnife.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
-            MKnife.transform.parent = transform;
+
+
         }
     }
     void StartInit()//시작시 실행
@@ -226,8 +229,9 @@ public class AiPlayerScript : Player
         {
             if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
             {
-                if (Random.Range(0, 7) == 1) BusterFlag = true;
-                else BusterFlag = false;
+                //if (Random.Range(0, 7) == 1) BusterFlag = true;
+                //else BusterFlag = false;
+                   BusterFlag = false;// 난이도 하일때만. 상일떈 위에 주석처리된거
                 if (Dice == 0) return VictemTracking();
                 else if (Dice == 1) return LeftMove();
                 else if (Dice == 2) return RightMove();
@@ -235,8 +239,9 @@ public class AiPlayerScript : Player
             }
             else
             {
-                if (Random.Range(0, 7) == 1) BusterFlag = true;
-                else BusterFlag = false;
+                // if (Random.Range(0, 7) == 1) BusterFlag = true;
+                // else BusterFlag = false;
+                   BusterFlag = false;// 난이도 하일때만.
                 if (Dice == 0) return FleshTracking();
                 else if (Dice == 1) return LeftMove();
                 else if (Dice == 2)
@@ -255,7 +260,7 @@ public class AiPlayerScript : Player
                 return RightMove();
             // else return MinDirTracking();
             else if (Dice == 1)
-                 return LeftMove();
+                return LeftMove();
             else return PlayerTracking();
         }
 
@@ -298,8 +303,8 @@ public class AiPlayerScript : Player
     }
     Vector3 PlayerTracking()
     {
-       
-            return Player.transform.position - transform.position;
+
+        return Player.transform.position - transform.position;
     }// 유저 따라가기 유저방향 반환
     Vector3 LeftMove()
     {
@@ -324,13 +329,13 @@ public class AiPlayerScript : Player
     }
     Vector3 FleshTracking()
     {
-        BusterFlag = true;
+        
         if (GameObject.FindGameObjectWithTag("Flesh") != null)
             return GameObject.FindGameObjectWithTag("Flesh").transform.position;
         //else return EnemyTrackingMove();
         else return PlayerTracking();
 
     }//시체 추적
- 
+
 
 }

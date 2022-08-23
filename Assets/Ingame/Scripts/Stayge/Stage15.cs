@@ -18,10 +18,14 @@ public class Stage15 : Stage
     {
         if (flag)
         {
+            ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
-            Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+            Destroy(GameObject.FindGameObjectWithTag("V"));
+            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+            if(GameObject.FindWithTag("BTP")!= null);
+            VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BTP"));
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
@@ -35,5 +39,10 @@ public class Stage15 : Stage
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
         TrashOn();
+    }
+    public void ShowText()
+    {
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("æ≤∑π±‚ ¥ıπÃ∏¶ ∫Œº≈¡‡!");
+         GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("æ≤∑π±‚ ¥ıπÃ∏¶ ∫Œº≈¡‡!");
     }
 }

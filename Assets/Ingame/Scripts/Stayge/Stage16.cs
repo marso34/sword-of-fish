@@ -18,6 +18,7 @@ public class Stage16 : Stage
     {
         if (flag)
         {
+            ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             //TutorialName.SetActive(false);
@@ -34,9 +35,20 @@ public class Stage16 : Stage
             QM.GetComponent<QuestManager>().MaxCount = 1;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
-             QM.GetComponent<QuestManager>().ObjMFlag = true;
+            QM.GetComponent<QuestManager>().ObjMFlag = true;
+            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+        }
+        if (VEC.GetComponent<FlowingBigT>().BigT == null)
+        {
+            if (GameObject.FindWithTag("Kraken") != null)
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Kraken"));
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BosskillScore;
         TrashOn();
+    }
+    public void ShowText()
+    {
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("≈©∂ÛƒÀ¿ª ¿‚æ∆¡‡!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("≈©∂ÛƒÀ¿ª ¿‚æ∆¡‡!");
     }
 }
