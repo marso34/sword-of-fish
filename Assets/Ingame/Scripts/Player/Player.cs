@@ -530,7 +530,6 @@ public class Player : MonoBehaviour
         {
             for (int i = 0; i < 50; i++)
             {
-
                 if (i == index)
                 {
                     C.a -= 0.02f;

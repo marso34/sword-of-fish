@@ -21,26 +21,29 @@ public class CrabSkin : MonoBehaviour
     public Sprite[] T3;
 
     public int HP;
+    bool FRZFlag;
 
     void Start()
     {
         for (int i = 0; i < 13; i++)
-        {
             Skin[i] = Child[i].GetComponent<SpriteRenderer>();
-        }
+
         StartCoroutine("Start_");
     }
 
     void Update()
     {
         HP = transform.GetComponent<KingCrab>().HP;
+        FRZFlag = transform.GetComponent<KingCrab>().FRZFlag;
 
-        // if ( ) // 페이즈2에서 쓰레기 끄기
-        // {
-        //     Child[10].transform.gameObject.SetActive(false);
-        //     Child[11].transform.gameObject.SetActive(false);
-        // }
-    }   
+        if (HP < 15) // 페이즈2에서 쓰레기 끄기
+        {
+            Child[10].transform.gameObject.SetActive(false);
+            Child[11].transform.gameObject.SetActive(false);
+        }
+
+        ChangeColor();
+    }
 
     public IEnumerator Start_()
     {
@@ -48,7 +51,7 @@ public class CrabSkin : MonoBehaviour
     }
     public IEnumerator ChangeImg()//움직임애니매이션재생
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; )
         {
             Skin[0].sprite = Head[i];
             Skin[1].sprite = Eye[i];
@@ -64,7 +67,43 @@ public class CrabSkin : MonoBehaviour
             Skin[11].sprite = T2[i];
             Skin[12].sprite = T3[i];
 
+            if (!FRZFlag) i++;
+
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    void ChangeColor()
+    {
+        for (int i = 0; i < 13; i++)
+        {
+            if (FRZFlag)
+                Skin[i].color = Color.blue;
+            else 
+                Skin[i].color = Color.white;
+        }
+    }
+    
+    public void OnOutline()
+    {
+        UpdateOutline(true);
+        Invoke("OffOutline", 0.07f);
+    }
+
+    void UpdateOutline(bool outline)
+    {
+        for (int i = 0; i < 13; ++i)
+        {
+            MaterialPropertyBlock mpb1 = new MaterialPropertyBlock();
+            Skin[i].GetPropertyBlock(mpb1);
+            mpb1.SetFloat("_Outline", outline ? 1f : 0);
+            mpb1.SetColor("_OutlineColor", Color.white);
+            mpb1.SetFloat("_OutlineSize", 14);
+            Skin[i].SetPropertyBlock(mpb1);
+        }
+    }
+    void OffOutline()
+    {
+        UpdateOutline(false);
     }
 }

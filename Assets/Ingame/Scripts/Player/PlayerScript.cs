@@ -217,6 +217,9 @@ public class PlayerScript : Player
 
             if (HP <= 0) DieLife();
 
+
+            
+            // C = new Color((112f + 175f)/255f, (-219f + 227f)/255f, (-255f + 86f)/255f, 1f); // rgb(175, 227, 86) 
         }
     }
 

@@ -16,9 +16,12 @@ public class KingCrab : Boss
     public GameObject Point1;
     public GameObject Point2;
 
-    public bool NippersFlag;
+    Rigidbody2D RB;
+    Vector2 Dir;
 
     float timer2; // 테스트용
+
+    public bool NippersFlag;
 
     Vector3 ArmDir;
     float ArmAngles;
@@ -27,21 +30,24 @@ public class KingCrab : Boss
 
     void Start()
     {
-        Life = true;
-        HitFlag = false;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         GM = GameObject.FindGameObjectWithTag("GM");
         Player = GameObject.FindGameObjectWithTag("Player");
-        Skin = GetComponent<SpriteRenderer>();
-        HP = 12;
-        Speed = 3.8f;
+        RB = GetComponent<Rigidbody2D>();
+
+        Life = true;
+        HitFlag = false;
+
+        HP = 30;
+        Speed = 2f;
         RotationSpeed = 800f;
         FRZFlag = false;
-        S = transform.GetComponent<SpriteRenderer>();
 
         NippersFlag = false;
 
         timer2 = 0f;
+
+
+        Dir = Vector2.zero;
         ArmAngles = 0f;
         ArmSpeed = 5f;
         CurrentArmAngles = 0f;
@@ -49,18 +55,23 @@ public class KingCrab : Boss
 
     void Update()
     {
-        timer2 += Time.deltaTime;
+        timer += Time.deltaTime;
+        timer2 += Time.deltaTime; // 테스트 타이머
 
-        if (timer2 >= 5f)
+        if (HP > 0 && !FRZFlag)
         {
-            // CreateNippers();
-            // CreateTrash();
-            CreateArmor();
-            // CreateBubble();
-            timer2 = 0f;
+            if (timer >= 5f)
+            {
+                // CreateNippers();
+                // CreateTrash();
+                // CreateArmor();
+                // CreateBubble();
+                timer = 0f;
+            }
+
+            MoveArm();
         }
 
-        MoveArm();
         MoveCrab();
     }
 
@@ -133,7 +144,24 @@ public class KingCrab : Boss
 
     void MoveCrab()
     {
+        if (timer2 >= 2f)
+        {
+            int R = Random.Range(0, 6);
 
+            if (R == 0)
+                Dir = Vector2.zero;
+            else if (R == 1 || R == 2)
+                Dir = Vector2.left * Speed;
+            else if (R == 3 || R == 4)
+                Dir = Vector2.right * Speed;
+
+            timer2 = 0f;
+        }
+
+        if (FRZFlag || HP <= 0)
+            Dir = Vector2.zero;
+
+        RB.velocity = Dir * Speed;
     }
 
     public void RecoveryHP()
@@ -143,8 +171,54 @@ public class KingCrab : Boss
         else if (HP < 12)
             HP++;
 
-        // var Heal = Instantiate(HealEffect, transform.position, Quaternion.Euler(0, 0, 0));
-        // Heal.transform.parent = transform;
-        // Destroy(Heal.gameObject, 1f);
+        var Heal = Instantiate(HealEffect, transform.position, Quaternion.Euler(0, 0, 0));
+        Heal.transform.parent = transform;
+        Heal.transform.localScale *= 2f;
+        Destroy(Heal.gameObject, 4f);
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
+        {
+            float QR = Random.Range(1, 7);
+            float R = Random.Range(1f, 2.5f);
+
+            if (HP > 0)
+            {
+                transform.GetComponent<CrabSkin>().OnOutline();
+
+                var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
+                DT.transform.localScale *= 2f;
+                HP--;
+
+                var KE = Instantiate(KillEffect, other.contacts[0].point, Quaternion.Euler(0f, 0f, 20f * QR));
+                float x_ = transform.localScale.x;
+                if (x_ > 0)
+                    x_ *= -1;
+
+                KE.transform.localScale = new Vector3(1, 1, 1) * R;
+            }
+
+            var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (HP > 0)
+        {
+            if (other.transform.tag == "EXPL")
+            {
+                HitEXPL_(other.gameObject);
+            }
+
+            if (other.gameObject.tag == "FRZ")
+            {
+                FRZOn();
+                Invoke("FRZOff", 2.5f);
+            }
+        }
     }
 }

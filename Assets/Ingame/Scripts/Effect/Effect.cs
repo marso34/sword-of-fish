@@ -7,6 +7,7 @@ public class Effect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.Find("effect").gameObject.transform.localScale *= 1.2f;
         Destroy(gameObject, 1.5f);
     }
 

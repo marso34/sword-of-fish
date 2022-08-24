@@ -114,7 +114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 470, y: -155}
+  m_AnchoredPosition: {x: 470, y: -150}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7223736251987437906
@@ -211,10 +211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38ee0df3e1d4584a954db4820cea0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  click: {fileID: 0}
   Player: {fileID: 0}
   Image: {fileID: 0}
+  Bombs: {fileID: 0}
+  Preeze: {fileID: 0}
   img: {fileID: 0}
   Defualt: {fileID: 0}
-  Bomb: {fileID: 0}
-  Ice: {fileID: 0}
-  Shield: {fileID: 0}
+  ItemBomb: {fileID: 0}
+  ItemIce: {fileID: 0}
+  ItemShield: {fileID: 0}
+  scaleib: {x: 0, y: 0, z: 0}
+  TutorialItem: 0

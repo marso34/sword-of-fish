@@ -36,7 +36,7 @@ public class Boss : MonoBehaviour
 
     public IEnumerator Start_()
     {
-        
+
         while (true) yield return StartCoroutine("ChangeImg");
     }
     public IEnumerator ChangeImg()//움직임애니매이션재생
@@ -60,7 +60,7 @@ public class Boss : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine("Die");
             Invoke("win", 1.5f);
-            
+
         }
     }
     public void ChangeCollider() // 움직임에 따라 콜라이더 수정, 지금 사용x 나중에 사용하게 되면 코루틴으로 변경
@@ -103,7 +103,7 @@ public class Boss : MonoBehaviour
     {
         for (int i = 0; i < 50; ++i)
         {
-            
+
             //if (Life) break;
             ShowDieAnim(i);
 
@@ -121,7 +121,7 @@ public class Boss : MonoBehaviour
                 {
                     C.a -= 0.02f;
                     S.color = C;
-                    
+
                 }
             }
         }
@@ -135,26 +135,20 @@ public class Boss : MonoBehaviour
             UpdateOutline(true);
             Invoke("OffOutline", 0.07f);
 
-
-
-
             var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
             DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
             DT.transform.localScale *= 2f;
             HP--;
-            var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * R));
+
+            var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
             float x_ = transform.localScale.x;
             if (x_ > 0)
                 x_ *= -1;
 
-            KE.transform.localScale = new Vector3(1,1,1) * R;
+            KE.transform.localScale = new Vector3(1, 1, 1) * R;
         }
 
-        Debug.Log("ssss0");
-
-        var KS = Instantiate(KS_, Point.transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
-
-
+        var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 0f));
     }
     void HitOn()
     {

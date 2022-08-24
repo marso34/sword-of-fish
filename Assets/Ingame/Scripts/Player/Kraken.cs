@@ -141,11 +141,7 @@ public class Kraken : Boss
             }
         }
     }
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.tag == "EXPL")
@@ -160,8 +156,6 @@ public class Kraken : Boss
     }
     void CreateTentacle() // 촉수 스킬 생성
     {
-
-        
         if (Random.Range(0, 10) == 1) CreateInkSwarm();
         var a = Instantiate(SkillTentacle, Point.transform.position, Quaternion.Euler(0, 0, 0));
         a.transform.parent = transform;
