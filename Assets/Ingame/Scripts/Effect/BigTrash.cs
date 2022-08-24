@@ -69,17 +69,17 @@ public class BigTrash : MonoBehaviour
             // var KE1 = Instantiate(KillEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
             // KE1.transform.localScale *= Random.Range(2.0f, 4.0f);
             // var KE = Instantiate(HitEffect, PT.transform.position, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-            var BE = Instantiate(BoombEffect, new Vector3(transform.position.x - 2f, transform.position.y + 3.5f, transform.position.z), Quaternion.Euler(0, 0, 0));
-                BE.transform.localScale *= 2;
-                //BE.transform.GetChild(2).tag = "AiPlayer";
-                var BS = Instantiate(BoombSound, transform.position, Quaternion.Euler(0, 0, 0));
+            var BE = Instantiate(BoombEffect, transform.position, Quaternion.Euler(0, 0, 0));
+            BE.transform.localScale *= 2;
+            //BE.transform.GetChild(2).tag = "AiPlayer";
+            var BS = Instantiate(BoombSound, transform.position, Quaternion.Euler(0, 0, 0));
             gameObject.layer = 4;
             if (transform.name == "_Kraken") // 크라켄 쓰레기일 경우만
             {
-                
                 Invoke("win", 1f);
             }
-            Destroy(transform.parent.gameObject, 3f);
+            if (transform.name == "TrashCrab")
+                Destroy(transform.parent.gameObject, 3f);
 
         }
     }

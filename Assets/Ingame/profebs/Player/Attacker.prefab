@@ -32,9 +32,9 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 284972474206221741}
   - {fileID: 6301600182199427307}
   - {fileID: 4434987380853970353}
-  - {fileID: 284972474206221741}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,7 +46,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944125338774598116}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   waitingTime: 0
   SkillCount: 0
   flag: 0
+  bulletRange: {x: 0, y: 0, z: 0}
   PlayerP: {fileID: 0}
 --- !u!1 &4664505565929029580
 GameObject:
@@ -245,7 +246,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1944125338774598120}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4868236191001879870
 GameObject:
@@ -287,7 +288,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2537902179814946788, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2537902179814946788, guid: 475dc59e0dde818488c1d3456696e9d5, type: 3}
       propertyPath: m_LocalScale.x
@@ -507,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 1254921125, guid: f357fcbf655d0f741aba2c9d65b0617b, type: 3}
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_LocalPosition.x

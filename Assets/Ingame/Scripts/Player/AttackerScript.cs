@@ -156,7 +156,9 @@ public class AttackerScript : Player
     {
         if (transform.name == "Boss" && flag)
         {
-            HP = 12;
+            if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 1)
+                HP = 50;
+            else HP = 12;
             transform.localScale = new Vector3(6f, 6f, 6f);
             flag = false;
         }
@@ -184,7 +186,7 @@ public class AttackerScript : Player
     {
         dir = PlayerP.transform.position - transform.position;
         if (Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) >= Mathf.Abs(bulletRange.magnitude))
-            RB.velocity = dir/3;
+            RB.velocity = dir / 3;
         else RB.velocity = Vector3.zero;
         Debug.Log(Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) + " " + Mathf.Abs(bulletRange.magnitude));
 
@@ -196,6 +198,7 @@ public class AttackerScript : Player
         lookrota();
         PlayerP = GameObject.FindGameObjectWithTag("Player");
         statusColor();
+
         if (PlayerP != null && !FRZFlag && Life)
         {
             MoveAtt();
@@ -203,7 +206,9 @@ public class AttackerScript : Player
             if (timer > waitingTime)
             {
                 SkillCount++;
-                GameObject bullet_ = Instantiate(bullet, transform.GetChild(1).transform.position, Quaternion.Euler(0f, 0f, 0f));
+                GameObject bullet_;
+                bullet_ = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, 0f));
+
                 bullet_.GetComponent<bullet>().SetDir(dir);
                 Debug.Log("계속");
                 if (SkillCount > 2 && SkillFlag_)
@@ -213,11 +218,11 @@ public class AttackerScript : Player
                     {
                         C = Color.red;
                         S.color = C;
-                        Invoke("UseSkill", 4f);
+                        Invoke("UseSkill", 2f);
                     }
                 }
                 timer = 0f;
-                waitingTime = Random.Range(3,6);
+                waitingTime = Random.Range(3, 6);
             }
 
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.
@@ -244,6 +249,10 @@ public class AttackerScript : Player
     {
         if (HP <= 0)
         {
+
+            MyKnife.transform.parent = null;
+            MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            MyKnife.transform.parent = transform;
             gameObject.layer = 4;
             Life = false;
             state = State.Die;
@@ -258,15 +267,12 @@ public class AttackerScript : Player
             CreateFlesh();
             Stage22_ex();
             MyKnife.tag = "NotKnife";
-            MyKnife.transform.parent = null;
-            MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            MyKnife.transform.parent = transform;
         }
     }
     void UseSkill()
     {
         string N = "Bullet";
-        Skin.GetComponent<SpriteRenderer>().color = Color.white;
+        C = Color.white;
         PlaySkill(N);
         SkillCount = 0;
         SkillFlag_ = true;

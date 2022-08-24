@@ -5,12 +5,13 @@ using UnityEngine;
 public class FlowingBigT : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject BigT;
+    public GameObject BigT;
     GameObject Player;
     Vector2 min;
     void Start()
     {
         min = new Vector2(3f,3f);
+        BigT = null;
     }
 
     // Update is called once per frame
@@ -18,10 +19,9 @@ public class FlowingBigT : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         if(Player != null) transform.position = Player.transform.position;
-        BigT = GameObject.FindGameObjectWithTag("BTP"); 
         if (BigT != null)
         {
-            
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
             // Debug.Log("aaaawkwlsksdkakd");
             Vector2 dir = BigT.transform.position - transform.position; 
            transform.Translate(dir.normalized * 0.001f * Time.deltaTime, Space.World);
@@ -30,5 +30,12 @@ public class FlowingBigT : MonoBehaviour
             if(dir.magnitude < min.magnitude) transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
             else transform.GetChild(0).GetComponent<SpriteRenderer>().color =Color.white;
         }
+        else  {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.clear;
+            Debug.Log("Å¸°Ù¾øÀ½");
+        }
+    }
+    public void setBigT(GameObject T){
+        BigT = T;
     }
 }

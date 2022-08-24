@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stage11 : Stage
 {
-    
+
     void Start()
     {
         GoalCount = 0;
@@ -19,8 +19,9 @@ public class Stage11 : Stage
     {
         if (flag)
         {
+            ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
-            Cam.transform.position = new Vector3(0,0,Cam.transform.position.z);
+            Cam.transform.position = new Vector3(0, 0, Cam.transform.position.z);
             Debug.Log("스테이지 정의!");
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
@@ -33,9 +34,26 @@ public class Stage11 : Stage
             QM.GetComponent<QuestManager>().Player.transform.localPosition = Vector3.zero;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
-             QM.GetComponent<QuestManager>().ObjMFlag = true;
+            QM.GetComponent<QuestManager>().ObjMFlag = true;
+            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+        }
+        if (VEC.GetComponent<FlowingBigT>().BigT == null)
+        {
+            if (GameObject.FindWithTag("AiPlayer") != null)
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("AiPlayer"));
+                else if(GameObject.FindWithTag("Attacker") != null){
+                    VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Attacker"));
+                }
         }
         TrashOn();
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().killScore;
     }
+
+
+    public void ShowText()
+    {
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("적을 전부 섬멸해!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("적을 전부 섬멸해!");
+    }
 }
+

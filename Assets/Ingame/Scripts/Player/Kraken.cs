@@ -17,7 +17,7 @@ public class Kraken : Boss
     public GameObject Bubble;
     void Start()
     {
-        C = new Color(1,1,1,1);
+        C = new Color(1, 1, 1, 1);
         Life = true;
         HitFlag = false;
         LegCount = 4;
@@ -146,7 +146,8 @@ public class Kraken : Boss
     {
         if (other.transform.tag == "EXPL")
         {
-            HitEXPL_(other.gameObject);
+            if (LegCount > 0)
+                HitEXPL_(other.gameObject);
         }
         if (other.gameObject.tag == "FRZ")
         {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Stage: MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject VEC;
     public GameObject QM;
     public bool flag;
     public int GoalCount;
