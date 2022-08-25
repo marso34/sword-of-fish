@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 //flesh부분은 오류가있음 크기키우는함수도 개편될수있으니 유의바람.//  
 public class PlayerScript : Player
 {
+    
     public JoystickValue value;
     public GameObject Knife;//MFish초기화할때쓰임
     public GameObject Body;//MBody초기화 할때 쓰임 
@@ -267,7 +268,6 @@ public class PlayerScript : Player
             Glitter();
             Invoke("InitBody__", 1.5f);
             MyKnife.GetComponent<HitFeel>().TimeStop(2f);
-
         }
         if (HP <= 0 && flagerror)
         {

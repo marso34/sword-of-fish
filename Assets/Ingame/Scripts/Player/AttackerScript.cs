@@ -68,7 +68,7 @@ public class AttackerScript : Player
     {
         if (Life)
         {
-            if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player") || other.transform.tag == "SkillO")
+            if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
             {
                 HitAttacker(other.gameObject, other.contacts[0].point);
             }
@@ -82,6 +82,7 @@ public class AttackerScript : Player
     /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
+        float QR = Random.Range(0,7);
         if (other.gameObject.tag == "EXPL")
             HitEXPL(other.gameObject);
         if (other.gameObject.tag == "FRZ")
@@ -97,6 +98,16 @@ public class AttackerScript : Player
             Debug.Log("보거 스킬에 닿음");
             SlowMoveSpeed(1f);
             //SlowRotateSpeed(1f);
+        }
+        if(other.gameObject.tag =="SkillO"){
+            
+            {
+                var KE1 = Instantiate(KillEffectO,transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+                KE1.transform.localScale = transform.localScale / 3f;
+                --HP;
+            }
+            var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
+        
         }
     }
 
@@ -321,13 +332,7 @@ public class AttackerScript : Player
                 // KE.transform.localScale = transform.parent.localScale; * R / 1.5f;
                 --HP;
             }
-            else if (other.transform.tag == "SkillO")
-            {
-                var KE1 = Instantiate(KillEffectO, V, Quaternion.Euler(0f, 0f, 20f * QR));
-                KE1.transform.localScale = transform.localScale / 3f;
-                --HP;
-            }
-
+            
             var KS = Instantiate(KS_, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
         }
     }
