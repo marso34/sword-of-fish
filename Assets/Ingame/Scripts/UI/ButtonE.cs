@@ -18,7 +18,8 @@ public class ButtonE : MonoBehaviour
         img = transform.GetComponent<Image>();
         rect = GetComponent<RectTransform>();
         alpha = img.color;
-
+        img.color = Color.clear;
+        
         size = transform.localScale.y;
 
         Destroy(gameObject, 2f);

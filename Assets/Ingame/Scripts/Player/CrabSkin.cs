@@ -67,7 +67,7 @@ public class CrabSkin : MonoBehaviour
             Skin[11].sprite = T2[i];
             Skin[12].sprite = T3[i];
 
-            if (!FRZFlag) i++;
+            if (!FRZFlag && HP > 0) i++;
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -78,7 +78,7 @@ public class CrabSkin : MonoBehaviour
         for (int i = 0; i < 13; i++)
         {
             if (FRZFlag)
-                Skin[i].color = Color.blue;
+                Skin[i].color = new Color(60f / 255f, 150f / 255f, 255f / 255f);
             else 
                 Skin[i].color = Color.white;
         }

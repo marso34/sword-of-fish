@@ -21,8 +21,8 @@ public class QuestManager : MonoBehaviour
                                   //-----------------
     public GameObject KnifeEnemy;
     public GameObject BulletEnemy;
-    public GameObject BossEnemy1;//중간보스 복어
     public GameObject BossEnemy2;// 1라운드 보스 타코야
+    public GameObject BossEnemyCrab; // 2라운드 보스 크랩
     public GameObject VictimObj;
     public GameObject WaveObj;
     public GameObject BigTrashObj; // 크라켄 쓰레기
@@ -127,8 +127,8 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
-        Level_ = 1;//초기 렙설정
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        Level_ = 2;//초기 렙설정
+        IngameLevel = 5; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -254,7 +254,7 @@ public class QuestManager : MonoBehaviour
     }
     public void Level_2_Action()
     {
-        if (IngameLevel < 5)
+        if (IngameLevel < 6)
         {
             CurrentCount = 0;
             TrashMaxCount = 5;
@@ -517,9 +517,14 @@ public class QuestManager : MonoBehaviour
             var Boss = Instantiate(BokBoss, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f)); //위치정해저있어야됨 좌우로 계쏙 움직임.
             Boss.name = "Boss";
         }
+        else if (IngameLevel == 5)
+        {
+            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -3f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
+            Boss.name = "Boss";
+        }
         else if (IngameLevel == 6)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -12.68f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -12.68f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
             Boss.name = "Boss";
         }
     }
@@ -624,7 +629,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
 
-            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 4))
+            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 6))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();
@@ -636,7 +641,6 @@ public class QuestManager : MonoBehaviour
             {
                 Flag = true;
                 IngameLevel++;
-
             }
         }
 
@@ -673,8 +677,4 @@ public class QuestManager : MonoBehaviour
             Levelboard.GetComponent<Text>().text = Level_.ToString();
         }
     }//??????????? ??
-
-
-
-
 }

@@ -19,9 +19,15 @@ public class HitSkill : MonoBehaviour
 
         if (other.gameObject.tag == "CrabNippers" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")
         {
-            Debug.Log("Áý°Ô¹ß Á¢ÃË");
-            if (other.transform.parent.gameObject.GetComponent<CrabSkill>().flag)
-                transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = (other.transform.parent.gameObject.GetComponent<CrabSkill>().EffectPosition() - transform.parent.position).normalized * 5f;
+            transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = (other.transform.parent.gameObject.GetComponent<CrabSkill>().EffectPosition() - transform.parent.position).normalized * 5f;
+            other.transform.parent.gameObject.GetComponent<CrabSkill>().flag = true;
+
+            if ((transform.position - other.transform.position).magnitude <= 0.1f)
+            {
+                other.transform.parent.gameObject.GetComponent<CrabSkill>().OnOffCollider(false);
+                other.transform.parent.gameObject.GetComponent<CrabSkill>().CreateEffect();
+                DamagedPlayer();
+            }
         }
 
     }
@@ -39,7 +45,7 @@ public class HitSkill : MonoBehaviour
             {
                 DamagedPlayer();
                 transform.parent.gameObject.GetComponent<Player>().SlowMoveSpeed(0.8f);
-               // transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
+                // transform.parent.gameObject.GetComponent<Player>().SlowRotateSpeed(0.2f);
                 other.transform.gameObject.GetComponent<Skill2>().DelFalg = true;
             }
 
@@ -83,14 +89,6 @@ public class HitSkill : MonoBehaviour
                     SK.transform.localScale = new Vector3(-1f, 1f, 1f);
                 Destroy(other.gameObject);
             }
-        }
-
-        if (other.gameObject.tag == "CrabNippers" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")
-        {
-            Debug.Log("Áý°Ô¹ß Á¢ÃË");
-            other.transform.parent.gameObject.GetComponent<CrabSkill>().flag = true;
-            other.transform.parent.gameObject.GetComponent<CrabSkill>().SkillFlag = true;
-            Invoke("DamagedPlayer", 0.3f);
         }
 
         if (other.gameObject.tag == "CrabBeam" && transform.gameObject.tag == "Body" && transform.parent.tag == "Player")

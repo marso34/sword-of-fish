@@ -17,9 +17,11 @@ public class KingCrab : Boss
     public GameObject Point2;
 
     Rigidbody2D RB;
-    Vector2 Dir;
+    Vector2 Dir; // 킹크랩 움직임 방향
+    bool STOP; // 킹크랩 멈출 때 사용
 
     float timer2; // 테스트용
+    float waitTime;
 
     public bool NippersFlag;
 
@@ -38,16 +40,20 @@ public class KingCrab : Boss
         HitFlag = false;
 
         HP = 30;
-        Speed = 2f;
+        Speed = 1.5f;
         RotationSpeed = 800f;
         FRZFlag = false;
 
         NippersFlag = false;
 
+        timer = 0f;
+        timer_ = 0f;
         timer2 = 0f;
-
+        waitTime = 0f;
 
         Dir = Vector2.zero;
+        STOP = false;
+
         ArmAngles = 0f;
         ArmSpeed = 5f;
         CurrentArmAngles = 0f;
@@ -55,31 +61,55 @@ public class KingCrab : Boss
 
     void Update()
     {
-        timer += Time.deltaTime;
-        timer2 += Time.deltaTime; // 테스트 타이머
-
         if (HP > 0 && !FRZFlag)
         {
-            if (timer >= 5f)
+            timer += Time.deltaTime;
+            timer_ += Time.deltaTime;
+            timer2 += Time.deltaTime; // 테스트 타이머
+
+            if (timer_ >= Random.Range(3f, 7f) + waitTime)
             {
-                // CreateNippers();
-                // CreateTrash();
-                // CreateArmor();
-                // CreateBubble();
-                timer = 0f;
+                ArmDir = Player.transform.position - transform.position;
+
+                if (HP >= 15) // 페이즈 1
+                {
+                    if (ArmDir.magnitude <= 6f)
+                        CreateNippers();
+                    else
+                    {
+                        STOP = true;
+                        CreateTrash();
+                    }
+                }
+                else // 페이즈 2
+                {
+                    if (ArmDir.magnitude > 3f && ArmDir.magnitude <= 6f)
+                        CreateNippers();
+                    else if ((Player.transform.position - transform.position).magnitude <= 3f)
+                        CreateArmor();
+                    else
+                    {
+                        STOP = true;
+                        waitTime += 2.5f;
+                        CreateBubble();
+                    }
+                }
+
+                timer_ = 0f;
             }
 
             MoveArm();
         }
 
         MoveCrab();
+        DEADorALIVE();
     }
 
     void CreateNippers()
     {
         Vector3 Position;
 
-        if (Player.transform.position.x < 0)
+        if (ArmDir.x < 0)
         {
             Position = Point1.transform.position + new Vector3(-2f, 0f, 0f);
             NippersFlag = true;  // left
@@ -106,7 +136,6 @@ public class KingCrab : Boss
 
     void CreateTrash()
     {
-        ArmDir = Player.transform.position - transform.position;
         ArmAngles = 120f;
         ArmSpeed = 5f;
         Invoke("DefaultPositionArms", 1.1f);
@@ -144,7 +173,7 @@ public class KingCrab : Boss
 
     void MoveCrab()
     {
-        if (timer2 >= 2f)
+        if (timer2 >= 2f + waitTime)
         {
             int R = Random.Range(0, 6);
 
@@ -156,19 +185,25 @@ public class KingCrab : Boss
                 Dir = Vector2.right * Speed;
 
             timer2 = 0f;
+            waitTime = 0f;
         }
 
-        if (FRZFlag || HP <= 0)
+        if (FRZFlag || HP <= 0 || STOP)
+        {
+            STOP = false;
             Dir = Vector2.zero;
+            timer2 = 0f;
+        }
+
 
         RB.velocity = Dir * Speed;
     }
 
     public void RecoveryHP()
     {
-        if (HP < 11)
+        if (HP < 14)
             HP += 2;
-        else if (HP < 12)
+        else if (HP < 15)
             HP++;
 
         var Heal = Instantiate(HealEffect, transform.position, Quaternion.Euler(0, 0, 0));
@@ -177,11 +212,22 @@ public class KingCrab : Boss
         Destroy(Heal.gameObject, 4f);
     }
 
+    public void DEADorALIVE()
+    {
+        if (HP <= 0 && Life)
+        {
+            Life = false;
+            gameObject.layer = 4;
+            // transform.GetComponent<SpriteRenderer>().color = Color.clear;
+            StopAllCoroutines();
+            Invoke("win", 1.5f);
+        }
+    }
+
     public void OnCollisionEnter2D(Collision2D other)
     {
         if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
         {
-            float QR = Random.Range(1, 7);
             float R = Random.Range(1f, 2.5f);
 
             if (HP > 0)
@@ -193,7 +239,7 @@ public class KingCrab : Boss
                 DT.transform.localScale *= 2f;
                 HP--;
 
-                var KE = Instantiate(KillEffect, other.contacts[0].point, Quaternion.Euler(0f, 0f, 20f * QR));
+                var KE = Instantiate(KillEffect, other.contacts[0].point, Quaternion.Euler(0f, 0f, 0f));
                 float x_ = transform.localScale.x;
                 if (x_ > 0)
                     x_ *= -1;

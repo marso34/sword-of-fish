@@ -123,7 +123,7 @@ public class Tentacle : MonoBehaviour
             StartFlag = false;
         }
 
-        for (; i < 10; ++i)
+        for (; i < 10; )
         {
             temp.enabled = false;
             Skin.sprite = Image[i];
@@ -138,6 +138,9 @@ public class Tentacle : MonoBehaviour
                 Polygon[9 - i].enabled = true;
                 temp = Polygon[9 - i];
             }
+
+            if (!FRZFlag)
+                i++;
 
             yield return new WaitForSeconds(imgTime);
         }

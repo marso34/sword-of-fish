@@ -36,14 +36,17 @@ public class Boss : MonoBehaviour
 
     public IEnumerator Start_()
     {
-
         while (true) yield return StartCoroutine("ChangeImg");
     }
     public IEnumerator ChangeImg()//움직임애니매이션재생
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; )
         {
             Skin.sprite = Image[i];
+
+            if (!FRZFlag)
+                i++;
+
             yield return new WaitForSeconds(0.125f);
         }
     }
@@ -128,7 +131,6 @@ public class Boss : MonoBehaviour
     }
     public void Damaged(GameObject other2, Vector3 V)
     {
-        float QR = Random.Range(1, 7);
         float R = Random.Range(2f, 5f);
         if (HP > 0)
         {
@@ -140,7 +142,7 @@ public class Boss : MonoBehaviour
             DT.transform.localScale *= 2f;
             HP--;
 
-            var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
+            var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 0f));
             float x_ = transform.localScale.x;
             if (x_ > 0)
                 x_ *= -1;
@@ -190,7 +192,8 @@ public class Boss : MonoBehaviour
     }
     public void FRZOff()
     {
-        FRZFlag = false;
+        if (FRZFlag)
+            FRZFlag = false;
     }
     public void statusColor()
     {

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1597114585400646131}
   - component: {fileID: 1955367464877720915}
   - component: {fileID: 2386062536397241943}
-  - component: {fileID: 57955446742922917}
   m_Layer: 1
   m_Name: Crab_Skill_Nippers
   m_TagString: Untagged
@@ -4916,22 +4915,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &57955446742922917
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597114585400646128}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: 1.75}
-  serializedVersion: 2
-  m_Radius: 0.1
 --- !u!1 &6348137973866257033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,7 +4954,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6348137973866257033}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

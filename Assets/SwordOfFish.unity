@@ -1917,6 +1917,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5150571998780614078, guid: 6d172a0139de124459bbbbb69d010698, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: BossEnemyCrab
+      value: 
+      objectReference: {fileID: 3746851511517188243, guid: 70288617a8c32e545b9ceef21cbf3d07, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: IntroPanelName
       value: 
       objectReference: {fileID: 3777541319963868618}
@@ -1930,7 +1934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stagys2.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.size
@@ -1984,6 +1988,10 @@ PrefabInstance:
       propertyPath: Stagys2.Array.data[3]
       value: 
       objectReference: {fileID: 7211160799632442228, guid: dbe74aaa4e2c69c43993c13c04ddac38, type: 3}
+    - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
+      propertyPath: Stagys2.Array.data[4]
+      value: 
+      objectReference: {fileID: 7211160799632442228, guid: 9fb433eccc6ebcd4eae76f9611d4b039, type: 3}
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Stayges.Array.data[0]
       value: 

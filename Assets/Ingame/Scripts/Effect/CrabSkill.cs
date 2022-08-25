@@ -33,7 +33,7 @@ public class CrabSkill : MonoBehaviour
         LEFT = KingCrab.GetComponent<KingCrab>().NippersFlag;
         SkillFlag = false;
         timer = 0f;
-        waitTime = 3f;
+        waitTime = 2f;
 
         Vector3 dir = Player.transform.position - transform.position;
         RB.velocity = dir.normalized * 1f;
@@ -69,25 +69,22 @@ public class CrabSkill : MonoBehaviour
         if (flag) // 플레이어가 닿으면 ture
         {
             RB.velocity = Vector2.zero;
-
             texture.fps = 5f;
-            if (SkillFlag)
-            {
-                Invoke("CreateEffect", 0.3f);
-                timer = 0f;
-                waitTime = timer + 1f;
-            }
+            waitTime = timer + 1f;
 
-            SkillFlag = false;
+            flag = false;
         }
 
+        if (timer >= 0.2f)
+            OnOffCollider(true);
+            
         if (timer >= waitTime)
             Destroy(gameObject);
 
         if (GM.GetComponent<GameManager_>().EndFlag == true) Destroy(gameObject);
     }
 
-    void CreateEffect()
+    public void CreateEffect()
     {
         var E = Instantiate(Effect, EffectPosition(), Quaternion.Euler(0, 0, 0));
 
@@ -104,5 +101,10 @@ public class CrabSkill : MonoBehaviour
     public Vector3 EffectPosition()
     {
         return Colider.transform.position;
+    }
+
+    public void OnOffCollider(bool on)
+    {
+        Colider.GetComponent<CircleCollider2D>().enabled = on;
     }
 }
