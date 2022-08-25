@@ -30,8 +30,11 @@ public class HitFeel : MonoBehaviour
 
     public void TimeStop(float weight)
     {
-        Vibrate vibrate1 = new Vibrate();
-        vibrate1.vibrate(30);
+        if (transform.parent.tag == "Player")
+        {
+            Vibrate vibrate1 = new Vibrate();
+            vibrate1.vibrate(30);
+        }
         FishWeight = weight;
         if (!stopping)
         {
@@ -43,7 +46,7 @@ public class HitFeel : MonoBehaviour
             PlayerValue(0);
             if (transform.parent.tag == "Player")
                 cam.GetComponent<Tracking_player>().StartCoroutine("CrushCam"); // 킬할때 카메라 흔들리게 해서 타격감살리기.
-            StartCoroutine("Stop_");
+            // StartCoroutine("Stop_");
 
         }
     } // 유닛회전,이동 속도 줄이는 함수.
@@ -54,8 +57,8 @@ public class HitFeel : MonoBehaviour
         //PlayerValue(1);
         PlayerSlowValue();
 
-        yield return new WaitForSecondsRealtime(0.15f*FishWeight); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
-         PlayerValue(1);
+        yield return new WaitForSecondsRealtime(0.1f * FishWeight); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
+        PlayerValue(1);
         stopping = false;
 
 
@@ -67,7 +70,7 @@ public class HitFeel : MonoBehaviour
 
     void PlayerValue(float value) // 손 봥야하는 곳!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     {
-        SlowFlag_=false;   
+        SlowFlag_ = false;
     } // 유닛회전,이동 속도 줄어들기 이전으로 바꿔주는함수.
     void PlayerSlowValue()
     {
@@ -100,10 +103,11 @@ public class HitFeel : MonoBehaviour
                 transform.localScale = new Vector3(0.1f, 1f, 1f);
                 GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             }
-            if(SlowFlag_){
+            if (SlowFlag_)
+            {
                 Player_.GetComponent<Player>().RB.velocity = Vector2.zero;
             }
-            
+
         }
     }
 }

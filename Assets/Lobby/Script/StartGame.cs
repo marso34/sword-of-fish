@@ -36,12 +36,14 @@ public class StartGame : MonoBehaviour
     }
     public void OnClick_()
     {
-        //LobbyMusic.SetActive(false);
-        for (int i = 0; i < 2; ++i)
+        if (QM.GetComponent<QuestManager>().Level_==2 && QM.GetComponent<QuestManager>().Level_ == 1){
+            InGame.transform.GetChild(0).gameObject.SetActive(false);
+            InGame.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
         {
-            if (i == QM.GetComponent<QuestManager>().Level_ - 1)
-                InGame.transform.GetChild(i).gameObject.SetActive(true);
-            else InGame.transform.GetChild(i).gameObject.SetActive(false);
+            InGame.transform.GetChild(0).gameObject.SetActive(true);
+            InGame.transform.GetChild(1).gameObject.SetActive(false);
         }
         GMC.SetActive(false);
         //LBanner.GetComponent<AddmobBanner>().DestroyAd();

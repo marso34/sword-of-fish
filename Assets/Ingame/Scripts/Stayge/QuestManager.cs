@@ -514,7 +514,7 @@ public class QuestManager : MonoBehaviour
     {
         if (IngameLevel == 4 || IngameLevel == 3)
         {
-            var Boss = Instantiate(BokBoss, SetPosition(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f)); //위치정해저있어야됨 좌우로 계쏙 움직임.
+            var Boss = Instantiate(BokBoss, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f)); //위치정해저있어야됨 좌우로 계쏙 움직임.
             Boss.name = "Boss";
         }
         else if (IngameLevel == 5)
