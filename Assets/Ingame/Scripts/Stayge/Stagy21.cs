@@ -48,10 +48,10 @@ public class Stagy21 : Stage
     {
         QM.GetComponent<QuestManager>().ResetPlayerStat();
         //TutorialName.SetActive(false);
-        //GM.GetComponent<GameManager_>().ObjectCleaner();
+        // GM.GetComponent<GameManager_>().ObjectCleaner();
         QM.GetComponent<QuestManager>().ShapeNum = 1;
         QM.GetComponent<QuestManager>().ResetCounter();
-        //QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
+        QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
         QM.GetComponent<QuestManager>().ResetMaxCounter();
         QM.GetComponent<QuestManager>().MaxCount = 1;
         QM.GetComponent<QuestManager>().StagyStagtFlag = true;

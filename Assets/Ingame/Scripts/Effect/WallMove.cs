@@ -18,7 +18,7 @@ public class WallMove : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Potal") != null)
             {
                 Vector3 P = new Vector3(GameObject.FindGameObjectWithTag("Potal").transform.position.x - transform.position.x, transform.position.y, transform.position.z);
-                RB.velocity = P.normalized * 0.3f;
+                RB.velocity = P.normalized * 0.7f;
             }
         }
         else RB.velocity = Vector2.zero;
