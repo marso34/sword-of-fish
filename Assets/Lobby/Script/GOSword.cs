@@ -14,6 +14,8 @@ public class GOSword : MonoBehaviour    //게임오버 패널에서 생성되는 무기
         sword.transform.SetParent(transform.parent.transform.GetChild(1));      //LobbySword밑에 자식으로 clone생기게 함
         //무기 보이는 위치
         sword.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+        sword.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+        sword.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
         sword.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
         sword.GetComponent<RectTransform>().sizeDelta = new Vector2(320, 160);
 

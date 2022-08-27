@@ -36,7 +36,7 @@ public class PlayerScript : Player
 
     public GameObject SkillBtn;
     public GameObject ItemBtn;
-    public GameObject NotEndGame;
+    public GameObject[] NotEndGame;
     public GameObject JoyStick;
     public float globalTime = 1;
 
@@ -230,7 +230,7 @@ public class PlayerScript : Player
 
             // C = new Color((112f + 175f)/255f, (-219f + 227f)/255f, (-255f + 86f)/255f, 1f); // rgb(175, 227, 86) 
         }
-        else if(StartFlag2 == false) NotInit();
+        else if (StartFlag2 == false) NotInit();
     }
 
     /// <summary>
@@ -314,7 +314,8 @@ public class PlayerScript : Player
         if (GM.GetComponent<GameManager_>().EndFlag)
         {
             NotInit();
-            NotEndGame.SetActive(false);
+            for (int i = 0; i < NotEndGame.Length; ++i)
+                NotEndGame[i].SetActive(false);
             value.joyTouch = Vector3.zero;
             JoyStick.SetActive(false);
             StartFlag2 = false;

@@ -19,6 +19,8 @@ public class GOFish : MonoBehaviour
 
         //물고기 몸체 위치
         player.GetComponent<RectTransform>().anchoredPosition = new Vector3(-160, 0, 0);
+        player.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0.5f);
+        player.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
         player.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
         player.GetComponent<RectTransform>().sizeDelta = new Vector2(320, 320);
     }
