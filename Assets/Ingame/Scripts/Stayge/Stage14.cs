@@ -49,7 +49,7 @@ public class Stage14 : Stage
     }
     public void ShowText()
     {
-        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("복어를 잡아줘!");
-        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("복어를 잡아줘!");
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("보거를 잡아줘!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("보거를 잡아줘!");
     }
 }

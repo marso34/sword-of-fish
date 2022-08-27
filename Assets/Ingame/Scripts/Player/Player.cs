@@ -579,7 +579,8 @@ public class Player : MonoBehaviour
         MovementSpeed = TempMovementSp + transform.localScale.y / 2;
         BusterSpeed = TempBusterSp + transform.localScale.y / 2;
         isMove = true; //dir != Vector3.zero;
-        if (isMove && Life)
+        if (FRZFlag) Speed = 0;
+        if (!FRZFlag && isMove && Life)
         {
             if (isMove)
             {
@@ -590,7 +591,7 @@ public class Player : MonoBehaviour
                     Timer33++;
                 }
             }
-            if(FRZFlag) Speed = 0;
+            
             else if (SharkFlag)
             {
                 Speed = BusterSpeed * 3f;
