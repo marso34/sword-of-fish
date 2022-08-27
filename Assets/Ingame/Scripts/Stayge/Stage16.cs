@@ -46,6 +46,7 @@ public class Stage16 : Stage
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BosskillScore;
         TrashOn();
     }
+
     public void ShowText()
     {
         GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("≈©∂ÛƒÀ¿ª ¿‚æ∆¡‡!");

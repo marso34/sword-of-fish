@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 //flesh부분은 오류가있음 크기키우는함수도 개편될수있으니 유의바람.//  
 public class PlayerScript : Player
 {
-    
+
     public JoystickValue value;
     public GameObject Knife;//MFish초기화할때쓰임
     public GameObject Body;//MBody초기화 할때 쓰임 
@@ -139,9 +139,7 @@ public class PlayerScript : Player
             GameStartInit();
             StartFlag2 = true;
             Init_();
-
         }
-
         if (StartFlag2 == true)//찐스타트
         {
             transform.position = MyBody.transform.position;
@@ -152,6 +150,7 @@ public class PlayerScript : Player
 
             if (Life)
             {
+                isMove = true;
                 dir = value.joyTouch;
                 if (cutGauge <= 0) BusterFlag = false;
                 HPManager();
@@ -168,7 +167,6 @@ public class PlayerScript : Player
                     {
                         CountTime = 0;
                         KCFlag = false;
-
                         CountKill = 0;
                     }
                 }
@@ -177,7 +175,7 @@ public class PlayerScript : Player
 
                 if (cutGauge > 0 && isMove)
                     GetPlayer_BusterInput();
-                else if (cutGauge <= 0 || !isMove)
+                else if (cutGauge <= 0)
                 {
                     Destroy(GameObject.FindWithTag("BS"));
                     //DefaultMoveSpeed();
@@ -186,6 +184,13 @@ public class PlayerScript : Player
                 GetPlayer_tp();
                 Handlebar();
 
+                if (!BusterFlag)
+                {
+                    if (GameObject.FindWithTag("BS") != null)
+                    {
+                        Destroy(GameObject.FindWithTag("BS"));
+                    }
+                }
                 if (Speed == MovementSpeed)
                     RecuveryBusterGage();
 
@@ -222,13 +227,14 @@ public class PlayerScript : Player
             if (HP <= 0) DieLife();
 
 
-            
+
             // C = new Color((112f + 175f)/255f, (-219f + 227f)/255f, (-255f + 86f)/255f, 1f); // rgb(175, 227, 86) 
         }
+        else if(StartFlag2 == false) NotInit();
     }
 
     /// <summary>
-    
+
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
 
@@ -271,7 +277,7 @@ public class PlayerScript : Player
             WhiteFlesh();
             Glitter();
             Invoke("InitBody__", 1.5f);
-            MyBody.GetComponent<HitFillBody>().TimeStop(10f);
+            MyBody.GetComponent<HitFillBody>().TimeStop_(1f);
         }
         if (HP <= 0 && flagerror)
         {
@@ -312,7 +318,8 @@ public class PlayerScript : Player
             value.joyTouch = Vector3.zero;
             JoyStick.SetActive(false);
             StartFlag2 = false;
-            MyKnife.SetActive(false);
+            MyKnife.tag = "NotKnife";
+
         }
     }
     public void mobileBuster()

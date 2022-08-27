@@ -38,34 +38,34 @@ public class Skin : MonoBehaviour
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        outline = false;
-        Flag = false;
-        t = 0f;
+        // spriteRenderer = GetComponent<SpriteRenderer>();
+        // outline = false;
+        // Flag = false;
+        // t = 0f;
     }
 
     private void Update()
     {
-        t += Flag ? Time.deltaTime : 0f;
+        // t += Flag ? Time.deltaTime : 0f;
 
-        // if (timer >= 0.1f) { // ±ôºýÀÓ
-        //     timer = 0f;
-        //     outlineSize ^= 1;
-        // }
+        // // if (timer >= 0.1f) { // ±ôºýÀÓ
+        // //     timer = 0f;
+        // //     outlineSize ^= 1;
+        // // }
 
-        if (t >= 1f || !Flag)
-            t = 0f;
+        // if (t >= 1f || !Flag)
+        //     t = 0f;
 
-        UpdateOutline(outline);
+        // UpdateOutline(outline);
     }
 
     void UpdateOutline(bool outline)
     {
-        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        spriteRenderer.GetPropertyBlock(mpb);
-        mpb.SetFloat("_Outline", outline ? 1f : 0);
-        mpb.SetColor("_OutlineColor", outlineColor.Evaluate(t));
-        mpb.SetFloat("_OutlineSize", outlineSize);
-        spriteRenderer.SetPropertyBlock(mpb);
+        // MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+        // spriteRenderer.GetPropertyBlock(mpb);
+        // mpb.SetFloat("_Outline", outline ? 1f : 0);
+        // mpb.SetColor("_OutlineColor", outlineColor.Evaluate(t));
+        // mpb.SetFloat("_OutlineSize", outlineSize);
+        // spriteRenderer.SetPropertyBlock(mpb);
     }
 }

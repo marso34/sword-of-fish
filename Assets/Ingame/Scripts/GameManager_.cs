@@ -67,7 +67,7 @@ public class GameManager_ : MonoBehaviour
         StartFlag_ = false;
         StartButtonFlag = false;
         //SetResolution();
-        Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
+       // Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
        // SetResolution_();
     }
    
@@ -109,7 +109,9 @@ public class GameManager_ : MonoBehaviour
 
     public void GoLobby()
     {
+
         ResetGame();
+        
         Lobby_.SetActive(true);
         Debug.Log("lobby");
         InGame.SetActive(false);

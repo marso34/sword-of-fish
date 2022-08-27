@@ -68,7 +68,7 @@ public class BodyInteraction : MonoBehaviour
                     other.transform.parent.gameObject.GetComponent<Player>().KillScoreUp();
                     if (other.name != "body" && other.transform.parent.tag == "Player")
                         other.transform.GetComponent<HitFeel>().TimeStop(1f);
-                    
+                    //if(transform.parent.tag == "Player")transform.GetComponent<HitFillBody>().TimeStop_(1f);
                     float QR = Random.Range(1, 7);
                     var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
                     float R = Random.Range(0.8f, 1.7f);

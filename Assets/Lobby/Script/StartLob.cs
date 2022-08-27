@@ -14,7 +14,7 @@ public class StartLob : MonoBehaviour
     {
         Lobby.SetActive(true);
         StartPanel.SetActive(false);
-
+        Debug.Log("³ª´­¸²");
         //Lobby.GetComponent<AddmobBanner>().StartAdInLob();
         //startAd.GetComponent<AddmobBanner>().StartAdInLob();
 

@@ -10,7 +10,7 @@ public class Tittle : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {          
-        StartCoroutine("Move");
+       // StartCoroutine("Move");
         
 
     }
@@ -19,15 +19,15 @@ public class Tittle : MonoBehaviour
         
     }
     
-    IEnumerator Move()//움직임애니매이션재생
-    {
+    // IEnumerator Move()//움직임애니매이션재생
+    // {
         
-        for (int i = 0; i < 9; ++i)
-        {
-            transform.GetComponent<SpriteRenderer>().sprite = skin_.BasicKnife[i];     
-              yield return new WaitForSeconds(0.1f);
+    //     // for (int i = 0; i < 9; ++i)
+    //     // {
+    //     //     transform.GetComponent<SpriteRenderer>().sprite = skin_.BasicKnife[i];     
+    //     //       yield return new WaitForSeconds(0.1f);
             
-        }
+    //     // }
         
-    }
+    // }
 }
