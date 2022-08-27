@@ -546,7 +546,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (Level_ == 2)
         {
-            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -4.5f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -13.4f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
         }
 
 
