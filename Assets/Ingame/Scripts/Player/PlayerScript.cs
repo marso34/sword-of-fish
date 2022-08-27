@@ -315,6 +315,7 @@ public class PlayerScript : Player
     {
         if (BusterFlag == true)
         {
+            Debug.Log(RB.angularVelocity + " = ¼Ó·Â");
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
