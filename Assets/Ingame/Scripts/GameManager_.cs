@@ -67,7 +67,7 @@ public class GameManager_ : MonoBehaviour
         StartFlag_ = false;
         StartButtonFlag = false;
         //SetResolution();
-        Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
+       // Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
        // SetResolution_();
     }
    
@@ -109,7 +109,9 @@ public class GameManager_ : MonoBehaviour
 
     public void GoLobby()
     {
+
         ResetGame();
+        
         Lobby_.SetActive(true);
         Debug.Log("lobby");
         InGame.SetActive(false);
@@ -160,10 +162,13 @@ public class GameManager_ : MonoBehaviour
         GameObject[] Attackers = GameObject.FindGameObjectsWithTag("Attacker");
         GameObject[] AiPlayers = GameObject .FindGameObjectsWithTag("AiPlayer");
         GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
+        GameObject KingCrab = GameObject.FindGameObjectWithTag("KingCrab");
         GameObject []BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
         GameObject V = GameObject.FindWithTag("V");
+
         Destroy(GameObject.FindGameObjectWithTag("Stage"));
         Destroy(Kraken);
+        Destroy(KingCrab);
         Destroy(V);
         for (int i = 0; i < BigTrash.Length; ++i)
         {

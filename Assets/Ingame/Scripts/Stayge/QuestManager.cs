@@ -127,8 +127,8 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
-        Level_ = 1;//초기 렙설정
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        Level_ = 2;//초기 렙설정
+        IngameLevel = 5; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         TutorialLev = 0;
@@ -264,12 +264,8 @@ public class QuestManager : MonoBehaviour
     }
     public void CurrentCountInit()//퀘스트 완료조건 정의
     {
-
-
         CurrentCount = Stayge.GetComponent<Stage>().GoalCount;
         // Debug.Log(CurrentCount + "카운트");
-
-
     }//ShapeA에서 사용
     public void ResetPlayerStat()//각 소 스테이지 마다 초기화 돼야 할 플레이어변수 초기화
     {
@@ -279,13 +275,12 @@ public class QuestManager : MonoBehaviour
     }
     public void ObjectCleanerNextStage()//다음 소 스테이지로 갈 때 필수적으로 지워야할것들만 지움
     {
-
         GameObject[] Items = GameObject.FindGameObjectsWithTag("Item");
         GameObject[] Attackers = GameObject.FindGameObjectsWithTag("Attacker");
         GameObject[] AiPlayers = GameObject.FindGameObjectsWithTag("AiPlayer");
         GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
+        GameObject KingCrab = GameObject.FindGameObjectWithTag("KingCrab");
         GameObject[] BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
-
 
         for (int i = 0; i < Attackers.Length; ++i)
         {
@@ -416,7 +411,7 @@ public class QuestManager : MonoBehaviour
             if (WaveMaxCount > WaveOC) Invoke("CreateWaveO", 2.5f);// 물결오브제 생성
             if (BigTrashMaxCount > BigTrashOC)
             {
-                Invoke("CreateBigTrashO", 4f);//큰쓰레기 생성 캠액션 할것.
+                CreateBigTrashO();//큰쓰레기 생성 캠액션 할것.
                 BigTrashOC++;
             }
             if (TrashMaxCount > TrashOC)
@@ -519,7 +514,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 5)
         {
-            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -3f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
+            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -10.3f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
             Boss.name = "Boss";
         }
         else if (IngameLevel == 6)

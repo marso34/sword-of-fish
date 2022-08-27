@@ -100,6 +100,9 @@ public class Boss : MonoBehaviour
             DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
             DT.transform.localScale *= 2f;
             HP -= 5;
+
+            if (HP < 0)
+                HP = 0;
         }
     }
     IEnumerator Die() //ì£½ìŒ ?• ?‹ˆ

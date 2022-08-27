@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    public float FRZTimer;
+    public float FRZWatime;
     public GameObject DamageText;
     bool Flag_ = false;
     public Rigidbody2D RB;
@@ -132,13 +134,20 @@ public class Player : MonoBehaviour
         TempBusterSp = 4.6f;     // J
         TempRotateSp = 1200f;   // J
     }
-    public void FRZOn(){
+
+    public void FRZOn()
+    {
+        FRZTimer = 0;
         FRZFlag = true;
-        Invoke("FRZOff",2f);
     }
-    public void FRZOff(){
+
+    public void FRZOff()
+    {
         FRZFlag = false;
+        C = Color.white;
+        S.color = C;
     }
+
     // public void DefaultMoveSpeed()
     // {
     //     if (StateMoveFlag_ == false)
@@ -178,25 +187,27 @@ public class Player : MonoBehaviour
         }
     }
 
+
     public void StopRotateSpeed()
     {
         if (StateRotateFlag_ == false)
         {
             RotationSpeed = 0.0001f;
             StateRotateFlag_ = true;
-
         }
     }
 
+
     public void FastSpeed(float index)// Î¨ºÍ≥†Í∏? ?ù¥?èô?Üç?èÑ Î©??ã∞?óê?Ñú ?èôÍ∏∞Ìôî.
     {
-        if (!SharkFlag && transform.tag =="Player")
+        if (!SharkFlag && transform.tag == "Player")
         {
             var b = Instantiate(BubbleSound, transform.position, Quaternion.Euler(0, 0, 0));
             b.tag = "BS";
         }
         BusterFlag = true;
     }
+
     public void OffFastSpeed()
     {
         if (GameObject.FindGameObjectWithTag("BS"))
@@ -563,9 +574,10 @@ public class Player : MonoBehaviour
     }
     public void rota()
     {
-        if(FRZFlag) RotationSpeed = 0f;
-        else if(MyKnife.GetComponent<HitFeel>().SlowFlag_){
-            RotationSpeed = (20 - MyKnife.GetComponent<HitFeel>().FishWeight*10) *3;
+        if (FRZFlag) RotationSpeed = 0f;
+        else if (MyKnife.GetComponent<HitFeel>().SlowFlag_)
+        {
+            RotationSpeed = (20 - MyKnife.GetComponent<HitFeel>().FishWeight * 10) * 3;
         }
         else if (SlowFlag) RotationSpeed = 300f;
         else RotationSpeed = 1200f;
@@ -579,7 +591,8 @@ public class Player : MonoBehaviour
         MovementSpeed = TempMovementSp + transform.localScale.y / 2;
         BusterSpeed = TempBusterSp + transform.localScale.y / 2;
         isMove = true; //dir != Vector3.zero;
-        if (isMove && Life)
+
+        if ((transform.tag == "InkOct"||transform.tag == "AiPlayer" ||(transform.tag =="Player" && MyBody.GetComponent<HitFillBody>().SlowFlag_ == false)) && isMove && Life)
         {
             if (isMove)
             {
@@ -590,8 +603,8 @@ public class Player : MonoBehaviour
                     Timer33++;
                 }
             }
-            if(FRZFlag) Speed = 0;
-            else if (SharkFlag)
+
+            if (SharkFlag)
             {
                 Speed = BusterSpeed * 3f;
                 if (BusterFlag) Speed = BusterSpeed * 4f;
@@ -599,16 +612,15 @@ public class Player : MonoBehaviour
             else if (SlowFlag) Speed = 1f;
             else if (BusterFlag) Speed = BusterSpeed;
             else Speed = MovementSpeed;
-            RB.velocity = dir * Speed * Time.deltaTime * 60f;
 
-            if(!BusterFlag) {
-                if(GameObject.FindWithTag("BS")!=null){
-                    Destroy(GameObject.FindWithTag("BS"));
-                }
+
+            {
+                RB.velocity = dir * Speed * Time.deltaTime * 60f;
+                //if (transform.tag == "InkOct") Debug.Log("≈∏ƒ⁄¿Ãµø");
+                rota();
             }
-            if (transform.tag == "InkOct") Debug.Log("≈∏ƒ⁄¿Ãµø");
-            rota();
         }
+
     }
 
     public void GetPlayer_tp()// ?†êÎ©? Íµ¨ÌòÑ
@@ -737,7 +749,7 @@ public class Player : MonoBehaviour
     {
         if (GM.GetComponent<GameManager_>().resetFlag)
         {
-            if(GameObject.FindGameObjectWithTag("Bubble") != null)
+            if (GameObject.FindGameObjectWithTag("Bubble") != null)
                 Destroy(GameObject.FindGameObjectWithTag("Bubble"));
             Destroy(gameObject);
         }
@@ -878,10 +890,11 @@ public class Player : MonoBehaviour
         if (QM.GetComponent<QuestManager>().Level_ == 2 && (QM.GetComponent<QuestManager>().IngameLevel == 2 || QM.GetComponent<QuestManager>().IngameLevel == 3))
         {
             GameObject ST = GameObject.FindGameObjectWithTag("Stage");
-            if(QM.GetComponent<QuestManager>().IngameLevel == 2)
-            ST.GetComponent<Stage22>().EnemyCount--;
-            else if (QM.GetComponent<QuestManager>().IngameLevel == 3){
-                 ST.GetComponent<Stage23>().EnemyCount--;
+            if (QM.GetComponent<QuestManager>().IngameLevel == 2)
+                ST.GetComponent<Stage22>().EnemyCount--;
+            else if (QM.GetComponent<QuestManager>().IngameLevel == 3)
+            {
+                ST.GetComponent<Stage23>().EnemyCount--;
             }
         }
     }

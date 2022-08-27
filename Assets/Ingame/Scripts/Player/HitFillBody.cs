@@ -27,15 +27,12 @@ public class HitFillBody : MonoBehaviour
         camPosition_original = cam.position;
         stopTime = 0.2f;
         FishWeight = 1f;
+        stopping = false;
+        SlowFlag_ = false;
     }
 
-    public void TimeStop(float weight)
+    public void TimeStop_(float weight)
     {
-        if (transform.parent.tag == "Player")
-        {
-            Vibrate vibrate1 = new Vibrate();
-            vibrate1.vibrate(30);
-        }
         FishWeight = weight;
         if (!stopping)
         {
@@ -54,7 +51,7 @@ public class HitFillBody : MonoBehaviour
         //PlayerValue(1);
         PlayerSlowValue();
 
-        yield return new WaitForSecondsRealtime(0.1f * FishWeight); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
+        yield return new WaitForSecondsRealtime(FishWeight /2f); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
         PlayerValue(1);
         stopping = false;
 

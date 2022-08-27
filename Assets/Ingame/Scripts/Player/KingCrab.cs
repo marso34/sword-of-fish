@@ -11,6 +11,13 @@ public class KingCrab : Boss
 
     public GameObject ArmL;
     public GameObject ArmR;
+    public GameObject L2;
+    public GameObject L3;
+    public GameObject L4;
+    public GameObject R2;
+    public GameObject R3;
+    public GameObject R4;
+
     public GameObject Bullet;
 
     public GameObject Point1;
@@ -29,6 +36,9 @@ public class KingCrab : Boss
     float ArmAngles;
     float ArmSpeed;
     float CurrentArmAngles;
+
+    float DieAngles;
+    float CurrentAngles;
 
     void Start()
     {
@@ -57,11 +67,12 @@ public class KingCrab : Boss
         ArmAngles = 0f;
         ArmSpeed = 5f;
         CurrentArmAngles = 0f;
+        DieAngles = 60f;
     }
 
     void Update()
     {
-        if (HP > 0 && !FRZFlag)
+        if (HP > 0 && !FRZFlag && Life)
         {
             timer += Time.deltaTime;
             timer_ += Time.deltaTime;
@@ -188,13 +199,18 @@ public class KingCrab : Boss
             waitTime = 0f;
         }
 
-        if (FRZFlag || HP <= 0 || STOP)
+        if (FRZFlag || HP == 0 || STOP)
         {
             STOP = false;
             Dir = Vector2.zero;
             timer2 = 0f;
         }
 
+        if (HP <= 0 && Life)
+        {
+            Dir = Vector2.down;
+            Speed = 0.5f;
+        }
 
         RB.velocity = Dir * Speed;
     }
@@ -216,11 +232,24 @@ public class KingCrab : Boss
     {
         if (HP <= 0 && Life)
         {
-            Life = false;
             gameObject.layer = 4;
-            // transform.GetComponent<SpriteRenderer>().color = Color.clear;
-            StopAllCoroutines();
-            Invoke("win", 1.5f);
+
+            CurrentAngles = Mathf.Lerp(CurrentAngles, DieAngles, Time.deltaTime * 1.5f);
+
+            ArmL.transform.localEulerAngles = new Vector3(0f, 0f, -CurrentAngles);
+            ArmR.transform.localEulerAngles = new Vector3(0f, 0f, CurrentAngles);
+            L2.transform.localEulerAngles = new Vector3(0f, 0f, -CurrentAngles);
+            L3.transform.localEulerAngles = new Vector3(0f, 0f, -CurrentAngles / 2);
+            L4.transform.localEulerAngles = new Vector3(0f, 0f, -CurrentAngles / 2);
+            R2.transform.localEulerAngles = new Vector3(0f, 0f, CurrentAngles);
+            R3.transform.localEulerAngles = new Vector3(0f, 0f, CurrentAngles / 2);
+            R4.transform.localEulerAngles = new Vector3(0f, 0f, CurrentAngles / 2);
+
+            if (CurrentAngles >= DieAngles - 5f)
+            {
+                Life = false;
+                Invoke("win", 2f);
+            }
         }
     }
 

@@ -36,6 +36,7 @@ public class StartGame : MonoBehaviour
     }
     public void OnClick_()
     {
+        GM.transform.GetChild(0).gameObject.SetActive(true);
         if (QM.GetComponent<QuestManager>().Level_==2 && QM.GetComponent<QuestManager>().IngameLevel == 1){
             InGame.transform.GetChild(0).gameObject.SetActive(false);
             InGame.transform.GetChild(1).gameObject.SetActive(true);

@@ -41,6 +41,7 @@ public class Stage24 : Stage
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
             QM.GetComponent<QuestManager>().ObjMFlag = true;
+            QM.GetComponent<QuestManager>().Player.transform.position = Vector3.zero;
         }
         GoalCount = 0; //QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
         TrashOn();

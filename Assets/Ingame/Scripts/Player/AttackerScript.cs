@@ -25,12 +25,14 @@ public class AttackerScript : Player
 
     private void Start()
     {
+        FRZTimer = 0;
+        FRZWatime = 2.5f;
         RB = GetComponent<Rigidbody2D>();
         SkillFlag_ = true;
         Debug.Log("나는 자연인이다.");
         GM = GameObject.FindGameObjectWithTag("GM");
         QM = GameObject.FindGameObjectWithTag("QM");
-
+        
         S = Skin.transform.GetComponent<SpriteRenderer>();
         skin_ = Skin.transform.GetComponent<Skin>();
 
@@ -47,7 +49,7 @@ public class AttackerScript : Player
         timer = 0;
         waitingTime = 2f;
         bulletRange = new Vector3(9f, 3f, 0);
-
+        MovementSpeed = 3;
         RotationSpeed = 720f;
         TempMovementSp = 2.3f; //J
         TempBusterSp = 4.6f;     // J
@@ -88,7 +90,7 @@ public class AttackerScript : Player
         if (other.gameObject.tag == "FRZ")
         {
             FRZOn();
-            Invoke("FRZOff", 2.5f);
+            
         }
 
         // Debug.Log(other.gameObject.tag);
@@ -196,8 +198,10 @@ public class AttackerScript : Player
     public void MoveAtt()
     {
         dir = PlayerP.transform.position - transform.position;
-        if (Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) >= Mathf.Abs(bulletRange.magnitude))
+        if (Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) >= Mathf.Abs(bulletRange.magnitude)){
             RB.velocity = dir / 3;
+        
+        }
         else RB.velocity = Vector3.zero;
         Debug.Log(Mathf.Abs((PlayerP.transform.position - transform.position).magnitude) + " " + Mathf.Abs(bulletRange.magnitude));
 
@@ -209,10 +213,22 @@ public class AttackerScript : Player
         lookrota();
         PlayerP = GameObject.FindGameObjectWithTag("Player");
         statusColor();
-
-        if (PlayerP != null && !FRZFlag && Life)
+        
+        if (PlayerP != null && Life)
         {
-            MoveAtt();
+            if (FRZFlag == true)
+            {
+                Speed = 0;
+                RB.velocity = Vector3.zero;
+                FRZTimer += Time.deltaTime;
+                if (FRZTimer > FRZWatime)
+                {
+                    FRZOff();
+                    FRZTimer = 0;
+                    Speed = 3f;
+                }
+            }
+            else MoveAtt();
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {

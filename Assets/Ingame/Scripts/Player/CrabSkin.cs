@@ -20,11 +20,18 @@ public class CrabSkin : MonoBehaviour
     public Sprite[] T2;
     public Sprite[] T3;
 
-    public int HP;
+    int HP; // KingCrab에서 
     bool FRZFlag;
+    bool Life; // 가져오는 변수(동기화)
+
+    float timer;
+    int index;
 
     void Start()
     {
+        timer = 0f;
+        index = 6;
+
         for (int i = 0; i < 13; i++)
             Skin[i] = Child[i].GetComponent<SpriteRenderer>();
 
@@ -35,6 +42,7 @@ public class CrabSkin : MonoBehaviour
     {
         HP = transform.GetComponent<KingCrab>().HP;
         FRZFlag = transform.GetComponent<KingCrab>().FRZFlag;
+        Life = transform.GetComponent<KingCrab>().Life;
 
         if (HP < 15) // 페이즈2에서 쓰레기 끄기
         {
@@ -43,6 +51,7 @@ public class CrabSkin : MonoBehaviour
         }
 
         ChangeColor();
+        DieImg();
     }
 
     public IEnumerator Start_()
@@ -51,7 +60,7 @@ public class CrabSkin : MonoBehaviour
     }
     public IEnumerator ChangeImg()//움직임애니매이션재생
     {
-        for (int i = 0; i < 10; )
+        for (int i = 0; i < 10;)
         {
             Skin[0].sprite = Head[i];
             Skin[1].sprite = Eye[i];
@@ -67,7 +76,10 @@ public class CrabSkin : MonoBehaviour
             Skin[11].sprite = T2[i];
             Skin[12].sprite = T3[i];
 
-            if (!FRZFlag && HP > 0) i++;
+            if (!FRZFlag && HP > 0 && Life) i++;
+
+            if (HP <= 0)
+                i = 3;
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -79,11 +91,28 @@ public class CrabSkin : MonoBehaviour
         {
             if (FRZFlag)
                 Skin[i].color = new Color(60f / 255f, 150f / 255f, 255f / 255f);
-            else 
+            else
                 Skin[i].color = Color.white;
         }
     }
-    
+
+    void DieImg()
+    {
+        if (HP <= 0 && index > 3)
+        {
+            StopAllCoroutines();
+            timer += Time.deltaTime;
+
+            if (timer >= 0.1f)
+            {
+                Debug.Log(index + "  테스트 ");
+                index--;
+                Skin[1].sprite = Eye[index];
+                timer = 0f;
+            }
+        }
+    }
+
     public void OnOutline()
     {
         UpdateOutline(true);

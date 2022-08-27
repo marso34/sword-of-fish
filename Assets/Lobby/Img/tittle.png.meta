@@ -134,13 +134,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tittle_0
+      name: tittle_1
       rect:
         serializedVersion: 2
         x: 640
         y: 400
         width: 640
-        height: 400
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,13 +155,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_1
+      name: tittle_2
       rect:
         serializedVersion: 2
         x: 1280
         y: 400
         width: 640
-        height: 400
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,13 +176,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_2
+      name: tittle_3
       rect:
         serializedVersion: 2
         x: 1920
         y: 400
         width: 640
-        height: 400
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,13 +197,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_3
+      name: tittle_4
       rect:
         serializedVersion: 2
         x: 2560
         y: 400
         width: 640
-        height: 400
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,13 +218,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_4
+      name: tittle_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 640
-        height: 400
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,13 +239,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_5
+      name: tittle_6
       rect:
         serializedVersion: 2
         x: 640
         y: 0
         width: 640
-        height: 393
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,13 +260,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_6
+      name: tittle_7
       rect:
         serializedVersion: 2
         x: 1280
         y: 0
         width: 640
-        height: 380
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,13 +281,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_7
+      name: tittle_8
       rect:
         serializedVersion: 2
         x: 1920
         y: 0
         width: 640
-        height: 388
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,7 +302,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_8
+      name: tittle_9
       rect:
         serializedVersion: 2
         x: 2560
@@ -323,13 +323,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tittle_9
+      name: tittle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 400
         width: 640
-        height: 400
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,16 +354,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tittle_0: 7661032991678358643
-      tittle_3: 6467945308087278111
-      tittle_2: 5733187292383219759
-      tittle_7: 4451556225772357703
-      tittle_1: 5031539546682129790
-      tittle_8: -3919362490472213427
-      tittle_4: -4839078858241740385
-      tittle_5: 2693164795229152964
-      tittle_6: 7085357203751403976
-      tittle_9: 3948229573561625720
+      tittle_0: 3948229573561625720
+      tittle_3: 5733187292383219759
+      tittle_2: 5031539546682129790
+      tittle_7: 2693164795229152964
+      tittle_8: 7085357203751403976
+      tittle_1: 7661032991678358643
+      tittle_4: 6467945308087278111
+      tittle_5: -4839078858241740385
+      tittle_6: 2693164795229152964
+      tittle_9: 4451556225772357703
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

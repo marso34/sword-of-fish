@@ -12,7 +12,7 @@ public class Crab_Skill_Bubble : MonoBehaviour
 
     void Start()
     {
-        MaxCnt = Random.Range(3, 6);
+        MaxCnt = Random.Range(4, 7);
         Destroy(gameObject, 5f);
     }
 

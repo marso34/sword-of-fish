@@ -32,8 +32,8 @@ public class AiPlayerScript : Player
         GM = GameObject.FindGameObjectWithTag("GM");
         Flag_get = false;
         AiPlayers_ = new GameObject[9];
-
-
+        FRZWatime = 2.5f;
+        FRZTimer = 0;
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
         S = Skin.transform.GetComponent<SpriteRenderer>();
 
@@ -86,6 +86,7 @@ public class AiPlayerScript : Player
             Init_();
         }
 
+     
         else if (Target != null)
         {
             if (firstMoveFlag)
@@ -94,6 +95,7 @@ public class AiPlayerScript : Player
             }
             if (Life)
             {
+                
                 var T = (Player.transform.position - transform.position);
                 if (Mathf.Abs(MinFar.magnitude) > Mathf.Abs(T.magnitude)) ViewFlag = true;
                 else ViewFlag = false;
@@ -113,7 +115,19 @@ public class AiPlayerScript : Player
                     dir = PlayerTracking().normalized;
                     BusterFlag = false;
                 }
-                PlayerMove();//움직임 및 State초기화         
+                if (FRZFlag == true)
+                {
+                    Speed = 0;
+                    RB.velocity = Vector2.zero;
+                    FRZTimer += Time.deltaTime;
+                    if (FRZTimer > FRZWatime)
+                    {
+                        FRZOff();
+                        FRZTimer = 0;
+                        Speed = MovementSpeed;
+                    }
+                }
+                else PlayerMove();//움직임 및 State초기화         
                 SetBuster();
                 BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
                 SkillTimer += Time.deltaTime;

@@ -17,7 +17,7 @@ public class BubleParticle : MonoBehaviour
     {
         if (Buble != null)
         {
-            transform.GetChild(0).localScale = transform.parent.localScale * 0.3f;
+            transform.GetChild(0).localScale = transform.parent.localScale * 0.35f;
             ParticleSystem.MainModule main = Buble.main;
             ParticleSystem.EmissionModule emission = Buble.emission;
 
