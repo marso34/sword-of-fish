@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    public GameObject DamageText;
     bool Flag_ = false;
     public Rigidbody2D RB;
     public int AnimFlame = 10; // ?• ?‹ˆ ?Š¤?”„ë¦? ?‹œ?Š¸ ?”„? ˆ?ž„

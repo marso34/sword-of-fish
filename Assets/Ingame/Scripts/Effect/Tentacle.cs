@@ -249,7 +249,7 @@ public class Tentacle : MonoBehaviour
     void FloatingDamageTxt(int Damage)
     {
         var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        DT.GetComponent<DamageTxt>().dtxt.text = Damage.ToString();
+   
         DT.transform.localScale *= 2f;
     }
 

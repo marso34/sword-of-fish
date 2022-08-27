@@ -8,7 +8,7 @@ public class AttackerScript : Player
     public GameObject KillEffectO;
     public GameObject bullet;
     public GameObject KS_;
-    public GameObject DamageText;
+    
 
     public float timer;
     public float waitingTime;
@@ -294,7 +294,7 @@ public class AttackerScript : Player
         if (other.transform.tag == "EXPL")
         {
             var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+    
             HP -= 5;
             if (transform.name == "Boss")
                 DT.transform.localScale *= 2f;
@@ -316,12 +316,12 @@ public class AttackerScript : Player
             if (other.transform.tag == "Knife")
             {
                 var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
+                
                 if (transform.name == "Boss")
                     DT.transform.localScale *= 2f;
 
-                if (other.name != "body")
-                    other.transform.GetComponent<HitFeel>().TimeStop(1f);
+                // if (other.name != "body")
+                //    // other.transform.GetComponent<HitFeel>().TimeStop(1f);
 
                 var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
                 float x_ = transform.localScale.x;

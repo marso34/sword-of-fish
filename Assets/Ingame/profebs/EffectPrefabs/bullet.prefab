@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4d16f960d4a76429f18edf0e060439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
   KillEffect: {fileID: 1972847932912936975, guid: 3c7009d5742233b4d8586764350bbdad, type: 3}
   KillEffect2: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillSound_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
@@ -126,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fad71a29e0a1344a658a5445ff4431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageTxt: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
 --- !u!1 &8029002707973276346
 GameObject:

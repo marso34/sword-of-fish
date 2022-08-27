@@ -50,6 +50,8 @@ public class PlayerScript : Player
     bool KCFlag;
     bool RaiseFlag;
 
+    public int KomBoCount;
+
     public GameObject TwoKillSound;
     public GameObject ThreeKillSound;
     public GameObject FourKillSound;
@@ -70,6 +72,7 @@ public class PlayerScript : Player
     public bool killcheck = false; //y Àû Á×ÀÌ±â Æ©Åä¸®¾ó
     public void Start()
     {
+        KomBoCount = 0;
         TuLev1 = false; //y ÀÌµ¿ Æ©Åä¸®¾ó 
         transform.position = Vector3.zero;
         HP = 5;
@@ -256,9 +259,10 @@ public class PlayerScript : Player
         //ê¹œë¹¡?ž„.ì½”ë“œ
         ShowDieAnim(0);
         state = State.Die;
-
+        KomBoCount = 0;
         if (HP > 0)
         {
+
             var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
             HP--;
             MyBody.tag = "Shiled";
@@ -267,7 +271,7 @@ public class PlayerScript : Player
             WhiteFlesh();
             Glitter();
             Invoke("InitBody__", 1.5f);
-            MyKnife.GetComponent<HitFeel>().TimeStop(2f);
+            MyBody.GetComponent<HitFillBody>().TimeStop(10f);
         }
         if (HP <= 0 && flagerror)
         {

@@ -70,7 +70,7 @@ public class BodyInteraction : MonoBehaviour
                         other.transform.GetComponent<HitFeel>().TimeStop(1f);
                     
                     float QR = Random.Range(1, 7);
-                    var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));
+                    var KE = Instantiate(KillEffect, transform.position, Quaternion.Euler(0f, 0f, 20f * QR));
                     float R = Random.Range(0.8f, 1.7f);
                     float x_ = transform.localScale.x;
                     if (x_ > 0)

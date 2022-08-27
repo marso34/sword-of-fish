@@ -40,7 +40,7 @@ public class Stagy21 : Stage
         if (VEC.GetComponent<FlowingBigT>().BigT == null)
         {
             if (GameObject.FindWithTag("Potal") != null)
-                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("AiPlayer"));
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Potal"));
         }
         GoalCount = Potal.GetComponent<Potal>().Goal;
     }
@@ -60,10 +60,9 @@ public class Stagy21 : Stage
     }
     void setWalls()
     {
-        Wall[0] = GameObject.FindGameObjectWithTag("1");
-        Wall[1] = GameObject.FindGameObjectWithTag("2");
-        Wall[2] = GameObject.FindGameObjectWithTag("3");
-
+        for(int i=1;i<6;++i){
+            Wall[i-1] = GameObject.FindGameObjectWithTag(i.ToString());
+        }
     }
 
     public void upWall()

@@ -79,6 +79,7 @@ TagManager:
   - KingCrab
   - CrabBeam
   - CrabArmor
+  - 5
   layers:
   - Default
   - TransparentFX

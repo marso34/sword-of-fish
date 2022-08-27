@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9347d021503ed6047a3f349de3598f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
   RB: {fileID: 0}
   AnimFlame: 10
   DieAnimFlame: 10

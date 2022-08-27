@@ -29,7 +29,7 @@ public class Tracking_player : MonoBehaviour
         int deviceHeight = Screen.height; // 기기 높이 저장
 
         Screen.SetResolution(Screen.width, Screen.width * setWidth / setHeight, true); // SetResolution 함수 제대로 사용하기
-
+        
         if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 기기의 해상도 비가 더 큰 경우
         {
             float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // 새로운 너비
@@ -104,7 +104,7 @@ public class Tracking_player : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.06f); //+(Mathf.Pow(2, target.localScale.y) / 100)
 
-        shake = 0;
+        //shake = 0;
         transform.position = new Vector3(transform.position.x, transform.position.y, z);
     }
     public void BustValue(bool value)
