@@ -1550,9 +1550,7 @@ PrefabInstance:
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: Levelboard
       value: 
-
       objectReference: {fileID: 3777541319963868618}
-
     - target: {fileID: 7293554181689406614, guid: bfbbac1814f15f8489425cad1a22f5b0, type: 3}
       propertyPath: PaperTrash
       value: 
