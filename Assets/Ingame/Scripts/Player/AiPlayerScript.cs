@@ -151,6 +151,7 @@ public class AiPlayerScript : Player
     }
     public override void DieLife()
     {
+        var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
         Speed = 0f;   // 나중에 수정 필요. 
         RB.velocity = Vector2.zero;
         MyKnife.transform.parent = null;

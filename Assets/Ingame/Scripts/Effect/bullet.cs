@@ -5,6 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     // Start is called before the first frame update
+    
     Rigidbody2D RB;
     public Vector3 dir;
     private void Start()

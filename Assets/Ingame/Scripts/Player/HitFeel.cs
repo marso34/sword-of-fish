@@ -33,58 +33,20 @@ public class HitFeel : MonoBehaviour
         if (transform.parent.tag == "Player")
         {
             Vibrate vibrate1 = new Vibrate();
-            vibrate1.vibrate(30);
+            vibrate1.vibrate(20);
         }
         FishWeight = weight;
         if (!stopping)
         {
-            TempBusterSp = Player_.transform.GetComponent<Player>().BusterSpeed;
-            TempMoveSp = Player_.transform.GetComponent<Player>().MovementSpeed;
-            TempRotateSp = Player_.transform.GetComponent<Player>().RotationSpeed;
-            TempSpeed = Player_.transform.GetComponent<Player>().Speed;
             stopping = true;
-            PlayerValue(0);
-            if (transform.parent.tag == "Player")
-                cam.GetComponent<Tracking_player>().StartCoroutine("CrushCam"); // 킬할때 카메라 흔들리게 해서 타격감살리기.
-            // StartCoroutine("Stop_");
+            //if (transform.parent.tag == "Player")
+              ///  cam.GetComponent<Tracking_player>().StartCoroutine("CrushCam"); // 킬할때 카메라 흔들리게 해서 타격감살리기.
+            //StartCoroutine("Stop_");
 
         }
     } // 유닛회전,이동 속도 줄이는 함수.
-    IEnumerator Stop_()
-    {
-
-        // yield return new WaitForSecondsRealtime(0.00f);
-        //PlayerValue(1);
-        PlayerSlowValue();
-
-        yield return new WaitForSecondsRealtime(0.1f * FishWeight); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
-        PlayerValue(1);
-        stopping = false;
-
-
-        Player_.transform.GetComponent<Player>().StopCoroutine("Start_");
-
-        Player_.transform.GetComponent<Player>().StartCoroutine("Start_");
-
-    }// 줄였다가, 원상복구시키는 코루틴.
-
-    void PlayerValue(float value) // 손 봥야하는 곳!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    {
-        SlowFlag_ = false;
-    } // 유닛회전,이동 속도 줄어들기 이전으로 바꿔주는함수.
-    void PlayerSlowValue()
-    {
-        SlowFlag_ = true;
-    }  //실질적으로 유닛회전,이동 속도 줄이는 함수.
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        if ((other.transform.tag == "Trush" || other.transform.tag == "BigTrash" || other.transform.tag == "Kraken" || other.transform.tag == "Attacker" || other.transform.tag == "Tentacle" || other.transform.tag == "InkOct" || other.transform.tag == "BTK") && (transform.tag == "Knife" && transform.parent.tag == "Player"))
-        {
-            // if (other.transform.tag == "Kraken" || other.transform.tag == "Attacker" ||other.transform.tag == "Tentacle")
-
-            TimeStop(1f);
-        }
-    }
+    
+    
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -103,11 +65,7 @@ public class HitFeel : MonoBehaviour
                 transform.localScale = new Vector3(0.1f, 1f, 1f);
                 GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             }
-            if (SlowFlag_)
-            {
-                Player_.GetComponent<Player>().RB.velocity = Vector2.zero;
-            }
-
+    
         }
     }
 }

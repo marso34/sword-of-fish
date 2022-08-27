@@ -25,11 +25,11 @@ public class BigTrash : MonoBehaviour
         {
             if (other.gameObject.tag == "Knife" && other.transform.parent.gameObject.tag == "Player")
             {
-                other.transform.GetComponent<HitFeel>().TimeStop(0.8f);
+                //other.transform.GetComponent<HitFeel>().TimeStop(0.8f);
                 HP -= 1;
 
                 var DT = Instantiate(DamageText, other.contacts[0].point, Quaternion.Euler(0f, 0f, 0f));
-                DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
+               
                 DT.transform.localScale *= 2f;
 
                 float x_ = transform.localScale.x;
@@ -54,8 +54,9 @@ public class BigTrash : MonoBehaviour
     {
         if (other.gameObject.tag == "EXPL")
         {
+            
             var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+        
             DT.transform.localScale *= 2f;
             HP -= 5;
         }

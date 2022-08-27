@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Trush : MonoBehaviour
 {
+    public GameObject DamageText;
     public GameObject KillEffect;
     public GameObject KillEffect2;
     public GameObject KillSound_;
@@ -168,7 +169,7 @@ public class Trush : MonoBehaviour
         {
             OnOutline();
             Invoke("OffOutline", 0.03f);
-
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
 
             if (transform.name != "BigTrash")
             {

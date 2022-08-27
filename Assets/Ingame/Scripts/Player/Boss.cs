@@ -138,7 +138,7 @@ public class Boss : MonoBehaviour
             Invoke("OffOutline", 0.07f);
 
             var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            DT.GetComponent<DamageTxt>().dtxt.text = 1.ToString();
+           
             DT.transform.localScale *= 2f;
             HP--;
 
