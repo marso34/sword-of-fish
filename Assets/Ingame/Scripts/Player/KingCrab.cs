@@ -186,15 +186,15 @@ public class KingCrab : Boss
     {
         if (timer2 >= 2f + waitTime)
         {
-            int R = Random.Range(0, 6);
+            Vector3 V = Player.transform.position - transform.position;
 
-            if (R == 0)
-                Dir = Vector2.zero;
-            else if (R == 1 || R == 2)
+            if (V.x <= -2f)
                 Dir = Vector2.left * Speed;
-            else if (R == 3 || R == 4)
+            else if (V.x >= 2f)
                 Dir = Vector2.right * Speed;
-
+            else
+                Dir = Vector2.zero;
+                
             timer2 = 0f;
             waitTime = 0f;
         }
@@ -206,9 +206,6 @@ public class KingCrab : Boss
             timer2 = 0f;
         }
 
-
-        Dir = Vector2.zero;
-        
         if (HP <= 0 && Life)
         {
             Dir = Vector2.down;

@@ -38,6 +38,7 @@ public class ButtonE : MonoBehaviour
     public void Set(GameObject Button)
     {
         rect2 = Button.GetComponent<RectTransform>();
+        transform.SetAsFirstSibling();
     }
 
     void SetSize()

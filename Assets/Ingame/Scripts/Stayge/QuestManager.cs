@@ -205,7 +205,7 @@ public class QuestManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            IngameLevel++;
+            CurrentCount = MaxCount;
             Flag = true;
         }
         else if (Input.GetKeyDown(KeyCode.Y))
