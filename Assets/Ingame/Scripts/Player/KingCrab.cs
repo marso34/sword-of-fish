@@ -206,6 +206,9 @@ public class KingCrab : Boss
             timer2 = 0f;
         }
 
+
+        Dir = Vector2.zero;
+        
         if (HP <= 0 && Life)
         {
             Dir = Vector2.down;

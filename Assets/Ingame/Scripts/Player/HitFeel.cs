@@ -30,11 +30,11 @@ public class HitFeel : MonoBehaviour
 
     public void TimeStop(float weight)
     {
-        if (transform.parent.tag == "Player")
-        {
-            Vibrate vibrate1 = new Vibrate();
-            vibrate1.vibrate(20);
-        }
+        // if (transform.parent.tag == "Player")
+        // {
+        //     Vibrate vibrate1 = new Vibrate();
+        //     vibrate1.vibrate(20);
+        // }
         FishWeight = weight;
         if (!stopping)
         {

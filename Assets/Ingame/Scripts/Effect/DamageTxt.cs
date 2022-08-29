@@ -29,7 +29,7 @@ public class DamageTxt : MonoBehaviour
 
         else if (Player.GetComponent<PlayerScript>().KomBoCount > 20) alpha = Color.gray;
         dtxt.text = Player.GetComponent<PlayerScript>().KomBoCount.ToString();
-
+        dtxt.color = Color.clear;
         Invoke("DelTxt", 2f);
     }
 
@@ -38,7 +38,8 @@ public class DamageTxt : MonoBehaviour
     {
         transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed);
-        dtxt.color = alpha;
+        // dtxt.color = alpha;
+        dtxt.color = Color.clear;
     }
 
     void DelTxt()
