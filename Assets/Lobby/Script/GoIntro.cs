@@ -13,6 +13,7 @@ public class GoIntro : MonoBehaviour
     public GameObject QM;
     public GameObject OffAd;
     public GameObject Ingame;
+    public GameObject BackG;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,8 @@ public class GoIntro : MonoBehaviour
     public void OnClick()
     {
         //LobbyMusic.SetActive(false);
-       // OffAd.GetComponent<AddmobBanner>().HideAd();
-      
+        // OffAd.GetComponent<AddmobBanner>().HideAd();
+        BackG.SetActive(false);
         Lobby.SetActive(false);
         GMC.SetActive(false);
         Ingame.SetActive(true);
