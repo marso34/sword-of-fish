@@ -90,26 +90,26 @@ public class QuestManager : MonoBehaviour
     public GameObject StaygeLevel;
     public Sprite UIM_Stage;
     public GameObject TutorialName;
-    public GameObject TutorialPlan;
+    //public GameObject TutorialPlan;
     public bool StagyStagtFlag;
 
     public int TutorialLev;
-    public int TempTuLev;
+    //public int TempTuLev;
     //public bool TuLev1 = false;
-    public bool EndTutorial; // 튜토리얼 끝났는지확인
-    public bool TutorialCheck;
+    //public bool EndTutorial; // 튜토리얼 끝났는지확인
+    //public bool TutorialCheck;
 
     public bool CheckFlesh;
     public bool CheckTrash;
     public Transform Canvas;
-    public GameObject tutorial;
+    //public GameObject tutorial;
     public int ResetTouch;
 
 
     public float timer;
     public int waitingTime;
     public int TempFlesh;
-    public GameObject TutoBack;
+    //public GameObject TutoBack;
 
     public bool A = true;
     public GameObject BokBoss;
@@ -120,6 +120,7 @@ public class QuestManager : MonoBehaviour
     public Transform IntroPenelT;
     public Transform PlayerT;
 
+    public GameObject[] Stagys0;
     public GameObject[] Stagys1;
     public GameObject[] Stagys2;
 
@@ -128,12 +129,12 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Level_ = 0;//초기 렙설정
-        IngameLevel = 0; //n스테이지진입후 n-n 스테이지레벨    
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
-        TutorialLev = 0;
+        //TutorialLev = 0;
         waitingTime = 2;
-        TempTuLev = 0;
+        //TempTuLev = 0;
         Stayge = null;
         StagyStagtFlag = false;
         Flag = true;
@@ -143,7 +144,7 @@ public class QuestManager : MonoBehaviour
     }
     void Update()
     {
-
+        Levelboard.GetComponent<Text>().text = Level_.ToString();
         if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
@@ -155,7 +156,11 @@ public class QuestManager : MonoBehaviour
                 {
                     // Debug.Log("? ??" + KnifeEC + "???" + BulletEC);
                     QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
-
+                    if (Level_ < 0)
+                    {
+                        QuestBoard_.GetComponent<QB>().ShapeA.SetActive(false);
+                    }
+                    //if(Level_< 1) QuestBoard_
                     ShapeInit();
                     SucssesFlagOnOff();
                     EndGameCheck();
@@ -230,17 +235,15 @@ public class QuestManager : MonoBehaviour
         if (ShapeNum == 5) TimeOut_EndCheck();
         else if (ShapeNum == 1) ShapeA_EndCheck();
         //else if (ShapeNum == 2) ShapeB_EndCheck();
-        else if (ShapeNum == 10) tutorial.GetComponent<Tutorial>().Tutorial_EndCheck();
+        //else if (ShapeNum == 10) tutorial.GetComponent<Tutorial>().Tutorial_EndCheck();
     }// 게임 끝나는거 체
     public void Level_0_Action()
     {
-        if (Level_ == 0)
+        if (IngameLevel < 5)
         {
-            Stayge = Instantiate(Stagys1[0], Vector3.zero, Quaternion.Euler(0, 0, 0));
+            CurrentCount = 0;
 
-            tutorial = GameObject.Find("Tutorial(Clone)").gameObject;
-            //TutorialPlan = GameObject.Find("Tutorial(Clone)").transform.Find("TutorialCanvas").transform.Find("TuText").gameObject;
-            Debug.Log(" 레 벨 0 a c t i o n");
+            Stayge = Instantiate(Stagys0[IngameLevel - 1], Vector3.zero, Quaternion.Euler(0, 0, 0));
         }
     }
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
@@ -296,33 +299,30 @@ public class QuestManager : MonoBehaviour
         limitTime = 0;
         if (Level_ == 0)
         {
-            ShapeNum = 10;
-            IngameLevel = 1;
-            IntroPanel.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("Stage1").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("plan1").gameObject.SetActive(true);
+            GameObject.Find("IntroPanel").transform.Find("Stagy Level").gameObject.SetActive(true);
+
+            Color a;
+            a.a = 1;
+            a.b = 1;
+            a.g = 1;
+            a.r = 1;
+
+            GameObject uim_Stage = GameObject.Find("GameManager/Canvas/IntroPanel");
+            Color color = uim_Stage.GetComponent<Image>().color = a;
+            IntroPanel.GetComponent<Image>().sprite = UIM_Stage;
 
 
-            TutorialLev = 1;
-
-            GameObject.FindWithTag("plan").SetActive(false);
-            GameObject.FindWithTag("Stage1").SetActive(false);
-            GameObject.FindWithTag("plan1").SetActive(false);
-            GameObject.FindWithTag("Stagy Level").SetActive(false);
-
-            //tutorial = Instantiate(tutorial);
-            TutorialName = Instantiate(TutorialName);
-            TutoBack = Instantiate(TutoBack);
-            TutoBack.transform.SetParent(GM.transform);
-
-            A = true;
-
-            TutorialName.transform.SetParent(IntroPenelT);
-            TutorialName.transform.localPosition = new Vector3(0, 0, 0);
-            Debug.Log("Init_ Stagge 레 벨 =  = 0");
-            //GameObject.FindWithTag("IntroPanel").SetActive(false);
-
-
+            limitTime = 1;
+            ShapeNum = 1;
+            IntroPanelName.GetComponent<Text>().text = "0";
+            IntroPanelPlan[1].SetActive(true);
+            //IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "튜토리얼";
         }
-        else if (Level_ == 1)
+        if (Level_ == 1)
         {
 
             GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
@@ -345,7 +345,7 @@ public class QuestManager : MonoBehaviour
             ShapeNum = 1;
             IntroPanelName.GetComponent<Text>().text = "1";
             IntroPanelPlan[1].SetActive(true);
-            IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
+            // IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
             IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "적들을 처치하세요";
         }
         else if (Level_ == 2)
@@ -463,16 +463,12 @@ public class QuestManager : MonoBehaviour
         }
         float x_ = 0f;
         float y_ = 0f;
-        if (Level_ == 1)
-        {
+       
+        
             x_ = 23f;
             y_ = 11f;
-        }
-        else if (Level_ == 2)
-        {
-            x_ = 17f;
-            y_ = 5f;
-        }
+        
+       
         if (RandomSignDice() == 0) return new Vector3(x_ * Xc, Random.Range(-1 * y_, y_), 0);
         else return new Vector3(Random.Range(-1 * x_, x_), y_ * Yc, 0);
 
@@ -610,11 +606,17 @@ public class QuestManager : MonoBehaviour
         if (Stayge != null)
         {
             CurrentCountInit();
-            QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
+            if (Level_ > 0)
+            {
+                QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
 
-            QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
 
-            QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+            }
+            else {
+                QuestBoard_.GetComponent<QB>().ShapeA.SetActive(false);
+            }
         }
     }//???????? ????
     public void ShapeA_EndCheck()//shapeA에 대한 성공체크(갯수다모으는거)
@@ -624,7 +626,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
 
-            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 6))
+            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 6) || (Level_ == 0 && IngameLevel == 5))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();

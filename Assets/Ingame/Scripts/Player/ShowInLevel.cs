@@ -20,7 +20,7 @@ public class ShowInLevel : MonoBehaviour
     }
 
     // Update is called once per frame
-    
+
     void unlookthis()
     {
         GetComponent<Text>().color = new Color(0, 0, 0, 0);
@@ -30,6 +30,7 @@ public class ShowInLevel : MonoBehaviour
         // Debug.Log(c);
         GetComponent<Text>().color = c;
         GetComponent<Text>().text = arr;
-        Invoke("unlookthis", 2f);
+        if (QM.GetComponent<QuestManager>().Level_ > 0)
+            Invoke("unlookthis", 2f);
     }
 }

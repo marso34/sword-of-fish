@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    public bool UseItem_;
     public float FRZTimer;
     public float FRZWatime;
     public GameObject DamageText;
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour
 
     //--------//∆©≈‰∏ÆæÛø°º≠ ªÁøÎ
     public bool skillcheck = false;
-    public bool TutorialLev4 = false;
+    //public bool TutorialLev4 = false;
 
     public int Timer33 = 0;
     public double Timer22 = 0;
@@ -108,7 +109,15 @@ public class Player : MonoBehaviour
         YFlag = false;
         VWall = Vector2.zero;
     }
-
+    public void StopTime_()
+    {
+        Time.timeScale = 0.01f;
+    }
+    public void StartTime_()
+    {
+        Time.timeScale = 1;
+        //transform.parent.GetComponent<Player>().HP--;
+    }
     public void GameWaitInit()//?éò?ù¥?Å¨?å®?Ñê?óê?Ñú Í∏∞Îã§Î¶¥Îïå
     {
         MFish = Skin.GetComponent<SpriteRenderer>();//?ä§?Ç®?ùò SpriteRenderer Ï∞∏Ï°∞

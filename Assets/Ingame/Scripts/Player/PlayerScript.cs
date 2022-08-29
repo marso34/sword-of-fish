@@ -72,6 +72,7 @@ public class PlayerScript : Player
     public bool killcheck = false; //y 적 죽이기 튜토리얼
     public void Start()
     {
+        UseItem_ = false;
         KomBoCount = 0;
         TuLev1 = false; //y 이동 튜토리얼 
         transform.position = Vector3.zero;
@@ -281,6 +282,9 @@ public class PlayerScript : Player
         }
         if (HP <= 0 && flagerror)
         {
+            StopTime_();
+            Invoke("StartTime_", 0.015f);
+            maincam_.gameObject.GetComponent<Tracking_player>().DieCamAction();
             Speed = 0f;   // 나중에 수정
             PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
             CreateFlesh();

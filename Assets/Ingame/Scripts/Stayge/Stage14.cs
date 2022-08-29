@@ -38,7 +38,8 @@ public class Stage14 : Stage
             QM.GetComponent<QuestManager>().ObjMFlag = true;
             VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
         }
-        if (VEC.GetComponent<FlowingBigT>().BigT == null){
+        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
+        {
             if (GameObject.FindWithTag("Attacker") != null)
             {
                 VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Attacker"));

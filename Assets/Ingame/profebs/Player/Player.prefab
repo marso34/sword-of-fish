@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4e2b8cd9db62a4f8d0e4ce71c10f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseItem_: 0
   FRZTimer: 0
   FRZWatime: 0
   DamageText: {fileID: 0}
@@ -436,7 +437,6 @@ MonoBehaviour:
   PlayerHitSound: {fileID: 7524702760072201967, guid: 21bfd5652591e824a94d5d568897ac06, type: 3}
   QM: {fileID: 0}
   skillcheck: 0
-  TutorialLev4: 0
   Timer33: 0
   Timer22: 0
   MoveTime: 5
@@ -3256,7 +3256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 775707450021754205, guid: d7b369461e13bd0478600e8958c72fd9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 867736877182507720, guid: d7b369461e13bd0478600e8958c72fd9, type: 3}
       propertyPath: m_Name

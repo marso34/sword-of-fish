@@ -38,7 +38,7 @@ public class Stage12 : Stage
             Destroy(GameObject.FindGameObjectWithTag("V"));
             VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
         }
-        if (VEC.GetComponent<FlowingBigT>().BigT == null){
+        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null){
             if (GameObject.FindWithTag("AiPlayer") != null)
                 VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("AiPlayer"));
             else if (GameObject.FindWithTag("Attacker") != null)

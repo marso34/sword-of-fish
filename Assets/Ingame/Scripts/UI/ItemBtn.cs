@@ -52,6 +52,8 @@ public class ItemBtn : UiButton
     {
         if (img.sprite != Defualt)  // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
+            Player.GetComponent<PlayerScript>().UseItem_ = true;
+            Invoke("falseUseItem", 2f);
             img.sprite = Defualt;
             Effect();
 
@@ -79,7 +81,8 @@ public class ItemBtn : UiButton
         if (img.sprite != Defualt) // 아이템 버튼 이미지가 기본 상태가 아니면, 즉 아이템을 먹었으면
         {
             img.sprite = Defualt;
-
+            Player.GetComponent<PlayerScript>().UseItem_ = true;
+            Invoke("falseUseItem",2f);
             if (ItemNumber == 1)  // 폭탄
             {
                 var a = Instantiate(Bombs, Player.transform.position, Quaternion.Euler(0f, 0f, 0f));
@@ -100,7 +103,9 @@ public class ItemBtn : UiButton
             ItemNumber = 0;
         }
     }
-
+    public void falseUseItem(){
+        Player.GetComponent<PlayerScript>().UseItem_ = false;
+    }
     public void ChangeImage(int i) // 플레이어가 아이템 먹었을 때 호출
     {
         // if (img.sprite == Defualt) {

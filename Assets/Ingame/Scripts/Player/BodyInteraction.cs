@@ -11,7 +11,7 @@ public class BodyInteraction : MonoBehaviour
     public Transform cam;
     public float chsize = 0.001f;
     public float chc;
-    public bool TutorialFlesh = false;
+   // public bool TutorialFlesh = false;
     
     private void Start()
     {
@@ -81,12 +81,7 @@ public class BodyInteraction : MonoBehaviour
                     Flag_Still(other.transform.parent.gameObject);
                 }
 
-                if (other.transform.parent.tag == "AiPlayer" && transform.parent.tag == "Player" && transform.parent.GetComponent<Player>().HP == 0)
-                {
-                    StopTime_();
-                    Invoke("StartTime_", 0.015f);
-                    cam.gameObject.GetComponent<Tracking_player>().DieCamAction();
-                }
+              
             }
     }// ƒÆø° ¥Ÿù€¿ª∂ß
     void EatFlesh(GameObject other)
@@ -94,7 +89,7 @@ public class BodyInteraction : MonoBehaviour
         if (other.gameObject.tag == "Flesh" && ((transform.name == "body" && transform.parent.tag == "Player") || transform.tag == "Body" || transform.tag == "Shiled"))
         {
             Debug.Log("∏‘¿Ã");
-            TutorialFlesh = true; //y
+           // TutorialFlesh = true; //y
             GiveSize();
             GiveBusterGage();
             other.gameObject.GetComponent<flesh>().destroyme(transform.parent.gameObject);

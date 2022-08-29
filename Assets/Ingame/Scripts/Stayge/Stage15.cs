@@ -36,6 +36,15 @@ public class Stage15 : Stage
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
              QM.GetComponent<QuestManager>().ObjMFlag = true;
+            QM.GetComponent<QuestManager>().Player.transform.position = Vector3.zero;
+            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+        }
+        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
+        {
+            if (GameObject.FindWithTag("BigTrash") != null)
+            {
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BigTrash"));
+            }
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
         TrashOn();

@@ -37,7 +37,7 @@ public class Stage11 : Stage
             QM.GetComponent<QuestManager>().ObjMFlag = true;
             VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
         }
-        if (VEC.GetComponent<FlowingBigT>().BigT == null)
+        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
         {
             if (GameObject.FindWithTag("AiPlayer") != null)
                 VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("AiPlayer"));

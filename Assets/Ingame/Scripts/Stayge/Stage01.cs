@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage16 : Stage
+public class Stage01 : Stage
 {
+    bool SFlag;
+    float Timer;
+    float WTimer;
     void Start()
     {
         GoalCount = 0;
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.005f;
-        TrashFlag = true;
+        TrashFlag = false;
+        SFlag = false;
+        Timer = 0;
+        WTimer = 2;
     }
 
     // Update is called once per frame
@@ -24,32 +30,36 @@ public class Stage16 : Stage
             //TutorialName.SetActive(false);
             //GM.GetComponent<GameManager_>().ObjectCleaner();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
-            Destroy(GameObject.FindGameObjectWithTag("V"));
+            if (GameObject.FindGameObjectWithTag("V") != null)
+                Destroy(GameObject.FindGameObjectWithTag("V"));
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 0;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
-            QM.GetComponent<QuestManager>().BulletEC = 1;
-            QM.GetComponent<QuestManager>().BossMaxCount = 1;
+            QM.GetComponent<QuestManager>().BulletEC = 0;
+            QM.GetComponent<QuestManager>().BossMaxCount = 0;
             QM.GetComponent<QuestManager>().MaxCount = 1;
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
-            QM.GetComponent<QuestManager>().ObjMFlag = true;
-            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+            QM.GetComponent<QuestManager>().ObjMFlag = false;
+
         }
-        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
+        if (QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BusterFlag == true)
         {
-            if (GameObject.FindWithTag("Kraken") != null)
-                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Kraken"));
+            Timer +=Time.deltaTime;
+            if(Timer> WTimer){
+                Timer = 0;
+                GoalCount = 1;
+            }
         }
-        GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BosskillScore;
+        else Timer = 0;
         TrashOn();
     }
 
     public void ShowText()
     {
-        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("≈©∂ÛƒÀ¿ª ¿‚æ∆¡‡!");
-        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("≈©∂ÛƒÀ¿ª ¿‚æ∆¡‡!");
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("∫ŒΩ∫≈Õ πˆ∆∞¿ª ø¿∑° ¥≠∑Ø¡‡");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("");
     }
 }

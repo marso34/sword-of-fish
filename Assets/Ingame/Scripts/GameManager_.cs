@@ -160,7 +160,9 @@ public class GameManager_ : MonoBehaviour
         GameObject KingCrab = GameObject.FindGameObjectWithTag("KingCrab");
         GameObject []BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
         GameObject V = GameObject.FindWithTag("V");
-
+        if(GameObject.FindWithTag("BS") != null){
+            Destroy(GameObject.FindWithTag("BS"));
+        }
         Destroy(GameObject.FindGameObjectWithTag("Stage"));
         Destroy(Kraken);
         Destroy(KingCrab);

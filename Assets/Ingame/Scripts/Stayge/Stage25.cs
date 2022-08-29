@@ -38,11 +38,12 @@ public class Stage25 : Stage
             QM.GetComponent<QuestManager>().ObjMFlag = true;
             VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
         }
-        // if (VEC.GetComponent<FlowingBigT>().BigT == null)
-        // {
-        //     if (GameObject.FindWithTag("Kraken") != null)
-        //         VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Kraken"));
-        // }
+        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
+        {
+            if (GameObject.FindWithTag("KingCrab") != null)
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("KingCrab"));
+        }
+
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BosskillScore;
         TrashOn();
     }

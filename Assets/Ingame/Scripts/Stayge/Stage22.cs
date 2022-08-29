@@ -74,7 +74,8 @@ public class Stage22 : Stage
             }
             if (WaveLevel == GoalLevel) GoalCount++;
         }
-        if (VEC.GetComponent<FlowingBigT>().BigT == null){
+        if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
+        {
             if (GameObject.FindWithTag("AiPlayer") != null)
                 VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("AiPlayer"));
             else if (GameObject.FindWithTag("Attacker") != null)
