@@ -17,6 +17,6 @@ public class SelectSword : SelectObj    //Sword(0~5)Btn에 들어간 스크립트
     {
         base.CallLobby(i);      
         LobbySword.GetComponent<GOSword>().GetSwordNum(i);
-        GOSword.GetComponent<GOSword>().GetSwordNum(i);
+        //GOSword.GetComponent<GOSword>().GetSwordNum(i);
     }
 }

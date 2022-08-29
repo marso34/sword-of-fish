@@ -9,9 +9,11 @@ public class StartLob : MonoBehaviour
     public GameObject StartPanel;
     //public GameObject GMC;
     public GameObject startAd;
+    public GameObject Backg;
 
     public void OnClick()
     {
+        Backg.SetActive(true);
         Lobby.SetActive(true);
         StartPanel.SetActive(false);
         Debug.Log("³ª´­¸²");

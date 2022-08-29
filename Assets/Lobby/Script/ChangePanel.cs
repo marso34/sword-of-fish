@@ -16,19 +16,19 @@ public class ChangePanel : MonoBehaviour
         switch (this.gameObject.name)
         {
             case "FishShopBtn":
-                Lobby.SetActive(true);
+                Lobby.SetActive(false);
                 FishShop.SetActive(true);
                 break;
 
             case "SwordShopBtn":
-                Lobby.SetActive(true);
+                Lobby.SetActive(false);
                 SwordShop.SetActive(true);
                 SwordShop_0.SetActive(true);
                 SwordShop_1.SetActive(false);
                 break;
 
             case "SettingBtn":
-                Lobby.SetActive(true);
+                Lobby.SetActive(false);
                 SettingPanel.SetActive(true);
                 break;
         }

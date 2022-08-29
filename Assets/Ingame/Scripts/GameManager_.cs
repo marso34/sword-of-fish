@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 //패널 관리, 게임 종료관리, 게임 시작 관리등
 public class GameManager_ : MonoBehaviour
 {
+    public GameObject BackG;
     public GameObject Lobby_;
     public GameObject InGame;
     public GameObject Intro;
@@ -73,11 +74,6 @@ public class GameManager_ : MonoBehaviour
    
     private void Update()
     {
-       
-
-
-
-
         //OnPreCull();
         if (StartKeyFlag)
         {
@@ -109,9 +105,8 @@ public class GameManager_ : MonoBehaviour
 
     public void GoLobby()
     {
-
         ResetGame();
-        
+        BackG.SetActive(true);      
         Lobby_.SetActive(true);
         Debug.Log("lobby");
         InGame.SetActive(false);
