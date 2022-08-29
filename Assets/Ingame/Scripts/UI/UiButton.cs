@@ -12,7 +12,7 @@ public class UiButton : MonoBehaviour, IPointerDownHandler
     public void Effect()
     {
         var c = Instantiate(click, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        c.transform.SetParent(transform.parent.GetChild(0), false);
+        c.transform.SetParent(transform.parent, false);
         c.transform.GetComponent<ButtonE>().Set(gameObject);
     }
 

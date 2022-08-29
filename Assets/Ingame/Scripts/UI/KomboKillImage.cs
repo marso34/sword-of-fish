@@ -85,7 +85,7 @@ public class KomboKillImage : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        
+         transform.GetComponent<Image>().color = Color.clear;
     }
     
 } 

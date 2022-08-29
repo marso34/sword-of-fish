@@ -128,6 +128,7 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
+
         Level_ = 0;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
@@ -210,17 +211,22 @@ public class QuestManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            IngameLevel = 3;
+            CurrentCount = MaxCount;
             Flag = true;
         }
         else if (Input.GetKeyDown(KeyCode.Y))
         {
-            IngameLevel = 4;
+            IngameLevel--;
             Flag = true;
         }
         else if (Input.GetKeyDown(KeyCode.U))
         {
-            IngameLevel = 6;
+            Level_++;
+            Flag = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.U))
+        {
+            Level_--;
             Flag = true;
         }
 
@@ -463,12 +469,12 @@ public class QuestManager : MonoBehaviour
         }
         float x_ = 0f;
         float y_ = 0f;
-       
-        
-            x_ = 23f;
-            y_ = 11f;
-        
-       
+
+
+        x_ = 23f;
+        y_ = 11f;
+
+
         if (RandomSignDice() == 0) return new Vector3(x_ * Xc, Random.Range(-1 * y_, y_), 0);
         else return new Vector3(Random.Range(-1 * x_, x_), y_ * Yc, 0);
 
@@ -515,7 +521,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 6)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -12.68f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -12.8f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
             Boss.name = "Boss";
         }
     }
@@ -533,7 +539,7 @@ public class QuestManager : MonoBehaviour
     {//위치 정해져 있어야할듯? 바닥 쪽에
         if (Level_ == 1)
         {
-            var Obj = Instantiate(BigTrashObj, SetPosition(0, 0, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
+            var Obj = Instantiate(BigTrashObj, SetPosition(0, -0.12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
         }
         else if (Level_ == 2)
         {
@@ -610,13 +616,16 @@ public class QuestManager : MonoBehaviour
             {
                 QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
 
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(0).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
 
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
+
+                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
             }
-            else {
+            else
+            {
                 QuestBoard_.GetComponent<QB>().ShapeA.SetActive(false);
             }
+
         }
     }//???????? ????
     public void ShapeA_EndCheck()//shapeA에 대한 성공체크(갯수다모으는거)
