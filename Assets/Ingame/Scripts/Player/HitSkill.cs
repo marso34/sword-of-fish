@@ -27,6 +27,7 @@ public class HitSkill : MonoBehaviour
                 other.transform.parent.gameObject.GetComponent<CrabSkill>().OnOffCollider(false);
                 other.transform.parent.gameObject.GetComponent<CrabSkill>().CreateEffect();
                 DamagedPlayer();
+                transform.parent.gameObject.GetComponent<Player>().RB.velocity = Vector2.zero;
             }
         }
 
