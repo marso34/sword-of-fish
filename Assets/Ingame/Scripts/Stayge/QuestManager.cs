@@ -514,7 +514,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 5)
         {
-            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -10.3f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
+            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -10.6f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
             Boss.name = "Boss";
         }
         else if (IngameLevel == 6)
