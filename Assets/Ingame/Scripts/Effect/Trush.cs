@@ -176,6 +176,7 @@ public class Trush : MonoBehaviour
                 HP--;
                 if (HP <= 0)
                 {
+                    other.gameObject.GetComponent<HitFeel>().TimeStop(0f);
                     Speed = 0;
                     other.transform.parent.gameObject.GetComponent<PlayerScript>().TrushCount++;
                     var KE = Instantiate(DelEffect, transform.position, Quaternion.Euler(0f, 0f, 0f));

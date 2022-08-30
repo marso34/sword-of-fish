@@ -75,7 +75,6 @@ public class BodyInteraction : MonoBehaviour
                     float x_ = transform.localScale.x;
                     if (x_ > 0)
                         x_ *= -1;
-
                     KE.transform.localScale = new Vector3(x_, transform.localScale.y, transform.localScale.z);
                     // KE.transform.localScale = transform.parent.localScale; * R / 1.5f;
                     Flag_Still(other.transform.parent.gameObject);

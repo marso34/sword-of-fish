@@ -336,7 +336,7 @@ public class AttackerScript : Player
                 if (transform.name == "Boss")
                     DT.transform.localScale *= 2f;
 
-                if (other.name != "body")
+                if (other.name != "body" && other.transform.parent.tag == "Player")
                     other.transform.GetComponent<HitFeel>().TimeStop(0);
 
                 var KE = Instantiate(KillEffect, V, Quaternion.Euler(0f, 0f, 20f * QR));

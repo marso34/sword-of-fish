@@ -33,13 +33,18 @@ public class HitFillBody : MonoBehaviour
 
     public void TimeStop_(float weight)
     {
+        // if (transform.parent.tag == "Player")
+        // {
+        //     Vibrate vibrate1 = new Vibrate();
+        //     vibrate1.vibrate(30);
+        // }
         FishWeight = weight;
         if (!stopping)
         {
             stopping = true;
             PlayerValue(0);
             if (transform.parent.tag == "Player")
-                cam.GetComponent<Tracking_player>().StartCoroutine("CrushCam"); // 킬할때 카메라 흔들리게 해서 타격감살리기.
+                cam.GetComponent<Tracking_player>().StartCoroutine("CrushCam"); // 찔릴때 흔들기
             StartCoroutine("Stop_");
 
         }
@@ -77,4 +82,6 @@ public class HitFillBody : MonoBehaviour
             Player_.GetComponent<Player>().RB.velocity = Vector2.zero;
         }
     }
+
+    
 }

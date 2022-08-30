@@ -129,8 +129,8 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Score = 0;
-        Level_ = 2;//초기 렙설정
-        IngameLevel = 4; //n스테이지진입후 n-n 스테이지레벨    
+        Level_ = 1;//초기 렙설정
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         //TutorialLev = 0;
@@ -618,8 +618,10 @@ public class QuestManager : MonoBehaviour
 
 
                 QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
-
-                QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+                if (Level_ == 2 && IngameLevel == 3)
+                    QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = "적 수 : " + Stayge.GetComponent<Stage23>().EnemyCount.ToString();
+                else
+                    QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
             }
             else
             {
@@ -666,7 +668,7 @@ public class QuestManager : MonoBehaviour
                 LoseFlag = false;
                 Flag = true;
                 StagyStagtFlag = false;
-                
+
             }
             else if (GM.GetComponent<GameManager_>().SuccesFlag)
             {
@@ -676,15 +678,15 @@ public class QuestManager : MonoBehaviour
                 IngameLevel = 1;
                 GM.GetComponent<GameManager_>().EndFlag = true;
                 GM.GetComponent<GameManager_>().WinPanel.SetActive(true);
-                Score = (Score +1) * (1+Player.GetComponent<PlayerScript>().killScore) / ((int)Player.GetComponent<PlayerScript>().globalTime + 1);
-                GM.GetComponent<GameManager_>().WinPanel.transform.GetChild(4).GetComponent<Text>().text = "Score : "+ Score.ToString(); 
+                Score = (Score + 1) * (1 + Player.GetComponent<PlayerScript>().killScore) / ((int)Player.GetComponent<PlayerScript>().globalTime + 1);
+                GM.GetComponent<GameManager_>().WinPanel.transform.GetChild(4).GetComponent<Text>().text = "Score : " + Score.ToString();
                 GM.GetComponent<GameManager_>().SuccesFlag = false;
 
                 Flag = true;
                 StagyStagtFlag = false;
-                
+
             }
-           
+
         }
     }//??????????? ??
 }

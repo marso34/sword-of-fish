@@ -10,6 +10,7 @@ public class Tracking_player : MonoBehaviour
     float bustValue_ = 1;
     bool dieFlag = false;
     bool StartFlag;
+    Vector3 orgposition;
     Rigidbody2D RB;
     private void Start()
     {
@@ -29,7 +30,7 @@ public class Tracking_player : MonoBehaviour
         int deviceHeight = Screen.height; // 기기 높이 저장
 
         Screen.SetResolution(Screen.width, Screen.width * setWidth / setHeight, true); // SetResolution 함수 제대로 사용하기
-        
+
         if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 기기의 해상도 비가 더 큰 경우
         {
             float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // 새로운 너비
@@ -52,15 +53,16 @@ public class Tracking_player : MonoBehaviour
 
             if (StartFlag)
             {
-                z=-19;
+                z = -19;
                 transform.position = new Vector3(target.position.x, target.position.y, z);
                 StartFlag = false;
-              transform.GetComponent<Camera>().fieldOfView = 22;
+                transform.GetComponent<Camera>().fieldOfView = 22;
             }
             var dir = target.GetComponent<PlayerScript>().MyBody.transform.position - transform.position;
             RB.velocity = dir * 2f;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
-            if(transform.GetComponent<Camera>().fieldOfView <28){
-            transform.GetComponent<Camera>().fieldOfView = 22 + target.transform.localScale.y * 3f;
+            if (transform.GetComponent<Camera>().fieldOfView < 28)
+            {
+                transform.GetComponent<Camera>().fieldOfView = 22 + target.transform.localScale.y * 3f;
             }
             else transform.GetComponent<Camera>().fieldOfView = 28;
             // transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
@@ -69,7 +71,7 @@ public class Tracking_player : MonoBehaviour
             // {
             //     transform.position = new Vector3(ray2.point.x + shake, ray2.point.y + shake,z - shake);              
             // }
-          
+
         }
         else
         {
@@ -95,15 +97,15 @@ public class Tracking_player : MonoBehaviour
     }
     IEnumerator CamAction()//카메라 흔들기.
     {
+        orgposition = transform.position;
+        //shake = (0.05f + (Mathf.Pow(2, target.localScale.y) / 100)) * 2;
+        shake = 0.5f;
 
-        shake = (0.05f + (Mathf.Pow(2, target.localScale.y) / 100)) * 2;
-        if (target.tag == "Player")
-        {
-            shake += 0.05f;
-        }
+        transform.position = new Vector3(transform.position.x + Random.Range(-shake,shake),transform.position.y + Random.Range(-shake, shake),transform.position.z + Random.Range(-shake, shake));
 
-        yield return new WaitForSecondsRealtime(0.06f); //+(Mathf.Pow(2, target.localScale.y) / 100)
-
+        yield return new WaitForSecondsRealtime(0.05f); //+(Mathf.Pow(2, target.localScale.y) / 100)
+        transform.position = new Vector3(transform.position.x + Random.Range(-shake, shake), transform.position.y + Random.Range(-shake, shake), transform.position.z + Random.Range(-shake, shake));
+        yield return new WaitForSecondsRealtime(0.05f); //+(Mathf.Pow(2, target.localScale.y) / 100)
         //shake = 0;
         transform.position = new Vector3(transform.position.x, transform.position.y, z);
     }

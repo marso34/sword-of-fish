@@ -259,7 +259,7 @@ public class KingCrab : Boss
         if ((other.transform.tag == "Knife" && other.transform.parent.tag == "Player"))
         {
             float R = Random.Range(1f, 2.5f);
-
+            other.gameObject.GetComponent<HitFeel>().TimeStop(0f);
             if (HP > 0)
             {
                 transform.GetComponent<CrabSkin>().OnOutline();

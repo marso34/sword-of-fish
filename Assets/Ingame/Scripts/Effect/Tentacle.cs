@@ -202,7 +202,7 @@ public class Tentacle : MonoBehaviour
             float R = Random.Range(2f, 5f);
             float QR = Random.Range(1, 7);
             var KS = Instantiate(KS_, V, Quaternion.Euler(0f, 0f, 20f));
-
+            other2.gameObject.GetComponent<HitFeel>().TimeStop(0f);
             FloatingDamageTxt(1);
             HP--;
 
