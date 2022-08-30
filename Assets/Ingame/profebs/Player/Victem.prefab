@@ -258,6 +258,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bc1cc0c65657640bcc88a70f875f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score: 0
+  UseItem_: 0
+  FRZTimer: 0
+  FRZWatime: 0
+  DamageText: {fileID: 0}
   RB: {fileID: 0}
   AnimFlame: 10
   DieAnimFlame: 10
@@ -268,6 +273,7 @@ MonoBehaviour:
   isMove: 0
   state: 0
   PlayerCount: 8
+  BSErrorFlag: 0
   Speed: 0
   RotationSpeed: 0
   MovementSpeed: 0
@@ -314,12 +320,14 @@ MonoBehaviour:
   PlayerHitSound: {fileID: 0}
   QM: {fileID: 0}
   skillcheck: 0
-  TutorialLev4: 0
   Timer33: 0
   Timer22: 0
   MoveTime: 3
   TuLev1: 0
+  SlowFlag: 0
   VWall: {x: 0, y: 0}
+  SharkFlag: 0
+  FRZFlag: 0
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
   KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
 --- !u!50 &3502532230121490174
@@ -882,6 +890,46 @@ PrefabInstance:
       propertyPath: DieAnims.Array.data[6]
       value: 
       objectReference: {fileID: 1462256039, guid: 9c238dee0fdca5d4793c3f4c0e4433bf, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[0]
+      value: 
+      objectReference: {fileID: 1086426842, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[1]
+      value: 
+      objectReference: {fileID: 1599875951, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[2]
+      value: 
+      objectReference: {fileID: -1333600655, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[3]
+      value: 
+      objectReference: {fileID: -1083275999, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[4]
+      value: 
+      objectReference: {fileID: 1028421893, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[5]
+      value: 
+      objectReference: {fileID: 1910264690, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[6]
+      value: 
+      objectReference: {fileID: -817786282, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[7]
+      value: 
+      objectReference: {fileID: 407585344, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[8]
+      value: 
+      objectReference: {fileID: 2045728204, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
+    - target: {fileID: 2777360688311612536, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
+      propertyPath: BornAnims_E.Array.data[9]
+      value: 
+      objectReference: {fileID: -1693822085, guid: 8e1cda325c223a54fa4b7dcfdc78a7cc, type: 3}
     - target: {fileID: 4527134425906219533, guid: 4c74b3565fe86e04b959e1afa605b562, type: 3}
       propertyPath: m_RootOrder
       value: 2

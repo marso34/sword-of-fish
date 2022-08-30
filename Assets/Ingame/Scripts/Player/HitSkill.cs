@@ -37,6 +37,7 @@ public class HitSkill : MonoBehaviour
         if (other.gameObject.transform.tag == "Potal")
         {
             Debug.Log("¼º°ø");
+            // transform.parent.gameObject.GetComponent<PlayerScript>().RB.velocity = Vector2.zero;
             other.GetComponent<Potal>().succes();
         }
 

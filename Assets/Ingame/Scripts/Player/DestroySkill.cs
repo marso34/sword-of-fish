@@ -13,7 +13,6 @@ public class DestroySkill : MonoBehaviour
   public GameObject DamageTxt;
   private void OnTriggerEnter2D(Collider2D other)
   {
-        Debug.Log("Ω∫≈≥ ¡¢√À");
         if (transform.tag == "Knife" && transform.parent.tag == "Player" && other.transform.name == "Bullet" && other.transform.tag == "SkillB")
         {
             Instantiate(DamageTxt,other.transform.position,Quaternion.Euler(0,0,0));

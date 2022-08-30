@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class Potal : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject Victem;
+
     public int Goal;
+    bool flag;
+
+
     void Start()
     {
-       Goal = 0;
+        Goal = 0;
+        flag = false;
     }
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
-    
 
-    public void succes(){
-        Invoke("upGoal",3f);
+    private void Update()
+    {
+        if (flag)
+        {
+            var Grandpa = Instantiate(Victem, new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.Euler(0, 0, -90f));
+            var anemy = Instantiate(Victem, new Vector3(transform.position.x + 8f, transform.position.y + 2f, transform.position.z), Quaternion.Euler(0, 0, -90f));
+
+            anemy.GetComponent<VictemScript>().FishNumber = 5;
+            Grandpa.transform.parent = transform;
+            anemy.transform.parent = transform;
+
+            flag = false;
+        }
     }
-    void upGoal(){
+
+    public void succes()
+    {
+        flag = true;
+        // Invoke("upGoal", 3f);
+    }
+    void upGoal()
+    {
         Goal = 1;
     }
 }

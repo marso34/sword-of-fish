@@ -30,8 +30,8 @@ public class VictemScript : Player
     // Update is called once per frame
     void Update()
     {
-          isMove = true;
-          Speed = MovementSpeed;
+        isMove = true;
+        Speed = MovementSpeed;
         AnimState(Vector3.forward);
         transform.position = MyBody.transform.position;
 
