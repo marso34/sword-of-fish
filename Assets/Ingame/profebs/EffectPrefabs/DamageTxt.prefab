@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10056c138da6a446a42d459038aa082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dtxt: {fileID: 5467012092941271034}
+  Player: {fileID: 0}
+  QM: {fileID: 0}
   ComboColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -143,8 +146,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  dtxt: {fileID: 5467012092941271034}
-  Player: {fileID: 0}
+  C: 0
 --- !u!1 &5726121915301868090
 GameObject:
   m_ObjectHideFlags: 0

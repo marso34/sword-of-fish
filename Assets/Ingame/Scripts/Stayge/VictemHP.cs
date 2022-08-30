@@ -11,7 +11,7 @@ public class VictemHP : MonoBehaviour
     public GameObject VT;
     void Start()
     {
-        VT = GameObject.FindGameObjectWithTag("Victem");
+        // VT = GameObject.FindGameObjectWithTag("Victem");
     }
 
     // Update is called once per frame

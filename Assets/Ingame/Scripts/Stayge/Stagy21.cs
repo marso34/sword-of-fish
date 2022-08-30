@@ -10,6 +10,8 @@ public class Stagy21 : Stage
     public int ClearLevel;
     public GameObject[] Wall;
     public GameObject ResponePoint;
+    public GameObject[] TrashWallPoint;
+    public GameObject TrashWall;
 
     void Start()
     {
@@ -23,7 +25,6 @@ public class Stagy21 : Stage
         initHardConst();
     }
 
-    // Update is called once per frame
     void Update()
     {
         TrashOn();
@@ -58,12 +59,24 @@ public class Stagy21 : Stage
         GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
         Cam.transform.position = new Vector3(ResponePoint.transform.position.x, ResponePoint.transform.position.y, Cam.transform.position.z);
         QM.GetComponent<QuestManager>().Player.transform.position = ResponePoint.transform.position;
+
+        for (int i = 0; i < TrashWallPoint.Length; i++)
+        {
+            var TW = Instantiate(TrashWall, RandomPositionY(TrashWallPoint[i].transform.position), Quaternion.Euler(0, 0, 0));
+            TW.transform.parent = transform;
+        } // 쓰레기 벽 생성
     }
     void setWalls()
     {
-        for(int i=1;i<6;++i){
-            Wall[i-1] = GameObject.FindGameObjectWithTag(i.ToString());
+        for (int i = 1; i < 6; ++i)
+        {
+            Wall[i - 1] = GameObject.FindGameObjectWithTag(i.ToString());
         }
+    }
+
+    Vector3 RandomPositionY(Vector3 V)
+    {
+        return new Vector3(V.x, V.y + Random.Range(-4f, 4f), V.z);
     }
 
     public void upWall()

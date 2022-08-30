@@ -192,7 +192,7 @@ public class QuestManager : MonoBehaviour
             {
                 Level_1_Action();
             }
-            if (Level_ != 0 &&Level_ % 2 == 0)
+            if (Level_ != 0 && Level_ % 2 == 0)
             {
                 Level_2_Action();
             }
@@ -379,9 +379,6 @@ public class QuestManager : MonoBehaviour
             IntroPanelPlan[1].SetActive(true);
             IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
             IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "킹크렙의 산맥";
-
-
-
         }
 
 
@@ -514,7 +511,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 5)
         {
-            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
+            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -10.7f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
             Boss.name = "Boss";
         }
         else if (IngameLevel == 4)
@@ -542,7 +539,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (Level_ != 0 && Level_ % 2 == 0)
         {
-            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -12.8f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
             Obj.name = "TrashCrab";
         }
 

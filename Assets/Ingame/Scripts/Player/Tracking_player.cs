@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Tracking_player : MonoBehaviour
 {
-    Transform target;// Tracking object preferp   
+    public Transform target;// Tracking object preferp   
     float shake;
     public float z = -19;
     float bustValue_ = 1;
     bool dieFlag = false;
     bool StartFlag;
+    public float Speed;
     Vector3 orgposition;
     Rigidbody2D RB;
     private void Start()
@@ -19,6 +20,7 @@ public class Tracking_player : MonoBehaviour
         target = transform;
         RB = transform.GetComponent<Rigidbody2D>();
         z = -19;
+        Speed = 2f;
     }
 
     public void SetResolution()
@@ -48,7 +50,7 @@ public class Tracking_player : MonoBehaviour
     ///
     void Update()
     {
-        if (target != null && target.tag == "Player")
+        if (target != null && (target.tag == "Player" || target.tag == "Victem"))
         {
 
             if (StartFlag)
@@ -58,8 +60,8 @@ public class Tracking_player : MonoBehaviour
                 StartFlag = false;
                 transform.GetComponent<Camera>().fieldOfView = 22;
             }
-            var dir = target.GetComponent<PlayerScript>().MyBody.transform.position - transform.position;
-            RB.velocity = dir * 2f;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
+            var dir = target.GetComponent<Player>().MyBody.transform.position - transform.position;
+            RB.velocity = dir * Speed;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
             if (transform.GetComponent<Camera>().fieldOfView < 28)
             {
                 transform.GetComponent<Camera>().fieldOfView = 22 + target.transform.localScale.y * 3f;
