@@ -12,7 +12,7 @@ public class VictemScript : Player
     int maxAttacker = 2;
     private void Start()
     {
-        
+        // RB = transform.GetComponent<Rigidbody2D>();
         QM = GameObject.FindGameObjectWithTag("QM");
         Life = true;// 라이프 온
         skin_ = Skin.GetComponent<Skin>();// 스킨오브젝트 참조
@@ -25,7 +25,6 @@ public class VictemScript : Player
         BusterSpeed = 10f;// 부스터 속도 //10      
         Speed = MovementSpeed;// 스피드 변수를 기본스피드로 다시 초기화  
         StartCoroutine("Start_");
-
     }
     // Update is called once per frame
     void Update()
@@ -35,9 +34,7 @@ public class VictemScript : Player
         AnimState(Vector3.forward);
         transform.position = MyBody.transform.position;
 
-
         EmptyKnife();
-
     }
     private void OnCollisionEnter2D(Collision2D other)
     {

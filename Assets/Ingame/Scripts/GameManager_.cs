@@ -155,7 +155,7 @@ public class GameManager_ : MonoBehaviour
         GameObject[] trush_ = GameObject.FindGameObjectsWithTag("Trush");
         GameObject[] Items = GameObject.FindGameObjectsWithTag("Item");
         GameObject[] Attackers = GameObject.FindGameObjectsWithTag("Attacker");
-        GameObject[] AiPlayers = GameObject .FindGameObjectsWithTag("AiPlayer");
+        GameObject[] AiPlayers = GameObject.FindGameObjectsWithTag("AiPlayer");
         GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
         GameObject KingCrab = GameObject.FindGameObjectWithTag("KingCrab");
         GameObject []BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");

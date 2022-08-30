@@ -263,7 +263,7 @@ MonoBehaviour:
   FRZTimer: 0
   FRZWatime: 0
   DamageText: {fileID: 0}
-  RB: {fileID: 0}
+  RB: {fileID: 3502532230121490174}
   AnimFlame: 10
   DieAnimFlame: 10
   Barriar: {fileID: 0}
@@ -422,6 +422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble Particle
       objectReference: {fileID: 0}
+    - target: {fileID: 4318399897650384104, guid: ae736ca547f4d5444897478e62b10e32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5264067334569667842, guid: ae736ca547f4d5444897478e62b10e32, type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: -180
@@ -443,6 +447,10 @@ PrefabInstance:
     - target: {fileID: 2998699641406358694, guid: daed68d1be6bebf4abf2c94db153fe91, type: 3}
       propertyPath: m_Name
       value: Flag
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998699641406358694, guid: daed68d1be6bebf4abf2c94db153fe91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5819709404087925583, guid: daed68d1be6bebf4abf2c94db153fe91, type: 3}
       propertyPath: m_Sprite
