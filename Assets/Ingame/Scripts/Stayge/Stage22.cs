@@ -29,6 +29,7 @@ public class Stage22 : Stage
         TrashGravity = 0.1f;
         GameObject.FindGameObjectWithTag("InGame").transform.GetChild(0).gameObject.SetActive(true);
         GameObject.FindGameObjectWithTag("InGame").transform.GetChild(1).gameObject.SetActive(false);
+        initHardConst();
     }
 
     // Update is called once per frame
@@ -111,13 +112,13 @@ public class Stage22 : Stage
                         ShowWaveLevel();
             if (WaveLevel == 1)
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < 3 + HardConst; ++i)
                 {
                     QM.GetComponent<QuestManager>().CreateKnifeE();
                     EnemyCount++;
                     Debug.Log("º“»Ø");
                 }
-                for (int j = 0; j < 1; ++j)
+                for (int j = 0; j < 1 + HardConst; ++j)
                 {
                     QM.GetComponent<QuestManager>().CreateBulletE();
                     EnemyCount++;
@@ -127,12 +128,12 @@ public class Stage22 : Stage
 
             else if (WaveLevel == 2)
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < 3 + HardConst; ++i)
                 {
                     QM.GetComponent<QuestManager>().CreateKnifeE();
                     EnemyCount++;
                 }
-                for (int j = 0; j < 2; ++j)
+                for (int j = 0; j < 2 + HardConst; ++j)
                 {
                     QM.GetComponent<QuestManager>().CreateBulletE();
                     EnemyCount++;
@@ -141,13 +142,13 @@ public class Stage22 : Stage
 
             else if (WaveLevel == 3)
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < 3 + HardConst; ++i)
                 {
                     QM.GetComponent<QuestManager>().CreateKnifeE();
                     EnemyCount++;
                 }
 
-                for (int j = 0; j < 3; ++j)
+                for (int j = 0; j < 3 + HardConst; ++j)
                 {
                     QM.GetComponent<QuestManager>().CreateBulletE();
                     EnemyCount++;

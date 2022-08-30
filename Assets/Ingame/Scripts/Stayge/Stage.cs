@@ -14,6 +14,7 @@ public class Stage: MonoBehaviour
     public bool TrashFlag;
     public float TrashGravity;
     public GameObject BlackPanel;
+    public int HardConst;
     // Update is called once per frame
    Vector3 DownTPosition()
     {//떨어질쓰레기 위치설정
@@ -39,5 +40,9 @@ public class Stage: MonoBehaviour
             Invoke("CreateTrash_", 1.5f);
             TrashFlag = false;
         }
+    }
+    public void initHardConst(){
+        HardConst = QM.GetComponent<QuestManager>().Level_ - 2;
+        if (HardConst < 0) HardConst = 0;
     }
 }

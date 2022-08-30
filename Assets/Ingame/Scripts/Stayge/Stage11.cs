@@ -19,6 +19,7 @@ public class Stage11 : Stage
     {
         if (flag)
         {
+            initHardConst();
             ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             Cam.transform.position = new Vector3(0, 0, Cam.transform.position.z);

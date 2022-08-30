@@ -20,6 +20,7 @@ public class Stagy21 : Stage
         TrashFlag = true;
         Potal = GameObject.FindGameObjectWithTag("Potal");
         TrashGravity = 0.1f;
+        initHardConst();
     }
 
     // Update is called once per frame

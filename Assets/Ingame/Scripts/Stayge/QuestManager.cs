@@ -129,7 +129,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Score = 0;
-        Level_ = 1;//초기 렙설정
+        Level_ = 0;//초기 렙설정
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
@@ -157,7 +157,7 @@ public class QuestManager : MonoBehaviour
                 {
                     // Debug.Log("? ??" + KnifeEC + "???" + BulletEC);
                     QuestBoard_ = GameObject.FindGameObjectWithTag("QB");
-                    if (Level_ < 0)
+                    if (Level_ < 1)
                     {
                         QuestBoard_.GetComponent<QB>().ShapeA.SetActive(false);
                     }
@@ -188,11 +188,11 @@ public class QuestManager : MonoBehaviour
             {
                 Level_0_Action();
             }
-            if (Level_ == 1)
+            if (Level_ % 2 == 1)
             {
                 Level_1_Action();
             }
-            if (Level_ == 2)
+            if (Level_ != 0 &&Level_ % 2 == 0)
             {
                 Level_2_Action();
             }
@@ -323,12 +323,12 @@ public class QuestManager : MonoBehaviour
 
             limitTime = 1;
             ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = "0";
+            IntroPanelName.GetComponent<Text>().text = Level_.ToString();
             IntroPanelPlan[1].SetActive(true);
             //IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
             IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "튜토리얼";
         }
-        if (Level_ == 1)
+        if (Level_ % 2 == 1)
         {
 
             GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
@@ -349,12 +349,12 @@ public class QuestManager : MonoBehaviour
 
             limitTime = 1;
             ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = "1";
+            IntroPanelName.GetComponent<Text>().text = Level_.ToString();
             IntroPanelPlan[1].SetActive(true);
             // IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
             IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "적들을 처치하세요";
         }
-        else if (Level_ == 2)
+        else if (Level_ != 0 && Level_ % 2 == 0)
         {
 
             GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
@@ -375,7 +375,7 @@ public class QuestManager : MonoBehaviour
 
             limitTime = 1;
             ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = "2";
+            IntroPanelName.GetComponent<Text>().text = Level_.ToString();
             IntroPanelPlan[1].SetActive(true);
             IntroPanelPlan[1].GetComponent<Image>().sprite = FishIcon;
             IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "킹크렙의 산맥";
@@ -535,12 +535,12 @@ public class QuestManager : MonoBehaviour
     }
     public void CreateBigTrashO()
     {//위치 정해져 있어야할듯? 바닥 쪽에
-        if (Level_ == 1)
+        if (Level_ % 2 == 1)
         {
             var Obj = Instantiate(BigTrashObj, SetPosition(0, -0.12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
             Obj.name = "_Kraken";
         }
-        else if (Level_ == 2)
+        else if (Level_ != 0 && Level_ % 2 == 0)
         {
             var Obj = Instantiate(BigTrashObj2, SetPosition(0, -12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
             Obj.name = "TrashCrab";
@@ -601,10 +601,8 @@ public class QuestManager : MonoBehaviour
         {
             if (ShapeNum == 1) ShapeA_Init();
             //else if (ShapeNum == 2) ShapeB_Init();
-
             //if (ShapeNum == 10) tutorial.GetComponent<Tutorial>().Tutorial_Init();
         }
-
 
     }// Shape초기화
     public void ShapeA_Init()
@@ -618,7 +616,7 @@ public class QuestManager : MonoBehaviour
 
 
                 QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
-                if (Level_ == 2 && IngameLevel == 3)
+                if (Level_ != 0 && Level_ % 2 == 0 && IngameLevel == 3)
                     QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = "적 수 : " + Stayge.GetComponent<Stage23>().EnemyCount.ToString();
                 else
                     QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
@@ -637,7 +635,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
 
-            if ((Level_ == 1 && IngameLevel == 5) || (Level_ == 2 && IngameLevel == 6) || (Level_ == 0 && IngameLevel == 5))
+            if ((Level_ % 2 == 1 && IngameLevel == 5) || (Level_ != 0 && Level_ % 2 == 0 && IngameLevel == 6) || (Level_ == 0 && IngameLevel == 5))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();

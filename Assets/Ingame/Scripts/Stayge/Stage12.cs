@@ -19,6 +19,7 @@ public class Stage12 : Stage
     {
         if (flag)
         {
+            initHardConst();
             ShowWaveLevel();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             QM.GetComponent<QuestManager>().ResetPlayerStat();

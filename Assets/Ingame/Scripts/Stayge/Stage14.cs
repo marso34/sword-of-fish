@@ -12,6 +12,7 @@ public class Stage14 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.005f;
         TrashFlag = true;
+        initHardConst();
     }
 
     // Update is called once per frame

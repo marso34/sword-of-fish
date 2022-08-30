@@ -61,7 +61,9 @@ public class AiPlayerScript : Player
         StartCoroutine("Start_");
         MinFar = new Vector3(13f, 5f, 1f);
         ViewFlag = false;
-
+        if (transform.tag == "InkOct") HP = 1;
+        else if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3) HP = 2 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
+        else HP = 1 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
     }
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
@@ -86,7 +88,7 @@ public class AiPlayerScript : Player
             Init_();
         }
 
-     
+
         else if (Target != null)
         {
             if (firstMoveFlag)
@@ -95,7 +97,7 @@ public class AiPlayerScript : Player
             }
             if (Life)
             {
-                
+
                 var T = (Player.transform.position - transform.position);
                 if (Mathf.Abs(MinFar.magnitude) > Mathf.Abs(T.magnitude)) ViewFlag = true;
                 else ViewFlag = false;
@@ -136,7 +138,7 @@ public class AiPlayerScript : Player
                     PlaySkill();
                     SkillTimer = 0f;
                 }
-                DieCheck();
+
             }
             else if (!Life)
             {
@@ -154,53 +156,63 @@ public class AiPlayerScript : Player
 
     }
 
-    public void DieCheck()
-    {
-        if (HP < 0 && Life)
-        {
-
-            DieLife();
-            Life = false;
-        }
-    }
     public override void DieLife()
     {
-        
-        var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        Speed = 0f;   // 나중에 수정 필요. 
-        RB.velocity = Vector2.zero;
-        MyKnife.transform.parent = null;
-        MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-        MKnife.transform.parent = transform;
-        MyKnife.tag = "NotKnife";
-        MyBody.gameObject.layer = 4;
-        //PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
-        if (transform.tag == "InkOct")
+        ShowDieAnim(0);
+        state = State.Die;
+        if (HP > 0)
         {
-            if (GameObject.FindWithTag("Kraken") != null)
-                GameObject.FindWithTag("Kraken").GetComponent<Kraken>().CreateInkSwarm(transform.position, 0.4f);
-            Destroy(gameObject);
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            //var Sound1 = Instantiate(PlayerHitSound, transform.localPosition, Quaternion.Euler(0f, 0f, 0f));
+            HP--;
+            //MyBody.tag = "Shiled";
+            //hitFlag = true;
+
+            WhiteFlesh();
+
+            //Invoke("InitBody__", 1.5f);
+            if (transform.tag != "InkOct")
+                MyBody.GetComponent<HitFillBody>().TimeStop_(1f);
         }
-        else
+        if (HP <= 0 && flagerror)
         {
-            OnOutLine(14);
-            Invoke("OffOutLine", 0.07f);
-            state = State.Die;
-            LifeOff();
 
-            QM = GameObject.FindGameObjectWithTag("QM");
-            QM.GetComponent<QuestManager>().KnifeEC--;
-            if (SkillFlag)
-                OffSkillFlag(); // J
-            InitState(); // J
-            NotInit();
-            //DefaultMoveSpeed();
-            CreateFlesh();
-            Stage22_ex();
+            var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+            Speed = 0f;   // 나중에 수정 필요. 
+            RB.velocity = Vector2.zero;
+            MyKnife.transform.parent = null;
+            MyKnife.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            MKnife.transform.parent = transform;
+            MyKnife.tag = "NotKnife";
+            MyBody.gameObject.layer = 4;
+            //PlayerMove(); // RigidBody2D의 velocity가 한번만 실행해도 그 속도대로 계속 움직임
+            if (transform.tag == "InkOct")
+            {
+                if (GameObject.FindWithTag("Kraken") != null)
+                    GameObject.FindWithTag("Kraken").GetComponent<Kraken>().CreateInkSwarm(transform.position, 0.4f);
+                Destroy(gameObject);
+            }
+            else
+            {
+                WhiteFlesh();
+                state = State.Die;
+                LifeOff();
 
+                QM = GameObject.FindGameObjectWithTag("QM");
+                QM.GetComponent<QuestManager>().KnifeEC--;
+                if (SkillFlag)
+                    OffSkillFlag(); // J
+                InitState(); // J
+                NotInit();
+                //DefaultMoveSpeed();
+                CreateFlesh();
+                Stage22_ex();
 
+            }
         }
     }
+
+
     void StartInit()//시작시 실행
     {
         GameStartInit();
@@ -247,7 +259,7 @@ public class AiPlayerScript : Player
             {
                 //if (Random.Range(0, 7) == 1) BusterFlag = true;
                 //else BusterFlag = false;
-                   BusterFlag = false;// 난이도 하일때만. 상일떈 위에 주석처리된거
+                BusterFlag = false;// 난이도 하일때만. 상일떈 위에 주석처리된거
                 if (Dice == 0) return VictemTracking();
                 else if (Dice == 1) return LeftMove();
                 else if (Dice == 2) return RightMove();
@@ -257,7 +269,7 @@ public class AiPlayerScript : Player
             {
                 // if (Random.Range(0, 7) == 1) BusterFlag = true;
                 // else BusterFlag = false;
-                   BusterFlag = false;// 난이도 하일때만.
+                BusterFlag = false;// 난이도 하일때만.
                 if (Dice == 0) return FleshTracking();
                 else if (Dice == 1) return LeftMove();
                 else if (Dice == 2)
@@ -345,7 +357,7 @@ public class AiPlayerScript : Player
     }
     Vector3 FleshTracking()
     {
-        
+
         if (GameObject.FindGameObjectWithTag("Flesh") != null)
             return GameObject.FindGameObjectWithTag("Flesh").transform.position;
         //else return EnemyTrackingMove();

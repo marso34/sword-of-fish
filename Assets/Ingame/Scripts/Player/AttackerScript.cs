@@ -169,15 +169,13 @@ public class AttackerScript : Player
     {
         if (transform.name == "Boss" && flag)
         {
-            if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 1)
-                HP = 50;
-            else HP = 12;
+            HP = 12 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 3;
             transform.localScale = new Vector3(6f, 6f, 6f);
             flag = false;
         }
         else if (flag)
         {
-            HP = (int)(transform.localScale.y * 3);
+            HP = (int)(transform.localScale.y * 3) + +QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
             flag = false;
         }
     }

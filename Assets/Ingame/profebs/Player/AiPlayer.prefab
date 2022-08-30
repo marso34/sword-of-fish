@@ -617,6 +617,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4523526302925924329, guid: 73db255457f607a4bb052da79167992a, type: 3}
   m_PrefabInstance: {fileID: 1863307944134205596}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8568743405270942383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818417219401238389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbea97fcd371404680ab682b10eacc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopTime: 0
+  Player_: {fileID: 0}
+  cam: {fileID: 0}
+  shake: 0
+  FishWeight: 0
+  SlowFlag_: 0
 --- !u!1001 &2996883823673561317
 PrefabInstance:
   m_ObjectHideFlags: 0

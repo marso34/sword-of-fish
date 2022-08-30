@@ -11,6 +11,7 @@ public class Stage15 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.005f;
         TrashFlag = true;
+        initHardConst();
     }
 
     // Update is called once per frame
@@ -18,6 +19,7 @@ public class Stage15 : Stage
     {
         if (flag)
         {
+            
             ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             QM.GetComponent<QuestManager>().ResetPlayerStat();
@@ -29,8 +31,8 @@ public class Stage15 : Stage
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
-            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 2;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2 + HardConst;
+            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 2 + HardConst;
             QM.GetComponent<QuestManager>().BigTrashMaxCount = 1;
             QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
             flag = false;

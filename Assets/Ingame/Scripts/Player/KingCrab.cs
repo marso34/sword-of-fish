@@ -44,12 +44,13 @@ public class KingCrab : Boss
     {
         GM = GameObject.FindGameObjectWithTag("GM");
         Player = GameObject.FindGameObjectWithTag("Player");
+        QM = GameObject.FindGameObjectWithTag("QM");
         RB = GetComponent<Rigidbody2D>();
 
         Life = true;
         HitFlag = false;
 
-        HP = 30;
+        HP = 30 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 3;
         Speed = 1.5f;
         RotationSpeed = 800f;
         FRZFlag = false;

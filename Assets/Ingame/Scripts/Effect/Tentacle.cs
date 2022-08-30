@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tentacle : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject QM;
     public GameObject KillEffect;
     public GameObject KillEffect2;
     public GameObject KS_;
@@ -29,13 +30,14 @@ public class Tentacle : MonoBehaviour
     public bool InLife;
     void Start()
     {
+        QM = GameObject.FindGameObjectWithTag("QM");
         C = new Color (1,1,1,1);
         InLife = true;
         Skin = GetComponent<SpriteRenderer>();
         S = transform.GetComponent<SpriteRenderer>();
         StartFlag = true;
         imgTime = 0.125f;
-        HP = 5;
+        HP = 5 +QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
         timer_ = 0f;
         temp = Polygon[0];
         FRZFlag = false;

@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     public SpriteRenderer spriteRenderer;
     public GameObject GM;
+    public GameObject QM;
     public GameObject DamageText; // µ¥¹ÌÁö Ç¥½Ã
     public Sprite[] Image;
     public GameObject DieImg;
@@ -97,12 +98,9 @@ public class Boss : MonoBehaviour
         if (other2.gameObject.tag == "EXPL")
         {
             var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-            DT.GetComponent<DamageTxt>().dtxt.text = 5.ToString();
+  
             DT.transform.localScale *= 2f;
             HP -= 5;
-
-            if (HP < 0)
-                HP = 0;
         }
     }
     IEnumerator Die() //ì£½ìŒ ?• ?‹ˆ

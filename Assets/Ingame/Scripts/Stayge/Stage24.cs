@@ -11,6 +11,7 @@ public class Stage24 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.1f;
         TrashFlag = true;
+        initHardConst();
     }
 
     // Update is called once per frame
@@ -33,8 +34,8 @@ public class Stage24 : Stage
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             //?÷?????? ???? ??? ?÷?????????? ??????????? ???? ?????. ??? ?????? ??????????? ?? ??????? ????
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
-            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2 + HardConst;
+            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0 + HardConst;
             QM.GetComponent<QuestManager>().BigTrashMaxCount = 1;
             QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC = 0;
             QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어

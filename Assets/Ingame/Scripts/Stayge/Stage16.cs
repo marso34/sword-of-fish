@@ -11,6 +11,9 @@ public class Stage16 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.005f;
         TrashFlag = true;
+        HardConst = QM.GetComponent<QuestManager>().Level_ - 2;
+        if (HardConst < 0) HardConst = 0;
+        initHardConst();
     }
 
     // Update is called once per frame
@@ -28,8 +31,8 @@ public class Stage16 : Stage
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
-            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2 + HardConst;
+            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0 + HardConst;
             QM.GetComponent<QuestManager>().BulletEC = 1;
             QM.GetComponent<QuestManager>().BossMaxCount = 1;
             QM.GetComponent<QuestManager>().MaxCount = 1;

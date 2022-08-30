@@ -35,7 +35,7 @@ public class Stage01 : Stage
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 0;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 0+ HardConst;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
             QM.GetComponent<QuestManager>().BulletEC = 0;
             QM.GetComponent<QuestManager>().BossMaxCount = 0;

@@ -23,10 +23,11 @@ public class Kraken : Boss
         LegCount = 4;
         spriteRenderer = GetComponent<SpriteRenderer>();
         GM = GameObject.FindGameObjectWithTag("GM");
+        QM = GameObject.FindGameObjectWithTag("QM");
         Circle = GetComponent<CircleCollider2D>();
         Skin = GetComponent<SpriteRenderer>();
         Skin.sprite = Image[0];
-        HP = 12;
+        HP = 18 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 3;
         Speed = 3.8f;
         RotationSpeed = 800f;
         waitTime = 4f;

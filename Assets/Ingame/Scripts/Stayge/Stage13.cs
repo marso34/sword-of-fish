@@ -12,6 +12,7 @@ public class Stage13 : Stage
         QM = GameObject.FindGameObjectWithTag("QM");
         TrashGravity = 0.005f;
         TrashFlag = true;
+        initHardConst();
     }
 
     // Update is called once per frame
@@ -19,6 +20,7 @@ public class Stage13 : Stage
     {
         if (flag)
         {
+           
             ShowText();
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             QM.GetComponent<QuestManager>().ResetPlayerStat();
@@ -27,8 +29,8 @@ public class Stage13 : Stage
             //TutorialName.SetActive(false);
             //GM.GetComponent<GameManager_>().ObjectCleaner();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 3;
-            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 1;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 3 + HardConst/2;
+            QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 1 + HardConst;
             QM.GetComponent<QuestManager>().MaxCount = 18;// 킬 보드에 표시된 킬스코어 6달성시 클리어
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
