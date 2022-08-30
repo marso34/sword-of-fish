@@ -27,6 +27,8 @@ public class Stage22 : Stage
         TrashFlag = true;
         flag_ = true;
         TrashGravity = 0.1f;
+        GameObject.FindGameObjectWithTag("InGame").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.FindGameObjectWithTag("InGame").transform.GetChild(1).gameObject.SetActive(false);
     }
 
     // Update is called once per frame

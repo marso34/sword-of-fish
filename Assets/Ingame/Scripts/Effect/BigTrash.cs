@@ -25,11 +25,11 @@ public class BigTrash : MonoBehaviour
         {
             if (other.gameObject.tag == "Knife" && other.transform.parent.gameObject.tag == "Player")
             {
-                //other.transform.GetComponent<HitFeel>().TimeStop(0.8f);
+                //other.transform.GetComponent<>().TimeStop(0.8f);
                 HP -= 1;
 
                 var DT = Instantiate(DamageText, other.contacts[0].point, Quaternion.Euler(0f, 0f, 0f));
-               
+
                 DT.transform.localScale *= 2f;
 
                 float x_ = transform.localScale.x;
@@ -54,9 +54,9 @@ public class BigTrash : MonoBehaviour
     {
         if (other.gameObject.tag == "EXPL")
         {
-            
+
             var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
-        
+
             DT.transform.localScale *= 2f;
             HP -= 5;
         }
@@ -79,14 +79,16 @@ public class BigTrash : MonoBehaviour
             {
                 Invoke("win", 1f);
             }
-            if (transform.name == "TrashCrab")
-                Destroy(transform.parent.gameObject, 3f);
-
+            else if (transform.name == "TrashCrab")
+            {
+                Debug.Log("나실행안도ㅓㅣㅁ?");
+                Invoke("win", 1f);
+            }
         }
     }
     void win()
     {
-        gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().BigTrashC++;
+        Destroy(gameObject);
     }
 }

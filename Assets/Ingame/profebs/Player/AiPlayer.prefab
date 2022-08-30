@@ -256,6 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9347d021503ed6047a3f349de3598f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score: 0
+  UseItem_: 0
+  FRZTimer: 0
+  FRZWatime: 0
   DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
   RB: {fileID: 0}
   AnimFlame: 10
@@ -307,14 +311,13 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   Flag_Image: {fileID: 5799283709851784853}
   Flag_get: 0
-  HP: 3
+  HP: 210
   hitFlag: 0
   flagerror: 1
   KillSound: {fileID: 0}
   PlayerHitSound: {fileID: 0}
   QM: {fileID: 0}
   skillcheck: 0
-  TutorialLev4: 0
   Timer33: 0
   Timer22: 0
   MoveTime: 3

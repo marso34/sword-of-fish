@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
+    public int Score;
     public bool UseItem_;
     public float FRZTimer;
     public float FRZWatime;
@@ -584,10 +585,6 @@ public class Player : MonoBehaviour
     public void rota()
     {
         if (FRZFlag) RotationSpeed = 0f;
-        else if (MyKnife.GetComponent<HitFeel>().SlowFlag_)
-        {
-            RotationSpeed = (20 - MyKnife.GetComponent<HitFeel>().FishWeight * 10) * 3;
-        }
         else if (SlowFlag) RotationSpeed = 300f;
         else RotationSpeed = 1200f;
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, RB.velocity.normalized);//?ù¥?èôÎ∞©Ìñ•?óê ÎßûÍ≤å ?†ïÎ©¥ÏùÑ Î≥¥ÎèÑÎ°? ?öå?†ÑÍ∞? Î∞õÏïÑ?ò§Í∏?.

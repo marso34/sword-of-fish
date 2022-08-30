@@ -29,8 +29,6 @@ public class Stagy21 : Stage
         if (flag)
         {
             ShowText();
-            GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
-            Cam.transform.position = new Vector3(0, 0, Cam.transform.position.z);
             setWalls();
             QMInit();
             flag = false;
@@ -56,6 +54,8 @@ public class Stagy21 : Stage
         QM.GetComponent<QuestManager>().MaxCount = 1;
         QM.GetComponent<QuestManager>().StagyStagtFlag = true;
         QM.GetComponent<QuestManager>().ObjMFlag = false;
+        GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
+        Cam.transform.position = new Vector3(ResponePoint.transform.position.x, ResponePoint.transform.position.y, Cam.transform.position.z);
         QM.GetComponent<QuestManager>().Player.transform.position = ResponePoint.transform.position;
     }
     void setWalls()

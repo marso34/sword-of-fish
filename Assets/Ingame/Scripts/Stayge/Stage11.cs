@@ -52,8 +52,8 @@ public class Stage11 : Stage
 
     public void ShowText()
     {
-        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("적을 전부 섬멸해!");
-        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("적을 전부 섬멸해!");
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("적들을 처치해!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("적들을 처치해!");
     }
 }
 

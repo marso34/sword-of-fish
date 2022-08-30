@@ -23,9 +23,9 @@ public class Stage15 : Stage
             QM.GetComponent<QuestManager>().ResetPlayerStat();
             QM.GetComponent<QuestManager>().ShapeNum = 1;
             Destroy(GameObject.FindGameObjectWithTag("V"));
-            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
-            if(GameObject.FindWithTag("BTP")!= null);
-            VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BTP"));
+            //VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+            //if(GameObject.FindWithTag("BTP")!= null);
+            //VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BTP"));
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
@@ -41,9 +41,9 @@ public class Stage15 : Stage
         }
         if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
         {
-            if (GameObject.FindWithTag("BigTrash") != null)
+            if (GameObject.FindWithTag("BTK") != null)
             {
-                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BigTrash"));
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BTK"));
             }
         }
         GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;

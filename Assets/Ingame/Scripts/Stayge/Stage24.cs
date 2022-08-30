@@ -36,6 +36,7 @@ public class Stage24 : Stage
             QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 2;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
             QM.GetComponent<QuestManager>().BigTrashMaxCount = 1;
+            QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC = 0;
             QM.GetComponent<QuestManager>().MaxCount = 1;// 큰쓰레기 1개 부술시 클리어
             QM.GetComponent<QuestManager>().ObjMFlag = false;
             flag = false;
@@ -46,14 +47,13 @@ public class Stage24 : Stage
         }
         if (VEC != null && VEC.GetComponent<FlowingBigT>().BigT == null)
         {
-            if (GameObject.FindWithTag("BigTrash") != null)
+            if (GameObject.FindWithTag("BTP") != null)
             {
-                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BigTrash"));
+                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("BTP"));
             }
         }
-        GoalCount = 0; //QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
+        GoalCount = QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BigTrashC;
         TrashOn();
-
     }
     public void ShowText()
     {

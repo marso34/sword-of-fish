@@ -37,7 +37,8 @@ public class StartGame : MonoBehaviour
     public void OnClick_()
     {
         GM.transform.GetChild(0).gameObject.SetActive(true);
-        if (QM.GetComponent<QuestManager>().Level_==2 && QM.GetComponent<QuestManager>().IngameLevel == 1){
+        if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 1)
+        {
             InGame.transform.GetChild(0).gameObject.SetActive(false);
             InGame.transform.GetChild(1).gameObject.SetActive(true);
         }
@@ -49,9 +50,13 @@ public class StartGame : MonoBehaviour
         GMC.SetActive(false);
         //LBanner.GetComponent<AddmobBanner>().DestroyAd();
 
-
+        if (QM.GetComponent<QuestManager>().Level_ == 1)
+        {
+            GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
+            Cam.transform.position = new Vector3(0, 0, Cam.transform.position.z);
+        }
         GM.GetComponent<GameManager_>().Start___();
-
+        QM.GetComponent<QuestManager>().Score = 0;
         gameObject.SetActive(false);
 
         // RMMusic();

@@ -131,7 +131,7 @@ public class AiPlayerScript : Player
                 SetBuster();
                 BubbleP.gameObject.GetComponent<BubleParticle>().Speed = Speed;
                 SkillTimer += Time.deltaTime;
-                if (SkillTimer > 4f)
+                if (SkillTimer > 2f)
                 {
                     PlaySkill();
                     SkillTimer = 0f;
@@ -165,6 +165,7 @@ public class AiPlayerScript : Player
     }
     public override void DieLife()
     {
+        
         var DT = Instantiate(DamageText, transform.position, Quaternion.Euler(0f, 0f, 0f));
         Speed = 0f;   // 나중에 수정 필요. 
         RB.velocity = Vector2.zero;

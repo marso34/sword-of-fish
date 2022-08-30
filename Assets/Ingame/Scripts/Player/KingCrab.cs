@@ -68,6 +68,7 @@ public class KingCrab : Boss
         ArmSpeed = 5f;
         CurrentArmAngles = 0f;
         DieAngles = 60f;
+        transform.name = "KingCrab";
     }
 
     void Update()

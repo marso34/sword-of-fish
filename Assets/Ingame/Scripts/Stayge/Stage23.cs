@@ -165,7 +165,7 @@ public class Stage23 : Stage
     }
     public void ShowText()
     {
-        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("적들을 모두 섬멸해줘!");
-        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("적들을 모두 섬멸해줘!");
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("적들을 처치해!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("적들을 처치해!");
     }
 }

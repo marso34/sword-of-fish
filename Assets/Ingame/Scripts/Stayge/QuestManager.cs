@@ -8,7 +8,7 @@ public class QuestManager : MonoBehaviour
 {
 
     public GameObject[] Stayges;//스테이지 객체 배열
-
+    public int Score;
 
     public int Level_;// 레벌
     public GameObject Levelboard;// 로비의 레벨 보드
@@ -128,9 +128,9 @@ public class QuestManager : MonoBehaviour
     float Yc;
     void Start()
     {
-
-        Level_ = 0;//초기 렙설정
-        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+        Score = 0;
+        Level_ = 2;//초기 렙설정
+        IngameLevel = 4; //n스테이지진입후 n-n 스테이지레벨    
         LoseFlag = false;
         OccupationTime = 0;
         //TutorialLev = 0;
@@ -166,7 +166,7 @@ public class QuestManager : MonoBehaviour
                     SucssesFlagOnOff();
                     EndGameCheck();
                     Objectmanager();
-                    if (IngameLevel > 7) IngameLevel = 7;
+                    if (IngameLevel > 6) IngameLevel = 6;
                     if (IngameLevel < 0) IngameLevel = 0;
                 }
             }
@@ -254,7 +254,7 @@ public class QuestManager : MonoBehaviour
     }
     public void Level_1_Action() // 소 스테이지 레벨마다 퀘스트 초기화 
     {
-        if (IngameLevel < 7)
+        if (IngameLevel < 5)
         {
             CurrentCount = 0;
 
@@ -433,9 +433,7 @@ public class QuestManager : MonoBehaviour
             }
             if (BossMaxCount > BossEC)
             {
-                if (Level_ == 1 && IngameLevel == 4)
-                    Invoke("CreateBossE", 4f);//보스 생성 캠액션할것.켐 액션 할것.
-                else CreateBossE();
+                CreateBossE();
                 BossEC++;
             }
         }
@@ -509,19 +507,19 @@ public class QuestManager : MonoBehaviour
     }
     public void CreateBossE()
     {
-        if (IngameLevel == 4 || IngameLevel == 3)
+        if (IngameLevel == 2 || IngameLevel == 3)
         {
             var Boss = Instantiate(BokBoss, EnemyRandomPosition(), Quaternion.Euler(0f, 0f, 0f)); //위치정해저있어야됨 좌우로 계쏙 움직임.
             Boss.name = "Boss";
         }
         else if (IngameLevel == 5)
         {
-            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -10.6f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
+            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
             Boss.name = "Boss";
         }
-        else if (IngameLevel == 6)
+        else if (IngameLevel == 4)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -12.8f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -13.1f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
             Boss.name = "Boss";
         }
     }
@@ -540,10 +538,12 @@ public class QuestManager : MonoBehaviour
         if (Level_ == 1)
         {
             var Obj = Instantiate(BigTrashObj, SetPosition(0, -0.12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
+            Obj.name = "_Kraken";
         }
         else if (Level_ == 2)
         {
-            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -13.4f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+            Obj.name = "TrashCrab";
         }
 
 
@@ -635,7 +635,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("성공공공");
             Debug.Log("맥스" + MaxCount);
 
-            if ((Level_ == 1 && IngameLevel == 7) || (Level_ == 2 && IngameLevel == 6) || (Level_ == 0 && IngameLevel == 5))
+            if ((Level_ == 1 && IngameLevel == 5) || (Level_ == 2 && IngameLevel == 6) || (Level_ == 0 && IngameLevel == 5))
             {
                 GM.GetComponent<GameManager_>().SuccesFlag = true;
                 ResetPlayerStat();
@@ -666,6 +666,7 @@ public class QuestManager : MonoBehaviour
                 LoseFlag = false;
                 Flag = true;
                 StagyStagtFlag = false;
+                
             }
             else if (GM.GetComponent<GameManager_>().SuccesFlag)
             {
@@ -675,12 +676,15 @@ public class QuestManager : MonoBehaviour
                 IngameLevel = 1;
                 GM.GetComponent<GameManager_>().EndFlag = true;
                 GM.GetComponent<GameManager_>().WinPanel.SetActive(true);
+                Score = (Score +1) * (1+Player.GetComponent<PlayerScript>().killScore) / ((int)Player.GetComponent<PlayerScript>().globalTime + 1);
+                GM.GetComponent<GameManager_>().WinPanel.transform.GetChild(4).GetComponent<Text>().text = "Score : "+ Score.ToString(); 
                 GM.GetComponent<GameManager_>().SuccesFlag = false;
 
                 Flag = true;
                 StagyStagtFlag = false;
+                
             }
-            Levelboard.GetComponent<Text>().text = Level_.ToString();
+           
         }
     }//??????????? ??
 }

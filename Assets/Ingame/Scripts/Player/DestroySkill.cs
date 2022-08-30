@@ -19,7 +19,7 @@ public class DestroySkill : MonoBehaviour
             Instantiate(DamageTxt,other.transform.position,Quaternion.Euler(0,0,0));
             Debug.Log("보스 스킬 접촉");
             other.transform.GetComponent<Skill2>().DestroyBossSkill(gameObject);
-            transform.GetComponent<HitFeel>().TimeStop(1f);
+            transform.GetComponent<HitFeel>().TimeStop(0f);
         }
         
     }

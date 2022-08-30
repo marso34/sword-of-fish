@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.1431195, b: 0, a: 1}
+  m_Color: {r: 0.1764706, g: 0.101960786, b: 0.44313726, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec64b334985aec54c8eb74336086b22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VEC: {fileID: 0}
   QM: {fileID: 0}
   flag: 0
   GoalCount: 0
@@ -152,6 +153,7 @@ MonoBehaviour:
   SucssesFlag: 0
   WavingFlag: 0
   Granpa: {fileID: 0}
+  flag_: 0
 --- !u!1 &8480510416486233938
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +317,10 @@ PrefabInstance:
     - target: {fileID: 2866431025190176503, guid: 2148edc49272ce5429cc0d4d9c89b1db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077579887109003856, guid: 2148edc49272ce5429cc0d4d9c89b1db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8835441081331634052, guid: 2148edc49272ce5429cc0d4d9c89b1db, type: 3}
       propertyPath: m_Name

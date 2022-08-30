@@ -10,7 +10,7 @@ public class DamageTxt : MonoBehaviour
     float moveSpeed; // 텍스트 이동 속도
     float alphaSpeed; // 알파값(투명도) 변화 속도
     Color alpha;
-
+    public GameObject QM;
     public Gradient ComboColor;
     [Range(0, 1)]
     public float C;
@@ -18,6 +18,7 @@ public class DamageTxt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        QM = GameObject.FindGameObjectWithTag("QM");
         if (GameObject.FindGameObjectWithTag("Player") != null)
             Player = GameObject.FindGameObjectWithTag("Player");
         else Player = null;
@@ -26,10 +27,7 @@ public class DamageTxt : MonoBehaviour
         alphaSpeed = 0.5f;
         alpha = dtxt.color;
         transform.Translate(RandomPosition(), Space.World); // 처음 생성 위치를 기준으로 랜덤한 위치로 이동
-
-        
-        Player.GetComponent<PlayerScript>().KomBoCount++;
-
+        QM.GetComponent<QuestManager>().Score += ++Player.GetComponent<PlayerScript>().KomBoCount;
         C = Player.GetComponent<PlayerScript>().KomBoCount / 100f;
 
         Debug.Log("색상 : " + C);
