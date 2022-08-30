@@ -30,20 +30,11 @@ public class HitFeel : MonoBehaviour
 
     public void TimeStop(float weight)
     {
-        if (transform.parent.tag == "Player")
-        {
-            Vibrate vibrate1 = new Vibrate();
-            vibrate1.vibrate(20);
-        }
-        FishWeight = weight;
-        if (!stopping)
-        {
-            stopping = true;
-            //if (transform.parent.tag == "Player")
-              ///  cam.GetComponent<Tracking_player>().StartCoroutine("CrushCam"); // 킬할때 카메라 흔들리게 해서 타격감살리기.
-            //StartCoroutine("Stop_");
-
-        }
+        // if (transform.parent.tag == "Player")
+        // {
+        //     Vibrate vibrate1 = new Vibrate();
+        //     vibrate1.vibrate(20);
+        // }
     } // 유닛회전,이동 속도 줄이는 함수.
     
     

@@ -25,7 +25,7 @@ public class BigTrash : MonoBehaviour
         {
             if (other.gameObject.tag == "Knife" && other.transform.parent.gameObject.tag == "Player")
             {
-                //other.transform.GetComponent<>().TimeStop(0.8f);
+                other.transform.GetComponent<HitFeel>().TimeStop(0.8f);
                 HP -= 1;
 
                 var DT = Instantiate(DamageText, other.contacts[0].point, Quaternion.Euler(0f, 0f, 0f));
@@ -89,6 +89,6 @@ public class BigTrash : MonoBehaviour
     void win()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().BigTrashC++;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
