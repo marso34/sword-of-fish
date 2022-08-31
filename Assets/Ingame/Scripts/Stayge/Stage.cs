@@ -37,7 +37,7 @@ public class Stage: MonoBehaviour
 
         if (TrashFlag)
         {
-            Invoke("CreateTrash_", 1.5f);
+            Invoke("CreateTrash_", 1.0f);
             TrashFlag = false;
         }
     }

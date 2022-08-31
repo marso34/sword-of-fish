@@ -9,7 +9,7 @@ public class AiPlayerScript : Player
 {
     bool flag;
     double timer; // 이동 뽑기에 쓰임
-    float waitingTime; // 이동 뽑기에 쓰임
+    public float waitingTime; // 이동 뽑기에 쓰임
 
     GameObject Player;//사람
     public GameObject Target;// player 
@@ -59,7 +59,7 @@ public class AiPlayerScript : Player
         firstMoveFlag = true;
         if (transform.tag == "Attacker") waitingTime = 0.1f;
         StartCoroutine("Start_");
-        MinFar = new Vector3(13f, 5f, 1f);
+        MinFar = new Vector3(15f, 7f, 1f);
         ViewFlag = false;
         
     }

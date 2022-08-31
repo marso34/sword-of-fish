@@ -16,7 +16,6 @@ public class Stagy21 : Stage
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
         ClearLevel = 1;
         GoalCount = 0;
         flag = true;
@@ -29,6 +28,8 @@ public class Stagy21 : Stage
 
     void Update()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+
         TrashOn();
         if (flag)
         {

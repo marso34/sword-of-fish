@@ -131,6 +131,7 @@ public class QuestManager : MonoBehaviour
         Score = 0;
 
         GameLoad();//초기 렙설정
+        Level_ = 2;
         IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
 
         LoseFlag = false;
@@ -515,12 +516,12 @@ public class QuestManager : MonoBehaviour
         }
         else if (IngameLevel == 5)
         {
-            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -10.7f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
+            var Boss = Instantiate(BossEnemyCrab, SetPosition(0, -13.1f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 보스 나중에 위치 수정
             Boss.name = "Boss";
         }
         else if (IngameLevel == 4)
         {
-            var Boss = Instantiate(BossEnemy2, SetPosition(0, -13.1f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
+            var Boss = Instantiate(BossEnemy2, SetPosition(0, -13.47f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 보스
             Boss.name = "Boss";
         }
     }
@@ -538,12 +539,12 @@ public class QuestManager : MonoBehaviour
     {//위치 정해져 있어야할듯? 바닥 쪽에
         if (Level_ % 2 == 1)
         {
-            var Obj = Instantiate(BigTrashObj, SetPosition(0, -0.12f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
+            var Obj = Instantiate(BigTrashObj, SetPosition(0, -0.67f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 크라켄 쓰레기
             Obj.name = "_Kraken";
         }
         else if (Level_ != 0 && Level_ % 2 == 0)
         {
-            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -12.8f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
+            var Obj = Instantiate(BigTrashObj2, SetPosition(0, -13.3f, 0f), Quaternion.Euler(0f, 0f, 0f)); // 킹크랩 쓰레기
             Obj.name = "TrashCrab";
         }
 

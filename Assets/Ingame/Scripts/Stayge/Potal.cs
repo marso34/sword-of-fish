@@ -20,8 +20,6 @@ public class Potal : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.FindWithTag("Player");
-        Camera = GameObject.FindWithTag("MainCamera");
         Goal = 0;
         timer = 0f;
         flag = false;
@@ -35,6 +33,10 @@ public class Potal : MonoBehaviour
         {
             if (flag2)
             {
+                Player = GameObject.FindWithTag("Player");
+                Camera = GameObject.FindWithTag("MainCamera");
+                Camera.GetComponent<Tracking_player>().Speed = 2.5f;
+
                 CreateMob();
                 flag2 = false;
                 flag3 = true;
@@ -44,31 +46,39 @@ public class Potal : MonoBehaviour
             {
                 AiPlayer = GameObject.FindWithTag("AiPlayer");
                 Victem = GameObject.FindWithTag("Victem");
+                AiPlayer.GetComponent<AiPlayerScript>().waitingTime = 20f;
+
+                timer += Time.deltaTime;
 
                 if (Victem.GetComponent<VictemScript>().HP == 10)
                 {
-                    AiPlayer.GetComponent<AiPlayerScript>().dir = Victem.transform.position - AiPlayer.transform.position;
                     Camera.GetComponent<Tracking_player>().target_set(Victem);
+
+                    if (timer >= 0.5f)
+                    {
+                        AiPlayer.GetComponent<AiPlayerScript>().dir = Victem.transform.position - AiPlayer.transform.position;
+                        timer = 0f;
+                    }
                 }
                 else
                 {
-                    timer += Time.deltaTime;
-                    AiPlayer.GetComponent<AiPlayerScript>().ViewFlag = true;
                     AiPlayer.GetComponent<AiPlayerScript>().dir = Vector3.right;
-                    Camera.GetComponent<Tracking_player>().target_set(Player);
+                    
+                    if (timer >= 0.5f)
+                    {
+                        Camera.GetComponent<Tracking_player>().target_set(Player);
+                    }
                 }
 
                 AiPlayer.GetComponent<AiPlayerScript>().Speed = 0.5f;
 
-                if (timer >= 1f)
+                if (timer >= 1.5f)
                 {
                     Destroy(AiPlayer);
                     Destroy(Victem);
                     flag3 = false;
                     timer = 0f;
                 }
-
-                Camera.GetComponent<Tracking_player>().Speed = 1f;
             }
             else
             {
@@ -85,7 +95,7 @@ public class Potal : MonoBehaviour
 
                 Camera.GetComponent<Tracking_player>().Speed = 0.7f;
             }
-            
+
             Player.GetComponent<Player>().RB.velocity = Vector2.zero;
         }
     }
