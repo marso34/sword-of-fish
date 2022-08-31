@@ -9,22 +9,29 @@ public class ControlCutScene : MonoBehaviour
     public VideoPlayer VP;
 
     float timer;
-
+    public AudioSource Music;
+    public GameObject PlayBtn;
     void Start()
     {
         QM = GameObject.FindGameObjectWithTag("QM");
         timer = 0f;
+        Music.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         timer += Time.deltaTime;
 
         if (!VP.isPlaying && timer >= 2f)
         {
+            QM.GetComponent<QuestManager>().IngameLevel++;
+            Music.Play();
             VP.Stop();
+            PlayBtn.GetComponent<GoIntro>().OnClick();
             gameObject.SetActive(false);
+            
         }
     }
 }

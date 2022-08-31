@@ -33,36 +33,39 @@ public class GoIntro : MonoBehaviour
         Lobby.SetActive(false);
         GMC.SetActive(false);
         Ingame.SetActive(true);
-        IntroPanel.SetActive(true);
-        
-        if (QM.GetComponent<QuestManager>().Level_ == 0)
+
+        if (QM.GetComponent<QuestManager>().IngameLevel == 0)
             CutScene.SetActive(true);
+        else
+        {
+            IntroPanel.SetActive(true);
+            QM.GetComponent<QuestManager>().Init_Stayge();
+            
 
-        QM.GetComponent<QuestManager>().Init_Stayge();
-
+            GameObject[] Fleshs = new GameObject[GameObject.FindGameObjectsWithTag("Flesh").Length];
+            Debug.Log(Fleshs.Length);
+            for (int i = 0; i < Fleshs.Length; ++i)
+            {
+                if (Fleshs[i] != null)
+                {
+                    Debug.Log(Fleshs[i]);
+                    Fleshs[i].GetComponent<flesh>().eraser_();
+                }
+            }
+            GameObject[] Bubbles = new GameObject[GameObject.FindGameObjectsWithTag("Bubble").Length];
+            Debug.Log(Bubbles.Length);
+            for (int i = 0; i < Bubbles.Length; ++i)
+            {
+                if (Bubbles[i] != null)
+                {
+                    Debug.Log(Bubbles[i]);
+                    Bubbles[i].GetComponent<bubble>().eraser();
+                }
+            }
+        }
 
 
         //LBanner.GetComponent<AddmobBanner>().DestroyAd();
 
-        GameObject[] Fleshs = new GameObject[GameObject.FindGameObjectsWithTag("Flesh").Length];
-        Debug.Log(Fleshs.Length);
-        for (int i = 0; i < Fleshs.Length; ++i)
-        {
-            if (Fleshs[i] != null)
-            {
-                Debug.Log(Fleshs[i]);
-                Fleshs[i].GetComponent<flesh>().eraser_();
-            }
-        }
-        GameObject[] Bubbles = new GameObject[GameObject.FindGameObjectsWithTag("Bubble").Length];
-        Debug.Log(Bubbles.Length);
-        for (int i = 0; i < Bubbles.Length; ++i)
-        {
-            if (Bubbles[i] != null)
-            {
-                Debug.Log(Bubbles[i]);
-                Bubbles[i].GetComponent<bubble>().eraser();
-            }
-        }
     }
 }
