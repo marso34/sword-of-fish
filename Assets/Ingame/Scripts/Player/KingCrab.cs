@@ -74,8 +74,10 @@ public class KingCrab : Boss
 
     void Update()
     {
+        
         if (HP > 0 && !FRZFlag && Life)
         {
+
             timer += Time.deltaTime;
             timer_ += Time.deltaTime;
             timer2 += Time.deltaTime; // 테스트 타이머

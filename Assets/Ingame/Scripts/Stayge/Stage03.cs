@@ -12,8 +12,7 @@ public class Stage03 : Stage
         GoalCount = 0;
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
-        TrashGravity = 0.005f;
-        TrashFlag = true;
+        TrashGravity = 0.1f; TrashFlag = true;
 
     }
 

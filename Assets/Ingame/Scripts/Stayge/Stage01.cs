@@ -12,7 +12,7 @@ public class Stage01 : Stage
         GoalCount = 0;
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
-        TrashGravity = 0.005f;
+        TrashGravity = 0.01f;
         TrashFlag = false;
         SFlag = false;
         Timer = 0;
@@ -35,7 +35,7 @@ public class Stage01 : Stage
             QM.GetComponent<QuestManager>().ResetCounter();
             QM.GetComponent<QuestManager>().ObjectCleanerNextStage();
             QM.GetComponent<QuestManager>().ResetMaxCounter();
-            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 0+ HardConst;
+            QM.GetComponent<QuestManager>().KnifeEnemyMaxCount = 0;
             QM.GetComponent<QuestManager>().BulletEnemyMaxCount = 0;
             QM.GetComponent<QuestManager>().BulletEC = 0;
             QM.GetComponent<QuestManager>().BossMaxCount = 0;
@@ -43,7 +43,6 @@ public class Stage01 : Stage
             flag = false;
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
             QM.GetComponent<QuestManager>().ObjMFlag = false;
-
         }
         if (QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().BusterFlag == true)
         {

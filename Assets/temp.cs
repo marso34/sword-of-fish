@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class ShowQBText : MonoBehaviour
+public class temp : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,11 +11,8 @@ public class ShowQBText : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void showText(string arr)
+    void Update()
     {
-        // Debug.Log(c);
-        
-        GetComponent<Text>().text = arr;
         
     }
 }

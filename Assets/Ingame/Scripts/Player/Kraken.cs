@@ -40,6 +40,7 @@ public class Kraken : Boss
     // Update is called once per frame
     void Update()
     {
+      
         Player = GameObject.FindGameObjectWithTag("Player"); // 일단 임시로
         timer += Time.deltaTime; // 이미지 바꾸는 시간 위한 타이머
         timer_ += Time.deltaTime; // 일단 스킬용으로 대충 만든 거

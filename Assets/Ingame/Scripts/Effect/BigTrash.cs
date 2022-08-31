@@ -13,10 +13,11 @@ public class BigTrash : MonoBehaviour
     public GameObject KillSound;
     public GameObject PT;
     public GameObject DamageText;
-
+    public GameObject QM;
     public bool Flag;
     void Start()
     {
+        QM = GameObject.FindGameObjectWithTag("QM");
         Flag = true;
     }
     private void OnCollisionEnter2D(Collision2D other)
@@ -64,6 +65,7 @@ public class BigTrash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         if (HP <= 0 && Flag)
         {
             Flag = false;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
-    public int Score;
+    
     public bool UseItem_;
     public float FRZTimer;
     public float FRZWatime;
@@ -386,7 +386,10 @@ public class Player : MonoBehaviour
             int R = Random.Range(5, 6);// ëª¸ìŠ¤?‚¨ê°??ˆ˜5
 
             if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3)
-                FishNumber = 9;
+                {
+                    if(QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage23>().WaveLevel == 1) FishNumber = 5;
+                    else FishNumber = 9;
+                }
             else
                 FishNumber = 5;
         }

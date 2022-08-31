@@ -9,7 +9,7 @@ public class Stage16 : Stage
         GoalCount = 0;
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
-        TrashGravity = 0.005f;
+        TrashGravity = 0.1f;
         TrashFlag = true;
         HardConst = QM.GetComponent<QuestManager>().Level_ - 2;
         if (HardConst < 0) HardConst = 0;
