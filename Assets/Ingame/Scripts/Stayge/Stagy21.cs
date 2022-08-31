@@ -29,7 +29,7 @@ public class Stagy21 : Stage
     void Update()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-
+        Player.GetComponent<PlayerScript>().BusterFlag = false;
         TrashOn();
         if (flag)
         {
@@ -46,7 +46,7 @@ public class Stagy21 : Stage
         if (Player.GetComponent<Player>().Life)
         {
             if (Player.GetComponent<Player>().MyBody.tag == "Body")
-                Player.GetComponent<Player>().RB.velocity += Vector2.right * 4f;
+                Player.GetComponent<Player>().RB.velocity += Vector2.right * 2.6f;
         }
         else 
             Player.GetComponent<Player>().RB.velocity = Vector2.zero;
@@ -94,8 +94,8 @@ public class Stagy21 : Stage
     }
     public void ShowText()
     {
-        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("물방울 포탈로 가줘!");
-        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("물방울 포탈로 가줘!");
+        GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("쓰레기를 피해!!");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("쓰레기를 피해!!");
     }
 
 }

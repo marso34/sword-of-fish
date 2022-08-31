@@ -90,7 +90,8 @@ public class Potal : MonoBehaviour
                 if (timer >= 2.5f)
                 {
                     Player.GetComponent<Player>().Flag_get = false;
-                    Invoke("upGoal", 0.5f);
+                    GameObject.FindGameObjectWithTag("BlackPanel").GetComponent<BlackPanel>().OnPanel();
+                    Invoke("upGoal", 2.5f);
                 }
 
                 Camera.GetComponent<Tracking_player>().Speed = 0.7f;
@@ -125,8 +126,9 @@ public class Potal : MonoBehaviour
     }
     void upGoal()
     {
-        Goal = 1;
+        GameObject.FindGameObjectWithTag("BlackPanel").GetComponent<BlackPanel>().OffPanel();
         Camera.GetComponent<Tracking_player>().target_set(Player);
         Camera.GetComponent<Tracking_player>().Speed = 2f;
+        Goal = 1;
     }
 }

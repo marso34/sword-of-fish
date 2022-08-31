@@ -12,6 +12,7 @@ public class Crab_Skill_Bubble : MonoBehaviour
     public Vector3 dir;
     void Start()
     {
+        timer= 0f;
         MaxCnt = Random.Range(4, 7);
         Destroy(gameObject, 5f);
     }
@@ -19,13 +20,15 @@ public class Crab_Skill_Bubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         timer += Time.deltaTime;
 
         if (timer >= 0.5f && Count < MaxCnt && GameObject.FindGameObjectWithTag("Player") != null)
         {
-
-            dir = transform.position - GameObject.FindGameObjectWithTag("Player").transform.position;
-            var bubble = Instantiate(BubbleBeam, transform.position,Quaternion.Euler(0,0,Random.Range(100f,260f)));
+            dir = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
+            
+            Vector3 V = new Vector3(-dir.y,dir.x,dir.z).normalized *(Random.Range(-4.1f,4.1f)) - dir;
+            var bubble = Instantiate(BubbleBeam, transform.position,Quaternion.LookRotation(Vector3.forward,V ));
             bubble.transform.parent = transform;
             Debug.Log(Quaternion.LookRotation(Vector3.forward, dir.normalized).z);
             timer = 0.4f;
