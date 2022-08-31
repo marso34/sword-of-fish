@@ -14,6 +14,8 @@ public class GoIntro : MonoBehaviour
     public GameObject OffAd;
     public GameObject Ingame;
     public GameObject BackG;
+    public GameObject CutScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class GoIntro : MonoBehaviour
     }
 
     // Update is called once per frame
-    
+
     public void OnClick()
     {
         //LobbyMusic.SetActive(false);
@@ -32,8 +34,14 @@ public class GoIntro : MonoBehaviour
         GMC.SetActive(false);
         Ingame.SetActive(true);
         IntroPanel.SetActive(true);
-        QM.GetComponent<QuestManager>().Init_Stayge();
         
+        if (QM.GetComponent<QuestManager>().Level_ == 0)
+            CutScene.SetActive(true);
+
+        QM.GetComponent<QuestManager>().Init_Stayge();
+
+
+
         //LBanner.GetComponent<AddmobBanner>().DestroyAd();
 
         GameObject[] Fleshs = new GameObject[GameObject.FindGameObjectsWithTag("Flesh").Length];

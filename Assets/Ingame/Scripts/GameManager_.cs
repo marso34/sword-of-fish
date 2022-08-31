@@ -10,6 +10,7 @@ public class GameManager_ : MonoBehaviour
     public GameObject Lobby_;
     public GameObject InGame;
     public GameObject Intro;
+    public GameObject CutScene;
     public GameObject Player;//플레이어 게임오브젝트
     public GameObject Player_p;
     //public GameObject AiPlayer;//ai게임오브젝트
@@ -116,8 +117,13 @@ public class GameManager_ : MonoBehaviour
         Intro.SetActive(true);
         LosePanel.SetActive(false);
         WinPanel.SetActive(false);
-
     }
+
+    public void StartCutScene()
+    {
+        CutScene.SetActive(true);
+    }
+
 
     public void ReStart_()
     {

@@ -8,6 +8,7 @@ public class Stage: MonoBehaviour
     public int BossHP;
     public GameObject VEC;
     public GameObject QM;
+    public GameObject GM;
     public bool flag;
     public int GoalCount;
     public Sprite Icon;

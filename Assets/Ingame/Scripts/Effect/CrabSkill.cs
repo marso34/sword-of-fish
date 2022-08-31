@@ -28,7 +28,7 @@ public class CrabSkill : MonoBehaviour
         Colider.transform.tag = "CrabNippers";
         Player = GameObject.FindGameObjectWithTag("Player");
         RB = transform.GetComponent<Rigidbody2D>();
-
+        
         flag = false;
         LEFT = KingCrab.GetComponent<KingCrab>().NippersFlag;
         SkillFlag = false;
