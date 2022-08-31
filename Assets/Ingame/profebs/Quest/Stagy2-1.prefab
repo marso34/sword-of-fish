@@ -48,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8159d8ae2f8ed534faf72593812c094f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BossHP: 0
   VEC: {fileID: 0}
   QM: {fileID: 0}
   flag: 0
   GoalCount: 0
-  Icon: {fileID: 368058585001954768, guid: 4a7c48cf7fd49044c9f41db2f0394336, type: 3}
+  Icon: {fileID: 586881316, guid: 74b627331ecf0e640a59b5e008c85590, type: 3}
   TrashFlag: 0
   TrashGravity: 0
   BlackPanel: {fileID: 0}

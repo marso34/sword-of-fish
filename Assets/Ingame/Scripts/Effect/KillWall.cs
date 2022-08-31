@@ -17,7 +17,7 @@ public class KillWall : MonoBehaviour
     {
         if (other2.transform.tag == "Body")
         {
-            Debug.Log("충돌중");
+//            Debug.Log("충돌중");
             timer += Time.deltaTime;
 
             if (timer > watingtime)

@@ -80,6 +80,7 @@ TagManager:
   - CrabBeam
   - CrabArmor
   - 5
+  - BlackPanel
   layers:
   - Default
   - TransparentFX

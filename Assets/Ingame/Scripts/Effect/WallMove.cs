@@ -32,8 +32,8 @@ public class WallMove : MonoBehaviour
                 if (GameObject.FindGameObjectWithTag("Potal") != null)
                 {
                     Vector3 P = GameObject.FindGameObjectWithTag("Potal").transform.position - transform.position;
-                    RB.velocity = P.normalized * 3f;
-                    CameraWall[3].GetComponent<Rigidbody2D>().velocity = P.normalized * 3f;
+                    RB.velocity = P.normalized * 4f;
+                    CameraWall[3].GetComponent<Rigidbody2D>().velocity = P.normalized * 4f;
                 }
             }
             else

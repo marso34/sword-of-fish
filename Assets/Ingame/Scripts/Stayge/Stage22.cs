@@ -39,6 +39,7 @@ public class Stage22 : Stage
             BossHP = Granpa.GetComponent<VictemScript>().HP;
         if (flag)
         {
+            
             ShowText();
             Granpa = GameObject.FindGameObjectWithTag("Victem");
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
