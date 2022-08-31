@@ -10,7 +10,7 @@ public class KillWall : MonoBehaviour
     void Start()
     {
         timer = 0;
-        watingtime = 2f;
+        watingtime = 0.2f;
     }
 
     public void OnCollisionStay2D(Collision2D other2)
@@ -19,7 +19,19 @@ public class KillWall : MonoBehaviour
         {
             Debug.Log("Ãæµ¹Áß");
             timer += Time.deltaTime;
-            if (timer > watingtime) KillPlayer(other2.transform.parent.gameObject);
+
+            if (timer > watingtime)
+            {
+                if (transform.tag == "Wall")
+                {
+                    transform.GetComponent<WallMove>().MoveFlag = false;
+                    KillPlayer(other2.transform.parent.gameObject);
+                }
+                else
+                    other2.transform.parent.gameObject.GetComponent<Player>().DieLife();
+
+                timer = 0f;
+            }
         }
     }
     public void OnCollisionExit2D(Collision2D other2)
@@ -34,7 +46,6 @@ public class KillWall : MonoBehaviour
     }
     void KillPlayer(GameObject P)
     {
-
         P.GetComponent<Player>().DieLife();
         P.GetComponent<Player>().HP = 0;
     }

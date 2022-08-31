@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tracking_player : MonoBehaviour
 {
+    public GameObject[] CameraWall; 
     public Transform target;// Tracking object preferp   
     float shake;
     public float z = -19;
@@ -15,6 +16,7 @@ public class Tracking_player : MonoBehaviour
     Rigidbody2D RB;
     private void Start()
     {
+        CameraWall = new GameObject[4];
         StartFlag = true;
         shake = 0;
         target = transform;
@@ -50,9 +52,10 @@ public class Tracking_player : MonoBehaviour
     ///
     void Update()
     {
+        CameraWall = GameObject.FindGameObjectsWithTag("Finish");
+
         if (target != null && (target.tag == "Player" || target.tag == "Victem"))
         {
-
             if (StartFlag)
             {
                 z = -19;
@@ -60,13 +63,24 @@ public class Tracking_player : MonoBehaviour
                 StartFlag = false;
                 transform.GetComponent<Camera>().fieldOfView = 22;
             }
+
+            var tenp = transform.GetComponent<Camera>().fieldOfView;
+
             var dir = target.GetComponent<Player>().MyBody.transform.position - transform.position;
             RB.velocity = dir * Speed;//.normalized * target.GetComponent<PlayerScript>().Speed * 4f;
+
             if (transform.GetComponent<Camera>().fieldOfView < 28)
             {
+                
                 transform.GetComponent<Camera>().fieldOfView = 22 + target.transform.localScale.y * 3f;
+                
             }
             else transform.GetComponent<Camera>().fieldOfView = 28;
+
+
+
+            // CameraWall[1].transform.Translate(new Vector3(0, (transform.GetComponent<Camera>().fieldOfView - tenp)/2, 0));
+
             // transform.position = target.GetComponent<PlayerScript>().MyBody.transform.position + new Vector3(0f, 0f, z);//Tracking object
             // RaycastHit2D ray2 = Physics2D.Raycast(transform.position, (new Vector3(0,1.1f,0) - transform.position).normalized, 1000f, LayerMask.GetMask("CameraWall"));
             // if (ray2.collider != null)

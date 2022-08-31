@@ -5,16 +5,18 @@ using UnityEngine;
 public class Stagy21 : Stage
 {
     // Start is called before the first frame update
-
+    public GameObject Player;
     public GameObject Potal;// 포탈에 닿아서 n초있으면 클리어
     public int ClearLevel;
     public GameObject[] Wall;
     public GameObject ResponePoint;
     public GameObject[] TrashWallPoint;
     public GameObject TrashWall;
+    public GameObject TrashMap;
 
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         ClearLevel = 1;
         GoalCount = 0;
         flag = true;
@@ -34,14 +36,19 @@ public class Stagy21 : Stage
             setWalls();
             QMInit();
             flag = false;
-            Destroy(GameObject.FindGameObjectWithTag("V"));
-            VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
+
+            var t = GameObject.FindGameObjectWithTag("V");
+            if (t != null)
+                Destroy(t);
         }
-        if (VEC.GetComponent<FlowingBigT>().BigT == null)
+
+        if (Player.GetComponent<Player>().Life)
         {
-            if (GameObject.FindWithTag("Potal") != null)
-                VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Potal"));
+            if (Player.GetComponent<Player>().MyBody.tag == "Body")
+                Player.GetComponent<Player>().RB.velocity += Vector2.right * 4f;
         }
+        else 
+            Player.GetComponent<Player>().RB.velocity = Vector2.zero;
         GoalCount = Potal.GetComponent<Potal>().Goal;
     }
     void QMInit()

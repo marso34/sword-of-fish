@@ -22,7 +22,7 @@ public class AiPlayerScript : Player
     GameObject[] AiPlayers_;
     bool firstMoveFlag;
     Vector3 MinFar;
-    bool ViewFlag;
+    public bool ViewFlag;
 
     float SkillTimer;
 

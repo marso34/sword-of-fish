@@ -2442,10 +2442,10 @@ PrefabInstance:
     - target: {fileID: 5819709404087925583, guid: daed68d1be6bebf4abf2c94db153fe91, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 72fa33dcbdf778c4c94f9446a5bb1589, type: 3}
+      objectReference: {fileID: 21300000, guid: 627fc6eac925bc748b0d1a505d2eb99c, type: 3}
     - target: {fileID: 5819709404087925583, guid: daed68d1be6bebf4abf2c94db153fe91, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6231992669242388356, guid: daed68d1be6bebf4abf2c94db153fe91, type: 3}
       propertyPath: m_PresetInfoIsWorld

@@ -324,18 +324,8 @@ public class Player : MonoBehaviour
     }
     public void Check_Flag()
     {
-        Color a;
-        a.a = 0;
-        a.b = 1;
-        a.g = 1;
-        a.r = 1;
-        Color b;
-        b.a = 1;
-        b.b = 1;
-        b.g = 1;
-        b.r = 1;
-        if (!Flag_get) Flag_Image.GetComponent<Image>().color = a;
-        else if (Flag_get) Flag_Image.GetComponent<Image>().color = b;
+        if (!Flag_get) Flag_Image.GetComponent<Image>().color = Color.clear;
+        else if (Flag_get) Flag_Image.GetComponent<Image>().color = Color.white;
     }
     public void CreateFlesh()//?ãúÏ≤¥ÏÉù?Ñ±
     {

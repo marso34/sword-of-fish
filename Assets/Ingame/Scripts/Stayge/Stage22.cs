@@ -59,7 +59,6 @@ public class Stage22 : Stage
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
             QM.GetComponent<QuestManager>().ObjMFlag = false;
             flag = false;
-         Destroy(GameObject.FindGameObjectWithTag("V"));
             VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
         }
         else
@@ -86,7 +85,7 @@ public class Stage22 : Stage
                 VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Attacker"));
             }
         }
-        
+
         //Debug.Log(EnemyCount + "적수");
     }
     public bool CheckWaveEnd()
@@ -108,8 +107,8 @@ public class Stage22 : Stage
     {
         if (WavingFlag)
         {
-             if (WaveLevel > 0)
-                        ShowWaveLevel();
+            if (WaveLevel > 0)
+                ShowWaveLevel();
             if (WaveLevel == 1)
             {
                 for (int i = 0; i < 3 + HardConst; ++i)
@@ -167,6 +166,6 @@ public class Stage22 : Stage
     public void ShowText()
     {
         GameObject.FindGameObjectWithTag("ShowText").gameObject.GetComponent<ShowInLevel>().showText("할아버지 물고기를 지켜줘");
-         GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("할아버지 물고기를 지켜줘");
+        GameObject.FindGameObjectWithTag("QB").transform.GetChild(3).GetComponent<ShowQBText>().showText("할아버지 물고기를 지켜줘");
     }
 }
