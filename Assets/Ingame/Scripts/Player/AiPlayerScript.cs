@@ -61,9 +61,7 @@ public class AiPlayerScript : Player
         StartCoroutine("Start_");
         MinFar = new Vector3(13f, 5f, 1f);
         ViewFlag = false;
-        if (transform.tag == "InkOct") HP = 1;
-        else if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3) HP = 2 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
-        else HP = 1 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
+        
     }
     void SetBuster()//부스터 플레그 켜지면 부스터키기.
     {
@@ -82,10 +80,14 @@ public class AiPlayerScript : Player
 
         if (StartFlag == true && Player != null)
         {
+            
             if (transform.tag == "InkOct") FishNumber = 7;
             GameStartInit();
             Target = Player;
             Init_();
+            if (transform.tag == "InkOct") HP = 1;
+            else if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3) HP = 2 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
+            else HP = 1 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
         }
 
 

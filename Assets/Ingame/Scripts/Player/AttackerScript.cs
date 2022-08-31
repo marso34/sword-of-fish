@@ -211,9 +211,10 @@ public class AttackerScript : Player
         lookrota();
         PlayerP = GameObject.FindGameObjectWithTag("Player");
         statusColor();
-        
+        if(transform.name == "Boss") QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().BossHP = HP;
         if (PlayerP != null && Life)
         {
+
             if (FRZFlag == true)
             {
                 Speed = 0;
@@ -236,7 +237,7 @@ public class AttackerScript : Player
 
                 bullet_.GetComponent<bullet>().SetDir(dir);
                 Debug.Log("계속");
-                if (SkillCount > 2 && SkillFlag_)
+                if (SkillCount > 1 && SkillFlag_)
                 {
                     SkillFlag_ = false;
                     if (transform.name == "Boss")
@@ -247,7 +248,7 @@ public class AttackerScript : Player
                     }
                 }
                 timer = 0f;
-                waitingTime = Random.Range(3, 6);
+                waitingTime = Random.Range(2, 4);
             }
 
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);//이동방향에 맞게 정면을 보도록 회전값 받아오기.

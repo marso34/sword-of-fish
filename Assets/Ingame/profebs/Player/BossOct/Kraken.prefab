@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 127717189}
   - component: {fileID: 127717188}
   - component: {fileID: 127717187}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: tentacle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7807c2ae73ce5a54c94077189a2fca32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QM: {fileID: 0}
   KillEffect: {fileID: 5233788906449441244, guid: d5988210d2fa8fe43ac1d73e0ba5ac48, type: 3}
   KillEffect2: {fileID: 2545687451895993892, guid: 7fdcf5ffa38dcfa429c6b71f2f2783a6, type: 3}
   KS_: {fileID: 3923850190965431742, guid: b596ae6da34b9874fb74077cbe790457, type: 3}
@@ -528,6 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   GM: {fileID: 0}
+  QM: {fileID: 0}
   DamageText: {fileID: 160980841540161695, guid: b0f74e078793afe439c97f6c4a5fe1d0, type: 3}
   Image:
   - {fileID: -3640003177370580343, guid: ee0a64cd0158efb44a78c274c6d580e5, type: 3}
@@ -735,7 +737,7 @@ GameObject:
   - component: {fileID: 3581846141913247871}
   - component: {fileID: 5109332518150197099}
   - component: {fileID: 5525818324714697695}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: hitCheck
   m_TagString: Tentacle
   m_Icon: {fileID: 0}

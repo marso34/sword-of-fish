@@ -17,6 +17,7 @@ public class FlowingBigT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         Player = GameObject.FindGameObjectWithTag("Player");
         if (Player != null) transform.position = Player.transform.position;
         if (BigT != null)
@@ -29,6 +30,7 @@ public class FlowingBigT : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 720f * Time.deltaTime);///플레이어오브젝트에게 받아온 회전값 적용
             if (dir.magnitude < min.magnitude) transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             else transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+          
         }
         else
         {

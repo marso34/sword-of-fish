@@ -12,7 +12,7 @@ public class Stage04 : Stage
         GoalCount = 0;
         flag = true;
         QM = GameObject.FindGameObjectWithTag("QM");
-        TrashGravity = 0.005f;
+        TrashGravity = 0.1f;
         TrashFlag = false;
 
     }
@@ -53,7 +53,7 @@ public class Stage04 : Stage
                 VEC.GetComponent<FlowingBigT>().setBigT(GameObject.FindWithTag("Attacker"));
             }
         }
-        if (QM.GetComponent<QuestManager>().Player != null &&QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().KomBoCount >= 7)
+        if (QM.GetComponent<QuestManager>().Player != null && QM.GetComponent<QuestManager>().Player.GetComponent<PlayerScript>().KomBoCount >= 7)
         {
             GoalCount = 1;
         }

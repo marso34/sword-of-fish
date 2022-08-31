@@ -9,7 +9,7 @@ public class Crab_Skill_Bubble : MonoBehaviour
     float timer;
     int Count;
     int MaxCnt;
-
+    public Vector3 dir;
     void Start()
     {
         MaxCnt = Random.Range(4, 7);
@@ -21,10 +21,13 @@ public class Crab_Skill_Bubble : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= 0.5f && Count < MaxCnt)
+        if (timer >= 0.5f && Count < MaxCnt && GameObject.FindGameObjectWithTag("Player") != null)
         {
-            var bubble = Instantiate(BubbleBeam, transform.position, Quaternion.Euler(0, 0, Random.Range(100f, 260f)));
+
+            dir = transform.position - GameObject.FindGameObjectWithTag("Player").transform.position;
+            var bubble = Instantiate(BubbleBeam, transform.position,Quaternion.Euler(0,0,Random.Range(100f,260f)));
             bubble.transform.parent = transform;
+            Debug.Log(Quaternion.LookRotation(Vector3.forward, dir.normalized).z);
             timer = 0.4f;
             Count++;
         }

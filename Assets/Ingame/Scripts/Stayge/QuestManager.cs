@@ -129,8 +129,10 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         Score = 0;
-        Level_ = 2;//초기 렙설정
-        IngameLevel = 4; //n스테이지진입후 n-n 스테이지레벨    
+
+        GameLoad();//초기 렙설정
+        IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
+
         LoseFlag = false;
         OccupationTime = 0;
         //TutorialLev = 0;
@@ -145,11 +147,12 @@ public class QuestManager : MonoBehaviour
     }
     void Update()
     {
+        Test_Method();
         Levelboard.GetComponent<Text>().text = Level_.ToString();
         if (GM.GetComponent<GameManager_>().enterGame && GM.GetComponent<GameManager_>().EndFlag == false)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
-            Test_Method();
+           
             if (Player != null)
             {
                 FlagOnMethod();
@@ -207,11 +210,12 @@ public class QuestManager : MonoBehaviour
 
         }
     }
+
     public void Test_Method()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            CurrentCount = MaxCount;
+            IngameLevel++;
             Flag = true;
         }
         else if (Input.GetKeyDown(KeyCode.Y))
@@ -609,20 +613,21 @@ public class QuestManager : MonoBehaviour
             CurrentCountInit();
             if (Level_ > 0)
             {
+                Text T = QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>();
                 QuestBoard_.GetComponent<QB>().ShapeA.SetActive(true);
-
-
                 QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(1).GetComponent<Image>().sprite = Stayge.GetComponent<Stage>().Icon;
                 if (Level_ != 0 && Level_ % 2 == 0 && IngameLevel == 3)
-                    QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = "적 수 : " + Stayge.GetComponent<Stage23>().EnemyCount.ToString();
+                    T.text = "적 수 : " + Stayge.GetComponent<Stage23>().EnemyCount.ToString();
+                else if (Level_ != 0 && Level_ % 2 == 0 && IngameLevel == 2) T.text = "HP : " + Stayge.GetComponent<Stage>().BossHP.ToString();
                 else
-                    QuestBoard_.GetComponent<QB>().ShapeA.transform.GetChild(2).GetComponent<Text>().text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+                {
+                    T.text = CurrentCount.ToString() + " / " + MaxCount.ToString();
+                }
             }
             else
             {
                 QuestBoard_.GetComponent<QB>().ShapeA.SetActive(false);
             }
-
         }
     }//???????? ????
     public void ShapeA_EndCheck()//shapeA에 대한 성공체크(갯수다모으는거)
@@ -679,9 +684,24 @@ public class QuestManager : MonoBehaviour
 
                 Flag = true;
                 StagyStagtFlag = false;
-
+                GameSave();
             }
 
         }
     }//??????????? ??
+
+    public void GameSave()
+    {
+        PlayerPrefs.SetInt("Level", Level_);
+        PlayerPrefs.Save();
+    }
+    public void GameLoad()
+    {
+        if (!PlayerPrefs.HasKey("Level"))
+        {
+            Level_ = 0;
+            return;
+        }
+        else Level_ = PlayerPrefs.GetInt("Level");
+    }
 }

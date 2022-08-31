@@ -41,7 +41,7 @@ public class GameManager_ : MonoBehaviour
     public GameObject LosePanel;
     public bool SuccesFlag = false;
     public GameObject QM;
-     public void SetResolution_()
+    public void SetResolution_()
     {
         int setWidth = 1920; // 사용자 설정 너비
         int setHeight = 1080; // 사용자 설정 높이
@@ -51,7 +51,7 @@ public class GameManager_ : MonoBehaviour
 
         Screen.SetResolution(1280, (int)(720), true); // SetResolution 함수 제대로 사용하기
 
-       
+
     }
     private void Start()
     {
@@ -68,45 +68,41 @@ public class GameManager_ : MonoBehaviour
         StartFlag_ = false;
         StartButtonFlag = false;
         //SetResolution();
-       // Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
-       // SetResolution_();
+        // Lobby_ = GameObject.FindGameObjectWithTag("Lobby").gameObject;
+        // SetResolution_();
     }
-   
+
     private void Update()
     {
         //OnPreCull();
         if (StartKeyFlag)
         {
             StartKey();
-             EnterInit();
-               enterGame = true;
+            EnterInit();
+            enterGame = true;
             //  SetTarget();
             resetFlag = false;
             Debug.Log("aaaa");
             InGame = GameObject.FindGameObjectWithTag("InGame").gameObject;
-         
+
             Player_p.GetComponent<PlayerScript>().StartFlag = true;
         }
-
-       
         Player_p = GameObject.FindGameObjectWithTag("Player");
         if (Player_p != null)
         {
-
             if (GlobalTime > 0 && EndFlag == false)
             {
                 GlobalTime += Time.deltaTime;
                 Player_p.GetComponent<PlayerScript>().globalTime = GlobalTime;
             }
-
         }
-        else if(Player_p ==null) ObjectCleaner();
+        else if (Player_p == null) ObjectCleaner();
     }
 
     public void GoLobby()
     {
         ResetGame();
-        BackG.SetActive(true);      
+        BackG.SetActive(true);
         Lobby_.SetActive(true);
         Debug.Log("lobby");
         InGame.SetActive(false);
@@ -141,7 +137,7 @@ public class GameManager_ : MonoBehaviour
         EndFlag = true;
         StartKeyFlag = false;
         GlobalTime = 0;
-        
+
         StartButtonFlag = false;
         QM.GetComponent<QuestManager>().Flag = true;
         QM.GetComponent<QuestManager>().ResetCounter();
@@ -151,16 +147,18 @@ public class GameManager_ : MonoBehaviour
         Destroy(QM.GetComponent<QuestManager>().Player);
         ObjectCleaner();
     }
-    public void ObjectCleaner(){
+    public void ObjectCleaner()
+    {
         GameObject[] trush_ = GameObject.FindGameObjectsWithTag("Trush");
         GameObject[] Items = GameObject.FindGameObjectsWithTag("Item");
         GameObject[] Attackers = GameObject.FindGameObjectsWithTag("Attacker");
         GameObject[] AiPlayers = GameObject.FindGameObjectsWithTag("AiPlayer");
         GameObject Kraken = GameObject.FindGameObjectWithTag("Kraken");
         GameObject KingCrab = GameObject.FindGameObjectWithTag("KingCrab");
-        GameObject []BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
+        GameObject[] BigTrash = GameObject.FindGameObjectsWithTag("BigTrash");
         GameObject V = GameObject.FindWithTag("V");
-        if(GameObject.FindWithTag("BS") != null){
+        if (GameObject.FindWithTag("BS") != null)
+        {
             Destroy(GameObject.FindWithTag("BS"));
         }
         Destroy(GameObject.FindGameObjectWithTag("Stage"));
@@ -169,22 +167,23 @@ public class GameManager_ : MonoBehaviour
         Destroy(V);
         for (int i = 0; i < BigTrash.Length; ++i)
         {
-            Destroy(BigTrash[i],0f);
+            Destroy(BigTrash[i], 0f);
         }
         for (int i = 0; i < trush_.Length; ++i)
         {
-            Destroy(trush_[i],0f);
+            Destroy(trush_[i], 0f);
         }
         for (int i = 0; i < Items.Length; ++i)
         {
-            Destroy(Items[i],0f);
+            Destroy(Items[i], 0f);
         }
         for (int i = 0; i < Attackers.Length; ++i)
         {
-            Destroy(Attackers[i],0f);
+            Destroy(Attackers[i], 0f);
         }
-        for(int i=0;i<AiPlayers.Length;++i){
-            Destroy(AiPlayers[i],0f);
+        for (int i = 0; i < AiPlayers.Length; ++i)
+        {
+            Destroy(AiPlayers[i], 0f);
         }
     }
     public void Start___()
@@ -195,15 +194,15 @@ public class GameManager_ : MonoBehaviour
     void StartKey()
     {
 
-      
+
         StartKeyFlag = false;
 
 
     }//T누르면 게임시작
     void EnterInit()
     {
-         resetFlag = false;
-          EndFlag = false;
+        resetFlag = false;
+        EndFlag = false;
         //FakePanel.SetActive(true);
 
         MyPlayerCreate();
@@ -213,7 +212,7 @@ public class GameManager_ : MonoBehaviour
         {
             CreateAiPlayer(i);
         }*/
-     
+
 
     }//게임들어오면 하는일
     /*void CreateAiPlayer(int index)

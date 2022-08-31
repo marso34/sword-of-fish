@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +5,7 @@ using UnityEngine;
 public class Stage: MonoBehaviour
 {
     // Start is called before the first frame update
+    public int BossHP;
     public GameObject VEC;
     public GameObject QM;
     public bool flag;

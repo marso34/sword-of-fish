@@ -35,10 +35,12 @@ public class Stage22 : Stage
     // Update is called once per frame
     void Update()
     {
+        if (Granpa != null)
+            BossHP = Granpa.GetComponent<VictemScript>().HP;
         if (flag)
         {
             ShowText();
-            //Granpa = GameObject.FindGameObjectWithTag("VicTem");
+            Granpa = GameObject.FindGameObjectWithTag("Victem");
             GameObject Cam = GameObject.FindGameObjectWithTag("MainCamera");
             Cam.transform.position = new Vector3(0, 0, Cam.transform.position.z);
             QM.GetComponent<QuestManager>().Player.transform.position = Vector3.zero;
@@ -59,6 +61,7 @@ public class Stage22 : Stage
             QM.GetComponent<QuestManager>().StagyStagtFlag = true;
             QM.GetComponent<QuestManager>().ObjMFlag = false;
             flag = false;
+
             VEC = Instantiate(QM.GetComponent<QuestManager>().Vectorv, QM.GetComponent<QuestManager>().Player.transform.position, Quaternion.Euler(0, 0, 0));
         }
         else

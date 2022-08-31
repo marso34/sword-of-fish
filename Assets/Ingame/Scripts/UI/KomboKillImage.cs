@@ -83,9 +83,5 @@ public class KomboKillImage : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    private void Update()
-    {
-         transform.GetComponent<Image>().color = Color.clear;
-    }
-    
+  
 } 
