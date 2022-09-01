@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lv4Open : Open
 {
-    // Start is called before the first frame update
+    public GameObject Fish;
     void Start()
     {
         GetQM();
@@ -15,6 +15,8 @@ public class Lv4Open : Open
     {
         if (QM.GetComponent<QuestManager>().Level_ >= 4 && flag)
         {
+            if (Fish != null)
+                Fish.GetComponent<Animator>().enabled = true;
             flag = false;
             Destroy(gameObject);
         }

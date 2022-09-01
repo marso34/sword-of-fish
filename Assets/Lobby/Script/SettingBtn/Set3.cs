@@ -18,7 +18,7 @@ public class Set3 : MonoBehaviour
     public void OnClick()
     {
         QM = GameObject.FindGameObjectWithTag("QM");
-        if(QM.GetComponent<QuestManager>().Level_ >0) QM.GetComponent<QuestManager>().Level_ = 0;
-        else QM.GetComponent<QuestManager>().Level_ = 1;
+        if(QM.GetComponent<QuestManager>().Level_ >1) QM.GetComponent<QuestManager>().Level_ = 1;
+       
     }
 }

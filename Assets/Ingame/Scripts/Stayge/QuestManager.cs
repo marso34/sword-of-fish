@@ -130,9 +130,8 @@ public class QuestManager : MonoBehaviour
     {
         Score = 0;
 
-        //GameLoad();//√ ±‚ ∑æº≥¡§
-        Level_ = 1;
-       
+        GameLoad();//√ ±‚ ∑æº≥¡§
+        
 
         if (Level_ == 0)
             IngameLevel = 0;

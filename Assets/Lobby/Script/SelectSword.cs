@@ -10,7 +10,7 @@ public class SelectSword : SelectObj    //Sword(0~5)Btn에 들어간 스크립트
 
     public void Start()
     {
-        ObjNum = 8;     //무기 총 갯수
+        ObjNum = 6;     //무기 총 갯수
     }
 
     public override void CallLobby(int i)   //각 무기마다 부여된 번호
