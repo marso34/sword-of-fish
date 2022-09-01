@@ -54,7 +54,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   chsize: 0.05
   chc: 0
-  TutorialFlesh: 0
 --- !u!58 &7053345325316883323
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class HitFillBody : MonoBehaviour
     public void TimeStop_(float weight)
     {
         if (transform.parent.tag == "Player")
-         {
+        {
             Vibrate vibrate1 = new Vibrate();
             vibrate1.vibrate(30);
         }
@@ -56,11 +56,11 @@ public class HitFillBody : MonoBehaviour
         //PlayerValue(1);
         PlayerSlowValue();
 
-        yield return new WaitForSecondsRealtime(FishWeight /2f); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
+        yield return new WaitForSecondsRealtime(FishWeight / 2f); //0.07f + (Mathf.Pow(2, FishWeight) / 100) / 2
         PlayerValue(1);
         stopping = false;
 
-//코루틴 오류 해결법
+        //???? ???? ????
         Player_.transform.GetComponent<Player>().StopCoroutine("Start_");
 
         Player_.transform.GetComponent<Player>().StartCoroutine("Start_");
@@ -79,9 +79,9 @@ public class HitFillBody : MonoBehaviour
     {
         if (SlowFlag_)
         {
-            Player_.GetComponent<Player>().RB.velocity = Vector2.zero;
+            //Player_.GetComponent<Player>().RB.velocity = Vector2.zero;
         }
     }
 
-    
+
 }

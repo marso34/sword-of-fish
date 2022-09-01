@@ -614,7 +614,9 @@ public class Player : MonoBehaviour
 
 
             {
+                
                 RB.velocity = dir * Speed * Time.deltaTime * 60f;
+                // RB.AddForce(transform.forward *10f);
                 //if (transform.tag == "InkOct") Debug.Log("타코이동");
                 rota();
             }
