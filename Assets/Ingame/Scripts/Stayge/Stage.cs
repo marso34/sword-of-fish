@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage: MonoBehaviour
+public class Stage : MonoBehaviour
 {
     // Start is called before the first frame update
     public int BossHP;
@@ -17,14 +17,14 @@ public class Stage: MonoBehaviour
     public GameObject BlackPanel;
     public int HardConst;
     // Update is called once per frame
-   Vector3 DownTPosition()
+    Vector3 DownTPosition()
     {//떨어질쓰레기 위치설정
         GameObject TP = GameObject.FindGameObjectWithTag("TrashPoint");
         int Trange = 13;
-        if(QM.GetComponent<QuestManager>().Level_ == 1) Trange = 30;
-        else if (QM.GetComponent<QuestManager>().Level_ == 2) Trange = 13;
+        if (QM.GetComponent<QuestManager>().Level_ % 2 == 1) Trange = 30;
+        else if (QM.GetComponent<QuestManager>().Level_ != 0 && QM.GetComponent<QuestManager>().Level_ % 2 == 0) Trange = 13;
 
-        return new Vector3(Random.Range(-1*Trange, Trange), TP.transform.position.y, 0);
+        return new Vector3(Random.Range(-1 * Trange, Trange), TP.transform.position.y, 0);
     }
     void CreateTrash_()
     {
@@ -34,7 +34,8 @@ public class Stage: MonoBehaviour
         TrashFlag = true;
         //T.name = "bullet(Clone)";
     }
-    public void TrashOn(){
+    public void TrashOn()
+    {
 
         if (TrashFlag)
         {
@@ -42,7 +43,8 @@ public class Stage: MonoBehaviour
             TrashFlag = false;
         }
     }
-    public void initHardConst(){
+    public void initHardConst()
+    {
         HardConst = QM.GetComponent<QuestManager>().Level_ - 2;
         if (HardConst < 0) HardConst = 0;
     }

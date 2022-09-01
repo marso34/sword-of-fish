@@ -619,6 +619,8 @@ MonoBehaviour:
   BosskillScore: 0
   BigTrashC: 0
   killcheck: 0
+  HPtimer: 0
+  HillTime: 0
 --- !u!1 &3100670642214388848
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,7 +3399,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
       propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191920653884882439, guid: 73db255457f607a4bb052da79167992a, type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4279356489891661302, guid: 73db255457f607a4bb052da79167992a, type: 3}

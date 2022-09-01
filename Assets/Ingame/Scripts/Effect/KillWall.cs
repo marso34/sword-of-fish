@@ -13,35 +13,22 @@ public class KillWall : MonoBehaviour
         watingtime = 0.2f;
     }
 
-    public void OnCollisionStay2D(Collision2D other2)
+    public void OnCollisionEnter2D(Collision2D other2)
     {
-        if (other2.transform.tag == "Body")
+        if (other2.transform.tag != "Knife" &&other2.transform.parent != null && other2.transform.parent.tag == "Player")
         {
 //            Debug.Log("충돌중");
-            timer += Time.deltaTime;
-
-            if (timer > watingtime)
-            {
                 if (transform.tag == "Wall")
                 {
                     transform.GetComponent<WallMove>().MoveFlag = false;
                     KillPlayer(other2.transform.parent.gameObject);
                 }
-                else
+                else{
+                    other2.transform.parent.gameObject.GetComponent<Player>().HP--;
+                other2.transform.parent.gameObject.GetComponent<Player>().HP--;
                     other2.transform.parent.gameObject.GetComponent<Player>().DieLife();
-
-                timer = 0f;
-            }
-        }
-    }
-    public void OnCollisionExit2D(Collision2D other2)
-    {
-        if (other2.transform.tag == "Body")
-        {
-            {
-                timer = 0;
-                Debug.Log("NOT충돌중");
-            }
+                }
+            
         }
     }
     void KillPlayer(GameObject P)

@@ -163,7 +163,6 @@ public class Trush : MonoBehaviour
                 QM.GetComponent<QuestManager>().TrashOC--;
             else if (transform.name == "Paper") QM.GetComponent<QuestManager>().Trash2OC--;
             Destroy(gameObject);
-
         }
         if ((other.gameObject.tag == "Knife" && other.transform.parent.tag == "Player"))
         {
@@ -185,7 +184,13 @@ public class Trush : MonoBehaviour
                     var Sound1 = Instantiate(KillSound_, transform.position, Quaternion.Euler(0f, 0f, 0f));
                     other.transform.parent.GetComponent<PlayerScript>().Handlebar(15f);
                     {
-                        int rand = Random.Range(0, 15);
+                        if(QM.GetComponent<QuestManager>().Level_ == 0){
+                            int rand_ = Random.Range(1,7);
+                            if (rand_ == 1 || rand_ == 2) Instantiate(Bomb, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                            else if (rand_ == 3 || rand_ == 4) Instantiate(Ice, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                            else if (rand_ == 5 || rand_ == 6) Instantiate(Shield, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                        }
+                        int rand = Random.Range(2, 15);
                         if (rand == 1 || rand == 2) Instantiate(Star, transform.position, Quaternion.Euler(0f, 0f, 0f));
                         else if (rand == 4 || rand == 5 || rand == 6) Instantiate(Hart, transform.position, Quaternion.Euler(0f, 0f, 0f));
                         else if (rand == 8 || rand == 9 || rand == 10) Instantiate(Litening, transform.position, Quaternion.Euler(0f, 0f, 0f));

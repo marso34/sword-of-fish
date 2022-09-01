@@ -86,7 +86,7 @@ public class AiPlayerScript : Player
             Target = Player;
             Init_();
             if (transform.tag == "InkOct") HP = 1;
-            else if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3) HP = 2 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
+            else if (QM.GetComponent<QuestManager>().Level_ != 0 &&(QM.GetComponent<QuestManager>().Level_ % 2 == 0) && QM.GetComponent<QuestManager>().IngameLevel == 3) HP = 2 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
             else HP = 1 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
         }
 
@@ -257,7 +257,7 @@ public class AiPlayerScript : Player
         int Dice = Random.Range(0, 5);
         if (transform.tag == "AiPlayer")
         {
-            if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 2)
+            if (QM.GetComponent<QuestManager>().Level_ != 0 && (QM.GetComponent<QuestManager>().Level_ % 2 == 0) && QM.GetComponent<QuestManager>().IngameLevel == 2)
             {
                 //if (Random.Range(0, 7) == 1) BusterFlag = true;
                 //else BusterFlag = false;

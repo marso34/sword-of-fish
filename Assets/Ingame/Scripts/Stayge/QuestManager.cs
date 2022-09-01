@@ -130,8 +130,8 @@ public class QuestManager : MonoBehaviour
     {
         Score = 0;
 
-        GameLoad();//ÃÊ±â ·¾¼³Á¤
-
+        //GameLoad();//ÃÊ±â ·¾¼³Á¤
+        Level_ = 1;
        
 
         if (Level_ == 0)
@@ -333,14 +333,15 @@ public class QuestManager : MonoBehaviour
 
             limitTime = 1;
             ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = Level_.ToString();
+            IntroPanelName.GetComponent<Text>().fontSize = 150;
+            IntroPanelName.GetComponent<Text>().text = "Æ©Åä¸®¾ó";
             IntroPanelPlan[1].SetActive(true);
             //IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "Æ©Åä¸®¾ó";
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "";
         }
         if (Level_ % 2 == 1)
         {
-
+            IntroPanelName.GetComponent<Text>().fontSize = 200;
             GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
             GameObject.Find("IntroPanel").transform.Find("Stage1").gameObject.SetActive(true);
             GameObject.Find("IntroPanel").transform.Find("plan1").gameObject.SetActive(true);

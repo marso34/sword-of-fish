@@ -115,13 +115,13 @@ public class Stage22 : Stage
                 ShowWaveLevel();
             if (WaveLevel == 1)
             {
-                for (int i = 0; i < 3 + HardConst; ++i)
+                for (int i = 0; i < 4 + HardConst; ++i)
                 {
                     QM.GetComponent<QuestManager>().CreateKnifeE();
                     EnemyCount++;
                     Debug.Log("º“»Ø");
                 }
-                for (int j = 0; j < 1 + HardConst; ++j)
+                for (int j = 0; j < 2 + HardConst; ++j)
                 {
                     QM.GetComponent<QuestManager>().CreateBulletE();
                     EnemyCount++;
@@ -131,7 +131,7 @@ public class Stage22 : Stage
 
             else if (WaveLevel == 2)
             {
-                for (int i = 0; i < 3 + HardConst; ++i)
+                for (int i = 0; i < 5 + HardConst; ++i)
                 {
                     QM.GetComponent<QuestManager>().CreateKnifeE();
                     EnemyCount++;
@@ -145,7 +145,7 @@ public class Stage22 : Stage
 
             else if (WaveLevel == 3)
             {
-                for (int i = 0; i < 3 + HardConst; ++i)
+                for (int i = 0; i < 6 + HardConst; ++i)
                 {
                     QM.GetComponent<QuestManager>().CreateKnifeE();
                     EnemyCount++;

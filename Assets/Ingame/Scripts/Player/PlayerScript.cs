@@ -70,8 +70,12 @@ public class PlayerScript : Player
     int MaxHP = 5;
 
     public bool killcheck = false; //y Àû Á×ÀÌ±â Æ©Åä¸®¾ó
+
+    public float HPtimer;
+    public float HillTime;
     public void Start()
     {
+        QM = GameObject.FindGameObjectWithTag("QM");
         UseItem_ = false;
         KomBoCount = 0;
         TuLev1 = false; //y ÀÌµ¿ Æ©Åä¸®¾ó 
@@ -120,7 +124,7 @@ public class PlayerScript : Player
         // a.transform.parent = transform;
         // a.transform.localPosition = Vector3.zero;
         // a.transform.localScale = new Vector3(1f, 1f, 1f);
-
+        HillTime = 3 + QM.GetComponent<QuestManager>().Level_;
         StartCoroutine("Start_");
     }
 
@@ -151,6 +155,15 @@ public class PlayerScript : Player
 
             if (Life)
             {
+                if (HP < 5)
+                {
+                    HPtimer += Time.deltaTime;
+                    if (HPtimer > HillTime)
+                    {
+                        HP++;
+                        HPtimer = 0;
+                    }
+                }
                 isMove = true;
                 dir = value.joyTouch;
                 if (cutGauge <= 0) BusterFlag = false;
