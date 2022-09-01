@@ -375,7 +375,7 @@ public class Player : MonoBehaviour
         {
             int R = Random.Range(5, 6);// ëª¸ìŠ¤?‚¨ê°??ˆ˜5
 
-            if (QM.GetComponent<QuestManager>().Level_ == 2 && QM.GetComponent<QuestManager>().IngameLevel == 3)
+            if (QM.GetComponent<QuestManager>().Level_ != 0 && (QM.GetComponent<QuestManager>().Level_ % 2 == 0) && QM.GetComponent<QuestManager>().IngameLevel == 3)
                 {
                     if(QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage23>().WaveLevel == 1) FishNumber = 5;
                     else FishNumber = 9;
@@ -888,7 +888,7 @@ public class Player : MonoBehaviour
     }
     public void Stage22_ex()
     {
-        if (QM.GetComponent<QuestManager>().Level_ == 2 && (QM.GetComponent<QuestManager>().IngameLevel == 2 || QM.GetComponent<QuestManager>().IngameLevel == 3))
+        if (QM.GetComponent<QuestManager>().Level_ != 0 && QM.GetComponent<QuestManager>().Level_ % 2 == 0 && (QM.GetComponent<QuestManager>().IngameLevel == 2 || QM.GetComponent<QuestManager>().IngameLevel == 3))
         {
             GameObject ST = GameObject.FindGameObjectWithTag("Stage");
             if (QM.GetComponent<QuestManager>().IngameLevel == 2)

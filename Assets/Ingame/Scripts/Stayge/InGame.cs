@@ -26,8 +26,8 @@ public class InGame : MonoBehaviour
                 {
                     transform.GetChild(i).gameObject.SetActive(false);
                 }
-                if(QM.GetComponent<QuestManager>().Level_  <3)
-                    transform.GetChild(QM.GetComponent<QuestManager>().Level_ - 1).gameObject.SetActive(true);
+                
+                    transform.GetChild((QM.GetComponent<QuestManager>().Level_) % 2).gameObject.SetActive(true);
                 Inflag = false;
                 Debug.Log("¸ÊÄÑ±â");
             }

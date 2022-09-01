@@ -130,16 +130,13 @@ public class QuestManager : MonoBehaviour
     {
         Score = 0;
 
-        // GameLoad();//초기 렙설정
-        Level_ = 2;
-       
+        //GameLoad();//초기 렙설정
+        Level_ = 1;
 
         if (Level_ == 0)
             IngameLevel = 0;
         else 
             IngameLevel = 1; //n스테이지진입후 n-n 스테이지레벨    
-
-
 
         LoseFlag = false;
         OccupationTime = 0;
@@ -335,14 +332,15 @@ public class QuestManager : MonoBehaviour
 
             limitTime = 1;
             ShapeNum = 1;
-            IntroPanelName.GetComponent<Text>().text = Level_.ToString();
+            IntroPanelName.GetComponent<Text>().fontSize = 150;
+            IntroPanelName.GetComponent<Text>().text = "튜토리얼";
             IntroPanelPlan[1].SetActive(true);
             //IntroPanelPlan[1].GetComponent<Image>().sprite = BossIcon[Level_ - 1];
-            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "튜토리얼";
+            IntroPanelPlan[1].transform.GetChild(0).GetComponent<Text>().text = "";
         }
         if (Level_ % 2 == 1)
         {
-
+            IntroPanelName.GetComponent<Text>().fontSize = 200;
             GameObject.Find("IntroPanel").transform.Find("plan").gameObject.SetActive(true);
             GameObject.Find("IntroPanel").transform.Find("Stage1").gameObject.SetActive(true);
             GameObject.Find("IntroPanel").transform.Find("plan1").gameObject.SetActive(true);
