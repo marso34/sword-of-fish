@@ -27,7 +27,7 @@ public class Kraken : Boss
         Circle = GetComponent<CircleCollider2D>();
         Skin = GetComponent<SpriteRenderer>();
         Skin.sprite = Image[0];
-        HP = 18 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 3;
+        HP = 18 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 10;
         Speed = 3.8f;
         RotationSpeed = 800f;
         waitTime = 4f;

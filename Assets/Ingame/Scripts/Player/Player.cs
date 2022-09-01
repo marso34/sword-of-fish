@@ -814,6 +814,8 @@ public class Player : MonoBehaviour
         {
             CreateSkill();
             SkillFlag = true;
+            MyBody.tag = "Knife";
+            Invoke("Init_", 3f);
             Invoke("OffSkillFlag", 3f);
         }
         else if (FishNumber == 9) // ???????
@@ -860,6 +862,8 @@ public class Player : MonoBehaviour
         else if (FishNumber == 4)  // ???? ???
         {
             CreateSkill2(Name);
+            MyBody.tag = "Shiled";
+            Invoke("Init_", 3f);
             SkillFlag = true;
             Invoke("OffSkillFlag", 3f);
         }

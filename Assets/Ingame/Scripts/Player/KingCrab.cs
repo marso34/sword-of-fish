@@ -50,7 +50,7 @@ public class KingCrab : Boss
         Life = true;
         HitFlag = false;
 
-        HP = 30 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 3;
+        HP = 30 + QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 10;
         Speed = 1.5f;
         RotationSpeed = 800f;
         FRZFlag = false;

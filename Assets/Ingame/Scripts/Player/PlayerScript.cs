@@ -158,7 +158,10 @@ public class PlayerScript : Player
                 if (HP < 5)
                 {
                     HPtimer += Time.deltaTime;
-                    if (HPtimer > HillTime)
+                    float h;
+                    if (FishNumber == 4)  h = 2f;
+                    else h = 1f;
+                    if (HPtimer > HillTime / 2f +1)
                     {
                         HP++;
                         HPtimer = 0;

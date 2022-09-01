@@ -37,7 +37,7 @@ public class Tentacle : MonoBehaviour
         S = transform.GetComponent<SpriteRenderer>();
         StartFlag = true;
         imgTime = 0.125f;
-        HP = 5 +QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst;
+        HP = 10 +QM.GetComponent<QuestManager>().Stayge.GetComponent<Stage>().HardConst * 5;
         timer_ = 0f;
         temp = Polygon[0];
         FRZFlag = false;
