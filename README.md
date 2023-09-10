@@ -6,3 +6,4 @@ https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US
 개발자
 ooANAoo
 marso34
+hemzzi
