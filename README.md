@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/marso34/sword-of-fish">
-    <img src="app\src\main\res\mipmap-xxxhdpi\app_logo.png" alt="Logo" width="80" height="80">
+    <img src="ProjectDocument\img\Logo.png" alt="Logo" width="80" height="80">
   </a>
 
   ## Sword Of Fish - Life Below Water
