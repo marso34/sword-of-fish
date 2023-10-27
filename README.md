@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/marso34/sword-of-fish">
-    <img src="ProjectDocument\img\Logo.png" alt="Logo" width="80" height="80">
+    <img src="ProjectDocuments\img\Logo.png" alt="Logo" width="80" height="80">
   </a>
 
   ## Sword Of Fish - Life Below Water
@@ -33,7 +33,7 @@
   <p align="center">
     2D 유니티 게임엔진 기반 하이퍼캐주얼 모바일 게임
     <br />
-    <a href="https://github.com/marso34/sword-of-fish"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/marso34/sword-of-fish/tree/main/ProjectDocuments/documents"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/marso34/sword-of-fish">View Demo</a>
