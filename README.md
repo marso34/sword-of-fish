@@ -26,10 +26,9 @@
 <!--     <a href="https://securityscorecards.dev/viewer/?uri=github.com/marso34/sword-of-fish">
       <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/marso34/sword-of-fish/badge" />
     </a> -->
+    <br />
   </p>
-  
-  <br/>
-  
+    
   <p align="center">
     2D 유니티 게임엔진 기반 하이퍼캐주얼 모바일 게임
     <br />
