@@ -221,7 +221,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 **Kim Dohyun**
 
-- GitHub: [@ooANAoo](htps://github.com/ooANAoo)
+- GitHub: [@ooANAoo](https://github.com/ooANAoo)
 - SNS: [@SNS_name]()
 - Mail: <a href="mailto:gim670079@gmail.com">gim670079@gmail.com</a>
 
