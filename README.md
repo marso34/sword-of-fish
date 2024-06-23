@@ -239,7 +239,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 **Lee Hyojun**
 - GitHub: [@github]()
 - SNS: [@SNS_name]()
-- Mail:
+- Mail: <a
+href="mailto:aslone10@gmail.com">aslone10@gmail.com</a>
 
 Project Link: [https://github.com/marso34/sword-of-fish](https://github.com/marso34/sword-of-fish) <br />
 playstore Link : [https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US](https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US)
