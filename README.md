@@ -1,49 +1,26 @@
 <!-- PROJECT LOGO -->
 <a name="readme-top"></a>
-<br />
+
 <div align="center">
   <a href="https://github.com/marso34/sword-of-fish">
-    <img src="ProjectDocuments\img\Logo.png" alt="Logo" width="80" height="80">
+    <img src="info\Logo.png" alt="Logo">
   </a>
 
   ## Sword Of Fish - Life Below Water
-  <p align="center">
-<!--     <a href="https://github.com/marso34/sword-of-fish/actions">
-      <img alt="Tests Passing" src="https://github.com/marso34/sword-of-fish/workflows/Test/badge.svg" />
-    </a> -->
-    <a href="https://github.com/marso34/sword-of-fish/graphs/contributors">
-      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/marso34/sword-of-fish" />
-    </a>
-<!--     <a href="https://codecov.io/gh/marso34/sword-of-fish">
-      <img alt="Tests Coverage" src="https://codecov.io/gh/marso34/sword-of-fish/branch/master/graph/badge.svg" />
-    </a> -->
-    <a href="https://github.com/marso34/sword-of-fish/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/marso34/sword-of-fish?color=0088ff" />
-    </a>
-    <a href="https://github.com/marso34/sword-of-fish/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/marso34/sword-of-fish?color=0088ff" />
-    </a>
-<!--     <a href="https://securityscorecards.dev/viewer/?uri=github.com/marso34/sword-of-fish">
-      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/marso34/sword-of-fish/badge" />
-    </a> -->
-    <br />
-  </p>
-    
-  <p align="center">
+  <a href="https://github.com/marso34/witt-client-java/graphs/contributors" alt="Contributors">
+    <img src="https://img.shields.io/github/contributors/marso34/witt-client-java"/>
+  </a>
+  <a href="https://github.com/marso34/witt-client-java/pulse" alt="Activity">
+    <img src="https://img.shields.io/github/commit-activity/m/marso34/witt-client-java"/>
+  </a>
+
     2D 유니티 게임엔진 기반 하이퍼캐주얼 모바일 게임
-    <br />
-    <a href="https://github.com/marso34/sword-of-fish/tree/main/ProjectDocuments"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/marso34/sword-of-fish">View Demo</a>
-    ·
-    <a href="https://github.com/marso34/sword-of-fish/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/marso34/sword-of-fish/issues">Request Feature</a>
-  </p>
+
+  <a href="https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko">Google Play » </a>
+
 </div>
 
-<br />
+<br>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -71,144 +48,116 @@
   </ol>
 </details>
 
+<br>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-<!-- 완성 후 스크린샷 추가 -->
+[![Video Label](http://img.youtube.com/vi/jD53TCRVUt8/0.jpg)](https://youtu.be/jD53TCRVUt8)
 
-프로젝트에 대한 간단한 설명과 만든 이유
+ 『Sword of Fish(SOF)는 간단하게  즐길 수 있는 모바일 캐주얼 게임입니다. 수많은 쓰레기와 오염물질로 발생한 돌연변이 물고기들을 처치하고 오염의 근원지를 찾아 떠나는 물고기의 모험을 컨셉으로 삼은 Android 모바일 게임입니다』 
 
-Here's why:
-* ㅇㅇㅇㅇㅇ
-* ㅇㅇㅇㅇㅇ
-* ㅇㅇㅇㅇㅇ
+<details>
+  <summary>사용대상</summary>
+  <ul>
+    <li>모바일 게임을 즐기는 사람들</li>
+    <li>모바일 게임을 즐기는 어린 아이</li>
+  </ul>
+</details>
+<details>
+  <summary>문제 의식</summary>
+  <ul>
+    <li>여가 시간이 길지 않은 현대인</li>
+    <li>OECD 평균보다 부족한 여가 시간</li>
+    <ul>
+      <li>문화체육관광부, 「국민여가활동조사」</li>
+    </ul>
+    <li>covid-19 이후 집콕 트렌드 등에 모바일 캐주얼 장르의 성장</li>
+    <li>게임을 많이 하는 아이들에게 재미 뿐 아니라 환경오염에 대한 메시지 전달</li>
+    <ul>
+      <li>쉽고 재밌게 즐길 수 있는 게임을 통해 거부감 없이 환경오염에 대한 인식 개선</li>
+    </ul>
+  </ul>
+</details>
+<details>
+  <summary>제공 서비스</summary>
+  <ul>
+    <li>짧은 시간 즐길 수 있는 캐주얼 게임 제공</li>
+    <ul>
+      <li>플레이블 캐릭터 별 독특한 스킬 플레이</li>
+    </ul>
+    <li>게임 스토리를 통해 환경 정보 전달</li>
+  </ul>
+</details>
 
-ㅇㅇㅇㅇㅇ
-
-<!-- Use the `BLANK_README.md` to get started. -->
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-예시
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+<br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- UI/UX -->
+## UI/UX Concept
 
+<img src="info\UI_1.png">
 
-<!-- USAGE EXAMPLES -->
-## Usage
+1. 플레이어의 스태미너(부스터 게이지)를 표시합니다.
+2. 진행 중인 스테이지의 플레이 시간을 표시합니다.
+3. 진행 중인 스테이지에서 플레이어의 킬 수를 표시합니다
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<br>
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+<img src="info\UI_2.png">
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- 1, 2 상점을 이용하는데 필요한 게임 머니(재화)입니다.
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+<br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Character Design -->
+## Character Design
+
+### 플레이어 캐릭터
+
+<img src="info\fish0.gif" width="140">
+<img src="info\fish1.gif" width="140">
+<img src="info\fish2.gif" width="140">
+<img src="info\fish3.gif" width="140">
+<img src="info\fish4.gif" width="140">  
+
+<details>
+  <summary>캐릭터 스킬</summary>
+  <img src="info\skill_ex1.png" height="140">
+  <img src="info\skill_ex2.png" height="140">
+  <img src="info\skill_ex3.png" height="140">
+</details>
+<details>
+  <summary>캐릭터 데스신</summary>
+  <img src="info\fish0Dead.png" height="140">
+  <img src="info\fish1Dead.png" height="140">
+  <img src="info\fish2Dead.png" height="140">
+  <img src="info\fish3Dead.png" height="140">
+  <img src="info\fish4Dead.png" height="140">
+</details>
+<details>
+  <summary>적 캐릭터</summary>
+  <img src="info\fish5.gif" width="140">
+  <img src="info\fish6.gif" width="140">
+  <img src="info\fish7.gif" width="140">
+</details>
+
+<br>
+
+### 보스 캐릭터
+
+<img src="info\BoseCrab.gif" height="240">
 
 
-<!-- CONTRIBUTING -->
-## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+<br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- Libraries -->
-## Libraries
-
-...
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -246,19 +195,6 @@ Project Link: [https://github.com/marso34/sword-of-fish](https://github.com/mars
 playstore Link : [https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US](https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-
-<!-- 나중에 수정-->
-
-<a href="https://github.com/marso34/witt-client-java/graphs/contributors" alt="Contributors">
-  <img src="https://img.shields.io/github/contributors/marso34/witt-client-java" /></a>
-<a href="https://github.com/marso34/witt-client-java/pulse" alt="Activity">
-  <img src="https://img.shields.io/github/commit-activity/m/marso34/witt-client-java" /></a>
