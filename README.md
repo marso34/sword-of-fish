@@ -7,28 +7,25 @@
   </a>
 
   ## Sword Of Fish - Life Below Water
-  <a href="https://github.com/marso34/witt-client-java/graphs/contributors" alt="Contributors">
-    <img src="https://img.shields.io/github/contributors/marso34/witt-client-java"/>
-  </a>
-  <a href="https://github.com/marso34/witt-client-java/pulse" alt="Activity">
-    <img src="https://img.shields.io/github/commit-activity/m/marso34/witt-client-java"/>
-  </a>  
   
-   <a href="https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko">Google Play » </a>
+  
 
     2D 유니티 게임엔진 기반 하이퍼캐주얼 모바일 게임
+
+  
+  <a href="https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko">Google Play » </a>
 
 </div>
 
 <br>
-
+<br>
 
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#ui/ux-concept">UI/UX Concept</a></li>
+    <li><a href="#uiux-concept">UI/UX Concept</a></li>
     <li><a href="#character-design">Character Design</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
