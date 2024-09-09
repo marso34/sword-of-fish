@@ -3,7 +3,7 @@
 
 <div align="center">
   <a href="https://github.com/marso34/sword-of-fish">
-    <img src="info\Logo.png" alt="Logo">
+    <img src="info\Logo.png"  width="160">
   </a>
 
   ## Sword Of Fish - Life Below Water
@@ -12,50 +12,37 @@
   </a>
   <a href="https://github.com/marso34/witt-client-java/pulse" alt="Activity">
     <img src="https://img.shields.io/github/commit-activity/m/marso34/witt-client-java"/>
-  </a>
+  </a>  
+  
+   <a href="https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko">Google Play » </a>
 
     2D 유니티 게임엔진 기반 하이퍼캐주얼 모바일 게임
-
-  <a href="https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko">Google Play » </a>
 
 </div>
 
 <br>
 
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#ui/ux-concept">UI/UX Concept</a></li>
+    <li><a href="#character-design">Character Design</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 <br>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Video Label](http://img.youtube.com/vi/jD53TCRVUt8/0.jpg)](https://youtu.be/jD53TCRVUt8)
+[![SOF_youtube](https://github.com/user-attachments/assets/d5557c27-13e0-46a8-bce0-4e0c455994bf)](https://youtu.be/jD53TCRVUt8)
 
  『Sword of Fish(SOF)는 간단하게  즐길 수 있는 모바일 캐주얼 게임입니다. 수많은 쓰레기와 오염물질로 발생한 돌연변이 물고기들을 처치하고 오염의 근원지를 찾아 떠나는 물고기의 모험을 컨셉으로 삼은 Android 모바일 게임입니다』 
 
@@ -94,6 +81,7 @@
 
 <br>
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- UI/UX -->
@@ -106,6 +94,7 @@
 3. 진행 중인 스테이지에서 플레이어의 킬 수를 표시합니다
 
 <br>
+
 
 <img src="info\UI_2.png">
 
@@ -120,42 +109,43 @@
 
 ### 플레이어 캐릭터
 
-<img src="info\fish0.gif" width="140">
-<img src="info\fish1.gif" width="140">
-<img src="info\fish2.gif" width="140">
-<img src="info\fish3.gif" width="140">
-<img src="info\fish4.gif" width="140">  
+<p>  
+  <img src="info\fish0.gif" width="18%">
+  <img src="info\fish1.gif" width="18%">
+  <img src="info\fish2.gif" width="18%">
+  <img src="info\fish3.gif" width="18%">
+  <img src="info\fish4.gif" width="18%">  
+</p>
 
 <details>
   <summary>캐릭터 스킬</summary>
-  <img src="info\skill_ex1.png" height="140">
-  <img src="info\skill_ex2.png" height="140">
-  <img src="info\skill_ex3.png" height="140">
+  <img src="info\skill_ex1.png" width="25%">
+  <img src="info\skill_ex2.png" width="25%">
+  <img src="info\skill_ex3.png" width="25%">
 </details>
 <details>
   <summary>캐릭터 데스신</summary>
-  <img src="info\fish0Dead.png" height="140">
-  <img src="info\fish1Dead.png" height="140">
-  <img src="info\fish2Dead.png" height="140">
-  <img src="info\fish3Dead.png" height="140">
-  <img src="info\fish4Dead.png" height="140">
+  <img src="info\fish0Dead.png" width="18%">
+  <img src="info\fish1Dead.png" width="18%">
+  <img src="info\fish2Dead.png" width="18%">
+  <img src="info\fish3Dead.png" width="18%">
+  <img src="info\fish4Dead.png" width="18%">
 </details>
 <details>
   <summary>적 캐릭터</summary>
-  <img src="info\fish5.gif" width="140">
-  <img src="info\fish6.gif" width="140">
-  <img src="info\fish7.gif" width="140">
+  <img src="info\fish5.gif" width="18%">
+  <img src="info\fish6.gif" width="18%">
+  <img src="info\fish7.gif" width="18%">
 </details>
 
 <br>
 
 ### 보스 캐릭터
 
-<img src="info\BoseCrab.gif" height="240">
-
-
+<img src="info\BoseCrab.gif" width="40%">
 
 <br>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -166,7 +156,6 @@
 
 - GitHub: [@marso34](https://github.com/marso34)
 - Mail: <a href="mailto:mars102aq@gmail.com">mars102aq@gmail.com</a>
-- Portfolio: [Notion](https://leejune.notion.site/Portfolio-70b846886e2e41368280f5a7e49f9e0d)
 
 **Kim Dohyun**
 
@@ -191,10 +180,7 @@
 - Mail: <a
 href="mailto:aslone10@gmail.com">aslone10@gmail.com</a>
 
-Project Link: [https://github.com/marso34/sword-of-fish](https://github.com/marso34/sword-of-fish) <br />
-playstore Link : [https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US](https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko&gl=US)
-
-
+<br>
 
 
 
