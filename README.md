@@ -3,16 +3,13 @@
 
 <div align="center">
   <a href="https://github.com/marso34/sword-of-fish">
-    <img src="info\Logo.png"  width="160">
+    <img src="https://github.com/user-attachments/assets/15375612-fdad-49d9-bd0e-19f0706560ee" alt="Logo" width="100" height="100">
   </a>
 
   ## Sword Of Fish - Life Below Water
-  
-  
 
     2D 유니티 게임엔진 기반 하이퍼캐주얼 모바일 게임
 
-  
   <a href="https://play.google.com/store/apps/details?id=com.Gamja.SwordofFish&hl=ko">Google Play » </a>
 
 </div>
@@ -41,7 +38,11 @@
 
 [![SOF_youtube](https://github.com/user-attachments/assets/d5557c27-13e0-46a8-bce0-4e0c455994bf)](https://youtu.be/jD53TCRVUt8)
 
- 『Sword of Fish(SOF)는 간단하게  즐길 수 있는 모바일 캐주얼 게임입니다. 수많은 쓰레기와 오염물질로 발생한 돌연변이 물고기들을 처치하고 오염의 근원지를 찾아 떠나는 물고기의 모험을 컨셉으로 삼은 Android 모바일 게임입니다』 
+<br>
+
+> 『Sword of Fish(SOF)는 간단하게  즐길 수 있는 모바일 캐주얼 게임입니다. 수많은 쓰레기와 오염물질로 발생한 돌연변이 물고기들을 처치하고 오염의 근원지를 찾아 떠나는 물고기의 모험을 컨셉으로 삼은 Android 모바일 게임입니다』 
+
+<br>
 
 <details>
   <summary>사용대상</summary>
