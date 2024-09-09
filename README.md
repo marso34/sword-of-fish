@@ -128,18 +128,18 @@
   <img src="info\fish3Dead.png" width="18%">
   <img src="info\fish4Dead.png" width="18%">
 </details>
+
+<br>
+
+### 보스 캐릭터
+
+<img src="info\BoseCrab.gif" width="50%">
 <details>
   <summary>적 캐릭터</summary>
   <img src="info\fish5.gif" width="18%">
   <img src="info\fish6.gif" width="18%">
   <img src="info\fish7.gif" width="18%">
 </details>
-
-<br>
-
-### 보스 캐릭터
-
-<img src="info\BoseCrab.gif" width="40%">
 
 <br>
 
