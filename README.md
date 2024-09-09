@@ -85,7 +85,7 @@
 <!-- UI/UX -->
 ## UI/UX Concept
 
-<img src="info\UI_1.png">
+<img src="info/UI_1.png">
 
 1. 플레이어의 스태미너(부스터 게이지)를 표시합니다.
 2. 진행 중인 스테이지의 플레이 시간을 표시합니다.
@@ -94,7 +94,7 @@
 <br>
 
 
-<img src="info\UI_2.png">
+<img src="info/UI_2.png">
 
 - 1, 2 상점을 이용하는데 필요한 게임 머니(재화)입니다.
 
@@ -108,38 +108,38 @@
 ### 플레이어 캐릭터
 
 <p>  
-  <img src="info\fish0.gif" width="18%">
-  <img src="info\fish1.gif" width="18%">
-  <img src="info\fish2.gif" width="18%">
-  <img src="info\fish3.gif" width="18%">
-  <img src="info\fish4.gif" width="18%">  
+  <img src="info/fish0.gif" width="18%">
+  <img src="info/fish1.gif" width="18%">
+  <img src="info/fish2.gif" width="18%">
+  <img src="info/fish3.gif" width="18%">
+  <img src="info/fish4.gif" width="18%">  
 </p>
 
 <details>
   <summary>캐릭터 스킬</summary>
-  <img src="info\skill_ex1.png" width="25%">
-  <img src="info\skill_ex2.png" width="25%">
-  <img src="info\skill_ex3.png" width="25%">
+  <img src="info/skill_ex1.png" width="25%">
+  <img src="info/skill_ex2.png" width="25%">
+  <img src="info/skill_ex3.png" width="25%">
 </details>
 <details>
   <summary>캐릭터 데스신</summary>
-  <img src="info\fish0Dead.png" width="18%">
-  <img src="info\fish1Dead.png" width="18%">
-  <img src="info\fish2Dead.png" width="18%">
-  <img src="info\fish3Dead.png" width="18%">
-  <img src="info\fish4Dead.png" width="18%">
+  <img src="info/fish0Dead.png" width="18%">
+  <img src="info/fish1Dead.png" width="18%">
+  <img src="info/fish2Dead.png" width="18%">
+  <img src="info/fish3Dead.png" width="18%">
+  <img src="info/fish4Dead.png" width="18%">
 </details>
 
 <br>
 
 ### 보스 캐릭터
 
-<img src="info\BoseCrab.gif" width="50%">
+<img src="info/BoseCrab.gif" width="50%">
 <details>
   <summary>적 캐릭터</summary>
-  <img src="info\fish5.gif" width="18%">
-  <img src="info\fish6.gif" width="18%">
-  <img src="info\fish7.gif" width="18%">
+  <img src="info/fish5.gif" width="18%">
+  <img src="info/fish6.gif" width="18%">
+  <img src="info/fish7.gif" width="18%">
 </details>
 
 <br>
