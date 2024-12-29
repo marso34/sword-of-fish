@@ -173,7 +173,7 @@
 - Mail: <a href="mailto:kwoo6643@gmail.com">kwoo6643@gmail.com</a>
 
 **Lee Hyojun**
-- GitHub: [@github]()
+- GitHub: [@aleendis](https://github.com/aleendis)
 - SNS: [@SNS_name]()
 - Mail: <a
 href="mailto:aslone10@gmail.com">aslone10@gmail.com</a>
